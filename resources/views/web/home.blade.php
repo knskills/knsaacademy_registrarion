@@ -250,7 +250,6 @@
                 <div class="row">
                     <div class="col-md-6">
                         <img src="{{ asset('assets/img/think.jpg') }}" alt="" class="img-fluid">
-
                     </div>
                     <div class="col-md-6">
                         <ul>
@@ -430,7 +429,6 @@
                             <div class="member-info">
                                 <h4>Jitendra Dhever</h4>
                                 <span class="text-dark">Income - ₹ 6 crore</span><br>
-                                <span>From - Chhattisgarh</span>
                             </div>
                         </div>
                     </div>
@@ -445,7 +443,6 @@
                             <div class="member-info">
                                 <h4>Mukesh Sharma</h4>
                                 <span class="text-dark">Income - ₹ 2.5 crore</span><br>
-                                <span>From - Chhattisgarh</span>
                             </div>
                         </div>
                     </div>
@@ -457,14 +454,39 @@
                                 <img src="{{ asset('assets/img/team/jst.jpeg') }}" class="img-fluid" alt="">
                             </div>
                             <div class="member-info">
-                                <h4>MD ANSARUL HAQUE </h4>
-                                <span class="text-dark">Income - ₹ 5 crore</span><br>
-                                <span>From - Uttar Pradesh</span>
+                                <h4>Devbrat Mourya</h4>
+                                <span class="text-dark">Income - ₹ 4.5 crore</span><br>
                             </div>
                         </div>
                     </div>
 
+                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up"
+                        data-aos-delay="400">
+                        <div class="member">
+                            <div class="member-img">
+                                <img src="{{ asset('assets/img/team/munib.jpeg') }}" class="img-fluid"
+                                    alt="">
+                            </div>
+                            <div class="member-info">
+                                <h4>Munib Nishad</h4>
+                                <span class="text-dark">Income - ₹ 2.5 crore</span><br>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up"
+                        data-aos-delay="200">
+                        <div class="member">
+                            <div class="member-img">
+                                <img src="{{ asset('assets/img/team/dharmendra.jpeg') }}"
+                                    class="img-fluid" alt="">
+                            </div>
+                            <div class="member-info">
+                                <h4>Dharmendra Yadav</h4>
+                                <span class="text-dark">Income - ₹ 1.5 crore</span><br>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up"
                         data-aos-delay="200">
@@ -474,9 +496,8 @@
                                     class="img-fluid" alt="">
                             </div>
                             <div class="member-info">
-                                <h4>Mukesh Gupta</h4>
+                                <h4>Manteshwar</h4>
                                 <span class="text-dark">Income - ₹ 81 lac</span><br>
-                                <span>From - Kolkatta</span>
                             </div>
                         </div>
                     </div>
@@ -491,7 +512,6 @@
                             <div class="member-info">
                                 <h4>DAYANAND PRASAD </h4>
                                 <span class="text-dark">Income - ₹ 49 lac</span><br>
-                                <span>From - Madhya Pradesh</span>
                             </div>
                         </div>
                     </div>
@@ -506,12 +526,11 @@
                             <div class="member-info">
                                 <h4>Panku Sharma </h4>
                                 <span class="text-dark">Income - ₹ 37 lac</span><br>
-                                <span>From - Uttar Pradesh</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up"
+                    {{-- <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up"
                         data-aos-delay="400">
                         <div class="member">
                             <div class="member-img">
@@ -524,7 +543,7 @@
                                 <span>From - Uttar Pradesh</span>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
             </div>

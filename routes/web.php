@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AudienceController;
+use Illuminate\Support\Facades\Artisan;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,3 +33,12 @@ Route::get('register', function () {
 })->name('register');
 
 Route::get('/home', [App\Http\Controllers\AudienceController::class, 'index'])->name('home');
+
+// Clear Cache
+Route::get('clear', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    Artisan::call('optimize:clear');
+    Artisan::call('config:cache');
+    return "Cleared!";
+});
