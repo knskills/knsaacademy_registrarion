@@ -344,7 +344,7 @@
                     <h2>Videos</h2>
                     <h3>Our youtube <span>videos</span></h3>
                 </div>
-                {{-- <div class="row">
+                <div class="row">
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in"
                         data-aos-delay="100">
                         <div class="tutorial container text-center my-2 ratio ratio-16x9">
@@ -404,7 +404,7 @@
                                 allowfullscreen></iframe>
                         </div>
                     </div>
-                </div> --}}
+                </div>
             </div>
         </section><!-- End Services Section -->
 
