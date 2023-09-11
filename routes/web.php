@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Artisan;
 Route::get('/', function () {
     return view('web.home');
 });
+Route::view('/mailtest', 'web.resMail');
 Route::post('/audience', [AudienceController::class, 'store'])->name('audience.store');
 Route::get('/audience', [AudienceController::class, 'index'])->name('audience.index');
 Route::get('/audience/{audience}', [AudienceController::class, 'show'])->name('audience.show');
