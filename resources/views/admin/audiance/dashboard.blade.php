@@ -1,0 +1,82 @@
+@extends('admin.layouts.app')
+
+@section('styles')
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap.min.css">
+@endsection
+
+@section('content')
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <h3><i class="fa fa-angle-right"></i> Registerd Audience</h3>
+            <div class="row">
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                <div class="col-lg-12">
+                    <div class="content-panel">
+                        <h4><i class="fa fa-angle-right"></i> Responsive Table</h4>
+                        <section id="unseen">
+                            <table class="table table-bordered table-striped table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Sr No.</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th class="numeric">Phone</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($audiences as $key => $item)
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->email }}</td>
+                                            <td>{{ $item->phone }}</td>
+                                            <td>
+                                                {{-- <a href="{{ route('admin.audiance.show', $item->id) }}"
+                                                    class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
+                                                <a href="{{ route('admin.audiance.edit', $item->id) }}"
+                                                    class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></a> --}}
+                                                <form action="{{ route('audience.destroy', $item->id) }}" method="POST"
+                                                    style="display: inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-xs"
+                                                        onclick="return confirm('Are you sure delete this item? ')">
+                                                        <i class="fa fa-trash-o "></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            {!! $audiences->links() !!}
+                        </section>
+                    </div><!-- /content-panel -->
+                </div><!-- /col-lg-4 -->
+            </div><!-- /row -->
+        </section>
+    </section>
+@endsection
+
+@section('scripts')
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.table').DataTable();
+
+            // remove alert after 3 seconds
+            setTimeout(function() {
+                $('.alert').remove();
+            }, 3000);
+        });
+    </script>
+@endsection
