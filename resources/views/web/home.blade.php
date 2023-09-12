@@ -355,18 +355,18 @@
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Name</label>
                                         <input type="text" class="form-control" id="name" name="name"
-                                            placeholder="Akash Kumar" required>
+                                            placeholder="" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Email</label>
                                         <input type="email" class="form-control" id="email" name="email"
-                                            placeholder="example@gmail.com" required>
+                                            placeholder="" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="phone" class="form-label">Contact Number</label>
                                         <input type="text" class="form-control" id="phone"
                                             oninput="this.value = this.value.replace(/[^0-9]/g, '')" minlength="10"
-                                            name="phone" maxlength="10" placeholder="9876543210" required>
+                                            name="phone" maxlength="10" placeholder="" required>
                                     </div>
                                     <button class="btn btn-primary" type="button" id="submit">
                                         Submit
