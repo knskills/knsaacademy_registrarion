@@ -25,7 +25,6 @@
                     <tr>
                         <td style="text-align:center;">
                             <a href="#" title="logo" target="_blank">
-                                {{-- <img width="60" src="https://i.ibb.co/hL4XZp2/android-chrome-192x192.png" title="logo" alt="logo"> --}}
                             </a>
                         </td>
                     </tr>
@@ -49,7 +48,9 @@
                                         {{-- <img src="{{ asset('assets/img/mail.jpeg') }}" alt=""
                                             style="min-height: 350px; min-width:350px; max-height: 500px; max-width:500px;"> --}}
 
-                                        <img src="https://registration.knsacademy.in/assets/img/mail.jpeg" alt="Registration Image" style="min-height: 350px; min-width:350px; max-height: 500px; max-width:500px;">
+                                        <img src="https://registration.knsacademy.in/assets/img/mail.jpeg"
+                                            alt="Registration Image"
+                                            style="min-height: 350px; min-width:350px; max-height: 500px; max-width:500px;">
                                         <br><br>
 
                                         <p style="font-size:15px; color:#455056; margin:8px 0 0; line-height:24px;">
@@ -60,8 +61,9 @@
 
 
                                         <a href="https://chat.whatsapp.com/JBWY02DtUUIG7iTyDB43NM"
-                                            style="background:#20e277;text-decoration:none !important; display:inline-block; font-weight:500; margin-top:24px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Join
-                                            Group</a>
+                                            style="background:#20e277;text-decoration:none !important; display:inline-block; font-weight:500; margin-top:24px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">
+                                            Join Group
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr>

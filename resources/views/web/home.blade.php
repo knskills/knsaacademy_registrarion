@@ -178,9 +178,10 @@
                     <h1> {{ __('lang.title_m') }}<span> {{ __('lang.title_s') }}</span></h1>
                     <h2>in our live sessions</h2>
 
-                    <a href="#skills" class="btn-custom">
-                        <span>Book Now Your Free Seat</span>
-                    </a>
+                    <a href="#skills" class="btn-custom mb-3" {{$disabled}}>
+                        <span>Book Now Your Free Seat <b>₹<del>399</del></b> </span>
+                    </a><br>
+                    <b id="timerDisplay" class="h4 bg-white text-dark">Time remaining: 60:00</b>
                 </div>
 
                 <div class="col-md-6">
@@ -233,37 +234,37 @@
             </div>
         </section><!-- End About Section -->
 
-       <!-- ======= why2 Section ======= -->
-       <section id="about" class="about ">
-        <div class="container" data-aos="fade-up">
-            {{-- <div class="section-title">
+        <!-- ======= why2 Section ======= -->
+        <section id="about" class="about ">
+            <div class="container" data-aos="fade-up">
+                {{-- <div class="section-title">
                 <h3>{{ __('lang.some_reasons') }} <span>{{ __('lang.some_reasons_1') }}</span></h3>
             </div> --}}
-            <div class="section-title">
-                <h3>Some Reasons<span> Why People Failed in Network Marketing:</span></h3>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6 text-center" data-aos="fade-right" data-aos-delay="100">
-                    <img src="{{ asset('assets/img/marketing.jpg') }}" alt="network" class="img-fluid">
+                <div class="section-title">
+                    <h3>Some Reasons<span> Why People Failed in Network Marketing:</span></h3>
                 </div>
-                <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center"
-                    data-aos="fade-up" data-aos-delay="100">
-                    <b>
-                        {{ __('lang.reasion_content_1') }}
-                    </b>
-                    <br>
-                    <p class="fst-italic">
-                        {{ __('lang.reasion_content_2') }}
-                    </p>
-                    <p>
-                        {{ __('lang.reasion_content_3') }}
-                    </p>
-                </div>
-            </div>
 
-        </div>
-    </section><!-- End About Section -->
+                <div class="row">
+                    <div class="col-lg-6 text-center" data-aos="fade-right" data-aos-delay="100">
+                        <img src="{{ asset('assets/img/marketing.jpg') }}" alt="network" class="img-fluid">
+                    </div>
+                    <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <b>
+                            {{ __('lang.reasion_content_1') }}
+                        </b>
+                        <br>
+                        <p class="fst-italic">
+                            {{ __('lang.reasion_content_2') }}
+                        </p>
+                        <p>
+                            {{ __('lang.reasion_content_3') }}
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End About Section -->
 
         <!-- ======= why Section ======= -->
         <section id="services" class="services section-bg">
@@ -757,6 +758,37 @@
         $(".changeLang").change(function() {
             window.location.href = url + "?lang=" + $(this).val();
         });
+    </script>
+    <script>
+        const timerDisplay = document.getElementById('timerDisplay');
+        const registerButton = document.getElementById('registerButton');
+
+        let remainingTime = 3600; // 1 hour in seconds
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(remainingTime / 60);
+            const seconds = remainingTime % 60;
+
+            timerDisplay.textContent = `Time remaining: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }
+
+        function disableRegisterButton() {
+            registerButton.disabled = true;
+            timerDisplay.textContent = 'Time expired';
+        }
+
+        const countdownInterval = setInterval(() => {
+            if (remainingTime <= 0) {
+                disableRegisterButton();
+                clearInterval(countdownInterval);
+
+                // after 60 min disabled btn-custom class
+                $('.btn-custom').addClass('disabled');
+            } else {
+                remainingTime--;
+                updateTimerDisplay();
+            }
+        }, 1000);
     </script>
 
 </body>
