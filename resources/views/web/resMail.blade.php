@@ -24,7 +24,7 @@
                     </tr>
                     <tr>
                         <td style="text-align:center;">
-                            <a href="https://rakeshmandal.com" title="logo" target="_blank">
+                            <a href="#" title="logo" target="_blank">
                                 {{-- <img width="60" src="https://i.ibb.co/hL4XZp2/android-chrome-192x192.png" title="logo" alt="logo"> --}}
                             </a>
                         </td>
@@ -49,8 +49,9 @@
                                         {{-- <img src="{{ asset('assets/img/mail.jpeg') }}" alt=""
                                             style="min-height: 350px; min-width:350px; max-height: 500px; max-width:500px;"> --}}
 
-                                        <img src="cid:mail-image" alt="Registration Image" style="min-height: 350px; min-width:350px; max-height: 500px; max-width:500px;">
+                                        <img src="https://registration.knsacademy.in/assets/img/mail.jpeg" alt="Registration Image" style="min-height: 350px; min-width:350px; max-height: 500px; max-width:500px;">
                                         <br><br>
+
                                         <p style="font-size:15px; color:#455056; margin:8px 0 0; line-height:24px;">
                                             We are delighted to confirm your registration for the seminar. Your seat has
                                             been successfully reserved, and we are excited to have you join us for this
