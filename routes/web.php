@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AudienceController;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\LangController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,3 +44,5 @@ Route::get('clear', function () {
     Artisan::call('config:cache');
     return "Cleared!";
 });
+
+Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');

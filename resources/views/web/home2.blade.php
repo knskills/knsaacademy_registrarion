@@ -134,12 +134,18 @@
             </div>
             <div class="social-links d-none d-md-flex align-items-center">
                 {{-- <a href="#" class="twitter"><i class="bi bi-twitter"></i></a> --}}
-                <a href="https://www.facebook.com/p/KAMAL-NARAYAN-SAHU-100063653929924/" class="facebook"><i
-                        class="bi bi-facebook"></i></a>
-                <a href="https://www.instagram.com/kamal_narayan_sahu/?hl=en" class="instagram"><i
-                        class="bi bi-instagram"></i></a>
+                <a href="https://www.facebook.com/p/KAMAL-NARAYAN-SAHU-100063653929924/" class="facebook">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="https://www.instagram.com/kamal_narayan_sahu/?hl=en" class="instagram">
+                    <i class="bi bi-instagram"></i>
+                </a>
                 <a href="https://www.linkedin.com/in/kamal-narayan-sahu-34003983/?originalSubdomain=in"
-                    class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+                    class="linkedin">
+                    <i class="bi bi-linkedin"></i>
+                </a>
+
+
             </div>
         </div>
     </section>
@@ -203,7 +209,11 @@
 
                 <div class="section-title">
                     <h2>About</h2>
-                    <h3>Find Out More About <span>Network Marketing</span></h3>
+                    @if (app()->getLocale() === 'hi')
+                        <h3>{{ __('lang.n_m') }} <span>{{ __('lang.about_1') }}</span></h3>
+                    @else
+                        <h3>{{ __('lang.about_1') }} <span>{{ __('lang.n_m') }}</span></h3>
+                    @endif
                 </div>
 
                 <div class="row">
@@ -214,18 +224,16 @@
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 allowfullscreen></iframe>
                         </div>
-                        <h4 class="text-primary">16+ Years Experience</h4>
+                        <h4 class="text-primary">{{ __('lang.experince') }}</h4>
                     </div>
                     <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center"
                         data-aos="fade-up" data-aos-delay="100">
-                        <h3>The Network Marketing Success Formula: The Ultimate Guide to Building a Thriving Business
+                        <h3>{{ __('lang.about_header') }}
                         </h3>
                         <p class="fst-italic">
-                            Are you looking to build a successful network marketing business? If so, you need The
-                            Network Marketing Success Formula. This comprehensive e-book will teach you everything you
-                            need to know to achieve success in this industry.
+                            {{ __('lang.about_content_1') }}
                             <br>
-                            In this Class, you will learn:
+                            {{ __('lang.about_content_2') }}
                         </p>
                     </div>
                 </div>
@@ -233,44 +241,45 @@
             </div>
         </section><!-- End About Section -->
 
-       <!-- ======= why2 Section ======= -->
-       <section id="about" class="about ">
-        <div class="container" data-aos="fade-up">
-            {{-- <div class="section-title">
-                <h3>{{ __('lang.some_reasons') }} <span>{{ __('lang.some_reasons_1') }}</span></h3>
-            </div> --}}
-            <div class="section-title">
-                <h3>Some Reasons<span> Why People Failed in Network Marketing:</span></h3>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6 text-center" data-aos="fade-right" data-aos-delay="100">
-                    <img src="{{ asset('assets/img/marketing.jpg') }}" alt="network" class="img-fluid">
+        <!-- ======= why2 Section ======= -->
+        <section id="about" class="about ">
+            <div class="container" data-aos="fade-up">
+                <div class="section-title">
+                    <h3>{{ __('lang.some_reasons') }} <span>{{ __('lang.some_reasons_1') }}</span></h3>
                 </div>
-                <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center"
-                    data-aos="fade-up" data-aos-delay="100">
-                    <b>
-                        {{ __('lang.reasion_content_1') }}
-                    </b>
-                    <br>
-                    <p class="fst-italic">
-                        {{ __('lang.reasion_content_2') }}
-                    </p>
-                    <p>
-                        {{ __('lang.reasion_content_3') }}
-                    </p>
-                </div>
-            </div>
 
-        </div>
-    </section><!-- End About Section -->
+                <div class="row">
+                    <div class="col-lg-6 text-center" data-aos="fade-right" data-aos-delay="100">
+                        <img src="{{ asset('assets/img/marketing.jpg') }}" alt="network" class="img-fluid">
+                    </div>
+                    <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <b>
+                            {{ __('lang.reasion_content_1') }}
+                        </b>
+                        <br>
+                        <p class="fst-italic">
+                            {{ __('lang.reasion_content_2') }}
+                        </p>
+                        <p>
+                            {{ __('lang.reasion_content_3') }}
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End About Section -->
 
         <!-- ======= why Section ======= -->
         <section id="services" class="services section-bg">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
-                    <h3>Why People Get Failed on <span>Network Marketing ?</span></h3>
+                    @if (app()->getLocale() === 'hi')
+                        <h3>{{ __('lang.pepole') }} <span>{{ __('lang.n_m') }} </span>{{ __('lang.faild_2') }}</h3>
+                    @else
+                        <h3>Why People Get Failed on <span>Network Marketing ?</span></h3>
+                    @endif
                 </div>
                 <div class="row">
                     <div class="col-md-6">
@@ -278,21 +287,17 @@
                     </div>
                     <div class="col-md-6">
                         <ul>
-                            <li>What network marketing is and how it works</li>
-                            <li>How to choose the right company</li>
-                            <li>How to find your target market</li>
-                            <li>How to build your network</li>
-                            <li>How to present your products or services</li>
-                            <li>How to follow up with customers</li>
-                            <li>How to build your team</li>
-                            <li>How to overcome challenges</li>
-                            <li>How to stay motivated And more!</li>
+                            <li>{{ __('lang.why_1') }}</li>
+                            <li>{{ __('lang.why_2') }}</li>
+                            <li>{{ __('lang.why_3') }}</li>
+                            <li>{{ __('lang.why_4') }}</li>
+                            <li>{{ __('lang.why_5') }}</li>
+                            <li>{{ __('lang.why_6') }}</li>
+                            <li>{{ __('lang.why_7') }}</li>
+                            <li>{{ __('lang.why_8') }}</li>
+                            <li>{{ __('lang.why_9') }}</li>
                         </ul>
-                        <p>
-                            The Network Marketing Success Formula is the perfect resource for anyone who wants to build
-                            a successful network marketing business. Get your copy today and start your journey to
-                            success!
-                        </p>
+                        <p> {{ __('lang.why_content') }}</p>
                     </div>
                 </div>
             </div>
@@ -312,19 +317,19 @@
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                {{ __('lang.confirmation') }}
+                                            </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Dear Sir/Madam,</p>
+                                            <p>{{ __('lang.respected') }}</p>
                                             <p>
-                                                We are delighted to confirm your registration for the seminar. Your
-                                                seat has been successfully reserved, and we are excited to have you
-                                                join us for this enlightening event.
+                                                <strong>{{ __('lang.confirm_msg') }}</strong>.
                                             </p>
                                             <p>
-                                                <strong>Please confirm your seat by clicking on the link below</strong>.
+                                                <strong>{{ __('lang.join_msg') }}</strong>.
                                             </p>
                                             <a href="https://chat.whatsapp.com/JBWY02DtUUIG7iTyDB43NM"
                                                 class="btn btn-success">Join Whatsapp Group</a>
@@ -381,9 +386,7 @@
                             <img src="{{ asset('assets/img/zoom-q4lxq0brpwmn1u1k7eah0gv2ntwyqp3nn2e2gqykpo.png') }}"
                                 alt="meeting" class="img-fluid">
                             <h5 style="margin-left: 10%">
-                                With 1 Hour
-                                Live Zoom
-                                Webinar​
+                                {{ __('lang.webinar') }}
                             </h5>
                         </div>
                         <div class="mt-5 text-center">
@@ -399,7 +402,7 @@
             <div class="container" data-aos="fade-up">
                 <div class="section-title">
                     <h2>Videos</h2>
-                    <h3>Our youtube <span>videos</span></h3>
+                    <h3> {{ __('lang.our_v') }} <span> {{ __('lang.videos') }}</span></h3>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in"
@@ -586,6 +589,21 @@
                             </div>
                         </div>
                     </div>
+
+                    {{-- <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up"
+                        data-aos-delay="400">
+                        <div class="member">
+                            <div class="member-img">
+                                <img src="{{ asset('assets/img/team/second.jpeg') }}" class="img-fluid"
+                                    alt="">
+                            </div>
+                            <div class="member-info">
+                                <h4>MD ANSARUL HAQUE </h4>
+                                <span class="text-dark">Income - ₹ 28 lac</span><br>
+                                <span>From - Uttar Pradesh</span>
+                            </div>
+                        </div>
+                    </div> --}}
                 </div>
 
             </div>
@@ -749,6 +767,13 @@
                     }
                 });
             });
+        });
+    </script>
+    <script type="text/javascript">
+        var url = "{{ route('changeLang') }}";
+
+        $(".changeLang").change(function() {
+            window.location.href = url + "?lang=" + $(this).val();
         });
     </script>
 

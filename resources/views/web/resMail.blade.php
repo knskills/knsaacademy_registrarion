@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en-US">
 
@@ -7,7 +6,9 @@
     <title>Registration mail</title>
     <meta name="description" content="Registration mail.">
     <style type="text/css">
-        a:hover {text-decoration: underline !important;}
+        a:hover {
+            text-decoration: underline !important;
+        }
     </style>
 </head>
 
@@ -24,8 +25,8 @@
                     <tr>
                         <td style="text-align:center;">
                             <a href="https://rakeshmandal.com" title="logo" target="_blank">
-                            {{-- <img width="60" src="https://i.ibb.co/hL4XZp2/android-chrome-192x192.png" title="logo" alt="logo"> --}}
-                          </a>
+                                {{-- <img width="60" src="https://i.ibb.co/hL4XZp2/android-chrome-192x192.png" title="logo" alt="logo"> --}}
+                            </a>
                         </td>
                     </tr>
                     <tr>
@@ -40,14 +41,26 @@
                                 </tr>
                                 <tr>
                                     <td style="padding:0 35px;">
-                                        <h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:'Rubik',sans-serif;">Get started
+                                        <h1
+                                            style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:'Rubik',sans-serif;">
+                                            Get started
                                         </h1>
+
+                                        {{-- <img src="{{ asset('assets/img/mail.jpeg') }}" alt=""
+                                            style="min-height: 350px; min-width:350px; max-height: 500px; max-width:500px;"> --}}
+
+                                        <img src="cid:mail-image" alt="Registration Image" style="min-height: 350px; min-width:350px; max-height: 500px; max-width:500px;">
+                                        <br><br>
                                         <p style="font-size:15px; color:#455056; margin:8px 0 0; line-height:24px;">
-                                            We are delighted to confirm your registration for the seminar. Your seat has been successfully reserved, and we are excited to have you join us for this enlightening event. <br><strong>Please confirm your seat by clicking on the link below</strong>.</p>
+                                            We are delighted to confirm your registration for the seminar. Your seat has
+                                            been successfully reserved, and we are excited to have you join us for this
+                                            enlightening event. <br><strong>Please confirm your seat by clicking on the
+                                                link below</strong>.</p>
 
 
                                         <a href="https://chat.whatsapp.com/JBWY02DtUUIG7iTyDB43NM"
-                                            style="background:#20e277;text-decoration:none !important; display:inline-block; font-weight:500; margin-top:24px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Join Group</a>
+                                            style="background:#20e277;text-decoration:none !important; display:inline-block; font-weight:500; margin-top:24px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Join
+                                            Group</a>
                                     </td>
                                 </tr>x
                                 <tr>
