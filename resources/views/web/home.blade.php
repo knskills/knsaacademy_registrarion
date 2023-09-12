@@ -122,7 +122,6 @@
 </head>
 
 <body>
-
     <!-- ======= Top Bar ======= -->
     <section id="topbar" class="d-flex align-items-center">
         <div class="container d-flex justify-content-center justify-content-md-between">
@@ -300,6 +299,44 @@
                 <div class="row skills-content">
                     <div class="col-lg-7">
                         <div class="card">
+
+                            <!-- Button trigger modal -->
+                            {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+                                Launch demo modal
+                            </button> --}}
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="confirm_msg" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Dear Sir/Madam,</p>
+                                            <p>
+                                                We are delighted to confirm your registration for the seminar. Your
+                                                seat has been successfully reserved, and we are excited to have you
+                                                join us for this enlightening event.
+                                            </p>
+                                            <p>
+                                                <strong>Please confirm your seat by clicking on the link below</strong>.
+                                            </p>
+                                            <a href="https://chat.whatsapp.com/JBWY02DtUUIG7iTyDB43NM"
+                                                class="btn btn-success">Join Whatsapp Group</a>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="card-body">
                                 <div class="text-center">
                                     <h5 class="card-title mb-3">Registration Form</h5>
@@ -607,8 +644,7 @@
         </section><!-- End Team Section -->
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <a href="https://api.whatsapp.com/send?phone=+917582918000&text=Knsacademy."
-            class="wha" target="_blank">
+        <a href="https://api.whatsapp.com/send?phone=+917582918000&text=Knsacademy." class="wha" target="_blank">
             <i class="fa fa-whatsapp my-float"></i>
         </a>
 
@@ -686,8 +722,11 @@
                         $('#success').show();
                         $('#success').html(response.message);
                         if (response.message) {
-                            $('#success').show();
-                            $('#success').html(response.message);
+                            // $('#success').show();
+                            // $('#success').html(response.message);
+                            // $('#msg').show();
+                            // show confirm modal
+                            $('#confirm_msg').modal('show');
                         } else if (response.errors) {
                             let errors = response.errors;
 
@@ -704,7 +743,7 @@
                         }
                         setTimeout(function() {
                             $('.alert').hide();
-                        }, 3000);
+                        }, 5000);
                     },
                     error: function(response) {
                         $('#errors').html('');
