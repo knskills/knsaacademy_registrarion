@@ -470,7 +470,7 @@
             <div class="container" data-aos="fade-up">
                 <div class="section-title">
                     <h2>Trainers</h2>
-                    <h3>Our Multimillion <span>Networker</span></h3>
+                    <h3>Our Multimillionaires <span>Networker</span></h3>
                     <p>Some of Our Multimillionaires Network Marketing leaders
                         Who transforms their Life & achived Big success in Network Marketing industry ...</p>
                 </div>
