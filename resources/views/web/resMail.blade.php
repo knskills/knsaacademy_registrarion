@@ -63,7 +63,7 @@
                                             style="background:#20e277;text-decoration:none !important; display:inline-block; font-weight:500; margin-top:24px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Join
                                             Group</a>
                                     </td>
-                                </tr>x
+                                </tr>
                                 <tr>
                                     <td style="height:40px;">&nbsp;</td>
                                 </tr>
