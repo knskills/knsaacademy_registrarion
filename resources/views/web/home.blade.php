@@ -176,10 +176,10 @@
             <div class="row">
                 <div class="col-md-6 justify-content-center">
                     <h1> {{ __('lang.title_m') }}<span> {{ __('lang.title_s') }}</span></h1>
-                    <h2>{{ __('lang.session') }}</h2>
+                    <h2>in our live sessions</h2>
 
                     <a href="#skills" class="btn-custom">
-                        <span>{{ __('lang.seat') }}</span>
+                        <span>Book Now Your Free Seat</span>
                     </a>
                 </div>
 
