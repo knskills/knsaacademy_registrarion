@@ -78,7 +78,7 @@
 
                         <li class="mt">
                             <a href="{{route('home')}}" class="{{ request()->is('home') ? 'active' : '' }}">
-                                <i class="fa fa-dashboard"></i>
+                                <i class="fa fa-users"></i>
                                 <span>Registered Audience</span>
                             </a>
                         </li>
