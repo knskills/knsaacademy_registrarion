@@ -6,8 +6,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <title>Kamal Narayan Sahu - Network Marketing</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+    <meta content="Join Kamal Narayan Sahu's Network Marketing Webinar for expert insights, strategies, and success stories. Discover the secrets to building a thriving network marketing business. Register now!" name="description">
+    <meta content="Kamal Narayan Sahu,Network Marketing Webinar,MLM Seminar,Direct Selling Training,Network Marketing Strategies,Lead Generation Techniques,Success Stories,Business Growth Tips" name="keywords">
 
     <!-- Favicons -->
     <link href="{{ asset('assets/img/favicon_io/site.webmanifest') }}" rel="icon">
@@ -21,9 +21,12 @@
 
 
     <!-- Google Fonts -->
-    <link
+    {{-- <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
+        rel="stylesheet"> --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
@@ -178,7 +181,7 @@
                     <h1> {{ __('lang.title_m') }}<span> {{ __('lang.title_s') }}</span></h1>
                     <h2>in our live sessions</h2>
 
-                    <a href="#skills" class="btn-custom mb-3" {{$disabled}}>
+                    <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
                         <span>Book Now Your Free Seat <b>₹<del>399</del></b> </span>
                     </a><br>
                     <b id="timerDisplay" class="h4 bg-white text-dark">Time remaining: 60:00</b>

@@ -1,9 +1,9 @@
 @extends('admin.layouts.app')
 
-@section('styles')
+{{-- @section('styles')
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap.min.css">
-@endsection
+@endsection --}}
 
 @section('content')
     <!--main content start-->
@@ -19,7 +19,6 @@
 
                 <div class="col-lg-12">
                     <div class="content-panel">
-                        <h4><i class="fa fa-angle-right"></i> Responsive Table</h4>
                         <section id="unseen">
                             <table class="table table-bordered table-striped table-condensed">
                                 <thead>
@@ -57,7 +56,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {!! $audiences->links() !!}
+                            <span class="d-flex justify-content-center text-center">
+                                {!! $audiences->links() !!}
+                            </span>
                         </section>
                     </div><!-- /content-panel -->
                 </div><!-- /col-lg-4 -->
@@ -67,11 +68,24 @@
 @endsection
 
 @section('scripts')
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    {{-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.bootstrap.min.js"></script> --}}
     <script>
         $(document).ready(function() {
-            $('.table').DataTable();
+            // $('.table').DataTable({
+            //     // "order": [
+            //     //     [0, "desc"]
+            //     // ],
+            //     // "language": {
+            //     //     "lengthMenu": "Display _MENU_ records per page",
+            //     //     "zeroRecords": "Nothing found - sorry",
+            //     //     "info": "Showing page _PAGE_ of _PAGES_",
+            //     //     "infoEmpty": "No records available",
+            //     //     "infoFiltered": "(filtered from _MAX_ total records)"
+            //     // }
+            // });
 
             // remove alert after 3 seconds
             setTimeout(function() {
