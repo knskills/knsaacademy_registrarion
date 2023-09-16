@@ -48,7 +48,7 @@
                                         {{-- <img src="{{ asset('assets/img/mail.jpeg') }}" alt=""
                                             style="min-height: 350px; min-width:350px; max-height: 500px; max-width:500px;"> --}}
 
-                                        <img src="https://registration.knsacademy.in/assets/img/mail.jpeg"
+                                        <img src="https://registration.knsacademy.in/assets/img/mail2.png"
                                             alt="Registration Image"
                                             style="min-height: 350px; min-width:350px; max-height: 500px; max-width:500px;">
                                         <br><br>
