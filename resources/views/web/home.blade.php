@@ -6,8 +6,12 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <title>Kamal Narayan Sahu - Network Marketing</title>
-    <meta content="Join Kamal Narayan Sahu's Network Marketing Webinar for expert insights, strategies, and success stories. Discover the secrets to building a thriving network marketing business. Register now!" name="description">
-    <meta content="Kamal Narayan Sahu,Network Marketing Webinar,MLM Seminar,Direct Selling Training,Network Marketing Strategies,Lead Generation Techniques,Success Stories,Business Growth Tips" name="keywords">
+    <meta
+        content="Join Kamal Narayan Sahu's Network Marketing Webinar for expert insights, strategies, and success stories. Discover the secrets to building a thriving network marketing business. Register now!"
+        name="description">
+    <meta
+        content="Kamal Narayan Sahu,Network Marketing Webinar,MLM Seminar,Direct Selling Training,Network Marketing Strategies,Lead Generation Techniques,Success Stories,Business Growth Tips,limited offer,offer"
+        name="keywords">
 
     <!-- Favicons -->
     <link href="{{ asset('assets/img/favicon_io/site.webmanifest') }}" rel="icon">
@@ -121,6 +125,56 @@
         .my-float {
             margin-top: 16px;
         }
+
+        #timer_body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 15vh;
+            background: #0D1A29;
+            font-family: sans-serif;
+            font-weight: lighter;
+        }
+
+        #timer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            /* Adjust as needed */
+            font-weight: 100;
+            color: white;
+            text-shadow: 0 0 20px #48ffe0;
+        }
+
+        #timer .hours,
+        #timer .minutes,
+        #timer .seconds {
+            text-align: center;
+            margin: 0 10px;
+        }
+
+        #timer .time {
+            color: #020202;
+            font-size: 1em;
+            /* Adjust as needed */
+            font-weight: 400;
+        }
+
+        #timer .unit {
+            color: #020202;
+            font-size: 0.35em;
+            font-weight: 400;
+        }
+
+        .container2 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
     </style>
 </head>
 
@@ -184,9 +238,27 @@
                     <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
                         <span>Book Now Your Free Seat <b>₹<del>399</del></b> </span>
                     </a><br>
-                    <b id="timerDisplay" class="h4 bg-white text-dark">Time remaining: 60:00</b>
-                </div>
 
+                    {{-- <b class="mt-2 text-dark">Offer Expired :</b> --}}
+
+                    <div class="d-flex justify-content-center">
+                        <div id="timer">
+                            <b class="text-dark">Offer Expired:</b>
+                            <div class="hours">
+                                <span class="time" id="hr">00</span>
+                                <span class="unit">HRS</span>
+                            </div>
+                            <div class="minutes">
+                                <span class="time" id="min">00</span>
+                                <span class="unit">MINS</span>
+                            </div>
+                            <div class="seconds">
+                                <span class="time" id="sec">00</span>
+                                <span class="unit">SECS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-6">
                     <div class="tutorial container text-center my-2 ratio ratio-16x9">
                         <iframe src="https://www.youtube.com/embed/yWoQljL6zRw?si=aAiYRBXE_fGSFlEB"
@@ -792,6 +864,42 @@
                 updateTimerDisplay();
             }
         }, 1000);
+    </script>
+
+    <script>
+        // Set the target date and time
+        const targetDate = new Date("2023-09-19T11:59:59");
+
+        // Function to update the countdown timer
+        function updateCountdown() {
+            const currentDate = new Date();
+            const timeDifference = targetDate - currentDate;
+
+            if (timeDifference <= 0) {
+                // The countdown has expired
+                document.getElementById("countdown").textContent = "Countdown expired!";
+                return;
+            }
+
+            const hours = Math.floor(timeDifference / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            // // Display the countdown timer
+            // document.getElementById("countdown").textContent = `${hours} HRS ${minutes} MINS ${seconds} SECS`;
+
+            // Display the countdown timer
+            document.getElementById("hr").textContent = hours;
+            document.getElementById("min").textContent = minutes;
+            document.getElementById("sec").textContent = seconds;
+
+        }
+
+        // Update the countdown every second
+        setInterval(updateCountdown, 1000);
+
+        // Initial call to set the timer immediately
+        updateCountdown();
     </script>
 
 </body>
