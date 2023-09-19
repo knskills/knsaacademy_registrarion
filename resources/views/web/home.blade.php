@@ -868,7 +868,7 @@
 
     <script>
         // Set the target date and time
-        const targetDate = new Date("2023-09-19T11:59:59");
+        const targetDate = new Date("2023-09-22T11:59:59");
 
         // Function to update the countdown timer
         function updateCountdown() {
