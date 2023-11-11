@@ -27,6 +27,8 @@ Route::get('/audience/{audience}/edit', [AudienceController::class, 'edit'])->na
 Route::put('/audience/{audience}', [AudienceController::class, 'update'])->name('audience.update');
 Route::delete('/audience/{audience}', [AudienceController::class, 'destroy'])->name('audience.destroy');
 
+Route::get('/terms', [AudienceController::class, 'terms'])->name('terms');
+Route::get('/privacy', [AudienceController::class, 'privacy'])->name('privacy');
 
 Auth::routes();
 

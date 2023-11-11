@@ -41,7 +41,6 @@ class AppServiceProvider extends ServiceProvider
 
             // Calculate the remaining time (60 minutes limit)
             $remainingTime = 60 - $timeElapsed;
-            Log::info('Remaining Time: ' . $timeElapsed);
 
             // Determine if the button should be enabled or disabled
             $disabled = ($remainingTime <= 0);

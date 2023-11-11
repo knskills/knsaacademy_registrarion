@@ -733,9 +733,14 @@
     <footer id="footer">
         <div class="container py-4">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="copyright">
                         &copy; Copyright <strong><span>Kamal Narayan Sahu</span></strong>. All Rights Reserved
+                    </div>
+
+                    <div class="float-end">
+                        <a href="{{route('terms')}}" class="ml-3">Term & Conditions</a>,
+                        <a href="{{route('privacy')}}" class="ml-3">Privacy Policy</a>
                     </div>
                 </div>
             </div>
@@ -868,7 +873,7 @@
 
     <script>
         // Set the target date and time
-        const targetDate = new Date("2023-09-23T11:59:59");
+        const targetDate = new Date("2023-10-08T11:59:59");
 
         // Function to update the countdown timer
         function updateCountdown() {

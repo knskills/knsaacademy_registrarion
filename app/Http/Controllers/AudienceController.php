@@ -75,6 +75,10 @@ class AudienceController extends Controller
                 'status' => 'success',
                 'message' => 'You have been registered successfully. Please check your email for more details.'
             ]);
+
+            // redirect https://rzp.io/l/lhX0k3r0m8
+
+            // return redirect()->away('https://rzp.io/l/lhX0k3r0m8');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');
@@ -117,5 +121,20 @@ class AudienceController extends Controller
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');
         }
+    }
+
+
+    //===========================================================================================//
+    //===========================================================================================//
+
+
+    public function terms()
+    {
+        return view('web.terms');
+    }
+
+    public function privacy()
+    {
+        return view('web.privacy');
     }
 }
