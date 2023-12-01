@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('phone')->unique()->nullable();
             $table->string('transaction_id')->nullable();
+            $table->string('event_name')->unique()->nullable();
             $table->timestamps();
         });
     }

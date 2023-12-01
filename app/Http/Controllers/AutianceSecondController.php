@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 
-
 class AutianceSecondController extends Controller
 {
     /**
@@ -18,7 +17,7 @@ class AutianceSecondController extends Controller
     {
         try {
             $audiences = AutianceSecond::paginate(10);
-            return view('admin.audiance.dashboard', compact('audiences'));
+            return view('admin.audiance.second', compact('audiences'));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');
@@ -38,7 +37,6 @@ class AutianceSecondController extends Controller
             ]);
 
             if ($valitor->fails()) {
-                // return redirect()->back()->withErrors($valitor)->withInput();
                 return response()->json([
                     'status' => 'error',
                     'errors' => $valitor->errors()->all()
@@ -53,8 +51,7 @@ class AutianceSecondController extends Controller
 
             // Mail using template file
             Mail::send('web.resMail', ['name' => $request->name], function ($message) use ($request) {
-                $message->to($request->email)
-                    ->subject('Audience Registration');
+                $message->to($request->email)->subject('Audience Registration');
             });
 
             return response()->json([
@@ -80,5 +77,4 @@ class AutianceSecondController extends Controller
             return redirect()->back()->with('error', 'Something went wrong');
         }
     }
-
 }

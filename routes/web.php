@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AudienceController;
+use App\Http\Controllers\AutianceSecondController;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\LangController;
 /*
@@ -20,7 +21,8 @@ Route::get('/', function () {
     return view('web.home');
 });
 Route::view('/mailtest', 'web.resMail');
-Route::post('/audience', [AudienceController::class, 'store'])->name('audience.store');
+Route::post('/audience', [AudienceController::class, 'store'])->name('audience.store'); // first
+// Route::post('/audience', [AutianceSecondController::class, 'store'])->name('audience.store'); // second
 // Route::get('/audience', [AudienceController::class, 'index'])->name('audience.index');
 // Route::get('/audience/{audience}', [AudienceController::class, 'show'])->name('audience.show');
 // Route::get('/audience/{audience}/edit', [AudienceController::class, 'edit'])->name('audience.edit');

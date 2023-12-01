@@ -40,8 +40,10 @@ class AudienceController extends Controller
         try {
             $valitor = Validator::make($request->all(), [
                 'name' => 'required',
-                'email' => 'required|email|unique:audiences|max:255',
-                'phone' => 'required|unique:audiences',
+                'email' => 'required|email|max:255',
+                'phone' => 'required',
+                // 'email' => 'required|email|unique:audiences|max:255',
+                // 'phone' => 'required|unique:audiences',
             ]);
 
             if ($valitor->fails()) {
@@ -56,6 +58,7 @@ class AudienceController extends Controller
             $audience->name = $request->name;
             $audience->email = $request->email;
             $audience->phone = $request->phone;
+            $audience->event_name = $request->event_name;
             $audience->save();
 
             // mail to audience without view

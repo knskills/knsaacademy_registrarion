@@ -795,7 +795,8 @@
                         "_token": "{{ csrf_token() }}",
                         name: name,
                         email: email,
-                        phone: phone
+                        phone: phone,
+                        event_name:'art of sale', // event name
                     },
                     success: function(response) {
                         $('#registration')[0].reset();
@@ -808,7 +809,12 @@
                             // $('#success').html(response.message);
                             // $('#msg').show();
                             // show confirm modal
-                            $('#confirm_msg').modal('show');
+
+
+                            //$('#confirm_msg').modal('show');
+
+                            // redirect https://pages.razorpay.com/pl_N2hfUxhbaumGiZ/view
+                            window.location.href = "https://pages.razorpay.com/pl_N2hfUxhbaumGiZ/view";
                         } else if (response.errors) {
                             let errors = response.errors;
 

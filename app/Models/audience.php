@@ -16,5 +16,6 @@ class audience extends Model
         'name',
         'email',
         'phone',
+        'event_name',
     ];
 }
