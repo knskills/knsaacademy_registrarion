@@ -235,8 +235,12 @@
                     <h1> {{ __('lang.title_m') }}<span> {{ __('lang.title_s') }}</span></h1>
                     <h2>in our live sessions</h2>
 
-                    <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
+                    {{-- <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
                         <span>Book Now Your Free Seat <b>₹<del>399</del></b> </span>
+                    </a><br> --}}
+
+                    <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
+                        <span>Book Now Your Seat <b>₹99</b> </span>
                     </a><br>
 
                     {{-- <b class="mt-2 text-dark">Offer Expired :</b> --}}
@@ -261,7 +265,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="tutorial container text-center my-2 ratio ratio-16x9">
-                        <iframe src="https://www.youtube.com/embed/yWoQljL6zRw?si=aAiYRBXE_fGSFlEB"
+                        <iframe src="https://www.youtube.com/embed/TFjfxicXTmY?si=Qp7SBVLQLpa7CHh7"
                             title="YouTube video player" frameborder="1" style="border: 5px solid #000;"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen>
@@ -282,7 +286,19 @@
                     <h3>Find Out More About <span>Network Marketing</span></h3>
                 </div>
 
+                {{-- <iframe width="560" height="315" src="https://www.youtube.com/embed/TFjfxicXTmY?si=Qp7SBVLQLpa7CHh7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> --}}
+
                 <div class="row">
+                    {{-- <div class="col-lg-6 text-center" data-aos="fade-right" data-aos-delay="100">
+                        <div class="tutorial container text-center my-2 ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/TFjfxicXTmY?si=Qp7SBVLQLpa7CHh7"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+                        </div>
+                        <h4 class="text-primary">16+ Years Experience</h4>
+                    </div> --}}
+
                     <div class="col-lg-6 text-center" data-aos="fade-right" data-aos-delay="100">
                         <div class="tutorial container text-center my-2 ratio ratio-16x9">
                             <iframe src="https://www.youtube.com/embed/KbedXSOMAt8?si=1-FrgeB5IDnEoLiA"
@@ -470,7 +486,7 @@
             </div>
         </section><!-- End Skills Section -->
 
-        <!-- ======= videos Section ======= -->
+        {{-- <!-- ======= videos Section ======= -->
         <section id="services" class="services section-bg">
             <div class="container" data-aos="fade-up">
                 <div class="section-title">
@@ -539,7 +555,7 @@
                     </div>
                 </div>
             </div>
-        </section><!-- End Services Section -->
+        </section><!-- End Services Section --> --}}
 
         <!-- ======= Networker ======= -->
         <section id="team" class="services">
@@ -873,7 +889,7 @@
 
     <script>
         // Set the target date and time
-        const targetDate = new Date("2023-10-08T11:59:59");
+        const targetDate = new Date("2023-12-05T11:59:59");
 
         // Function to update the countdown timer
         function updateCountdown() {

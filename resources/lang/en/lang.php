@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'title_m' => 'KNOW 3 KEY REASONS',
-    'title_s' => 'Why People Failed in Network Marketing',
+    'title_m' => 'The Art of Business:',
+    'title_s' => ' Learn How to Sell',
     'session' => 'in our live sessions',
     'seat' => 'Book Now Your Free Seat',
     'about_1' => 'Find Out More About',

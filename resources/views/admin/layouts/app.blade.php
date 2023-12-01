@@ -10,14 +10,15 @@
 
     <title>Admin Panel</title>
 
-     <!-- Favicons -->
-     <link href="{{asset('assets/img/favicon_io/site.webmanifest')}}" rel="icon">
-     <link href="{{asset('assets/img/favicon_io/apple-touch-icon.png')}}" rel="apple-touch-icon">
-     <link href="{{asset('assets/img/favicon_io/favicon-32x32.png')}}" rel="icon" type="image/png" sizes="32x32">
-     <link href="{{asset('assets/img/favicon_io/favicon-16x16.png')}}" rel="icon" type="image/png" sizes="16x16">
-     <link href="{{asset('assets/img/favicon_io/android-chrome-512x512.png')}}" rel="icon" type="image/png"
-         sizes="512x512">
-     <link href="{{asset('assets/img/favicon_io/android-chrome-192x192.png')}}" rel="icon" type="image/png" sizes="192x192">
+    <!-- Favicons -->
+    <link href="{{ asset('assets/img/favicon_io/site.webmanifest') }}" rel="icon">
+    <link href="{{ asset('assets/img/favicon_io/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('assets/img/favicon_io/favicon-32x32.png') }}" rel="icon" type="image/png" sizes="32x32">
+    <link href="{{ asset('assets/img/favicon_io/favicon-16x16.png') }}" rel="icon" type="image/png" sizes="16x16">
+    <link href="{{ asset('assets/img/favicon_io/android-chrome-512x512.png') }}" rel="icon" type="image/png"
+        sizes="512x512">
+    <link href="{{ asset('assets/img/favicon_io/android-chrome-192x192.png') }}" rel="icon" type="image/png"
+        sizes="192x192">
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('admin/css/bootstrap.css') }}" rel="stylesheet">
@@ -48,7 +49,7 @@
                     <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
                 </div>
                 <!--logo start-->
-                <a href="{{route('home')}}" class="logo"><b>YASHIKA TRADING</b></a>
+                <a href="{{ route('audiences') }}" class="logo"><b>YASHIKA TRADING</b></a>
                 <div class="top-menu">
                     <ul class="nav pull-right top-menu">
                         <li>
@@ -68,8 +69,8 @@
             <!--header end-->
 
             <!-- ***************************************************************************
-                                MAIN SIDEBAR MENU
-          ******************************************************************************** -->
+                                    MAIN SIDEBAR MENU
+              ******************************************************************************** -->
             <!--sidebar start-->
             <aside>
                 <div id="sidebar" class="nav-collapse ">
@@ -77,7 +78,7 @@
                     <ul class="sidebar-menu" id="nav-accordion">
 
                         <li class="mt">
-                            <a href="{{route('home')}}" class="{{ request()->is('home') ? 'active' : '' }}">
+                            <a href="{{ route('audiences') }}" class="{{ request()->is('audiences') ? 'active' : '' }}">
                                 <i class="fa fa-users"></i>
                                 <span>Registered Audience</span>
                             </a>
