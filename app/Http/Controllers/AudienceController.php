@@ -13,10 +13,26 @@ class AudienceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $audiences = audience::paginate(10);
+            $audianceQuery = Audience::query();
+
+            if ($request->has('search')) {
+                $searchTerm = $request->search;
+                $audianceQuery->where('name', 'like', '%' . $searchTerm . '%');
+            } elseif ($request->has('event')) {
+                $event = $request->event;
+                $audianceQuery->where('event_name', $event);
+            } else {
+                $audianceQuery->orderBy('id', 'desc');
+            }
+
+            $audiences = $audianceQuery->paginate(10);
+
+            $audiences->appends($request->except('page'));
+
+            // audinace by new to old
             return view('admin.audiance.dashboard', compact('audiences'));
         } catch (\Exception $e) {
             Log::error($e->getMessage());

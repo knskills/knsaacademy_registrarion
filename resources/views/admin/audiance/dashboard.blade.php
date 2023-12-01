@@ -18,7 +18,32 @@
                 @endif
 
                 <div class="col-lg-12">
-                    <div class="content-panel">
+                    <div class="dropdown" style="margin-top: 5px;">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown">
+                            Filter by event
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuButton">
+                            <li role="presentation">
+                                <a class="dropdown-item" href="{{ route('audiences', ['event' => 'first_event']) }}">
+                                    First event
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a class="dropdown-item" href="{{ route('audiences', ['event' => 'art of sale']) }}">
+                                    Art of sale
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a class="dropdown-item" href="{{ route('audiences') }}">
+                                    Reset
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="content-panel" style="margin-top: 20px;">
                         <section id="unseen">
                             <table class="table table-bordered table-striped table-condensed">
                                 <thead>
@@ -27,6 +52,7 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th class="numeric">Phone</th>
+                                        <th>Event</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -37,11 +63,13 @@
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->phone }}</td>
+                                            <td>{{ $item->event_name }}</td>
                                             <td>
                                                 {{-- <a href="{{ route('admin.audiance.show', $item->id) }}"
                                                     class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
                                                 <a href="{{ route('admin.audiance.edit', $item->id) }}"
-                                                    class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></a> --}}
+                                                    class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i>
+                                                </a> --}}
                                                 <form action="{{ route('audience.destroy', $item->id) }}" method="POST"
                                                     style="display: inline">
                                                     @csrf

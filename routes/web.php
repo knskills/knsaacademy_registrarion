@@ -6,6 +6,7 @@ use App\Http\Controllers\AudienceController;
 use App\Http\Controllers\AutianceSecondController;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\LangController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/terms', [AudienceController::class, 'terms'])->name('terms');
 Route::get('/privacy', [AudienceController::class, 'privacy'])->name('privacy');
+Route::get('/whatsapp', [HomeController::class, 'whatsapp'])->name('whatsapp');
 
 Auth::routes();
 

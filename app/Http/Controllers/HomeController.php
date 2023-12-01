@@ -25,4 +25,12 @@ class HomeController extends Controller
     {
         return view('admin.audiance.dashboard');
     }
+
+    /**
+     * Whatsapp page
+     */
+    public function whatsapp()
+    {
+        return view('web.whatsapp');
+    }
 }

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('audiences', function (Blueprint $table) {
-            $table->string('event_name')->default('first_event')->after('phone')->comment('event name');
+            $table->string('event_name')->default('first event')->after('phone')->comment('event name');
 
             // Drop unique constraint from email column
             $table->string('email')->nullable()->unique(false)->change();
