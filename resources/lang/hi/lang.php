@@ -1,6 +1,10 @@
 <?php
 
 return [
+    // 'title_m' => 'व्यापार की कला:',
+    // 'title_s' => 'बिक्री का माहिरी सीखें',
+    'title_m' => 'The Art of Business:',
+    'title_s' => ' Learn How to Sell',
     'title_m' => 'व्यापार की कला:',
     'title_s' => 'बिक्री का माहिरी सीखें',
     'session' => 'हमारे लाइव सत्रों में',

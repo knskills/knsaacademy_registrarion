@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 
 class AudienceController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
