@@ -396,7 +396,7 @@
                 <div class="row skills-content">
                     <div class="col-lg-7 m-auto">
                         <div class="text-center m-auto">
-                            <a href="https://rzp.io/l/sPpRDaW" class="btn-custom mb-3" {{ $disabled }}>
+                            <a href="https://rzp.io/l/xRoxi4cj5u" class="btn-custom mb-3" {{ $disabled }}>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Register <b>Now</b> </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </a><br>
                         </div>
