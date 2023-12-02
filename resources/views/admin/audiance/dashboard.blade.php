@@ -26,7 +26,7 @@
                         </button>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuButton">
                             <li role="presentation">
-                                <a class="dropdown-item" href="{{ route('audiences', ['event' => 'first_event']) }}">
+                                <a class="dropdown-item" href="{{ route('audiences', ['event' => 'first event']) }}">
                                     First event
                                 </a>
                             </li>

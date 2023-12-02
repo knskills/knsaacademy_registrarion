@@ -25,18 +25,4 @@ class HomeController extends Controller
     {
         return view('admin.audiance.dashboard');
     }
-
-    /**
-     * Whatsapp page
-     */
-    public function whatsapp(Request $request)
-    {
-        // if ($request->has('phone')) {
-        //     $phone = $request->phone;
-        //     $message = $request->message;
-        //     $url = 'https://api.whatsapp.com/send?phone=' . $phone . '&text=' . $message;
-        //     return redirect($url);
-        // }
-        return view('web.whatsapp');
-    }
 }

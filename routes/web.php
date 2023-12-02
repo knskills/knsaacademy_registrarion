@@ -42,7 +42,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/terms', [AudienceController::class, 'terms'])->name('terms');
 Route::get('/privacy', [AudienceController::class, 'privacy'])->name('privacy');
-Route::get('/whatsapp', [HomeController::class, 'whatsapp'])->name('whatsapp');
+Route::get('/whatsapp', [AudienceController::class, 'whatsapp'])->name('whatsapp');
 
 Auth::routes();
 
