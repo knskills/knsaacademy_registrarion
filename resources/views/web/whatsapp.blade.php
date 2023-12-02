@@ -100,7 +100,9 @@
                                     join us for this enlightening event.
                                 </p>
                                 <p>
-                                    <strong>Please confirm your seat by clicking on the link below</strong>.
+                                    <strong>
+                                        Please confirm your seat by clicking on the link below
+                                    </strong>.
                                 </p>
 
 

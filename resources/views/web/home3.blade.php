@@ -174,6 +174,7 @@
             justify-content: center;
             text-align: center;
         }
+
     </style>
 </head>
 
@@ -394,11 +395,76 @@
         <section id="skills" class="skills ">
             <div class="container" data-aos="fade-up">
                 <div class="row skills-content">
-                    <div class="col-lg-7 m-auto">
-                        <div class="text-center m-auto">
-                            <a href="https://rzp.io/l/sPpRDaW" class="btn-custom mb-3" {{ $disabled }}>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Register <b>Now</b> </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            </a><br>
+                    <div class="col-lg-7">
+                        <div class="card">
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="confirm_msg" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Dear Sir/Madam,</p>
+                                            <p>
+                                                We are delighted to confirm your registration for the seminar. Your
+                                                seat has been successfully reserved, and we are excited to have you
+                                                join us for this enlightening event.
+                                            </p>
+                                            <p>
+                                                <strong>Please confirm your seat by clicking on the link below</strong>.
+                                            </p>
+                                            <a href="https://chat.whatsapp.com/JBWY02DtUUIG7iTyDB43NM"
+                                                class="btn btn-success">Join Whatsapp Group</a>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <h5 class="card-title mb-3">Registration Form</h5>
+                                </div>
+
+                                <div class="alert alert-success" id="success" style="display: none">
+                                </div>
+
+                                <div class="alert alert-danger" style="display: none" id="err_div">
+                                    <ul id="errors">
+
+                                    </ul>
+                                </div>
+
+                                <form method="post" id="registration">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Name</label>
+                                        <input type="text" class="form-control" id="name" name="name"
+                                            placeholder="" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email"
+                                            placeholder="" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">Contact Number</label>
+                                        <input type="text" class="form-control" id="phone"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')" minlength="10"
+                                            name="phone" maxlength="10" placeholder="" required>
+                                    </div>
+                                    <button class="btn btn-primary" type="button" id="submit">
+                                        Submit
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
 
@@ -689,8 +755,8 @@
                     </div>
 
                     <div class="float-end">
-                        <a href="{{ route('terms') }}" class="ml-3">Term & Conditions</a>,
-                        <a href="{{ route('privacy') }}" class="ml-3">Privacy Policy</a>
+                        <a href="{{route('terms')}}" class="ml-3">Term & Conditions</a>,
+                        <a href="{{route('privacy')}}" class="ml-3">Privacy Policy</a>
                     </div>
                 </div>
             </div>
@@ -730,7 +796,7 @@
                         name: name,
                         email: email,
                         phone: phone,
-                        event_name: 'art of sale', // event name
+                        event_name:'art of sale', // event name
                     },
                     success: function(response) {
                         $('#registration')[0].reset();
@@ -746,8 +812,7 @@
                             // $('#confirm_msg').modal('show');
 
                             // redirect https://pages.razorpay.com/pl_N2hfUxhbaumGiZ/view
-                            window.location.href =
-                                "https://pages.razorpay.com/pl_N2hfUxhbaumGiZ/view";
+                            window.location.href = "https://pages.razorpay.com/pl_N2hfUxhbaumGiZ/view";
                         } else if (response.errors) {
                             let errors = response.errors;
                             $('#success').hide();
