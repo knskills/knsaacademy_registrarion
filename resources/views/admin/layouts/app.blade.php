@@ -69,8 +69,8 @@
             <!--header end-->
 
             <!-- ***************************************************************************
-                                    MAIN SIDEBAR MENU
-              ******************************************************************************** -->
+                                        MAIN SIDEBAR MENU
+                  ******************************************************************************** -->
             <!--sidebar start-->
             <aside>
                 <div id="sidebar" class="nav-collapse ">
@@ -78,9 +78,15 @@
                     <ul class="sidebar-menu" id="nav-accordion">
 
                         <li class="mt">
-                            <a href="{{ route('audiences') }}" class="{{ request()->is('audiences') ? 'active' : '' }}">
+                            <a href="{{ route('audiences') }}" class="{{ request()->is('audiences*') ? 'active' : '' }}">
                                 <i class="fa fa-users"></i>
                                 <span>Registered Audience</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('events.index') }}" class="{{ request()->is('events*') ? 'active' : '' }}">
+                                <i class="fa fa-calendar"></i>
+                                <span>Event</span>
                             </a>
                         </li>
 

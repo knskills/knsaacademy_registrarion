@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AudienceController;
 use App\Http\Controllers\AutianceSecondController;
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\LangController;
 use App\Http\Controllers\HomeController;
@@ -38,6 +39,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/admin/audience/{audience}', [AudienceController::class, 'adminUpdate'])->name('audience.update');
     Route::delete('/admin/audience/{audience}', [AudienceController::class, 'adminDestroy'])->name('audience.destroy');
     Route::get('/audiences', [App\Http\Controllers\AudienceController::class, 'index'])->name('audiences');
+
+    Route::resource('events', EventController::class);
 });
 
 Route::get('/terms', [AudienceController::class, 'terms'])->name('terms');
