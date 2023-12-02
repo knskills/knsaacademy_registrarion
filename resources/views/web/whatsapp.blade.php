@@ -106,7 +106,7 @@
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <a href="https://chat.whatsapp.com/JBWY02DtUUIG7iTyDB43NM"
+                                        <a href="https://chat.whatsapp.com/IshpBcPJjM21Qok48SjlAX"
                                             class="btn btn-success">Join
                                             Whatsapp Group</a>
                                     </div>
