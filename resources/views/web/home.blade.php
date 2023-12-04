@@ -68,6 +68,10 @@
                 transition: background-color 0.3s, color 0.3s;
                 margin-bottom: 10%;
             }
+
+            #header {
+                display: none;
+            }
         }
 
         @media (min-width: 768px) {
@@ -95,6 +99,11 @@
                 transition: background-color 0.3s, color 0.3s;
                 /* Add a smooth transition effect */
             }
+
+            /** hide header */
+            #header {
+                display: none;
+            }
         }
 
         /* Hover effect: Change background color and text color on hover */
@@ -105,7 +114,6 @@
             color: #ffffff;
             /* Change the text color on hover */
         }
-
 
         .wha {
             position: fixed;
@@ -200,7 +208,7 @@
         </div>
     </section>
 
-    <!-- ======= Header ======= -->
+    {{-- <!-- ======= Header ======= -->
     <header id="header" class="d-flex align-items-center">
         <div class="container d-flex align-items-center justify-content-between">
             <span></span>
@@ -224,7 +232,7 @@
             </nav><!-- .navbar -->
 
         </div>
-    </header><!-- End Header -->
+    </header><!-- End Header --> --}}
 
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">
@@ -238,9 +246,13 @@
                         <span>Book Now Your Free Seat <b>₹<del>399</del></b> </span>
                     </a><br> --}}
 
-                    <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
-                        <span>Book Now Your Seat <b>₹99</b> </span>
-                    </a><br>
+
+
+                    <div class="text-center m-auto">
+                        <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
+                            <span>Book Now Your Seat <b>₹99</b> </span>
+                        </a>
+                    </div><br>
 
                     {{-- <b class="mt-2 text-dark">Offer Expired :</b> --}}
 
@@ -397,7 +409,9 @@
                     <div class="col-lg-7 m-auto">
                         <div class="text-center m-auto">
                             <a href="https://rzp.io/l/xRoxi4cj5u" class="btn-custom mb-3" {{ $disabled }}>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Register <b>Now</b> </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span>Register <b>Now</b> </span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </a><br>
                         </div>
                     </div>
