@@ -335,8 +335,8 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="tutorial container text-center my-2 ratio ratio-16x9">
-                            <iframe src="{{ asset('assets/videos/final.mp4') }}"
-                                title="Kns academy" frameborder="1" style="border: 5px solid #000;"
+                            <iframe src="//www.youtube.com/embed/RR1oolpWQ9Y?si=tjbdqG3jWqIBR9FR" title="Kns academy" frameborder="1"
+                                style="border: 5px solid #000;"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 allowfullscreen>
                             </iframe>
@@ -345,8 +345,10 @@
 
                     <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center"
                         data-aos="fade-up" data-aos-delay="100">
-                        <p>Sales is more than just transactions; it's an art that involves understanding people and forging meaningful connections.</p>
-                        <p>Mastering the art of sales goes beyond closing deals; it's about building trust, empathy, and rapport.</p>
+                        <p>Sales is more than just transactions; it's an art that involves understanding people and
+                            forging meaningful connections.</p>
+                        <p>Mastering the art of sales goes beyond closing deals; it's about building trust, empathy, and
+                            rapport.</p>
                         <b>Effective salesmanship involves:</b>
 
                         Understanding the psychology of buyers and empathizing with their needs. <br>
