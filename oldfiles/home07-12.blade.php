@@ -183,6 +183,25 @@
             text-align: center;
         }
     </style>
+
+    <style>
+        .videoWrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 aspect ratio (height: 9/16 = 0.5625 or 56.25%) */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .videoWrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 5px solid #000;
+        }
+    </style>
 </head>
 
 <body>
@@ -242,11 +261,19 @@
                     <h1> {{ __('lang.title_m') }}<span> {{ __('lang.title_s') }}</span></h1>
                     <h2>in our live sessions</h2>
 
+                    {{-- <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
+                        <span>Book Now Your Free Seat <b>₹<del>399</del></b> </span>
+                    </a><br> --}}
+
+
+
                     <div class="text-center m-auto">
                         <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
                             <span>Book Now Your Seat <b>₹99</b> </span>
                         </a>
                     </div><br>
+
+                    {{-- <b class="mt-2 text-dark">Offer Expired :</b> --}}
 
                     <div class="d-flex justify-content-center">
                         <div id="timer">
@@ -299,7 +326,19 @@
                     <h3>Find Out More About <span>Network Marketing</span></h3>
                 </div>
 
+                {{-- <iframe width="560" height="315" src="https://www.youtube.com/embed/TFjfxicXTmY?si=Qp7SBVLQLpa7CHh7" title="Kns academy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> --}}
+
                 <div class="row">
+                    {{-- <div class="col-lg-6 text-center" data-aos="fade-right" data-aos-delay="100">
+                        <div class="tutorial container text-center my-2 ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/TFjfxicXTmY?si=Qp7SBVLQLpa7CHh7"
+                                title="Kns academy" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+                        </div>
+                        <h4 class="text-primary">16+ Years Experience</h4>
+                    </div> --}}
+
                     <div class="col-lg-6 text-center" data-aos="fade-right" data-aos-delay="100">
                         <div class="tutorial container text-center my-2 ratio ratio-16x9">
                             <iframe src="https://www.youtube.com/embed/KbedXSOMAt8?si=1-FrgeB5IDnEoLiA"
@@ -326,50 +365,12 @@
             </div>
         </section><!-- End About Section -->
 
-        <section id="about" class="about">
-            <div class="container" data-aos="fade-up">
-                <div class="section-title">
-                    <h3>The Art of Sales<span>: Mastering the Craft of Persuasion and Connection</span></h3>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="tutorial container text-center my-2 ratio ratio-16x9">
-                            <iframe src="{{ asset('assets/videos/final.mp4') }}"
-                                title="Kns academy" frameborder="1" style="border: 5px solid #000;"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center"
-                        data-aos="fade-up" data-aos-delay="100">
-                        <p>Sales is more than just transactions; it's an art that involves understanding people and forging meaningful connections.</p>
-                        <p>Mastering the art of sales goes beyond closing deals; it's about building trust, empathy, and rapport.</p>
-                        <b>Effective salesmanship involves:</b>
-
-                        Understanding the psychology of buyers and empathizing with their needs. <br>
-                        Building relationships based on trust and credibility. <br>
-                        Active listening and effective communication to tailor solutions. <br>
-                        Continuous learning and self-improvement. <br> <br>
-                        {{-- <ul>
-                            <li>Understanding the psychology of buyers and empathizing with their needs.</li>
-                            <li>Building relationships based on trust and credibility.</li>
-                            <li>Active listening and effective communication to tailor solutions.</li>
-                            <li>Adaptability, innovation, and ethical practices in sales strategies.</li>
-                            <li>Continuous learning and self-improvement.</li>
-                        </ul> --}}
-                        <p>It's about creating a lasting impact by positively influencing the lives of customers.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
         <!-- ======= why2 Section ======= -->
-        <section id="about" class="about">
+        <section id="about" class="about ">
             <div class="container" data-aos="fade-up">
+                {{-- <div class="section-title">
+                <h3>{{ __('lang.some_reasons') }} <span>{{ __('lang.some_reasons_1') }}</span></h3>
+            </div> --}}
                 <div class="section-title">
                     <h3>Some Reasons<span> Why People Failed in Network Marketing:</span></h3>
                 </div>
@@ -462,7 +463,7 @@
             </div>
         </section><!-- End Skills Section -->
 
-        {{-- <!-- ======= videos Section ======= -->
+        <!-- ======= videos Section ======= -->
         <section id="services" class="services section-bg">
             <div class="container" data-aos="fade-up">
                 <div class="section-title">
@@ -531,7 +532,7 @@
                     </div>
                 </div>
             </div>
-        </section><!-- End Services Section --> --}}
+        </section><!-- End Services Section -->
 
         <!-- ======= Networker ======= -->
         <section id="team" class="services">
@@ -659,7 +660,7 @@
             </div>
         </section><!-- End Team Section -->
 
-        <!-- ======= about kamalnarayan sahu Section ======= -->
+        <!-- ======= Team Section ======= -->
         <section id="portfolio" class="team section-bg">
             <div class="container" data-aos="fade-up">
                 <div class="row">
