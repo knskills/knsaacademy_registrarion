@@ -193,7 +193,7 @@
                 <i class="bi bi-envelope d-flex align-items-center"><a
                         href="mailto:knsaacdemy@gmail.com">knsaacdemy@gmail.com</a></i>
                 <i class="bi bi-phone d-flex align-items-center ms-4">
-                    <a href="tel:+919343643552">+91 9343643552</a>
+                    <a href="tel:+917582918000">+91 7582918000</a>
                 </i>
             </div>
             <div class="social-links d-none d-md-flex align-items-center">
