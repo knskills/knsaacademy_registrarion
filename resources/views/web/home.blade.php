@@ -464,7 +464,7 @@
             </div>
         </section><!-- End Skills Section -->
 
-        {{-- <!-- ======= videos Section ======= -->
+        <!-- ======= videos Section ======= -->
         <section id="services" class="services section-bg">
             <div class="container" data-aos="fade-up">
                 <div class="section-title">
@@ -533,7 +533,7 @@
                     </div>
                 </div>
             </div>
-        </section><!-- End Services Section --> --}}
+        </section><!-- End Services Section -->
 
         <!-- ======= Networker ======= -->
         <section id="team" class="services">
