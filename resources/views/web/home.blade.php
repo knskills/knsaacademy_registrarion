@@ -236,7 +236,7 @@
 
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">
-        <div class="container" data-aos="zoom-out" data-aos-delay="100">
+        <div class="container" data-aos="zoom-out" data-aos-delay="100" style="margin-top: -5%;">
             <div class="row">
                 <div class="col-md-6 justify-content-center">
                     <h1> {{ __('lang.title_m') }}<span> {{ __('lang.title_s') }}</span></h1>
@@ -277,7 +277,7 @@
                     </div> --}}
 
                     <div class="tutorial container text-center my-2 ratio ratio-16x9" style="width: 100%;height: 100%;">
-                        <iframe src="https://www.youtube.com/embed/dDrxHePQT3s?si=b_DStMBKsSZmLEne"
+                        <iframe src="https://www.youtube.com/embed/RR1oolpWQ9Y?si=tjbdqG3jWqIBR9FR"
                             title="Art of sales" frameborder="1"
                             style="border: 5px solid #000; width: 100%;height: 100%;"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -335,7 +335,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="tutorial container text-center my-2 ratio ratio-16x9">
-                            <iframe src="//www.youtube.com/embed/RR1oolpWQ9Y?si=tjbdqG3jWqIBR9FR" title="Kns academy" frameborder="1"
+                            <iframe src="https://www.youtube.com/embed/dDrxHePQT3s?si=b_DStMBKsSZmLEne " title="Kns academy" frameborder="1"
                                 style="border: 5px solid #000;"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 allowfullscreen>
