@@ -277,7 +277,7 @@
                     </div> --}}
 
                     <div class="tutorial container text-center my-2 ratio ratio-16x9" style="width: 100%;height: 100%;">
-                        <iframe src="https://www.youtube.com/embed/TFjfxicXTmY?si=Qp7SBVLQLpa7CHh7?modestbranding=1"
+                        <iframe src="https://www.youtube.com/embed/dDrxHePQT3s?si=b_DStMBKsSZmLEne"
                             title="Art of sales" frameborder="1"
                             style="border: 5px solid #000; width: 100%;height: 100%;"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
