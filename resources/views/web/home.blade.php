@@ -182,8 +182,9 @@
             }
 
             #timer {
-                font-size: 0.8em;
+                font-size: 1.1em;
                 /* Adjust the font size for small screens */
+                margin-bottom: 5%;
             }
         }
     </style>
