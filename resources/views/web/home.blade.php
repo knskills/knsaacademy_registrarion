@@ -212,7 +212,9 @@
             }
 
             #fi {
-                height: 100%;
+                /* height: 100%; */
+
+                margin-bottom: 5%;
             }
 
         }
