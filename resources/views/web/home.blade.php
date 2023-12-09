@@ -184,7 +184,7 @@
             #timer {
                 font-size: 1.1em;
                 /* Adjust the font size for small screens */
-                margin-bottom: 5%;
+                margin-bottom: 6%;
             }
 
             /* #main_t {
