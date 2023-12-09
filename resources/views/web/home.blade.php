@@ -295,12 +295,14 @@
                         <b>Skill</b> - sales Skill has to be mastered.
                     </span> --}}
 
-                    {{-- <div id="big_s"> --}}
-                    <div class="text-center m-auto mt-4">
-                        <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
-                            <span>Book Now Your Seat <b>₹99</b> </span>
-                        </a>
-                    </div><br>
+                    <div id="big_s">
+                        <div class="text-center m-auto mt-4">
+                            <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
+                                <span>Book Now Your Seat <b>₹99</b> </span>
+                            </a>
+                        </div><br>
+                    </div>
+
 
                     <div class="d-flex justify-content-center">
                         <div id="timer">
@@ -319,12 +321,11 @@
                             </div>
                         </div>
                     </div>
-                    {{-- </div> --}}
                 </div>
                 <div class="col-md-6">
                     <div class="tutorial container text-center my-2 ratio ratio-16x9" style="width: 100%;height: 100%;">
-                        <iframe src="https://www.youtube.com/embed/RR1oolpWQ9Y?si=tjbdqG3jWqIBR9FR" title="Art of sales"
-                            frameborder="0"
+                        <iframe src="https://www.youtube.com/embed/RR1oolpWQ9Y?si=tjbdqG3jWqIBR9FR"
+                            title="Art of sales" frameborder="0"
                             style="border: none;
                             box-shadow: 0 1px 0 #000;width: 100%;height: 100%;"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
