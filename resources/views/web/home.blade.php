@@ -640,7 +640,7 @@
                     <h2>Trainers</h2>
                     <h3>People earned after learning from our sales<span> Techniques</span></h3>
                     <p>Some of Our Multimillionaires Network Marketing leaders
-                        Who transforms their Life & achived Big success in Network Marketing industry ...</p>
+                        Who transforms their Life & achived Big success in Network Marketing industry...</p>
                 </div>
 
                 <div class="row text-center">
