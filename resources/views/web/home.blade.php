@@ -238,15 +238,22 @@
         </div>
     </header><!-- End Header --> --}}
 
+    {{-- <div>
+        <h1>Selling is a Science: <span>Art and A Skill</span></h1>
+
+        <span>
+            <b>Science</b> - sales Science has to be Learned
+            <b>Art</b> - sales Art has to be Practiced
+            <b>Skill</b> - sales Skill has to be mastered.
+        </span>
+    </div> --}}
+
     <!-- ======= Hero Section ======= -->
-    <section id="hero" class="d-flex align-items-center">
+    <div id="hero" class="d-flex align-items-center">
         <div class="container" data-aos="zoom-out" data-aos-delay="100" style="margin-top: -5%;">
             <div class="row">
                 <div class="col-md-6 justify-content-center">
                     <h1>Selling is a Science: <span>Art and A Skill</span></h1>
-                    {{-- <h2>Science - sales Science has to be Learned</h2>
-                    <h2>Art - sales Art has to be Practiced</h2>
-                    <h2>Skill - sales  Skill has to be mastered. </h2> --}}
 
                     <span>
                         <b>Science</b> - sales Science has to be Learned
@@ -300,7 +307,7 @@
                 </div>
             </div>
         </div>
-    </section><!-- End Hero -->
+    </div><!-- End Hero -->
 
     <main id="main">
         {{-- <!-- ======= About Section ======= -->
