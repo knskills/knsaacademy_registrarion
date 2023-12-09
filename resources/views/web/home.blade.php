@@ -278,10 +278,14 @@
         <div class="container" data-aos="zoom-out" data-aos-delay="100" id="main_t">
             <div class="row">
                 <div class="col-12 text-center mb-3">
-                    <h2 class="text-black">Selling is a Science, Art and A Skill</h2>
-                    <b>Science</b> - sales Science has to be Learned,
-                    <b>Art</b> - sales Art has to be Practiced,
-                    <b>Skill</b> - sales Skill has to be mastered.
+                    <h2 class="text-black" style="height: 10%">
+                        <b>Selling is a Science, Art and A Skill</b>
+                    </h2>
+                    <span>
+                        <b>Science</b> - sales Science has to be Learned,
+                        <b>Art</b> - sales Art has to be Practiced,
+                        <b>Skill</b> - sales Skill has to be mastered.
+                    </span>
                 </div>
 
                 <div class="col-md-6 justify-content-center">
@@ -429,13 +433,17 @@
                             <li>👉 Join our Online Sales training course</li>
                             <li>👉 Become Top Sales Performer</li>
                         </ul>
+
+                        <strong>
+                            Sales में अपनी रूकावट को STOP करे & अपने BUSINESS, NETWORK MARKETING BUSINESS या JOB में
+                            सफलता पाए, जिसके आप काबिल हे.
+                        </strong>
                     </div>
                 </div>
             </div>
         </section>
 
-
-        <!-- ======= why2 Section ======= -->
+        {{-- <!-- ======= why2 Section ======= -->
         <section id="about" class="about">
             <div class="container" data-aos="fade-up">
                 <div class="section-title">
@@ -462,7 +470,7 @@
                 </div>
 
             </div>
-        </section><!-- End About Section -->
+        </section><!-- End About Section --> --}}
 
         <!-- ======= why Section ======= -->
         <section id="services" class="services section-bg">
