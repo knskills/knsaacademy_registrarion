@@ -209,6 +209,7 @@
 
             #small_s {
                 display: block;
+                margin-bottom: 5%;
             }
         }
     </style>
