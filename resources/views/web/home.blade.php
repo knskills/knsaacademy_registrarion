@@ -339,7 +339,7 @@
                             </a>
                         </div><br>
 
-                        {{-- <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center">
                             <div id="timer">
                                 <b class="text-dark">Offer Expired:</b>
                                 <div class="hours">
@@ -355,7 +355,7 @@
                                     <span class="unit">SECS</span>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
