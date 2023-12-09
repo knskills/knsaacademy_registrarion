@@ -175,10 +175,6 @@
             font-weight: 400;
         }
 
-        #main_t {
-                margin-top: -10%;
-            }
-
         @media (max-width: 768px) {
             #timer {
                 font-size: 1.2em;
@@ -191,13 +187,13 @@
                 margin-bottom: 5%;
             }
 
-            /* #main_t {
+            #main_t {
                 margin-top: -10%;
-            } */
+            }
         }
     </style>
 
-    {{-- <style>
+    <style>
         #big_s {
             display: block;
         }
@@ -215,7 +211,7 @@
                 display: block;
             }
         }
-    </style> --}}
+    </style>
 </head>
 
 <body>
@@ -282,9 +278,7 @@
         <div class="container" data-aos="zoom-out" data-aos-delay="100" id="main_t">
             <div class="row">
                 <div class="col-12 text-center mb-3">
-                    <h2 class="text-black" style="height: 10%">
-                        <b>Selling is a Science, Art and A Skill</b>
-                    </h2>
+                    <h2 class="text-black" style="height: 10%">Selling is a Science, Art and A Skill</h2>
                     <span>
                         <b>Science</b> - sales Science has to be Learned,
                         <b>Art</b> - sales Art has to be Practiced,
@@ -337,14 +331,14 @@
                             allowfullscreen>
                         </iframe>
                     </div>
-                    {{-- <div id="small_s">
+                    <div id="small_s">
                         <div class="text-center m-auto mt-4">
                             <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
                                 <span>Book Now Your Seat <b>₹99</b> </span>
                             </a>
                         </div><br>
 
-                        <div class="d-flex justify-content-center">
+                        {{-- <div class="d-flex justify-content-center">
                             <div id="timer">
                                 <b class="text-dark">Offer Expired:</b>
                                 <div class="hours">
@@ -360,8 +354,8 @@
                                     <span class="unit">SECS</span>
                                 </div>
                             </div>
-                        </div>
-                    </div> --}}
+                        </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
