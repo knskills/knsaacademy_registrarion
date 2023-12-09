@@ -250,8 +250,8 @@
     </div> --}}
 
     <!-- ======= Hero Section ======= -->
-    <div id="hero" class="d-flex align-items-center">
-        <div class="container" data-aos="zoom-out" data-aos-delay="100" style="margin-top: -5%;">
+    <section id="hero" class="d-flex align-items-center">
+        <div class="container" data-aos="zoom-out" data-aos-delay="100">
             <div class="row">
                 <div class="col-md-6 justify-content-center">
                     <h1>Selling is a Science: <span>Art and A Skill</span></h1>
@@ -308,7 +308,7 @@
                 </div>
             </div>
         </div>
-    </div><!-- End Hero -->
+    </section><!-- End Hero -->
 
     <main id="main">
         {{-- <!-- ======= About Section ======= -->
