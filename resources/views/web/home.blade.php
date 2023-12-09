@@ -297,7 +297,7 @@
                         <b>Skill</b> - sales Skill has to be mastered.
                     </span> --}}
 
-                    {{-- <div id="big_s"> --}}
+                    <div id="big_s">
                     <div class="text-center m-auto mt-4">
                         <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
                             <span>Book Now Your Seat <b>₹99</b> </span>
@@ -321,7 +321,7 @@
                             </div>
                         </div>
                     </div>
-                    {{-- </div> --}}
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="tutorial container text-center my-2 ratio ratio-16x9" style="width: 100%;height: 100%;">
@@ -340,7 +340,7 @@
                             </a>
                         </div><br>
 
-                        {{-- <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center">
                             <div id="timer">
                                 <b class="text-dark">Offer Expired:</b>
                                 <div class="hours">
@@ -356,7 +356,7 @@
                                     <span class="unit">SECS</span>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
