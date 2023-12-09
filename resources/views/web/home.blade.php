@@ -187,7 +187,7 @@
                 margin-bottom: 5%;
             }
 
-            #main_t {
+            .main_t {
                 margin-top: -10%;
             }
         }
@@ -245,8 +245,8 @@
 
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">
-        <div class="container" data-aos="zoom-out" data-aos-delay="100" >
-            <div class="row" id="main_t">
+        <div class="container main_t" data-aos="zoom-out" data-aos-delay="100">
+            <div class="row">
                 {{-- <div class="col-12 text-center mb-3">
                     <h1>Selling is a Science, Art and A Skill</h1>
                     <br>
