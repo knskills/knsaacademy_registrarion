@@ -26,6 +26,9 @@
 
 
     <!-- Google Fonts -->
+    {{-- <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet"> --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
@@ -290,8 +293,7 @@
 
                     <div class="tutorial container text-center my-2 ratio ratio-16x9" style="width: 100%;height: 100%;">
                         <iframe src="https://www.youtube.com/embed/RR1oolpWQ9Y?si=tjbdqG3jWqIBR9FR" title="Art of sales"
-                            frameborder="0"
-                            style="border: none;
+                            frameborder="0" style="border: none;
                             box-shadow: 0 1px 0 #000;width: 100%;height: 100%;"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen>
@@ -339,12 +341,12 @@
             </div>
         </section><!-- End About Section --> --}}
 
-        <section id="" class="section-bg">
+        <section id="about" class="about section-bg">
             <div class="container" data-aos="fade-up">
                 <div class="section-title">
                     {{-- <h3>The Art of Sales<span>: Mastering the Craft of Persuasion and Connection</span></h3> --}}
 
-                    <h3>𝐒𝐮𝐩𝐞𝐫𝐜𝐡𝐚𝐫𝐠𝐞 𝐘𝐨𝐮𝐫:<span> Selling Skill to rock on your Job, Traditional & NETWORK
+                    <h3>𝐒𝐮𝐩𝐞𝐫𝐜𝐡𝐚𝐫𝐠𝐞 𝐘𝐨𝐮𝐫<span>: Selling Skill to rock on your Job, Traditional & NETWORK
                             MARKETING BUSINESS</span></h3>
                 </div>
 
@@ -361,17 +363,24 @@
 
                     <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center"
                         data-aos="fade-up" data-aos-delay="100">
-                        <p>हो जाये तैयार 𝐒𝐀𝐋𝐄𝐒 𝐑𝐄𝐂𝐎𝐑𝐃𝐒 तोड़ने के लिए, NETWORK MARKETING BUSINESS में Sales
-                            में नयी उंचाईयों तक पहुंचने के लिए क्योंकि सेल्स ही एक ऐसा प्रोफेशन हैं जो सपनो के सारे
-                            दरवाजे UNLOCK करती हैं|</b> <br><br>
-                            <b class="ml-5">Effective salesmanship involves:</b>
-                        <ul style="list-style: none;">
-                            <li>👉 Learn Proven Sales Strategies</li>
-                            <li>👉 Double Your Sales with Selling Skill, Closing techniques & objection handling Skill
-                            </li>
-                            <li>👉 Join our Online Sales training course</li>
-                            <li>👉 Become Top Sales Performer</li>
-                        </ul>
+                        <p>Sales is more than just transactions; it's an art that involves understanding people and
+                            forging meaningful connections.</p>
+                        <p>Mastering the art of sales goes beyond closing deals; it's about building trust, empathy, and
+                            rapport.</p>
+                        <b>Effective salesmanship involves:</b>
+
+                        Understanding the psychology of buyers and empathizing with their needs. <br>
+                        Building relationships based on trust and credibility. <br>
+                        Active listening and effective communication to tailor solutions. <br>
+                        Continuous learning and self-improvement. <br> <br>
+                        {{-- <ul>
+                            <li>Understanding the psychology of buyers and empathizing with their needs.</li>
+                            <li>Building relationships based on trust and credibility.</li>
+                            <li>Active listening and effective communication to tailor solutions.</li>
+                            <li>Adaptability, innovation, and ethical practices in sales strategies.</li>
+                            <li>Continuous learning and self-improvement.</li>
+                        </ul> --}}
+                        <p>It's about creating a lasting impact by positively influencing the lives of customers.</p>
                     </div>
                 </div>
             </div>
