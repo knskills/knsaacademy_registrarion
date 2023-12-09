@@ -243,29 +243,17 @@
         </div>
     </header><!-- End Header --> --}}
 
-    {{-- <div class="d-flex align-items-center">
-        <h1>Selling is a Science: <span>Art and A Skill</span></h1>
-
-        <span>
-            <b>Science</b> - sales Science has to be Learned
-            <b>Art</b> - sales Art has to be Practiced
-            <b>Skill</b> - sales Skill has to be mastered.
-        </span>
-    </div> --}}
-
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">
         <div class="container" data-aos="zoom-out" data-aos-delay="100" id="main_t">
             <div class="row">
-                <div class="col-12 text-center">
-                    <h1>Selling is a Science: <span>Art and A Skill</span></h1>
-
-                    <span>
+                {{-- <div class="col-12 text-center mb-3">
+                    <h1>Selling is a Science, Art and A Skill</h1>
+                    <br>
                         <b>Science</b> - sales Science has to be Learned
                         <b>Art</b> - sales Art has to be Practiced
                         <b>Skill</b> - sales Skill has to be mastered.
-                    </span>
-                </div>
+                </div> --}}
                 <div class="col-md-6 justify-content-center">
                     <h1>Selling is a Science: <span>Art and A Skill</span></h1>
 
