@@ -287,7 +287,7 @@
                 </div>
 
                 <div class="col-md-6 justify-content-center">
-                    <h1>learn the science of skill art of sale by<span>Shiv Arora</span></h1>
+                    <h1>Learn the science and art of sales by <span>Shiv Arora</span></h1>
 
                     {{-- <span>
                         <b>Science</b> - sales Science has to be Learned
@@ -332,7 +332,7 @@
                             allowfullscreen>
                         </iframe>
                     </div>
-                    {{-- <div id="small_s">
+                    <div id="small_s">
                         <div class="text-center m-auto mt-4">
                             <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
                                 <span>Book Now Your Seat <b>₹99</b> </span>
@@ -356,7 +356,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
