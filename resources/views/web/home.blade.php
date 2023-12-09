@@ -175,6 +175,10 @@
             font-weight: 400;
         }
 
+        #main_t {
+                margin-top: -10%;
+            }
+
         @media (max-width: 768px) {
             #timer {
                 font-size: 1.2em;
@@ -187,13 +191,13 @@
                 margin-bottom: 5%;
             }
 
-            #main_t {
+            /* #main_t {
                 margin-top: -10%;
-            }
+            } */
         }
     </style>
 
-    <style>
+    {{-- <style>
         #big_s {
             display: block;
         }
@@ -211,7 +215,7 @@
                 display: block;
             }
         }
-    </style>
+    </style> --}}
 </head>
 
 <body>
