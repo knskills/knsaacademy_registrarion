@@ -209,7 +209,6 @@
 
             #small_s {
                 display: block;
-                margin-bottom: 20%;
             }
         }
     </style>
