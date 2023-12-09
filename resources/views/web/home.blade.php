@@ -131,7 +131,9 @@
         .my-float {
             margin-top: 16px;
         }
+    </style>
 
+    <style>
         #timer_body {
             display: flex;
             justify-content: center;
@@ -173,18 +175,16 @@
             font-weight: 400;
         }
 
-        .container2 {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
+        @media (max-width: 768px) {
+            #timer {
+                font-size: 1.2em;
+                /* Adjust the font size for small screens */
+            }
 
-        iframe {
-            border: none;
-            box-shadow: 0 1px 0 #000;
-            /* Adjust the values as needed */
+            #timer {
+                font-size: 0.8em;
+                /* Adjust the font size for small screens */
+            }
         }
     </style>
 </head>
