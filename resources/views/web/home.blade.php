@@ -296,11 +296,11 @@
                     </span> --}}
 
                     {{-- <div id="big_s"> --}}
-                        <div class="text-center m-auto mt-4">
-                            <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
-                                <span>Book Now Your Seat <b>₹99</b> </span>
-                            </a>
-                        </div><br>
+                    <div class="text-center m-auto mt-4">
+                        <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
+                            <span>Book Now Your Seat <b>₹99</b> </span>
+                        </a>
+                    </div><br>
                     {{-- </div> --}}
 
 
@@ -324,8 +324,8 @@
                 </div>
                 <div class="col-md-6">
                     <div class="tutorial container text-center my-2 ratio ratio-16x9" style="width: 100%;height: 100%;">
-                        <iframe src="https://www.youtube.com/embed/X13jh94WpQw?si=hZPyRgUYN9jDs8sq"
-                            title="Art of sales" frameborder="0"
+                        <iframe src="https://www.youtube.com/embed/X13jh94WpQw?si=hZPyRgUYN9jDs8sq" title="Art of sales"
+                            frameborder="0"
                             style="border: none;
                             box-shadow: 0 1px 0 #000;width: 100%;height: 100%;"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -433,7 +433,13 @@
                             <li>👉 Become Top Sales Performer</li>
                         </ul>
 
-                        <strong>
+                        <span>
+                            Sales Accelerator Program by <br>
+                            Trainer SHIV ARORA <br>
+                            (16 years of Experience in Sales & Network Marketing)
+                        </span>
+
+                        <strong class="mt-2">
                             Sales में अपनी रूकावट को STOP करे & अपने BUSINESS, NETWORK MARKETING BUSINESS या JOB में
                             सफलता पाए, जिसके आप काबिल हे.
                         </strong>
@@ -442,11 +448,11 @@
             </div>
         </section>
 
-        {{-- <!-- ======= why2 Section ======= -->
+        <!-- ======= why2 Section ======= -->
         <section id="about" class="about">
             <div class="container" data-aos="fade-up">
                 <div class="section-title">
-                    <h3>Some Reasons<span> Why People Failed in Network Marketing:</span></h3>
+                    <h3><span>Exploring the Power of Sales</span></h3>
                 </div>
 
                 <div class="row">
@@ -456,48 +462,64 @@
                     <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center"
                         data-aos="fade-up" data-aos-delay="100">
                         <b>
-                            {{ __('lang.reasion_content_1') }}
+                            Harnessing the potential of sales strategies
                         </b>
                         <br>
                         <p class="fst-italic">
-                            {{ __('lang.reasion_content_2') }}
+                            Understanding the dynamics and impact of effective sales techniques
                         </p>
                         <p>
-                            {{ __('lang.reasion_content_3') }}
+                            The power of sales lies not only in the art of persuasion but also in building genuine
+                            connections, understanding customer needs, and providing valuable solutions. It involves
+                            mastering communication, negotiation, and presentation skills to influence buying decisions
+                            positively.
                         </p>
                     </div>
                 </div>
-
             </div>
-        </section><!-- End About Section --> --}}
+
+        </section><!-- End About Section -->
 
         <!-- ======= why Section ======= -->
         <section id="services" class="services section-bg">
             <div class="container" data-aos="fade-up">
-
                 <div class="section-title">
-                    <h3>Why People Get Failed on <span>Network Marketing ?</span></h3>
+                    <h3><span>Mastering Sales Skills</span></h3>
                 </div>
+
                 <div class="row">
-                    <div class="col-md-6">
-                        <img src="{{ asset('assets/img/think.jpg') }}" alt="" class="img-fluid">
+                    <div class="col-lg-6 text-center" data-aos="fade-right" data-aos-delay="100">
+                        <img src="{{ asset('assets/img/sales.jpg') }}" alt="sales skills" class="img-fluid">
                     </div>
-                    <div class="col-md-6">
-                        <ul>
-                            <li>What network marketing is and how it works</li>
-                            <li>How to choose the right company</li>
-                            <li>How to find your target market</li>
-                            <li>How to build your network</li>
-                            <li>How to present your products or services</li>
-                            <li>How to follow up with customers</li>
-                            <li>How to build your team</li>
-                            <li>How to overcome challenges</li>
-                            <li>How to stay motivated And more!</li>
-                        </ul>
+                    <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <b>
+                            Unlock the Art and Science of Successful Selling
+                        </b>
+                        <br>
+                        {{-- <p class="fst-italic">
+                            "Sales are contingent upon the attitude of the salesman, not the attitude of the prospect."
+                            - William Clement Stone
+                        </p> --}}
                         <p>
-                            The Network Marketing Success Formula is the perfect resource for anyone who wants to build
-                            a successful network marketing business. Get your copy today and start your journey to
-                            success!
+                            Learning sales skills is an ongoing journey of mastering the art of persuasion, effective
+                            communication, and building relationships. It involves understanding customer needs, active
+                            listening, and presenting solutions that add value.
+                        </p>
+                        <p>
+                            Develop your sales skills by practicing empathy, refining your pitch, and learning from both
+                            successes and failures. Utilize technology to enhance your sales process, but never
+                            underestimate the power of genuine human connection in sales.
+                        </p>
+                        <p>
+                            Continuous learning and adaptation to new trends and techniques in the sales landscape are
+                            essential. Invest time in sales training programs, seek mentorship, and leverage networking
+                            opportunities to broaden your skill set and expand your sales prowess.
+                        </p>
+                        <p>
+                            Remember, sales skills are not just about closing deals; they're about building trust and
+                            long-lasting relationships with customers. Dedicate yourself to constant improvement, and
+                            watch your sales success soar.
                         </p>
                     </div>
                 </div>
@@ -511,7 +533,10 @@
                 <div class="row skills-content">
                     <div class="col-lg-7 m-auto">
                         <div class="text-center m-auto">
-                            <a href="https://rzp.io/l/xRoxi4cj5u" class="btn-custom mb-3" {{ $disabled }}>
+                            <span class="mb-5">
+                                👇 निचे दिए button पर क्लिक करे and Start Your Powerful Sales Journey 👇
+                            </span>
+                            <a href="https://rzp.io/l/xRoxi4cj5u" class="btn-custom mb-3 mt-4" {{ $disabled }}>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <span>Register <b>Now</b> </span>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -749,7 +774,7 @@
                         <p>
                             Kamal Narayan Sahu Kamal Narayan Sahu, an Entrepreneur, Motivational speaker, Leadership &
                             Direct Selling Coach. He is only matriculate and a school dropper student, and at the early
-                            age of 16, Came to the world’s biggest industry “Sales” Now he has 10 years of sales and
+                            age of 16, Came to the world’s biggest industry “Sales” Now he has 16 years of sales and
                             leadership experience. He works to inspire the youth of India and helping people to realize
                             their true potential. Kamal Narayan Sahu is C.E.O And Managing Director on one of the
                             Leading Network Marketing/Direct selling Company- (YTM) YASHIKA TRADING & MARKETING PVT.
@@ -757,6 +782,9 @@
                         </p>
 
                         <div class="d-flex justify-content-center mt-5">
+                            <span>
+                                🛑 Secure Your Spot Now! Enroll Today 👇
+                            </span>
                             <a href="#skills" class="btn-custom">
                                 <span>Book Now Your Free Seat</span>
                             </a>
