@@ -184,6 +184,7 @@
                 font-size: 1.1em;
                 /* Adjust the font size for small screens */
                 margin-bottom: 5%;
+                margin-top: -5%;
             }
 
             #main_t {
