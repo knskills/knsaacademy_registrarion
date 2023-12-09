@@ -192,6 +192,26 @@
             }
         }
     </style>
+
+    <style>
+        #big_s {
+            display: block;
+        }
+
+        #small_s {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            #big_s {
+                display: none;
+            }
+
+            #small_s {
+                display: block;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -258,22 +278,22 @@
         <div class="container" data-aos="zoom-out" data-aos-delay="100" id="main_t">
             <div class="row">
                 <div class="col-12 text-center mb-3">
-                    <h1>Selling is a Science, Art and A Skill</h1>
-                    <br>
-                        <b>Science</b> - sales Science has to be Learned
-                        <b>Art</b> - sales Art has to be Practiced
-                        <b>Skill</b> - sales Skill has to be mastered.
+                    <h2 class="text-black">Selling is a Science, Art and A Skill</h2>
+                    <b>Science</b> - sales Science has to be Learned,
+                    <b>Art</b> - sales Art has to be Practiced,
+                    <b>Skill</b> - sales Skill has to be mastered.
                 </div>
 
                 <div class="col-md-6 justify-content-center">
-                    <h1>Selling is a Science: <span>Art and A Skill</span></h1>
+                    <h1>learn the science of skill art of sale by<span>Shiv Arora</span></h1>
 
-                    <span>
+                    {{-- <span>
                         <b>Science</b> - sales Science has to be Learned
                         <b>Art</b> - sales Art has to be Practiced
                         <b>Skill</b> - sales Skill has to be mastered.
-                    </span>
+                    </span> --}}
 
+                    {{-- <div id="big_s"> --}}
                     <div class="text-center m-auto mt-4">
                         <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
                             <span>Book Now Your Seat <b>₹99</b> </span>
@@ -297,17 +317,9 @@
                             </div>
                         </div>
                     </div>
+                    {{-- </div> --}}
                 </div>
                 <div class="col-md-6">
-                    <!-- this is for without title watch on youtube -->
-                    {{-- <div class="tutorial container text-center my-2 ratio ratio-16x9">
-                        <iframe src="https://www.youtube.com/embed/TFjfxicXTmY?si=Qp7SBVLQLpa7CHh7"
-                            title="Kns academy" frameborder="1" style="border: 5px solid #000;"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen>
-                        </iframe>
-                    </div> --}}
-
                     <div class="tutorial container text-center my-2 ratio ratio-16x9" style="width: 100%;height: 100%;">
                         <iframe src="https://www.youtube.com/embed/RR1oolpWQ9Y?si=tjbdqG3jWqIBR9FR" title="Art of sales"
                             frameborder="0"
@@ -316,6 +328,31 @@
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen>
                         </iframe>
+                    </div>
+                    <div id="small_s">
+                        <div class="text-center m-auto mt-4">
+                            <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
+                                <span>Book Now Your Seat <b>₹99</b> </span>
+                            </a>
+                        </div><br>
+
+                        {{-- <div class="d-flex justify-content-center">
+                            <div id="timer">
+                                <b class="text-dark">Offer Expired:</b>
+                                <div class="hours">
+                                    <span class="time" id="hr">00</span>
+                                    <span class="unit">HRS</span>
+                                </div>
+                                <div class="minutes">
+                                    <span class="time" id="min">00</span>
+                                    <span class="unit">MINS</span>
+                                </div>
+                                <div class="seconds">
+                                    <span class="time" id="sec">00</span>
+                                    <span class="unit">SECS</span>
+                                </div>
+                            </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
