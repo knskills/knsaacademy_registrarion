@@ -296,13 +296,13 @@
                         <b>Skill</b> - sales Skill has to be mastered.
                     </span> --}}
 
-                    <div id="big_s">
+                    {{-- <div id="big_s"> --}}
                         <div class="text-center m-auto mt-4">
                             <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
                                 <span>Book Now Your Seat <b>₹99</b> </span>
                             </a>
                         </div><br>
-                    </div>
+                    {{-- </div> --}}
 
 
                     <div class="d-flex justify-content-center">
