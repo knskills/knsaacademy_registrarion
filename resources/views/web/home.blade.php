@@ -489,7 +489,7 @@
 
                 <div class="row">
                     <div class="col-lg-6 text-center" data-aos="fade-right" data-aos-delay="100">
-                        <img src="{{ asset('assets/img/sales.jpg') }}" alt="sales skills" class="img-fluid">
+                        <img src="{{ asset('assets/img/kns2.jpg') }}" alt="sales skills" class="img-fluid">
                     </div>
                     <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center"
                         data-aos="fade-up" data-aos-delay="100">
@@ -769,22 +769,31 @@
 
                     <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
                         <div class="section-title">
-                            <h3><span>Who Is</span> Kamal Narayan Sahu</h3>
+                            {{-- <h3><span>Who Is</span> Kamal Narayan Sahu</h3> --}}
+                            <h3> Welcome to KNarayan Skill Academy! </h3>
                         </div>
                         <p>
-                            Kamal Narayan Sahu Kamal Narayan Sahu, an Entrepreneur, Motivational speaker, Leadership &
-                            Direct Selling Coach. He is only matriculate and a school dropper student, and at the early
-                            age of 16, Came to the world’s biggest industry “Sales” Now he has 16 years of sales and
-                            leadership experience. He works to inspire the youth of India and helping people to realize
-                            their true potential. Kamal Narayan Sahu is C.E.O And Managing Director on one of the
-                            Leading Network Marketing/Direct selling Company- (YTM) YASHIKA TRADING & MARKETING PVT.
-                            LTD.
+                            At KNarayan Skill Academy, we are dedicated to empowering individuals through diverse skill
+                            development programs tailored to meet the demands of today's dynamic world. Our mission is
+                            to equip you with the knowledge and expertise needed to succeed in various domains.
                         </p>
 
-                        <div class="d-flex justify-content-center mt-5">
-                            <span>
-                                🛑 Secure Your Spot Now! Enroll Today 👇
-                            </span>
+                        <h4>Why Choose KNarayan Skill Academy?</h4>
+
+                        <ul>
+                            <li><b>Expert Guidance:</b> Benefit from the mentorship of experienced professionals and
+                                industry leaders passionate about your success.</li>
+                            <li><b>Hands-On Learning:</b> Engage in practical, real-world projects and exercises that
+                                sharpen your skills and build your portfolio.</li>
+                            <li><b>Flexible Learning:</b> Enjoy flexible schedules and a variety of learning formats,
+                                including online courses and workshops, enabling you to learn at your own pace.</li>
+                        </ul>
+
+                        <div class="text-center mt-2">
+                            🛑 Secure Your Spot Now! Enroll Today 👇
+                        </div>
+
+                        <div class="d-flex justify-content-center text-center mt-3">
                             <a href="#skills" class="btn-custom">
                                 <span>Book Now Your Free Seat</span>
                             </a>
@@ -804,20 +813,40 @@
             <i class="fa fa-whatsapp my-float"></i>
         </a>
 
+        <!-- ======= Contact Section ======= -->
+        <section id="contact" class="contact">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-title">
+                    <h2>Contact</h2>
+                    <h3><span>Contact Us</span></h3>
+                    <p>Explore our courses on <a href="https://www.youtube.com/channel/UCzRxWktCEzHvHNRUAmcWJzA?embeds_referring_euri=http%3A%2F%2F127.0.0.1%3A8001%2F&source_ve_path=MzY5MjU&feature=emb_ch_name_ex" target="_blank">YouTube</a> and stay updated on our latest offerings, success stories, and expert insights.</p>
+
+                    <p>
+                        Join our community on <a href="https://www.facebook.com/profile.php?id=61551921226266" target="_blank">Facebook</a> Marketplace to discover more about our courses, connect with like-minded individuals, and access exclusive resources.
+                    </p>
+                </div>
+
+            </div>
+        </section><!-- End Contact Section -->
+
         <!-- ======= Pricing Section ======= -->
         <section id="pricing" class="pricing">
             <div class="container" data-aos="fade-up">
 
-                <div class="row">
-                    <a href="https://www.facebook.com/p/KAMAL-NARAYAN-SAHU-100063653929924/">
-                        <img src="{{ asset('assets/img/facebook.jpg') }}" class="img-fluid" alt="">
-                    </a>
+                <div class="container-fluid">
+                    <div class="row text-center">
+                        <a href="https://www.facebook.com/profile.php?id=61551921226266&mibextid=rS40aB7S9Ucbxw6v">
+                            <img src="{{ asset('assets/img/kns.png') }}" class="img-fluid" alt="">
+                        </a>
+                    </div>
                 </div>
-                <div class="row">
+
+                {{-- <div class="row">
                     <a href="https://www.facebook.com/p/KAMAL-NARAYAN-SAHU-100063653929924/">
                         <img src="{{ asset('assets/img/facebook.png') }}" class="img-fluid" alt="">
                     </a>
-                </div>
+                </div> --}}
 
             </div>
         </section><!-- End Pricing Section -->
