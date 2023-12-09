@@ -210,10 +210,6 @@
             #small_s {
                 display: block;
             }
-
-            #t1 {
-                height: 100vh;
-            }
         }
     </style>
 </head>
@@ -327,7 +323,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6" id="t1">
+                <div class="col-md-6">
                     <div class="tutorial container text-center my-2 ratio ratio-16x9" style="width: 100%;height: 100%;">
                         <iframe src="https://www.youtube.com/embed/RR1oolpWQ9Y?si=tjbdqG3jWqIBR9FR"
                             title="Art of sales" frameborder="0"
