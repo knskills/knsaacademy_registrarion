@@ -324,7 +324,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="tutorial container text-center my-2 ratio ratio-16x9" style="width: 100%;height: 100%;">
-                        <iframe src="https://www.youtube.com/embed/RR1oolpWQ9Y?si=tjbdqG3jWqIBR9FR"
+                        <iframe src="https://www.youtube.com/embed/X13jh94WpQw?si=hZPyRgUYN9jDs8sq"
                             title="Art of sales" frameborder="0"
                             style="border: none;
                             box-shadow: 0 1px 0 #000;width: 100%;height: 100%;"
@@ -411,7 +411,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="tutorial container text-center my-2 ratio ratio-16x9">
-                            <iframe src="https://www.youtube.com/embed/dDrxHePQT3s?si=b_DStMBKsSZmLEne "
+                            <iframe src="https://www.youtube.com/embed/Wfm__GY8F_E?si=y_geodwetlH2AggQ"
                                 title="Kns academy" frameborder="1" style="border: 5px solid #000;"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 allowfullscreen>
