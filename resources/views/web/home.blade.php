@@ -184,9 +184,7 @@
             #timer {
                 font-size: 1.1em;
                 /* Adjust the font size for small screens */
-                /* margin-bottom: 5%;
-                margin-top: 5%; */
-                margin: auto;
+                margin-bottom: 5%;
             }
 
             /* #main_t {
@@ -298,7 +296,7 @@
                     </span> --}}
 
                     {{-- <div id="big_s"> --}}
-                        <div class="text-center m-auto mt-4">
+                        <div class="text-center m-auto mt-auto">
                             <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
                                 <span>Book Now Your Seat <b>₹99</b> </span>
                             </a>
