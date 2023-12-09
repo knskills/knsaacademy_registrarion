@@ -332,7 +332,7 @@
                             allowfullscreen>
                         </iframe>
                     </div>
-                    <div id="small_s">
+                    {{-- <div id="small_s">
                         <div class="text-center m-auto mt-4">
                             <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
                                 <span>Book Now Your Seat <b>₹99</b> </span>
@@ -356,7 +356,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
