@@ -253,6 +253,15 @@
     <section id="hero" class="d-flex align-items-center">
         <div class="container" data-aos="zoom-out" data-aos-delay="100">
             <div class="row">
+                {{-- <div class="col-12">
+                    <h1>Selling is a Science: <span>Art and A Skill</span></h1>
+
+                    <span>
+                        <b>Science</b> - sales Science has to be Learned
+                        <b>Art</b> - sales Art has to be Practiced
+                        <b>Skill</b> - sales Skill has to be mastered.
+                    </span>
+                </div> --}}
                 <div class="col-md-6 justify-content-center">
                     <h1>Selling is a Science: <span>Art and A Skill</span></h1>
 
