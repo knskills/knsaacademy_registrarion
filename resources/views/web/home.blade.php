@@ -643,7 +643,7 @@
                         Who transforms their Life & achived Big success in Network Marketing industry ...</p>
                 </div>
 
-                <div class="row">
+                <div class="row text-center">
                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up"
                         data-aos-delay="400">
                         <div class="member">
