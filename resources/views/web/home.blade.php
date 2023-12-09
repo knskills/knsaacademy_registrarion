@@ -245,8 +245,8 @@
 
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">
-        <div class="container" data-aos="zoom-out" data-aos-delay="100" id="main_t">
-            <div class="row">
+        <div class="container" data-aos="zoom-out" data-aos-delay="100" >
+            <div class="row" id="main_t">
                 {{-- <div class="col-12 text-center mb-3">
                     <h1>Selling is a Science, Art and A Skill</h1>
                     <br>
