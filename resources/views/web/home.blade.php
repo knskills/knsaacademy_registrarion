@@ -186,6 +186,10 @@
                 /* Adjust the font size for small screens */
                 margin-bottom: 5%;
             }
+
+            #main_t {
+                margin-top: 10%;
+            }
         }
     </style>
 </head>
@@ -251,7 +255,7 @@
 
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">
-        <div class="container" data-aos="zoom-out" data-aos-delay="100" style="margin-bottom: -3%">
+        <div class="container" data-aos="zoom-out" data-aos-delay="100" id="main_t">
             <div class="row">
                 <div class="col-12 text-center">
                     <h1>Selling is a Science: <span>Art and A Skill</span></h1>
