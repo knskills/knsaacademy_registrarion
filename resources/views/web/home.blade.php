@@ -176,10 +176,9 @@
         }
 
         @media (max-width: 768px) {
-            #timer {
+            /* #timer {
                 font-size: 1.2em;
-                /* Adjust the font size for small screens */
-            }
+            } */
 
             #timer {
                 font-size: 1.1em;
@@ -209,6 +208,7 @@
 
             #small_s {
                 display: block;
+                width: 100vh;
             }
         }
     </style>
@@ -332,11 +332,11 @@
                         </iframe>
                     </div>
                     <div id="small_s">
-                        <div class="text-center m-auto mt-4">
+                        {{-- <div class="text-center m-auto mt-4">
                             <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
                                 <span>Book Now Your Seat <b>₹99</b> </span>
                             </a>
-                        </div><br>
+                        </div><br> --}}
 
                         {{-- <div class="d-flex justify-content-center">
                             <div id="timer">
