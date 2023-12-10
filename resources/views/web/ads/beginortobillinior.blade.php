@@ -34,9 +34,10 @@
                 <div class="col-md-6 justify-content-center">
                     <h1>Supercharge Yourself By Network <span>Marketing Foundation</span> Skills</h1>
                     <span>
-                        Master the foundational skills of network marketing and unlock advanced strategies proven to
+                        {{-- Master the foundational skills of network marketing and unlock advanced strategies proven to
                         generate high-quality leads and propel your product or service sales to 7x levels, paving the way to
-                        becoming a billionaire.
+                        becoming a billionaire. --}}
+                        Discover network marketing's core skills and proven advanced strategies to skyrocket sales by 7x, paving your path to billionaire status.
                     </span>
 
                     <div class="text-center m-auto mt-4">
