@@ -283,7 +283,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="copyright">
-                        &copy; Copyright <strong><span>Kamal Narayan Sahu</span></strong>. All Rights Reserved
+                        &copy; Copyright <strong><span>K Narayan Skill Academy</span></strong>. All Rights Reserved
                     </div>
 
                     <div class="float-end">

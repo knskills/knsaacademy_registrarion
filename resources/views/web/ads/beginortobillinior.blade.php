@@ -326,7 +326,7 @@
         </div>
     </section><!-- End Skills Section -->
 
-    {{-- <!-- ======= videos Section ======= -->
+    <!-- ======= videos Section ======= -->
     <section id="services" class="services section-bg">
         <div class="container" data-aos="fade-up">
             <div class="section-title">
@@ -393,7 +393,7 @@
                 </div>
             </div>
         </div>
-    </section><!-- End Services Section --> --}}
+    </section><!-- End Services Section -->
 
     <!-- ======= Networker ======= -->
     <section id="team" class="services ">
@@ -514,7 +514,7 @@
         <div class="container" data-aos="fade-up">
             <div class="row">
                 <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <img src="{{ asset('assets/img/sirji2.png') }}" alt="sirji" class="img-fluid">
+                    <img src="{{ asset('assets/img/11.png') }}" alt="sirji" class="img-fluid">
                 </div>
 
                 <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
