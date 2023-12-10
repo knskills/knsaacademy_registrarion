@@ -15,6 +15,10 @@
             #head {
                 display: block;
             }
+
+            .hrt{
+                margin-top: -5%
+            }
         }
     </style>
 @endsection
@@ -31,7 +35,7 @@
                     </h2>
                 </div>
 
-                <div class="col-md-6 justify-content-center">
+                <div class="col-md-6 justify-content-center hrt">
                     <h1>Supercharge Yourself By Network <span>Marketing Foundation</span> Skills</h1>
                     <span>
                         {{-- Master the foundational skills of network marketing and unlock advanced strategies proven to
@@ -69,7 +73,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6 hrt">
                     {{-- <div class="tutorial container text-center my-2 ratio ratio-16x9" tyle="width: 100%;height: 100%;">
                         <iframe src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=Ebfveh93ApYa6aPz"
                             title="YouTube video player" frameborder="1" style="border: 5px solid #000;"
