@@ -12,20 +12,21 @@
     <section id="hero" class="d-flex align-items-center">
         <div class="container" data-aos="zoom-out" data-aos-delay="100" id="main_t">
             <div class="row">
-                <div class="col-12 text-center mb-3">
+                {{-- <div class="col-12 text-center mb-3">
                     <h2 class="text-black" style="height: 10%">
                         From Novice to Nine Figures: The Journey to Billionaire Status
                     </h2>
-                </div>
+                </div> --}}
 
                 <div class="col-md-6 justify-content-center">
                     <h1>Mastering the art and science of wealth creation with <span>Kamal Narayan Sahu</span></h1>
-                    <h2>From Beginner to Billionaire: Kamal Narayan Sahu's Network Marketing Journey</h2>
+
                     <div class="text-center m-auto mt-4">
                         <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
-                            <span>Book Now Your Seat <b>₹199</b> </span>
+                            <span>Book Now Your Seat <b>₹99</b> </span>
                         </a>
                     </div><br>
+
 
                     <div class="d-flex justify-content-center">
                         <div id="timer">
@@ -63,6 +64,32 @@
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen>
                         </iframe>
+                    </div>
+
+                    <div id="small_s">
+                        <div class="text-center m-auto mt-4">
+                            <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
+                                <span>Book Now Your Seat <b>₹99</b> </span>
+                            </a>
+                        </div><br>
+
+                        <div class="d-flex justify-content-center">
+                            <div id="timer">
+                                <b class="text-dark">Offer Expired:</b>
+                                <div class="hours">
+                                    <span class="time" id="hr">00</span>
+                                    <span class="unit">HRS</span>
+                                </div>
+                                <div class="minutes">
+                                    <span class="time" id="min">00</span>
+                                    <span class="unit">MINS</span>
+                                </div>
+                                <div class="seconds">
+                                    <span class="time" id="sec">00</span>
+                                    <span class="unit">SECS</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
