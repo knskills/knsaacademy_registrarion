@@ -127,7 +127,7 @@
 @endsection
 
 @section('content')
-    <!-- ======= About Section ======= -->
+    {{-- <!-- ======= About Section ======= -->
     <section id="about" class="about section-bg">
         <div class="container" data-aos="fade-up">
 
@@ -161,12 +161,50 @@
             </div>
 
         </div>
+    </section><!-- End About Section --> --}}
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about section-bg">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>About</h2>
+                @if (app()->getLocale() === 'hi')
+                    <h3>{{ __('lang.n_m') }} <span>{{ __('lang.about_1') }}</span></h3>
+                @else
+                    <h3>{{ __('lang.about_1') }} <span>{{ __('lang.n_m') }}</span></h3>
+                @endif
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 text-center" data-aos="fade-right" data-aos-delay="100">
+                    <div class="tutorial container text-center my-2 ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/KbedXSOMAt8?si=1-FrgeB5IDnEoLiA"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                    <h4 class="text-primary">{{ __('lang.experince') }}</h4>
+                </div>
+                <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <h3>{{ __('lang.about_header') }}
+                    </h3>
+                    <p class="fst-italic">
+                        {{ __('lang.about_content_1') }}
+                        <br>
+                        {{ __('lang.about_content_2') }}
+                    </p>
+                </div>
+            </div>
+
+        </div>
     </section><!-- End About Section -->
 
-    <section id="" class="section-bg">
+    {{-- <section id="" class="section-bg">
         <div class="container" data-aos="fade-up">
             <div class="section-title">
-                {{-- <h3>The Beginner to Billionaire<span>: Mastering the Craft of Persuasion and Connection</span></h3> --}}
+                <!-- <h3>The Beginner to Billionaire<span>: Mastering the Craft of Persuasion and Connection</span></h3> -->
 
                 <h3>𝐒𝐮𝐩𝐞𝐫𝐜𝐡𝐚𝐫𝐠𝐞 𝐘𝐨𝐮𝐫:<span> Selling Skill to rock on your Job, Traditional & NETWORK
                         MARKETING BUSINESS</span></h3>
@@ -210,7 +248,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- ======= why2 Section ======= -->
     <section id="about" class="about">
@@ -326,7 +364,7 @@
         </div>
     </section><!-- End Skills Section -->
 
-    <!-- ======= videos Section ======= -->
+    {{-- <!-- ======= videos Section ======= -->
     <section id="services" class="services section-bg">
         <div class="container" data-aos="fade-up">
             <div class="section-title">
@@ -393,7 +431,7 @@
                 </div>
             </div>
         </div>
-    </section><!-- End Services Section -->
+    </section><!-- End Services Section --> --}}
 
     <!-- ======= Networker ======= -->
     <section id="team" class="services ">
