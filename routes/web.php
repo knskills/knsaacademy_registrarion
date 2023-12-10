@@ -68,4 +68,4 @@ Route::get('lang/change', [LangController::class, 'change'])->name('changeLang')
 
 
 ///////////////////////  Pages ///////////////////////
-Route::get('/beginnertobeginner', [PageController::class, 'beginortobillinior'])->name('beginortobillinior');
+Route::get('/beginnertobillionaire', [PageController::class, 'beginnertobillionaire'])->name('beginnertobillionaire');

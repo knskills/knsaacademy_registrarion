@@ -16,13 +16,13 @@
         name="keywords">
 
     <!-- Favicons -->
-    <link href="{{ asset('assets/img/favicon_io2/site.webmanifest') }}" rel="icon">
-    <link href="{{ asset('assets/img/favicon_io2/apple-touch-icon.png') }}" rel="apple-touch-icon">
-    <link href="{{ asset('assets/img/favicon_io2/favicon-32x32.png') }}" rel="icon" type="image/png" sizes="32x32">
-    <link href="{{ asset('assets/img/favicon_io2/favicon-16x16.png') }}" rel="icon" type="image/png" sizes="16x16">
-    <link href="{{ asset('assets/img/favicon_io2/android-chrome-512x512.png') }}" rel="icon" type="image/png"
+    <link href="{{ asset('assets/img/favicon_io/site.webmanifest') }}" rel="icon">
+    <link href="{{ asset('assets/img/favicon_io/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('assets/img/favicon_io/favicon-32x32.png') }}" rel="icon" type="image/png" sizes="32x32">
+    <link href="{{ asset('assets/img/favicon_io/favicon-16x16.png') }}" rel="icon" type="image/png" sizes="16x16">
+    <link href="{{ asset('assets/img/favicon_io/android-chrome-512x512.png') }}" rel="icon" type="image/png"
         sizes="512x512">
-    <link href="{{ asset('assets/img/favicon_io2/android-chrome-192x192.png') }}" rel="icon" type="image/png"
+    <link href="{{ asset('assets/img/favicon_io/android-chrome-192x192.png') }}" rel="icon" type="image/png"
         sizes="192x192">
 
 
@@ -266,95 +266,6 @@
 
         </div>
     </header><!-- End Header --> --}}
-
-    <!-- ======= Hero Section ======= -->
-    <section id="hero" class="d-flex align-items-center">
-        <div class="container" data-aos="zoom-out" data-aos-delay="100" id="main_t">
-            <div class="row">
-                <div class="col-12 text-center mb-3">
-                    <h2 class="text-black" style="height: 10%">Selling is a Science, Art and A Skill</h2>
-                    <span>
-                        <b>Science</b> - sales Science has to be Learned,
-                        <b>Art</b> - sales Art has to be Practiced,
-                        <b>Skill</b> - sales Skill has to be mastered.
-                    </span>
-                </div>
-
-                <div class="col-md-6 justify-content-center">
-                    <h1>Learn the science and art of sales by <span>Shiv Arora</span></h1>
-
-                    {{-- <span>
-                        <b>Science</b> - sales Science has to be Learned
-                        <b>Art</b> - sales Art has to be Practiced
-                        <b>Skill</b> - sales Skill has to be mastered.
-                    </span> --}}
-
-                    {{-- <div id="big_s"> --}}
-                    <div class="text-center m-auto mt-4">
-                        <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
-                            <span>Book Now Your Seat <b>₹99</b> </span>
-                        </a>
-                    </div><br>
-                    {{-- </div> --}}
-
-
-                    <div class="d-flex justify-content-center">
-                        <div id="timer">
-                            <b class="text-dark">Offer Expired:</b>
-                            <div class="hours">
-                                <span class="time" id="hr">00</span>
-                                <span class="unit">HRS</span>
-                            </div>
-                            <div class="minutes">
-                                <span class="time" id="min">00</span>
-                                <span class="unit">MINS</span>
-                            </div>
-                            <div class="seconds">
-                                <span class="time" id="sec">00</span>
-                                <span class="unit">SECS</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="tutorial container text-center my-2 ratio ratio-16x9" style="width: 100%;height: 100%;">
-                        <iframe src="https://www.youtube.com/embed/X13jh94WpQw?si=hZPyRgUYN9jDs8sq"
-                            title="Art of sales" frameborder="0"
-                            style="border: none;
-                            box-shadow: 0 1px 0 #000;width: 100%;height: 100%;"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div id="small_s">
-                        <div class="text-center m-auto mt-4">
-                            <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
-                                <span>Book Now Your Seat <b>₹99</b> </span>
-                            </a>
-                        </div><br>
-
-                        <div class="d-flex justify-content-center">
-                            <div id="timer">
-                                <b class="text-dark">Offer Expired:</b>
-                                <div class="hours">
-                                    <span class="time" id="hr">00</span>
-                                    <span class="unit">HRS</span>
-                                </div>
-                                <div class="minutes">
-                                    <span class="time" id="min">00</span>
-                                    <span class="unit">MINS</span>
-                                </div>
-                                <div class="seconds">
-                                    <span class="time" id="sec">00</span>
-                                    <span class="unit">SECS</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section><!-- End Hero -->
 
     @yield('hero')
 

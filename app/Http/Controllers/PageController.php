@@ -12,7 +12,7 @@ class PageController extends Controller
         return view('web.home');
     }
 
-    public function beginortobillinior()
+    public function beginnertobillionaire()
     {
         return view('web.ads.beginortobillinior');
     }

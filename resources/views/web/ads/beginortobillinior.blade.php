@@ -1,13 +1,72 @@
 @extends('web.ads.layouts.app')
 
 @section('title')
-<title>From Beginner to Billionaire: Kamal Narayan Sahu's Network Marketing Journey</title>
+    <title>From Beginner to Billionaire: Kamal Narayan Sahu's Network Marketing Journey</title>
 @endsection
 
 @section('script')
 @endsection
 
 @section('hero')
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="d-flex align-items-center">
+        <div class="container" data-aos="zoom-out" data-aos-delay="100" id="main_t">
+            <div class="row">
+                {{-- <div class="col-12 text-center mb-3">
+                    <h2 class="text-black" style="height: 10%">
+                        From Novice to Nine Figures: The Journey to Billionaire Status
+                    </h2>
+                </div> --}}
+
+                <div class="col-md-6 justify-content-center">
+                    <h1>Mastering the art and science of wealth creation with <span>Kamal Narayan Sahu</span></h1>
+                    <h2>From Beginner to Billionaire: Kamal Narayan Sahu's Network Marketing Journey</h2>
+                    <div class="text-center m-auto mt-4">
+                        <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
+                            <span>Book Now Your Seat <b>₹99</b> </span>
+                        </a>
+                    </div><br>
+
+                    <div class="d-flex justify-content-center">
+                        <div id="timer">
+                            <b class="text-dark">Offer Expired:</b>
+                            <div class="hours">
+                                <span class="time" id="hr">00</span>
+                                <span class="unit">HRS</span>
+                            </div>
+                            <div class="minutes">
+                                <span class="time" id="min">00</span>
+                                <span class="unit">MINS</span>
+                            </div>
+                            <div class="seconds">
+                                <span class="time" id="sec">00</span>
+                                <span class="unit">SECS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    {{-- <div class="tutorial container text-center my-2 ratio ratio-16x9" tyle="width: 100%;height: 100%;">
+                        <iframe src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=Ebfveh93ApYa6aPz"
+                            title="YouTube video player" frameborder="1" style="border: 5px solid #000;"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                        </iframe>
+                    </div> --}}
+
+                    <div class="tutorial container text-center my-2 ratio ratio-16x9" style="width: 100%;height: 100%;">
+                        <iframe src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=Ebfveh93ApYa6aPz" title="Art of sales"
+                            frameborder="0"
+                            style="border: none;
+                            box-shadow: 0 1px 0 #000;width: 100%;height: 100%;"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+    </section><!-- End Hero -->
 @endsection
 
 @section('content')
@@ -50,7 +109,7 @@
     <section id="" class="section-bg">
         <div class="container" data-aos="fade-up">
             <div class="section-title">
-                {{-- <h3>The Art of Sales<span>: Mastering the Craft of Persuasion and Connection</span></h3> --}}
+                {{-- <h3>The Beginner to Billionaire<span>: Mastering the Craft of Persuasion and Connection</span></h3> --}}
 
                 <h3>𝐒𝐮𝐩𝐞𝐫𝐜𝐡𝐚𝐫𝐠𝐞 𝐘𝐨𝐮𝐫:<span> Selling Skill to rock on your Job, Traditional & NETWORK
                         MARKETING BUSINESS</span></h3>
@@ -210,7 +269,7 @@
         </div>
     </section><!-- End Skills Section -->
 
-    <!-- ======= videos Section ======= -->
+    {{-- <!-- ======= videos Section ======= -->
     <section id="services" class="services section-bg">
         <div class="container" data-aos="fade-up">
             <div class="section-title">
@@ -277,7 +336,7 @@
                 </div>
             </div>
         </div>
-    </section><!-- End Services Section -->
+    </section><!-- End Services Section --> --}}
 
     <!-- ======= Networker ======= -->
     <section id="team" class="services ">
