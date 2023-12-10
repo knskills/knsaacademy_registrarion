@@ -794,7 +794,7 @@
 
                         <div class="d-flex justify-content-center text-center mt-3">
                             <a href="#skills" class="btn-custom">
-                                <span>Book Now Your Free Seat</span>
+                                <span>Book Now Your Seat</span>
                             </a>
                         </div>
                         <div class="d-flex justify-content-center mt-3">
