@@ -12,11 +12,11 @@
     <section id="hero" class="d-flex align-items-center">
         <div class="container" data-aos="zoom-out" data-aos-delay="100" id="main_t">
             <div class="row">
-                {{-- <div class="col-12 text-center mb-3">
+                <div class="col-12 text-center mb-3">
                     <h2 class="text-black" style="height: 10%">
                         From Novice to Nine Figures: The Journey to Billionaire Status
                     </h2>
-                </div> --}}
+                </div>
 
                 <div class="col-md-6 justify-content-center">
                     <h1>Mastering the art and science of wealth creation with <span>Kamal Narayan Sahu</span></h1>
