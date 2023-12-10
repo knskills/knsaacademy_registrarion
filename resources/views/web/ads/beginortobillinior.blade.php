@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-12 text-center mb-3">
                     <h2 class="text-black" style="height: 10%">
-                        From Novice to Nine Figures: The Journey to Billionaire Status
+                        Supercharge Yourself By Network Marketing Foundation Skills
                     </h2>
                 </div>
 
@@ -97,7 +97,7 @@
 @endsection
 
 @section('content')
-    {{-- <!-- ======= About Section ======= -->
+    <!-- ======= About Section ======= -->
         <section id="about" class="about section-bg">
             <div class="container" data-aos="fade-up">
 
@@ -131,7 +131,7 @@
                 </div>
 
             </div>
-        </section><!-- End About Section --> --}}
+        </section><!-- End About Section -->
 
     <section id="" class="section-bg">
         <div class="container" data-aos="fade-up">

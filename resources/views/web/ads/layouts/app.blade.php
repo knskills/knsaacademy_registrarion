@@ -272,9 +272,9 @@
     <main id="main">
         @yield('content')
 
-        <a href="https://api.whatsapp.com/send?phone=+917582918000&text=Hello." class="wha" target="_blank">
+        {{-- <a href="https://api.whatsapp.com/send?phone=+917582918000&text=Hello." class="wha" target="_blank">
             <i class="fa fa-whatsapp my-float"></i>
-        </a>
+        </a> --}}
     </main>
 
     <!-- ======= Footer ======= -->
