@@ -278,7 +278,7 @@
     </main>
 
     <!-- ======= Footer ======= -->
-    <footer id="footer">
+    <footer id="footer bg-white">
         <div class="container py-4">
             <div class="row">
                 <div class="col-md-12">
