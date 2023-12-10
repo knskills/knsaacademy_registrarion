@@ -188,12 +188,14 @@
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center"
                     data-aos="fade-up" data-aos-delay="100">
-                    <h3>{{ __('lang.about_header') }}
-                    </h3>
+                    <h3>{{ __('lang.about_header') }} </h3>
+
                     <p class="fst-italic">
-                        {{ __('lang.about_content_1') }}
-                        <br>
-                        {{ __('lang.about_content_2') }}
+                        क्या आप एक सफल नेटवर्क मार्केटिंग व्यवसाय बनाना चाहते हैं? यदि हाँ, तो आपको नेटवर्क मार्केटिंग सफलता सूत्र की आवश्यकता है।
+                    </p>
+
+                    <p class="fst-italic">
+                        नेटवर्क मार्केटिंग में सफल होने के लिए सबसे ज्यादा काम अपने ऊपर करना होता है, जबकि लोग दूसरों में कमियां निकाल रहे होते हैं, "यह सुनता नहीं है" "वह सुनता नहीं है" अरे वह सुनेगा, उसका खानदान भी सुनेगा, पहले अपने आप को "सुनाने" लायक तो बनाइए।
                     </p>
                 </div>
             </div>
