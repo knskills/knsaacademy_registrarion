@@ -639,7 +639,8 @@
                 <div class="section-title">
                     <h2>Trainers</h2>
                     <h3>People earned after learning from our sales<span> Techniques</span></h3>
-                    <p>Some of our multimillionaire network marketing leaders who transformed their lives and achieved big success in the network marketing industry...</p>
+                    <p>Some of Our Multimillionaires Network Marketing leaders
+                        Who transforms their Life & achived Big success in Network Marketing industry...</p>
                 </div>
 
                 <div class="row text-center">
@@ -1009,73 +1010,6 @@
         });
     </script>
     <script>
-        const timerDisplay = document.getElementById('timerDisplay');
-        const registerButton = document.getElementById('registerButton');
-
-        let remainingTime = 3600; // 1 hour in seconds
-
-        function updateTimerDisplay() {
-            const minutes = Math.floor(remainingTime / 60);
-            const seconds = remainingTime % 60;
-
-            timerDisplay.textContent = `Time remaining: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-        }
-
-        function disableRegisterButton() {
-            registerButton.disabled = true;
-            timerDisplay.textContent = 'Time expired';
-        }
-
-        const countdownInterval = setInterval(() => {
-            if (remainingTime <= 0) {
-                disableRegisterButton();
-                clearInterval(countdownInterval);
-
-                // after 60 min disabled btn-custom class
-                $('.btn-custom').addClass('disabled');
-            } else {
-                remainingTime--;
-                updateTimerDisplay();
-            }
-        }, 1000);
-    </script>
-
-    {{-- <script>
-        // Set the target date and time
-        const targetDate = new Date("2023-12-05T11:59:59");
-
-        // Function to update the countdown timer
-        function updateCountdown() {
-            const currentDate = new Date();
-            const timeDifference = targetDate - currentDate;
-
-            if (timeDifference <= 0) {
-                // The countdown has expired
-                document.getElementById("countdown").textContent = "Countdown expired!";
-                return;
-            }
-
-            const hours = Math.floor(timeDifference / (1000 * 60 * 60));
-            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
-            // // Display the countdown timer
-            // document.getElementById("countdown").textContent = `${hours} HRS ${minutes} MINS ${seconds} SECS`;
-
-            // Display the countdown timer
-            document.getElementById("hr").textContent = hours;
-            document.getElementById("min").textContent = minutes;
-            document.getElementById("sec").textContent = seconds;
-
-        }
-
-        // Update the countdown every second
-        setInterval(updateCountdown, 1000);
-
-        // Initial call to set the timer immediately
-        updateCountdown();
-    </script> --}}
-    <script>
         // Set the target date and time (1 hour from the current time)
         const targetDate = new Date();
         targetDate.setHours(targetDate.getHours() + 1);
@@ -1107,8 +1041,6 @@
         // Initial call to set the timer immediately
         updateCountdown();
     </script>
-
-
 </body>
 
 </html>
