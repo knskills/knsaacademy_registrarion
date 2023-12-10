@@ -364,7 +364,7 @@
         </div>
     </section><!-- End Skills Section -->
 
-    {{-- <!-- ======= videos Section ======= -->
+    <!-- ======= videos Section ======= -->
     <section id="services" class="services section-bg">
         <div class="container" data-aos="fade-up">
             <div class="section-title">
@@ -431,7 +431,7 @@
                 </div>
             </div>
         </div>
-    </section><!-- End Services Section --> --}}
+    </section><!-- End Services Section -->
 
     <!-- ======= Networker ======= -->
     <section id="team" class="services ">
@@ -558,15 +558,15 @@
                 <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
                     <div class="section-title">
                         {{-- <h3><span>Who Is</span> Kamal Narayan Sahu</h3> --}}
-                        <h3> Welcome to KNarayan Skill Academy! </h3>
+                        <h3> Welcome to K Narayan Skill Academy! </h3>
                     </div>
                     <p>
-                        At KNarayan Skill Academy, we are dedicated to empowering individuals through diverse skill
+                        At K Narayan Skill Academy, we are dedicated to empowering individuals through diverse skill
                         development programs tailored to meet the demands of today's dynamic world. Our mission is
                         to equip you with the knowledge and expertise needed to succeed in various domains.
                     </p>
 
-                    <h4>Why Choose KNarayan Skill Academy?</h4>
+                    <h4>Why Choose K Narayan Skill Academy?</h4>
 
                     <ul>
                         <li><b>Expert Guidance:</b> Benefit from the mentorship of experienced professionals and
@@ -606,7 +606,7 @@
 
                 <div class="col-lg-8 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
                     <div class="section-title">
-                        <h3><span>Founder of</span> KNarayan Skill Academy</h3>
+                        <h3><span>Founder of</span> K Narayan Skill Academy</h3>
                     </div>
                     <p>
                         Kamal Narayan Sahu, an Entrepreneur, Motivational speaker, Leadership &
