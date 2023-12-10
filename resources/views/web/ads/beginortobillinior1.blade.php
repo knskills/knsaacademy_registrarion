@@ -5,18 +5,6 @@
 @endsection
 
 @section('script')
-    <style>
-        /* hide id head for big screen */
-        #head {
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            #head {
-                display: block;
-            }
-        }
-    </style>
 @endsection
 
 @section('hero')
@@ -24,20 +12,14 @@
     <section id="hero" class="d-flex align-items-center">
         <div class="container" data-aos="zoom-out" data-aos-delay="100" id="main_t">
             <div class="row">
-                <div class="col-12 text-center mb-3" id="head">
+                <div class="col-12 text-center mb-3">
                     <h2 class="text-black" style="height: 10%">
-                        {{-- From Novice to Nine Figures: The Journey to Billionaire Status --}}
-                        Mastering the art and science of wealth creation
+                        Supercharge Yourself By Network Marketing Foundation Skills
                     </h2>
                 </div>
 
                 <div class="col-md-6 justify-content-center">
-                    <h1>Supercharge Yourself By Network <span>Marketing Foundation</span> Skills</h1>
-                    <span>
-                        Master the foundational skills of network marketing and unlock advanced strategies proven to
-                        generate high-quality leads and propel your product or service sales to 7x levels, paving the way to
-                        becoming a billionaire.
-                    </span>
+                    <h1>Mastering the art and science of wealth creation with <span>Kamal Narayan Sahu</span></h1>
 
                     <div class="text-center m-auto mt-4">
                         <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
@@ -116,40 +98,40 @@
 
 @section('content')
     <!-- ======= About Section ======= -->
-    <section id="about" class="about section-bg">
-        <div class="container" data-aos="fade-up">
+        <section id="about" class="about section-bg">
+            <div class="container" data-aos="fade-up">
 
-            <div class="section-title">
-                <h2>About</h2>
-                <h3>Find Out More About <span>Network Marketing</span></h3>
-            </div>
+                <div class="section-title">
+                    <h2>About</h2>
+                    <h3>Find Out More About <span>Network Marketing</span></h3>
+                </div>
 
-            <div class="row">
-                <div class="col-lg-6 text-center" data-aos="fade-right" data-aos-delay="100">
-                    <div class="tutorial container text-center my-2 ratio ratio-16x9">
-                        <iframe src="https://www.youtube.com/embed/KbedXSOMAt8?si=1-FrgeB5IDnEoLiA" title="Kns academy"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen></iframe>
+                <div class="row">
+                    <div class="col-lg-6 text-center" data-aos="fade-right" data-aos-delay="100">
+                        <div class="tutorial container text-center my-2 ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/KbedXSOMAt8?si=1-FrgeB5IDnEoLiA"
+                                title="Kns academy" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+                        </div>
+                        <h4 class="text-primary">16+ Years Experience</h4>
                     </div>
-                    <h4 class="text-primary">16+ Years Experience</h4>
+                    <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <h3>The Network Marketing Success Formula: The Ultimate Guide to Building a Thriving Business
+                        </h3>
+                        <p class="fst-italic">
+                            Are you looking to build a successful network marketing business? If so, you need The
+                            Network Marketing Success Formula. This comprehensive e-book will teach you everything you
+                            need to know to achieve success in this industry.
+                            <br>
+                            In this Class, you will learn:
+                        </p>
+                    </div>
                 </div>
-                <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up"
-                    data-aos-delay="100">
-                    <h3>The Network Marketing Success Formula: The Ultimate Guide to Building a Thriving Business
-                    </h3>
-                    <p class="fst-italic">
-                        Are you looking to build a successful network marketing business? If so, you need The
-                        Network Marketing Success Formula. This comprehensive e-book will teach you everything you
-                        need to know to achieve success in this industry.
-                        <br>
-                        In this Class, you will learn:
-                    </p>
-                </div>
-            </div>
 
-        </div>
-    </section><!-- End About Section -->
+            </div>
+        </section><!-- End About Section -->
 
     <section id="" class="section-bg">
         <div class="container" data-aos="fade-up">
