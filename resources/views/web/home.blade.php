@@ -634,7 +634,7 @@
         </section><!-- End Services Section -->
 
         <!-- ======= Networker ======= -->
-        <section id="team" class="services">
+        <section id="team" class="services ">
             <div class="container" data-aos="fade-up">
                 <div class="section-title">
                     <h2>Trainers</h2>
@@ -808,6 +808,43 @@
             </div>
         </section><!-- End Team Section -->
 
+        <!-- ======= about kamalnarayan sahu Section ======= -->
+        <section id="portfolio" class="team">
+            <div class="container" data-aos="fade-up">
+                <div class="row">
+                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                        <img src="{{ asset('assets/img/sirji2.png') }}" alt="sirji" class="img-fluid">
+                    </div>
+
+                    <div class="col-lg-8 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="section-title">
+                            <h3><span>Founder of</span> KNarayan Skill Academy</h3>
+                        </div>
+                        <p>
+                            Kamal Narayan Sahu, an Entrepreneur, Motivational speaker, Leadership &
+                            Direct Selling Coach. He is only matriculate and a school dropper student, and at the early
+                            age of 16, Came to the world’s biggest industry “Sales” Now he has 16 years of sales and
+                            leadership experience. He works to inspire the youth of India and helping people to realize
+                            their true potential. Kamal Narayan Sahu is C.E.O And Managing Director on one of the
+                            Leading Network Marketing/Direct selling Company- (YTM) YASHIKA TRADING & MARKETING PVT.
+                            LTD.
+                        </p>
+
+                        {{-- <div class="d-flex justify-content-center mt-5">
+                            <a href="#skills" class="btn-custom">
+                                <span>Book Now Your Free Seat</span>
+                            </a>
+                        </div>
+                        <div class="d-flex justify-content-center mt-3">
+                            <h4>Limited Seats, Filling Fast...</h4>
+                        </div> --}}
+
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End Team Section -->
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <a href="https://api.whatsapp.com/send?phone=+917582918000&text=Hello." class="wha" target="_blank">
             <i class="fa fa-whatsapp my-float"></i>
@@ -820,10 +857,15 @@
                 <div class="section-title">
                     <h2>Contact</h2>
                     <h3><span>Contact Us</span></h3>
-                    <p>Explore our courses on <a href="https://www.youtube.com/channel/UCzRxWktCEzHvHNRUAmcWJzA?embeds_referring_euri=http%3A%2F%2F127.0.0.1%3A8001%2F&source_ve_path=MzY5MjU&feature=emb_ch_name_ex" target="_blank">YouTube</a> and stay updated on our latest offerings, success stories, and expert insights.</p>
+                    <p>Explore our courses on <a
+                            href="https://www.youtube.com/channel/UCzRxWktCEzHvHNRUAmcWJzA?embeds_referring_euri=http%3A%2F%2F127.0.0.1%3A8001%2F&source_ve_path=MzY5MjU&feature=emb_ch_name_ex"
+                            target="_blank">YouTube</a> and stay updated on our latest offerings, success stories, and
+                        expert insights.</p>
 
                     <p>
-                        Join our community on <a href="https://www.facebook.com/profile.php?id=61551921226266" target="_blank">Facebook</a> Marketplace to discover more about our courses, connect with like-minded individuals, and access exclusive resources.
+                        Join our community on <a href="https://www.facebook.com/profile.php?id=61551921226266"
+                            target="_blank">Facebook</a> Marketplace to discover more about our courses, connect with
+                        like-minded individuals, and access exclusive resources.
                     </p>
                 </div>
 
@@ -831,7 +873,7 @@
         </section><!-- End Contact Section -->
 
         <!-- ======= Pricing Section ======= -->
-        <section id="pricing" class="pricing">
+        <section id="pricing" class="pricing section-bg">
             <div class="container" data-aos="fade-up">
 
                 <div class="container-fluid">
