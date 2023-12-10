@@ -23,7 +23,7 @@
 
                     <div class="text-center m-auto mt-4">
                         <a href="#skills" class="btn-custom mb-3" {{ $disabled }}>
-                            <span>Book Now Your Seat <b>₹99</b> </span>
+                            <span>Book Now Your Seat <b>₹199</b> </span>
                         </a>
                     </div><br>
 
