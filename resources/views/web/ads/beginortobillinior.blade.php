@@ -17,7 +17,11 @@
             }
 
             .hrt{
-                margin-top: -5%
+                margin-top: -5%;
+            }
+
+            #timers{
+                margin-top: -5%;
             }
         }
     </style>
@@ -54,7 +58,7 @@
                     </div><br>
 
 
-                    <div class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-center" id="timers">
                         <div id="timer">
                             <b class="text-dark">Offer Expired:</b>
                             <div class="hours">
