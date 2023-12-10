@@ -37,7 +37,10 @@
                         {{-- Master the foundational skills of network marketing and unlock advanced strategies proven to
                         generate high-quality leads and propel your product or service sales to 7x levels, paving the way to
                         becoming a billionaire. --}}
-                        Discover network marketing's core skills and proven advanced strategies to skyrocket sales by 7x, paving your path to billionaire status.
+
+                        {{-- Discover network marketing's core skills and proven advanced strategies to skyrocket sales by 7x, paving your path to billionaire status. --}}
+
+                        BEGINNER TO BILLIONAIRE कोर्स नेटवर्क मार्केटर्स के लिए ब्रह्मास्त्र है।
                     </span>
 
                     <div class="text-center m-auto mt-4">
