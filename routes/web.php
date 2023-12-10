@@ -8,6 +8,7 @@ use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\LangController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -64,3 +65,7 @@ Route::get('clear', function () {
 });
 
 Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
+
+
+///////////////////////  Pages ///////////////////////
+Route::get('/beginnertobeginner', [PageController::class, 'beginortobillinior'])->name('beginortobillinior');
