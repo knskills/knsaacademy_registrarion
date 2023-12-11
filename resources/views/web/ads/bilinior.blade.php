@@ -31,7 +31,7 @@
 
         @media (max-width: 768px) {
             #top1 {
-                margin-top: -5%
+                margin-top: -10%
             }
         }
 
