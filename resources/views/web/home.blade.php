@@ -845,7 +845,7 @@
         </section><!-- End Team Section -->
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <a href="https://api.whatsapp.com/send?phone=+917582918000&text=Hello." class="wha" target="_blank">
+        <a href="https://chat.whatsapp.com/KaPgbxDd9eNDfkEFXECaVw" class="wha" target="_blank" title="Join whatsapp group">
             <i class="fa fa-whatsapp my-float"></i>
         </a>
 

@@ -16,4 +16,9 @@ class PageController extends Controller
     {
         return view('web.ads.beginortobillinior');
     }
+
+    public function billionaire()
+    {
+        return view('web.ads.bilinior');
+    }
 }
