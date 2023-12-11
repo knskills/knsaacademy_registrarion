@@ -24,7 +24,7 @@
         }
     </style>
 
-    <style>
+    {{-- <style>
        #top1 {
             margin-top: -5%
         }
@@ -35,7 +35,7 @@
             }
         }
 
-    </style>
+    </style> --}}
 @endsection
 
 {{-- @section('hero_area')
@@ -202,10 +202,10 @@
 
 @section('content')
     <!-- service section -->
-    <section class="service_section layout_padding" id="top1">
-        <div class="container">
+    <section class="service_section" >
+        <div class="container" id="top1">
             <div class="heading_container heading_center">
-                <h2>
+                <h2 class="mt-4">
                     From Novice to Noteworthy: Mastering Lead Generation and Skyrocketing Sales Without Ad Spend in 21 Days
                 </h2>
 
