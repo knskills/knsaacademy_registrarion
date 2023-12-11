@@ -536,7 +536,7 @@
                             <span class="mb-5">
                                 👇 निचे दिए button पर क्लिक करे and Start Your Powerful Sales Journey 👇
                             </span>
-                            <a href="https://rzp.io/l/xRoxi4cj5u" class="btn-custom mb-3 mt-4" {{ $disabled }}>
+                            <a href="https://rzp.io/l/o2gu6qrn" class="btn-custom mb-3 mt-4" {{ $disabled }}>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <span>Register <b>Now</b> </span>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
