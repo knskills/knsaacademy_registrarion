@@ -48,7 +48,9 @@
 
                         {{-- Discover network marketing's core skills and proven advanced strategies to skyrocket sales by 7x, paving your path to billionaire status. --}}
 
-                        BEGINNER TO BILLIONAIRE कोर्स नेटवर्क मार्केटर्स के लिए ब्रह्मास्त्र है।
+                        {{-- BEGINNER TO BILLIONAIRE कोर्स नेटवर्क मार्केटर्स के लिए ब्रह्मास्त्र है। --}}
+
+                        एक ऐसे जीवन की कल्पना कीजिए जहां आप अपने दिन और समय के मालिक हैं। यह कोर्स आपकी इस कल्पना को हकीकत में बदल देगा।
                     </span>
 
                     <div class="text-center m-auto mt-4">
@@ -256,7 +258,7 @@
     <section id="about" class="about">
         <div class="container" data-aos="fade-up">
             <div class="section-title">
-                <h3><span>Exploring the Power of Sales</span></h3>
+                <h3><span>Make yourself Network Marketing PRO -</span></h3>
             </div>
 
             <div class="row">
@@ -265,18 +267,29 @@
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up"
                     data-aos-delay="100">
-                    <b>
-                        Harnessing the potential of sales strategies
-                    </b>
-                    <br>
-                    <p class="fst-italic">
-                        Understanding the dynamics and impact of effective sales techniques
-                    </p>
+                    <ul>
+                        {{-- <li>
+                            👉BEGINNER TO BILLIONAIRE कोर्स नेटवर्क मार्केटर्स के लिए ब्रह्मास्त्र है।
+                        </li> --}}
+                        <li>
+                            👉दुनिया के हर एक नेटवर्क मार्केटर्स को एक बार Beginner to billionaire कोर्स अवश्य करना चाहिए
+                        </li>
+                        <li>
+                            👉21ST CENTURY की सबसे बड़ी Free Lancing बिजनेस नेटवर्क मार्केटिंग में नई ऊंचाइयों तक पहुंचने के लिए अभी ज्वाइन करे।
+                        </li>
+                        <li>
+                            👉21ST CENTURY की सबसे बड़ी Free Lancing बिजनेस नेटवर्क मार्केटिंग में नई ऊंचाइयों तक पहुंचने के लिए अभी ज्वाइन करे।
+                        </li>
+                    </ul>
+
                     <p>
-                        The power of sales lies not only in the art of persuasion but also in building genuine
-                        connections, understanding customer needs, and providing valuable solutions. It involves
-                        mastering communication, negotiation, and presentation skills to influence buying decisions
-                        positively.
+                        <b>BEGINNER TO BILLIONAIRE</b> <br>
+                        Network marketing success blueprint
+                    </p>
+
+                    <p>
+                        by Kamal Narayan Sahu <br>
+                        Passionate Networker, Founder of K narayan skill Academic
                     </p>
                 </div>
             </div>
