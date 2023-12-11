@@ -282,7 +282,7 @@
                         </li>
                     </ul>
 
-                    <p>
+                    <p style="margin-top: -5%">
                         <b>BEGINNER TO BILLIONAIRE</b> <br>
                         Network marketing success blueprint
                     </p>
