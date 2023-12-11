@@ -23,6 +23,19 @@
             color: white;
         }
     </style>
+
+    <style>
+       #top1 {
+            margin-top: -5%
+        }
+
+        @media (max-width: 768px) {
+            #top1 {
+                margin-top: -5%
+            }
+        }
+
+    </style>
 @endsection
 
 {{-- @section('hero_area')
@@ -189,7 +202,7 @@
 
 @section('content')
     <!-- service section -->
-    <section class="service_section layout_padding" style="margin-top: -5%;">
+    <section class="service_section layout_padding" id="top1">
         <div class="container">
             <div class="heading_container heading_center">
                 <h2>
