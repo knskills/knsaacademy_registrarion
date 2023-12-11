@@ -282,7 +282,7 @@
                         </li>
                     </ul>
 
-                    <p style="margin-top: -8%">
+                    <p style="margin-top: -7%">
                         <b>BEGINNER TO BILLIONAIRE</b> <br>
                         Network marketing success blueprint
                     </p>
@@ -632,7 +632,6 @@
                         Leading Network Marketing/Direct selling Company- (YTM) YASHIKA TRADING & MARKETING PVT.
                         LTD.
                     </p>
-
                     {{-- <div class="d-flex justify-content-center mt-5">
                             <a href="#skills" class="btn-custom">
                                 <span>Book Now Your Free Seat</span>
@@ -641,7 +640,6 @@
                         <div class="d-flex justify-content-center mt-3">
                             <h4>Limited Seats, Filling Fast...</h4>
                         </div> --}}
-
                 </div>
             </div>
 
@@ -651,7 +649,6 @@
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
         <div class="container" data-aos="fade-up">
-
             <div class="section-title">
                 <h2>Contact</h2>
                 <h3><span>Contact Us</span></h3>
@@ -659,7 +656,6 @@
                         href="https://www.youtube.com/channel/UCzRxWktCEzHvHNRUAmcWJzA?embeds_referring_euri=http%3A%2F%2F127.0.0.1%3A8001%2F&source_ve_path=MzY5MjU&feature=emb_ch_name_ex"
                         target="_blank">YouTube</a> and stay updated on our latest offerings, success stories, and
                     expert insights.</p>
-
                 <p>
                     Join our community on <a href="https://www.facebook.com/profile.php?id=61551921226266"
                         target="_blank">Facebook</a> Marketplace to discover more about our courses, connect with
