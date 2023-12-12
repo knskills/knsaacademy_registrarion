@@ -88,7 +88,7 @@
                         </iframe>
                     </div> --}}
 
-                    <div class="tutorial container text-center my-2 ratio ratio-16x9" style="width: 100%;height: 100%;">
+                    <div class="tutorial container text-center my-2 ratio ratio-16x9" style="width: 80%;height: 100%;">
                         <iframe src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=Ebfveh93ApYa6aPz" title="Art of sales"
                             frameborder="0"
                             style="border: none;

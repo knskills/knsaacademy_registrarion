@@ -67,6 +67,6 @@ Route::get('clear', function () {
 Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
 
 
-///////////////////////  Pages ///////////////////////
+//======================= Pages =======================//
 Route::get('/beginnertobillionaire', [PageController::class, 'beginnertobillionaire'])->name('beginnertobillionaire');
 Route::get('/billionaire', [PageController::class, 'billionaire'])->name('billionaire');
