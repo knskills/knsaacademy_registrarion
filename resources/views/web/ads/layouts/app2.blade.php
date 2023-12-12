@@ -48,7 +48,7 @@
 
     @yield('content')
 
-    <!-- footer section -->
+    {{-- <!-- footer section -->
     <footer class="container-fluid footer_section">
         <p>
             &copy; <span id="currentYear"></span> Copyright <strong><span>K Narayan Skill Academy</span></strong> All
@@ -59,7 +59,7 @@
             <a href="{{ route('privacy') }}" class="ml-3">Privacy Policy</a>
         </div>
     </footer>
-    <!-- footer section -->
+    <!-- footer section --> --}}
 
     <script src=" {{ url('assets/gaurd/js/jquery-3.4.1.min.js') }}"></script>
     <script src=" {{ url('assets/gaurd/js/bootstrap.js') }}"></script>
