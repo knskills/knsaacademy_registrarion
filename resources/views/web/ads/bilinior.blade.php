@@ -312,7 +312,7 @@
             </div>
             <div class="row mt-4">
                 <div class="col-md-6">
-                    <iframe width="100%" height="100%" id="yframe"
+                    <iframe width="100%" height="90%" id="yframe"
                         src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=1&controls=0&&showinfo=0&loop=1"
                         frameborder="2"
                         allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
