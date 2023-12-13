@@ -591,11 +591,11 @@
         <div class="container">
             <div class="heading_container heading_center mb-3">
                 <h2>
-                    What People Say About Train The Trainer Event?
+                    What People Say About Training Event?
                 </h2>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 m-auto">
                     <div class="video-container">
                         <iframe id="yframe"
                             src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=1&controls=0&&showinfo=0&loop=1"
@@ -606,7 +606,7 @@
                 </div>
 
 
-                <div class="col-md-6">
+                <div class="col-md-6 m-auto">
                     <div class="video-container">
                         <iframe id="yframe"
                             src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=1&controls=0&&showinfo=0&loop=1"
