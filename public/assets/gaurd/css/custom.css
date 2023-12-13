@@ -1,0 +1,206 @@
+
+.hindi {
+    font-family: 'Tiro Devanagari Hindi', serif;
+}
+
+/* Custom video player styles */
+.custom-video {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style adjustments for the text content */
+.h-black {
+    padding: 20px;
+    background-color: #333;
+    border-radius: 8px;
+    color: white;
+}
+
+/******** first registration button **********/
+.save-my-seat-now-button {
+    background-color: #fece00;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(240, 243, 60, 0.2);
+}
+
+.save-my-seat-now-button {
+    /* Add a linear gradient to the button background */
+    background-image: linear-gradient(to right, #fece00 0%, #f2b200 100%);
+
+    /* Add a border to the button */
+    border: 1px solid #fece00;
+
+    /* Add a text shadow to the button text */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+
+    /* Add a transition to the button so that it changes color when the user hovers over it */
+    transition: background-color 0.2s ease-in-out;
+}
+
+.save-my-seat-now-button:hover {
+    /* Change the button background color when the user hovers over it */
+    background-color: #f2b200;
+}
+
+/** shadow effect on #rp  text**/
+#rp {
+    text-shadow: 1px 1px 2px rgba(54, 52, 52, 0.2);
+}
+
+/********** End first registration button ***********/
+
+.icon-lg {
+    font-size: 24px;
+    width: 20px;
+    height: 20px;
+}
+
+.f-btn {
+    background-color: #030303b7;
+    border-radius: 15px;
+}
+
+.small-text {
+    font-size: 14px;
+}
+
+.big-bold-text {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Default styles for larger screens */
+#m1 {
+    font-size: 30px;
+    /*24*/
+    font-weight: bold;
+}
+
+#m11 {
+    font-size: 20px;
+    /*18*/
+}
+
+.twt {
+    font-size: 20px;
+}
+
+#mprice {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    #m1 {
+        font-size: 26px;
+        font-weight: normal;
+    }
+
+    #m11 {
+        font-size: 18px;
+    }
+
+    .reg_btn {
+        width: 70%;
+        margin-top: 3%;
+        height: 50px;
+        font-size: 12x;
+    }
+
+    .twt {
+        font-size: 16px;
+    }
+
+    #mprice {
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    #cs1 {
+        margin-top: -14px;
+        margin-bottom: -2px;
+    }
+
+    .register-btn {
+        height: 22%;
+    }
+}
+
+/* Media query for even smaller screens */
+@media (max-width: 576px) {
+    #m1 {
+        font-size: 22px;
+        font-weight: normal;
+    }
+
+    #m11 {
+        font-size: 16px;
+    }
+
+    .reg_btn {
+        width: 70%;
+        margin-top: 3%;
+        height: 50px;
+        font-size: 12x;
+    }
+
+    .twt {
+        font-size: 16px;
+    }
+
+    #mprice {
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    #cs1 {
+        margin-top: -14px;
+        margin-bottom: -2px;
+    }
+
+    .register-btn {
+        height: 22%;
+    }
+}
+
+
+/* Styles for the fixed button */
+.register-btn {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0c0b0b;
+    color: white;
+    padding: 15px 0;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    z-index: 999;
+}
+
+/* Styles for the registration button */
+.reg_btn {
+    background-color: #f2b200;
+    color: white;
+    padding: 15px 30px;
+    font-size: 20px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(168, 168, 168, 0.336);
+    transition: all 0.3s ease;
+}
+
+.reg_btn:hover {
+    background-color: #e0a100;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.473);
+}
