@@ -46,6 +46,37 @@
             font-size: 18px;
         }
     </style>
+
+    <style>
+        /* Responsive video container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            /* Aspect ratio 16:9 (9/16 = 0.5625) */
+            overflow: hidden;
+            border-radius: 20px;
+            /* Rounded border */
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+            /* Match the container's border-radius */
+            transition: transform 0.5s ease;
+            /* Add a transition effect */
+        }
+
+        .video-container:hover iframe {
+            transform: scale(1.05);
+            /* Scale up the iframe on hover */
+        }
+    </style>
 @endsection
 
 {{-- @section('hero_area')
@@ -238,12 +269,14 @@
                 </h3>
             </div>
             <div class="row mt-4">
-                <div class="col-md-6 mb-2">
-                    <iframe width="100%" height="100%" id="yframe"
-                        src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=1&controls=0&&showinfo=0&loop=1"
-                        frameborder="2"
-                        allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                <div class="col-md-6">
+                    <div class="video-container">
+                        <iframe id="yframe"
+                            src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=1&controls=0&&showinfo=0&loop=1"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
                 </div>
                 <div class="col-md-6 m-auto">
                     <div class="row" id="first_sr">
@@ -359,8 +392,6 @@
                         <div class="d-flex justify-content-center" style="margin-top:-40px;">
                             <img src="{{ asset('assets/img/india2.png') }}" alt="ytm" class="img-fluid">
                         </div>
-
-
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -437,9 +468,8 @@
     </section>
     <!-- end service section -->
 
-
     <!-- client section -->
-    <section class="client_section layout_padding">
+    <section class="client_section mt-5">
         <div class="container ">
             <div class="heading_container heading_center">
                 <h2>
@@ -448,12 +478,17 @@
             </div>
 
             <div class="row mt-4">
-                <div class="col-md-6 mb-2">
-                    <iframe width="100%" height="100%" id="yframe"
-                        src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=1&controls=0&&showinfo=0&loop=1"
-                        frameborder="2"
-                        allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                <div class="col-md-6 mt-5">
+                    {{-- <h3><span>Contact Us</span></h3> --}}
+                    <p>Explore our courses on <a
+                            href="https://www.youtube.com/channel/UCzRxWktCEzHvHNRUAmcWJzA?embeds_referring_euri=http%3A%2F%2F127.0.0.1%3A8001%2F&source_ve_path=MzY5MjU&feature=emb_ch_name_ex"
+                            target="_blank">YouTube</a> and stay updated on our latest offerings, success stories, and
+                        expert insights.</p>
+                    <p>
+                        Join our community on <a href="https://www.facebook.com/profile.php?id=61551921226266"
+                            target="_blank">Facebook</a> Marketplace to discover more about our courses, connect with
+                        like-minded individuals, and access exclusive resources.
+                    </p>
                 </div>
                 <div class="col-md-6 m-auto">
                     <div class="row" id="first_sr">
@@ -551,44 +586,43 @@
     <!-- end client section -->
 
     <!-- contact section -->
-    <section class="contact_section layout_padding">
-        <div class="contact_bg_box">
-            <div class="img-box">
-                <img src="images/contact-bg.jpg" alt="">
-            </div>
-        </div>
+    <section class="service_section" style="padding-top: 40px;
+    padding-bottom: 50px;">
         <div class="container">
-            <div class="heading_container heading_center">
+            <div class="heading_container heading_center mb-3">
                 <h2>
-                    Get In touch
+                    What People Say About Train The Trainer Event?
                 </h2>
             </div>
-            <div class="">
-                <div class="row">
-                    <div class="col-md-7 mx-auto">
-                        <form action="#">
-                            <div class="contact_form-container">
-                                <div>
-                                    <div>
-                                        <input type="text" placeholder="Full Name" />
-                                    </div>
-                                    <div>
-                                        <input type="email" placeholder="Email " />
-                                    </div>
-                                    <div>
-                                        <input type="text" placeholder="Phone Number" />
-                                    </div>
-                                    <div class="">
-                                        <input type="text" placeholder="Message" class="message_input" />
-                                    </div>
-                                    <div class="btn-box ">
-                                        <button type="submit">
-                                            Send
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="video-container">
+                        <iframe id="yframe"
+                            src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=1&controls=0&&showinfo=0&loop=1"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="video-container">
+                        <iframe id="yframe"
+                            src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=1&controls=0&&showinfo=0&loop=1"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <div class="col-md-6 m-auto">
+                    <div class="video-container mt-3">
+                        <iframe id="yframe"
+                            src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=1&controls=0&&showinfo=0&loop=1"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
