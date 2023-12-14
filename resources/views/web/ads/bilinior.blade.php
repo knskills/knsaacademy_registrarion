@@ -45,9 +45,7 @@
         .f18 {
             font-size: 18px;
         }
-    </style>
 
-    <style>
         /* Responsive video container */
         .video-container {
             position: relative;
@@ -173,7 +171,7 @@
 
         /* Style adjustments for the text content */
         .h-black {
-            padding: 20px;
+            padding: 10px;
             background-color: #333;
             border-radius: 8px;
             color: white;
@@ -619,7 +617,7 @@
                 </div>
                 <div class="col-md-6 m-auto">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-6" style="padding: 0">
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
@@ -635,7 +633,7 @@
                             </div>
                         </div>
                         <!-- Repeat the structure for the next columns -->
-                        <div class="col-6">
+                        <div class="col-6" style="padding: 0">
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
@@ -651,7 +649,7 @@
                             </div>
                         </div>
                         <!-- Repeat the structure for the subsequent columns -->
-                        <div class="col-6">
+                        <div class="col-6" style="padding: 0">
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
@@ -667,7 +665,7 @@
                             </div>
                         </div>
                         <!-- Repeat the structure for the last columns -->
-                        <div class="col-6">
+                        <div class="col-6" style="padding: 0">
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
