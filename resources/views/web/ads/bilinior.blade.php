@@ -1269,7 +1269,7 @@
                 <h2>
                     Achievers
                 </h2>
-                <h3 class="hindi">People earned after learning from our sales<span class="text-primary">
+                <h3 class="hindi">People earned after learning from our<span class="text-primary">
                         Techniques</span></h3>
                 <p class="hindi">Some of Our Multimillionaires Network Marketing leaders
                     Who transforms their Life & achived Big success in Network Marketing industry...</p>
