@@ -416,200 +416,30 @@
     </style>
 @endsection
 
-{{-- @section('hero_area')
-    <div class="hero_area">
-        <!-- header section strats -->
-        <div class="hero_bg_box">
-            <div class="img-box">
-                <img src="images/hero-bg.jpg" alt="">
-            </div>
-        </div>
-
-        <header class="header_section">
-            <div class="header_top">
-                <div class="container-fluid">
-                    <div class="contact_link-container">
-                        <a href="" class="contact_link1">
-                            <i class="fa fa-map-marker" aria-hidden="true"></i>
-                            <span>
-                                Lorem ipsum dolor sit amet,
-                            </span>
-                        </a>
-                        <a href="" class="contact_link2">
-                            <i class="fa fa-phone" aria-hidden="true"></i>
-                            <span>
-                                Call : +01 1234567890
-                            </span>
-                        </a>
-                        <a href="" class="contact_link3">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                            <span>
-                                demo@gmail.com
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="header_bottom">
-                <div class="container-fluid">
-                    <nav class="navbar navbar-expand-lg custom_nav-container">
-                        <a class="navbar-brand" href="index.html">
-                            <span>
-                                Guarder
-                            </span>
-                        </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <span class=""></span>
-                        </button>
-
-                        <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
-                            <ul class="navbar-nav  ">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="about.html"> About</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="service.html"> Services </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="guard.html"> Guards </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">Contact us</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <!-- end header section -->
-        <!-- slider section -->
-        <section class=" slider_section ">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <div class="detail-box">
-                                        <h1>
-                                            Your Saftey <br>
-                                            <span>
-                                                Our Responsibility
-                                            </span>
-                                        </h1>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                            sed do eiusmod magna aliqua. Ut enim ad minim veniam
-                                        </p>
-                                        <div class="btn-box">
-                                            <a href="" class="btn-1"> Read more </a>
-                                            <a href="" class="btn-2">Get A Quote</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item ">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <div class="detail-box">
-                                        <h1>
-                                            Your Saftey <br>
-                                            <span>
-                                                Our Responsibility
-                                            </span>
-                                        </h1>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                            sed do eiusmod magna aliqua. Ut enim ad minim veniam
-                                        </p>
-                                        <div class="btn-box">
-                                            <a href="" class="btn-1"> Read more </a>
-                                            <a href="" class="btn-2">Get A Quote</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item ">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <div class="detail-box">
-                                        <h1>
-                                            Your Saftey <br>
-                                            <span>
-                                                Our Responsibility
-                                            </span>
-                                        </h1>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                            sed do eiusmod magna aliqua. Ut enim ad minim veniam
-                                        </p>
-                                        <div class="btn-box">
-                                            <a href="" class="btn-1"> Read more </a>
-                                            <a href="" class="btn-2">Get A Quote</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container idicator_container">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
-                </div>
-            </div>
-        </section>
-        <!-- end slider section -->
-    </div>
-@endsection --}}
-
 @section('content')
     <!-- service section -->
     <section class="service_section">
         <div class="container" id="top1" style="padding: 20px 0px 70px;">
             <div class="text-center">
-                {{-- <img src="{{ asset('assets/img/test.png') }}" alt="kns" class="img-fluid mt-4" height="150px"
-                    width="200px"> --}}
-
-                {{-- <h2 class="text-white" style="font-family: 'Noto Sans Devanagari', sans-serif; text-align: center; padding: 20px 0; background-color: #333;">
-                        Earn <span style="color: #ffd700;">1 crore</span> in 1 year
-                    </h2> --}}
-
                 <h2 class="text-white" style="font-family: 'Noto Sans Devanagari', sans-serif;">
-                    Earn <span style="color: #ffd700;">1 crore</span> in 1 year
+                    Earn <span class="text-warning font-weight-bold">1 crore</span> in 1 year
                 </h2>
 
             </div>
-            <div class="heading_container heading_center hindi">
+            <div class="heading_container heading_center">
                 <h2 class="mt-3" id="m1">
-                    नौसिखिया से उल्लेखनीय तक: 21 दिनों में बिना विज्ञापन खर्च के लीड जनरेशन और आसमान छूती बिक्री में महारत
-                    हासिल करना
+                    Supercharge Yourself By Network Marketing Foundation Skills
                 </h2>
 
-                <h3 id="m11">
+                {{-- <h3 id="m11" class="hindi">
                     21 दिवसीय चुनौती <span class="text-warning">कमल नारायण साहू </span>द्वारा
-                </h3>
+                </h3> --}}
             </div>
             <div class="row mt-4">
                 <div class="col-md-6 mb-4">
                     <div class="video-container">
                         <iframe id="yframe"
-                            src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=1&controls=0&&showinfo=0&loop=1"
+                            src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=1&controls=0&&showinfo=0&loop=1&modestbranding=0"
                             frameborder="0"
                             allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
@@ -704,14 +534,6 @@
     <section class="about_section">
         <div class="container">
             <div class="row">
-                {{-- <div class="col-md-6 px-0">
-                    <div class="img_container">
-                        <div class="img-box">
-                            <img src="images/about-img.jpg" alt="" />
-                        </div>
-                    </div>
-                </div> --}}
-
                 <div class="col-12 px-0">
                     <div class="detail-box">
                         <div class="row">
@@ -727,12 +549,8 @@
                         <div class="d-flex justify-content-center" style="margin-top:-40px;">
                             <img src="{{ asset('assets/img/india2.png') }}" alt="ytm" class="img-fluid">
                         </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                            enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                            in reprehenderit in voluptate velit
+                        <p class="hindi">
+                            अपनी संपूर्ण  यात्रा के दौरान, हमें  भारत के विभिन्न क्षेत्रों में व्यापक प्रशिक्षण सत्र देने का सौभाग्य मिला है। ये सत्र विशेष रूप से व्यक्तियों को उनकी प्रतिभा और क्षमताओं को भुनाने के लिए आवश्यक कौशल और ज्ञान के साथ सशक्त बनाने के लिए तैयार किए गए हैं, जो अंततः उन्हें स्वतंत्र रूप से आजीविका कमाने में सक्षम बनाते हैं। विभिन्न शहरों और कस्बों में कार्यशालाओं और सेमिनारों का आयोजन करते हुए, हमनें  प्रत्यक्ष रूप से देखा है कि कौशल विकास का व्यक्तियों के जीवन पर परिवर्तनकारी प्रभाव पड़ सकता है। हमारा  प्रशिक्षण मॉड्यूल आज के प्रतिस्पर्धी परिदृश्य में सफलता के लिए आवश्यक व्यावहारिक, लागू कौशल पर ध्यान केंद्रित करते हैं। तकनीकी विशेषज्ञता में महारत हासिल करने से लेकर उद्यमशीलता कौशल को निखारने तक, हमारा  उद्देश्य देश भर के उम्मीदवारों को सशक्त बनाना है, उनकी अर्जित प्रतिभा के माध्यम से स्थायी आय उत्पन्न करने की उनकी क्षमता को उजागर करना है।
                         </p>
                     </div>
                 </div>
@@ -931,18 +749,7 @@
                 <div class="col-md-6 m-auto">
                     <div class="video-container mt-3">
                         <iframe id="yframe"
-                            src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=1&controls=0&&showinfo=0&loop=1"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                    </div>
-                </div>
-
-
-                <div class="col-md-6 m-auto">
-                    <div class="video-container mt-3">
-                        <iframe id="yframe"
-                            src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=1&controls=0&&showinfo=0&loop=1"
+                            src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=0&controls=0&&showinfo=0&loop=1"
                             frameborder="0"
                             allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
@@ -952,7 +759,17 @@
                 <div class="col-md-6 m-auto">
                     <div class="video-container mt-3">
                         <iframe id="yframe"
-                            src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=1&controls=0&&showinfo=0&loop=1"
+                            src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=0&controls=0&&showinfo=0&loop=1"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <div class="col-md-6 m-auto">
+                    <div class="video-container mt-3">
+                        <iframe id="yframe"
+                            src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=0&controls=0&&showinfo=0&loop=1"
                             frameborder="0"
                             allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
@@ -1009,75 +826,6 @@
         </div>
     </section>
     <!-- end contact section -->
-
-    {{-- <!-- team section -->
-    <section class="team_section layout_padding">
-        <div class="container">
-            <div class="heading_container heading_center">
-                <h2>
-                    Our Guards
-                </h2>
-                <p>
-                    Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla
-                    mauris
-                    iaculis. Erat eget vitae malesuada, tortor tincidunt porta lorem lectus.
-                </p>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-sm-6 mx-auto ">
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="images/t1.jpg" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h5>
-                                Martin Anderson
-                            </h5>
-                            <h6 class="">
-                                supervisor
-                            </h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 mx-auto ">
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="images/t2.jpg" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h5>
-                                Denny Butler
-                            </h5>
-                            <h6 class="">
-                                supervisor
-                            </h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 mx-auto ">
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="images/t3.jpg" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h5>
-                                Nathan Mcpherson
-                            </h5>
-                            <h6 class="">
-                                supervisor
-                            </h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="btn-box">
-                <a href="">
-                    View All
-                </a>
-            </div>
-        </div>
-    </section>
-    <!-- end team section --> --}}
 
     <!-- contact section -->
     <section class="service_section m-layout" style="">
@@ -1269,7 +1017,7 @@
                 <h2>
                     Achievers
                 </h2>
-                <h3 class="hindi">People earned after learning from our<span class="text-primary">
+                <h3 class="hindi">People earned after learning from our<span class="text-warning">
                         Techniques</span></h3>
                 <p class="hindi">Some of Our Multimillionaires Network Marketing leaders
                     Who transforms their Life & achived Big success in Network Marketing industry...</p>
@@ -1405,9 +1153,7 @@
             </div>
         </div>
     </div>
-
-
-    <!-- end info_section -->
+    <!-- end Register -->
 @endsection
 
 @section('script')
@@ -1441,9 +1187,8 @@
                 goTopBtn.style.display = "none";
             }
         });
-    </script>
 
-    <script>
+
         // Get the timer element
         const timerElement = document.getElementById('timer');
         const timerElement2 = document.getElementById('timer2');
