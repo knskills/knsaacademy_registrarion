@@ -1355,7 +1355,7 @@
                             <img src="{{ asset('assets/img/team/ramprasad.jpeg') }}" class="img-fluid" alt="">
                         </div>
                         <div class="member-info">
-                            <h4 class="hindi m-2">DAYANAND PRASAD </h4>
+                            <h4 class="hindi m-2">Dayanand Prasad</h4>
                             Income - <span class="text-warning font-weight-bold">₹49 lac</span><br>
                         </div>
                     </div>
