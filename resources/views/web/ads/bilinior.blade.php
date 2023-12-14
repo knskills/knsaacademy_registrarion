@@ -606,7 +606,7 @@
                 </h3>
             </div>
             <div class="row mt-4">
-                <div class="col-md-6 mb-2">
+                <div class="col-md-6 mb-4 mx-2">
                     <div class="video-container">
                         <iframe id="yframe"
                             src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=1&controls=0&&showinfo=0&loop=1"
