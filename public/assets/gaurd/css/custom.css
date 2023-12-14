@@ -137,6 +137,12 @@
         padding-top: 40px;
         padding-bottom: 40%
     }
+
+    .black-bg-section {
+        position: relative;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 }
 
 /* Media query for even smaller screens */
@@ -173,6 +179,12 @@
 
     .register-btn {
         height: 22%;
+    }
+
+    .black-bg-section {
+        position: relative;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
     #end{

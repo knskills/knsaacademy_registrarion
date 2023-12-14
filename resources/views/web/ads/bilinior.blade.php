@@ -953,13 +953,13 @@
     <!-- service section -->
     <section class="service_section m-layout">
         <div class="container text-whitw">
-            <div class="heading_container heading_center mt-3">
+            <div class="heading_container heading_center">
                 <h2>
                     About KNSA Founder
                 </h2>
             </div>
 
-            <div class="row mt-2">
+            <div class="row">
                 <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
                     <img src="{{ asset('assets/img/sirji2.png') }}" alt="sirji" class="img-fluid shadowed-image"
                         id="sirimg">
