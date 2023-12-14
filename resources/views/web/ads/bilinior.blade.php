@@ -649,8 +649,7 @@
     <!-- end client section -->
 
     <!-- contact section -->
-    <section class="service_section" style="padding-top: 40px;
-    padding-bottom: 50px;">
+    <section class="service_section m-layout">
         <div class="container">
             <div class="heading_container heading_center mb-3">
                 <h2>
@@ -697,8 +696,7 @@
     </section>
 
     <!-- contact section -->
-    <section class="service_section" style="padding-top: 40px;
-    padding-bottom: 50px;">
+    <section class="service_section m-layout">
         <div class="container">
             <div class="heading_container heading_center mb-3">
                 <h2>
@@ -811,7 +809,7 @@
     <!-- end team section --> --}}
 
     <!-- contact section -->
-    <section class="service_section" style="" id="end">
+    <section class="service_section m-layout" style="" >
         <div class="container">
             <div class="heading_container heading_center mb-3">
                 <h2>
@@ -838,11 +836,13 @@
 
                 <div class="col-md-4 m-auto coupon">
                 </div>
+
                 <div class="col-md-4 m-auto coupon">
                 </div>
 
                 <div class="col-md-4 m-auto coupon">
                 </div>
+
                 <div class="col-md-4 m-auto coupon">
                 </div>
 
@@ -864,6 +864,77 @@
         </div>
     </section>
     <!-- end contact section -->
+
+     <!-- service section -->
+     <section class="service_section m-layout">
+        <div class="container">
+            <div class="heading_container heading_center">
+                <h2>
+                    What will you Learn?
+                </h2>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6 p-2">
+                    <div class="card s_bg">
+                        <div class="card-body text-white">
+                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
+                            <span class="f18">This is some text within a card body.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 p-2">
+                    <div class="card s_bg">
+                        <div class="card-body text-white">
+                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
+                            <span class="f18">This is some text within a card body.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 p-2">
+                    <div class="card s_bg">
+                        <div class="card-body text-white">
+                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
+                            <span class="f18">This is some text within a card body.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 p-2">
+                    <div class="card s_bg">
+                        <div class="card-body text-white">
+                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
+                            <span class="f18">This is some text within a card body.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 p-2">
+                    <div class="card s_bg">
+                        <div class="card-body text-white">
+                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
+                            <span class="f18">This is some text within a card body.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 p-2">
+                    <div class="card s_bg">
+                        <div class="card-body text-white">
+                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
+                            <span class="f18">This is some text within a card body.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row m-auto">
+                <div class="col-12 text-center">
+                    <button type="button" class="save-my-seat-now-button text-center">
+                        <span class="mx-5 text-center"> SAVE MY SEAT NOW FOR ₹199</span> <br>
+                        <small class="mx-5 text-center">Registration is limited</small>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end service section -->
 
     <!-- Register Now button -->
     <div class="register-btn" id="registerButton">
