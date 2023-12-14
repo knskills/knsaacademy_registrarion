@@ -902,20 +902,31 @@
         // JavaScript to show/hide "Go to Top" button on scroll
         const goTopBtn = document.getElementById("registerButton");
 
+        // window.addEventListener('scroll', function() {
+        //     if (window.scrollY > 250) {
+        //         // Show button when scrolling down more than 300px
+        //         goTopBtn.style.display = "block";
+        //     }
+        //     else {
+        //         // Hide button when at the top or not scrolled enough
+        //         goTopBtn.style.display = "none";
+        //     }
+        // });
+
         window.addEventListener('scroll', function() {
-    var windowHeight = window.innerHeight; // Height of the browser window
-    var fullHeight = document.body.clientHeight; // Height of the entire page
-    var scrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop; // Current scroll position
+            var windowHeight = window.innerHeight; // Height of the browser window
+            var fullHeight = document.body.clientHeight; // Height of the entire page
+            var scrollPosition = window.scrollY || window.pageYOffset || document.documentElement
+            .scrollTop; // Current scroll position
 
-    if (scrollPosition > 250 && (fullHeight - (scrollPosition + windowHeight)) > 250) {
-        // Show the registration button when scrolled after the top 250px and before the bottom 250px
-        goTopBtn.style.display = "block";
-    } else {
-        // Hide the registration button otherwise
-        goTopBtn.style.display = "none";
-    }
-});
-
+            if (scrollPosition > 250 && (fullHeight - (scrollPosition + windowHeight)) > 250) {
+                // Show the registration button when scrolled after the top 250px and before the bottom 250px
+                goTopBtn.style.display = "block";
+            } else {
+                // Hide the registration button otherwise
+                goTopBtn.style.display = "none";
+            }
+        });
     </script>
 
     <script>
