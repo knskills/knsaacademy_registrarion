@@ -139,6 +139,17 @@
             box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
             /* Add shadow to the top section */
         }
+
+        .shadowed-image {
+            box-shadow: 0px 4px 8px rgba(66, 65, 65, 0.1);
+            /* Add shadow effect to the image */
+            background-color: black;
+            /* Set a black background for the div */
+            border-radius: 8px;
+            /* Add border-radius for rounded corners */
+            padding: 10px;
+            /* Add padding for the image */
+        }
     </style>
 @endsection
 
@@ -809,7 +820,7 @@
     <!-- end team section --> --}}
 
     <!-- contact section -->
-    <section class="service_section m-layout" style="" >
+    <section class="service_section m-layout" style="">
         <div class="container">
             <div class="heading_container heading_center mb-3">
                 <h2>
@@ -865,8 +876,8 @@
     </section>
     <!-- end contact section -->
 
-     <!-- service section -->
-     <section class="service_section m-layout">
+    <!-- service section -->
+    <section class="service_section m-layout">
         <div class="container">
             <div class="heading_container heading_center">
                 <h2>
@@ -936,6 +947,45 @@
     </section>
     <!-- end service section -->
 
+    <section class="black-bg-section">
+    </section>
+
+    <!-- service section -->
+    <section class="service_section m-layout">
+        <div class="container">
+            <div class="heading_container heading_center">
+                <h2>
+                    About KNSA Founder
+                </h2>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <img src="{{ asset('assets/img/sirji2.png') }}" alt="sirji" class="img-fluid shadowed-image"
+                        id="sirimg">
+                </div>
+
+                <div class="col-lg-8 d-flex flex-column justify-content-center text-white text-center" data-aos="fade-up"
+                    data-aos-delay="200">
+                    <div class="section-title">
+                        <h3><span>Founder of</span> K Narayan Skill Academy</h3>
+                    </div>
+                    <p>
+                        Kamal Narayan Sahu, an Entrepreneur, Motivational speaker, Leadership &
+                        Direct Selling Coach. He is only matriculate and a school dropper student, and at the early
+                        age of 16, Came to the world’s biggest industry “Sales” Now he has 16 years of sales and
+                        leadership experience. He works to inspire the youth of India and helping people to realize
+                        their true potential. Kamal Narayan Sahu is C.E.O And Managing Director on one of the
+                        Leading Network Marketing/Direct selling Company- (YTM) YASHIKA TRADING & MARKETING PVT.
+                        LTD.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- end service section -->
+
     <!-- Register Now button -->
     <div class="register-btn" id="registerButton">
         <div class="row">
@@ -988,7 +1038,7 @@
             var windowHeight = window.innerHeight; // Height of the browser window
             var fullHeight = document.body.clientHeight; // Height of the entire page
             var scrollPosition = window.scrollY || window.pageYOffset || document.documentElement
-            .scrollTop; // Current scroll position
+                .scrollTop; // Current scroll position
 
             if (scrollPosition > 250 && (fullHeight - (scrollPosition + windowHeight)) > 250) {
                 // Show the registration button when scrolled after the top 250px and before the bottom 250px
