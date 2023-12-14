@@ -108,7 +108,8 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
-            height: 300px;
+            /* height: 300px; */
+            min-height: 200px;
             width: 100%;
             position: relative;
             /* Add a positioning context for the text */
@@ -331,7 +332,7 @@
                 </h3>
             </div>
             <div class="row mt-4">
-                <div class="col-md-6">
+                <div class="col-md-6 mb-2">
                     <div class="video-container">
                         <iframe id="yframe"
                             src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=1&controls=0&&showinfo=0&loop=1"
@@ -707,7 +708,7 @@
             <div class="row">
                 <div class="col-md-6 m-auto text-white">
                     <div class="card card-cs" style="">
-                        <div class="card-body">
+                        <div class="card-body mt-3">
                             <h5 class="card-title">Special title treatment</h5>
                             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                             <a href="#" class="btn btn-primary">Go somewhere</a>
@@ -717,7 +718,7 @@
 
 
                 <div class="col-md-6 m-auto text-white">
-                    <div class="card card-cs">
+                    <div class="card card-cs mt-3">
                         <div class="card-body">
                             <h5 class="card-title">Special title treatment</h5>
                             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -834,31 +835,9 @@
                 </div>
 
                 <div class="col-md-6 m-auto coupon">
-                    {{-- <div class="coupon-content text-dark">
-                        <div class="top" style="width: 90%;">
-                            <h3>Top</h3>
-                        </div>
-                        <div class="mid">
-                            <h4>Midl</h4>
-                        </div>
-                        <div class="foot">
-                            <h2>200</h2>
-                        </div>
-                    </div> --}}
                 </div>
 
                 <div class="col-md-6 m-auto coupon">
-                    {{-- <div class="coupon-content text-dark">
-                        <div class="top" style="width: 90%;">
-                            <h3>Top</h3>
-                        </div>
-                        <div class="mid">
-                            <h4>Midl</h4>
-                        </div>
-                        <div class="foot">
-                            <h2>200</h2>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
         </div>
