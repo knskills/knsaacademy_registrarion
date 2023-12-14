@@ -151,8 +151,9 @@
             /* Add padding for the image */
         }
 
-        h2{
-            margin-top: 5px;
+        .m-layout {
+            padding-top: 60px;
+            padding-bottom: 60px;
         }
     </style>
 @endsection
