@@ -99,6 +99,21 @@
 
 /* Media query for smaller screens */
 @media (max-width: 768px) {
+    .small-text {
+        font-size: 10px;
+    }
+
+    .big-bold-text {
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .icon-lg {
+        font-size: 18px;
+        width: 12px;
+        height: 12px;
+    }
+
     #m1 {
         font-size: 26px;
         font-weight: normal;
@@ -141,6 +156,21 @@
 
 /* Media query for even smaller screens */
 @media (max-width: 576px) {
+    .small-text {
+        font-size: 10px;
+    }
+
+    .big-bold-text {
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .icon-lg {
+        font-size: 18px;
+        width: 12px;
+        height: 12px;
+    }
+
     #m1 {
         font-size: 22px;
         font-weight: normal;

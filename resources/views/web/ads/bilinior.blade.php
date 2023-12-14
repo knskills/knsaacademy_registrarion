@@ -152,8 +152,8 @@
         }
 
         .m-layout {
-            padding-top: 60px;
-            padding-bottom: 60px;
+            padding-top: 50px;
+            padding-bottom: 50px;
         }
     </style>
 @endsection
@@ -359,7 +359,7 @@
                 </div>
                 <div class="col-md-6 m-auto">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-6">
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
@@ -375,7 +375,7 @@
                             </div>
                         </div>
                         <!-- Repeat the structure for the next columns -->
-                        <div class="col-md-6">
+                        <div class="col-6">
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
@@ -391,7 +391,7 @@
                             </div>
                         </div>
                         <!-- Repeat the structure for the subsequent columns -->
-                        <div class="col-md-6">
+                        <div class="col-6">
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
@@ -407,7 +407,7 @@
                             </div>
                         </div>
                         <!-- Repeat the structure for the last columns -->
-                        <div class="col-md-6">
+                        <div class="col-6">
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
@@ -571,7 +571,7 @@
                 </div>
                 <div class="col-md-6 m-auto">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-6">
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
@@ -587,7 +587,7 @@
                             </div>
                         </div>
                         <!-- Repeat the structure for the next columns -->
-                        <div class="col-md-6">
+                        <div class="col-6">
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
@@ -603,7 +603,7 @@
                             </div>
                         </div>
                         <!-- Repeat the structure for the subsequent columns -->
-                        <div class="col-md-6">
+                        <div class="col-6">
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
@@ -619,7 +619,7 @@
                             </div>
                         </div>
                         <!-- Repeat the structure for the last columns -->
-                        <div class="col-md-6">
+                        <div class="col-6">
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
