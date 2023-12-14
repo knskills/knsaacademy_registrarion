@@ -846,9 +846,20 @@
                 </div>
                 <div class="col-md-4 m-auto coupon">
                 </div>
-                <div class="col-md-4 m-auto coupon">
-                </div>
-                <div class="col-md-4 m-auto coupon">
+
+                <div class="row mt-5 m-auto">
+                    <div class="col-12 text-center mt-3 m-auto">
+                        <button type="button" class="save-my-seat-now-button">
+                            SAVE MY SEAT NOW FOR ₹199
+                        </button>
+
+                        <p class="text-white mt-3" id="rp">
+                            Register today to get a bonus of ₹14,995/-
+                        </p>
+
+                        {{-- <p class="mt-3 text-white">Offer Ends in <span id="timer2"
+                                class="text-warning font-weight-bold"></span> Mins </p> --}}
+                    </div>
                 </div>
             </div>
         </div>
