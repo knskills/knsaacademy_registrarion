@@ -811,8 +811,7 @@
     <!-- end team section --> --}}
 
     <!-- contact section -->
-    <section class="service_section" style="padding-top: 40px;
-    padding-bottom: 110px;">
+    <section class="service_section" style="" id="end">
         <div class="container">
             <div class="heading_container heading_center mb-3">
                 <h2>

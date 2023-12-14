@@ -132,6 +132,11 @@
     .register-btn {
         height: 22%;
     }
+
+    #end{
+        padding-top: 40px;
+        padding-bottom: 40%
+    }
 }
 
 /* Media query for even smaller screens */
@@ -169,6 +174,11 @@
     .register-btn {
         height: 22%;
     }
+
+    #end{
+        padding-top: 40px;
+        padding-bottom: 40%
+    }
 }
 
 
@@ -203,4 +213,9 @@
 .reg_btn:hover {
     background-color: #e0a100;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.473);
+}
+
+#end{
+    padding-top: 40px;
+    padding-bottom: 10%
 }
