@@ -76,6 +76,68 @@
             transform: scale(1.05);
             /* Scale up the iframe on hover */
         }
+
+        /* Styles for the horizontal line */
+        .black-bg-section {
+            position: relative;
+        }
+
+        .black-bg-section::before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 1px;
+            background-color: rgba(29, 28, 28, 0.212);
+            /* Adjust the color and transparency as desired */
+            position: absolute;
+            top: 50%;
+            z-index: 1;
+            /* Adjust the z-index to control the shadow stacking */
+            box-shadow: 0 2px 5px rgba(255, 255, 255, 0.4);
+            /* Shadow effect */
+        }
+
+        .card-cs {
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+            background-color: #333232;
+        }
+
+        .coupon {
+            background-image: url('{{ asset('assets/gaurd/images/coupon.png') }}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 300px;
+            width: 100%;
+            position: relative;
+            /* Add a positioning context for the text */
+        }
+
+        .coupon-content {
+            position: absolute;
+            /* Position the text absolutely */
+            top: 50%;
+            /* Position from the top */
+            left: 50%;
+            /* Position from the left */
+            transform: translate(-50%, -50%);
+            /* Center the text */
+            color: #ffffff;
+            /* Set text color */
+            text-align: center;
+            /* Align text to the center */
+        }
+
+
+        .top {
+            background-color: #3498db;
+            /* Background color for the top section */
+            border-radius: 8px;
+            border-radius: 8px;
+            box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
+            /* Add shadow to the top section */
+        }
     </style>
 @endsection
 
@@ -279,7 +341,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 m-auto">
-                    <div class="row" id="first_sr">
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
@@ -491,7 +553,7 @@
                     </p>
                 </div>
                 <div class="col-md-6 m-auto">
-                    <div class="row" id="first_sr">
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
@@ -596,7 +658,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6 m-auto">
-                    <div class="video-container">
+                    <div class="video-container mt-3">
                         <iframe id="yframe"
                             src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=1&controls=0&&showinfo=0&loop=1"
                             frameborder="0"
@@ -607,7 +669,7 @@
 
 
                 <div class="col-md-6 m-auto">
-                    <div class="video-container">
+                    <div class="video-container mt-3">
                         <iframe id="yframe"
                             src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=1&controls=0&&showinfo=0&loop=1"
                             frameborder="0"
@@ -630,7 +692,55 @@
     </section>
     <!-- end contact section -->
 
-    <!-- team section -->
+    <section class="black-bg-section">
+    </section>
+
+    <!-- contact section -->
+    <section class="service_section" style="padding-top: 40px;
+    padding-bottom: 50px;">
+        <div class="container">
+            <div class="heading_container heading_center mb-3">
+                <h2>
+                    Why Register Now?
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6 m-auto text-white">
+                    <div class="card card-cs" style="">
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 m-auto text-white">
+                    <div class="card card-cs">
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 m-auto text-white">
+                    <div class="card card-cs mt-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end contact section -->
+
+    {{-- <!-- team section -->
     <section class="team_section layout_padding">
         <div class="container">
             <div class="heading_container heading_center">
@@ -697,7 +807,63 @@
             </div>
         </div>
     </section>
-    <!-- end team section -->
+    <!-- end team section --> --}}
+
+    <!-- contact section -->
+    <section class="service_section" style="padding-top: 40px;
+    padding-bottom: 110px;">
+        <div class="container">
+            <div class="heading_container heading_center mb-3">
+                <h2>
+                    Get Access to ₹14,995/- Bonus
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6 m-auto coupon">
+                    {{-- <div class="coupon-content text-dark">
+                        <div class="top" style="width: 90%;">
+                            <h3>Top</h3>
+                        </div>
+                        <div class="mid">
+                            <h4>Midl</h4>
+                        </div>
+                        <div class="foot">
+                            <h2>200</h2>
+                        </div>
+                    </div> --}}
+                </div>
+
+                <div class="col-md-6 m-auto coupon">
+                    {{-- <div class="coupon-content text-dark">
+                        <div class="top" style="width: 90%;">
+                            <h3>Top</h3>
+                        </div>
+                        <div class="mid">
+                            <h4>Midl</h4>
+                        </div>
+                        <div class="foot">
+                            <h2>200</h2>
+                        </div>
+                    </div> --}}
+                </div>
+
+                <div class="col-md-6 m-auto coupon">
+                    {{-- <div class="coupon-content text-dark">
+                        <div class="top" style="width: 90%;">
+                            <h3>Top</h3>
+                        </div>
+                        <div class="mid">
+                            <h4>Midl</h4>
+                        </div>
+                        <div class="foot">
+                            <h2>200</h2>
+                        </div>
+                    </div> --}}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end contact section -->
 
     <!-- Register Now button -->
     <div class="register-btn" id="registerButton">
