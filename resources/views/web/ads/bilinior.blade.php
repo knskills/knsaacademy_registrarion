@@ -707,8 +707,8 @@
             </div>
             <div class="row">
                 <div class="col-md-6 m-auto text-white">
-                    <div class="card card-cs" style="">
-                        <div class="card-body mt-3">
+                    <div class="card card-cs mt-3">
+                        <div class="card-body">
                             <h5 class="card-title">Special title treatment</h5>
                             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                             <a href="#" class="btn btn-primary">Go somewhere</a>
@@ -820,7 +820,7 @@
                 </h2>
             </div>
             <div class="row">
-                <div class="col-md-6 m-auto coupon">
+                <div class="col-md-4 m-auto coupon">
                     {{-- <div class="coupon-content text-dark">
                         <div class="top" style="width: 90%;">
                             <h3>Top</h3>
@@ -834,10 +834,21 @@
                     </div> --}}
                 </div>
 
-                <div class="col-md-6 m-auto coupon">
+                <div class="col-md-4 m-auto coupon">
                 </div>
 
-                <div class="col-md-6 m-auto coupon">
+                <div class="col-md-4 m-auto coupon">
+                </div>
+                <div class="col-md-4 m-auto coupon">
+                </div>
+
+                <div class="col-md-4 m-auto coupon">
+                </div>
+                <div class="col-md-4 m-auto coupon">
+                </div>
+                <div class="col-md-4 m-auto coupon">
+                </div>
+                <div class="col-md-4 m-auto coupon">
                 </div>
             </div>
         </div>
