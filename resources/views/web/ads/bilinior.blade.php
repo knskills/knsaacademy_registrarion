@@ -1011,7 +1011,7 @@
             <div class="col-md-6 text-center" id="gh">
                 <div class="hindi" id="cs1">
                     <span class="" style="" id="mprice">
-                        ₹199
+                        ₹199 5
                     </span>
                     <sub>
                         <span class="twt" style="">
