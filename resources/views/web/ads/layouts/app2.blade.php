@@ -27,16 +27,15 @@
         sizes="192x192">
     <link rel="shortcut icon" href="{{ asset('assets/img/favicon_io/favicon-16x16.png') }}" type="image/x-icon">
 
-    {{-- <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/gaurd/css/bootstrap.css') }}" /> --}}
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="{{ url('assets/gaurd/css/bootstrap.css') }}" />
 
     <!-- fonts style -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap"
         rel="stylesheet" />
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="{{ asset('assets/gaurd/css/custom.css') }}">
-    <link rel="stylesheet"  href="{{ asset('assets/gaurd/css/style.css') }}" />
+    <link href=" {{ asset('assets/gaurd/css/style.css') }}" rel="stylesheet" />
     {{-- <link rel="stylesheet" href="{{ asset('assets/gaurd/css/custom.css') }}"> --}}
 
 
