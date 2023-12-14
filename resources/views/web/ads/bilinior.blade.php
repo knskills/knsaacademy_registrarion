@@ -150,6 +150,10 @@
             padding: 10px;
             /* Add padding for the image */
         }
+
+        h2{
+            margin-top: 5px;
+        }
     </style>
 @endsection
 
