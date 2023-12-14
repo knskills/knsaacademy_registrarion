@@ -258,7 +258,7 @@
         /* Media query for smaller screens */
         @media (max-width: 768px) {
             .small-text {
-                font-size: 10px;
+                font-size: 12px;
             }
 
             .big-bold-text {
@@ -315,7 +315,7 @@
         /* Media query for even smaller screens */
         @media (max-width: 576px) {
             .small-text {
-                font-size: 10px;
+                font-size: 12px;
             }
 
             .big-bold-text {
