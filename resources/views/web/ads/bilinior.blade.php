@@ -1089,7 +1089,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4 m-auto coupon">
-                    {{-- <div class="coupon-content text-dark">
+                    {{-- <div class="coupon-content text-white">
                         <div class="top" style="width: 90%;">
                             <h3>Top</h3>
                         </div>
@@ -1258,7 +1258,126 @@
             </div>
         </div>
     </section>
+
     <!-- end service section -->
+    <section class="black-bg-section">
+    </section>
+
+    <section class="service_section layout_padding text-white text-center">
+        <div class="container">
+            <div class="heading_container heading_center">
+                <h2>
+                    Achievers
+                </h2>
+                <h3 class="hindi">People earned after learning from our sales<span class="text-primary">
+                        Techniques</span></h3>
+                <p class="hindi">Some of Our Multimillionaires Network Marketing leaders
+                    Who transforms their Life & achived Big success in Network Marketing industry...</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="member">
+                        <div class="member-img">
+                            <img src="{{ asset('assets/img/team/jitendra.jpeg') }}" class="img-fluid" alt="">
+                        </div>
+                        <div class="member-info">
+                            <h4 class="hindi m-2">Jitendra Dhever</h4>
+                            Income - <span class="text-warning font-weight-bold">₹6 crore</span><br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="member">
+                        <div class="member-img">
+                            <img src="{{ asset('assets/img/team/WhatsApp Image 2023-09-09 at 11.56.10 AM.jpeg') }}"
+                                class="img-fluid" alt="">
+                        </div>
+                        <div class="member-info">
+                            <h4 class="hindi m-2">Mukesh Sharma</h4>
+                            Income - <span class="text-warning font-weight-bold">₹2.5 crore</span><br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="member">
+                        <div class="member-img">
+                            <img src="{{ asset('assets/img/team/jst.jpeg') }}" class="img-fluid" alt="">
+                        </div>
+                        <div class="member-info">
+                            <h4 class="hindi m-2">Devbrat Mourya</h4>
+                            Income - <span class="text-warning font-weight-bold">₹4.5 crore</span><br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="member">
+                        <div class="member-img">
+                            <img src="{{ asset('assets/img/team/munib.jpeg') }}" class="img-fluid" alt="">
+                        </div>
+                        <div class="member-info">
+                            <h4 class="hindi m-2">Munib Nishad</h4>
+                            Income - <span class="text-warning font-weight-bold">₹2.5 crore</span><br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="member">
+                        <div class="member-img">
+                            <img src="{{ asset('assets/img/team/dharmendra.jpeg') }}" class="img-fluid" alt="">
+                        </div>
+                        <div class="member-info">
+                            <h4 class="hindi m-2">Dharmendra Yadav</h4>
+                            Income - <span class="text-warning font-weight-bold">₹1.5 crore</span><br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="member">
+                        <div class="member-img">
+                            <img src="{{ asset('assets/img/team/WhatsApp Image 2023-09-09 at 11.55.46 AM (1).jpeg') }}"
+                                class="img-fluid" alt="">
+                        </div>
+                        <div class="member-info">
+                            <h4 class="hindi m-2">Manteshwar</h4>
+                            Income - <span class="text-warning font-weight-bold">₹81 lac</span><br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="member">
+                        <div class="member-img">
+                            <img src="{{ asset('assets/img/team/ramprasad.jpeg') }}" class="img-fluid" alt="">
+                        </div>
+                        <div class="member-info">
+                            <h4 class="hindi m-2">DAYANAND PRASAD </h4>
+                            Income - <span class="text-warning font-weight-bold">₹49 lac</span><br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="member">
+                        <div class="member-img">
+                            <img src="{{ asset('assets/img/team/WhatsApp Image 2023-09-09 at 11.54.57 AM.jpeg') }}"
+                                class="img-fluid" alt="">
+                        </div>
+                        <div class="member-info">
+                            <h4 class="hindi m-2">Panku Sharma </h4>
+                            Income - <span class="text-warning font-weight-bold">₹37 lac</span><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end about section -->
+
 
     <!-- Register Now button -->
     <div class="register-btn" id="registerButton">
