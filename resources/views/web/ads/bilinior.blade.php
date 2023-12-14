@@ -952,7 +952,7 @@
 
     <!-- service section -->
     <section class="service_section m-layout">
-        <div class="container">
+        <div class="container text-whitw">
             <div class="heading_container heading_center">
                 <h2>
                     About KNSA Founder
@@ -979,7 +979,24 @@
                         Leading Network Marketing/Direct selling Company- (YTM) YASHIKA TRADING & MARKETING PVT.
                         LTD.
                     </p>
+
                 </div>
+
+                <div class="row m-auto">
+                    <div class="col-12 text-center">
+                        <div class="text-center mt-5 text-white">
+                            👇 Secure Your Spot Now! Enroll Today 👇
+                        </div>
+                        <button type="button" class="save-my-seat-now-button text-center mt-2">
+                            <span class="mx-5 text-center"> BOOK MY SEAT NOW FOR ₹199</span> <br>
+                        </button>
+                        <div class="d-flex justify-content-center mt-3 text-white">
+                            <h4>Limited Seats, Filling Fast...</h4>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
 
         </div>
