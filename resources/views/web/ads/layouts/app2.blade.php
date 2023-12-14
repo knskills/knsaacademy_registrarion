@@ -36,12 +36,11 @@
 
     <!-- Custom styles for this template -->
     <link href=" {{ asset('assets/gaurd/css/style.css') }}" rel="stylesheet" />
+    {{-- <link rel="stylesheet" href="{{ asset('assets/gaurd/css/custom.css') }}"> --}}
 
 
     <!-- responsive style -->
     <link href="{{ url('assets/gaurd/css/responsive.css') }}" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('assets/gaurd/css/custom.css') }}">
-
 
     @yield('style')
 </head>
