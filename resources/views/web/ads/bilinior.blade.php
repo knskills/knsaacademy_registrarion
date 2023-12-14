@@ -617,12 +617,11 @@
                 </div>
                 <div class="col-md-6 m-auto">
                     <div class="row">
-                        {{-- <div class="col-6" style="padding: 0"> --}}
                         <div class="col-6">
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
-                                        <button class="btn btn-lg text-white f-btn">
+                                        <button class="btn btn-lg text-white f2-btn">
                                             <i class="fas fa-video icon-lg"></i>
                                         </button>
                                     </div>
@@ -638,7 +637,7 @@
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
-                                        <button class="btn btn-lg text-white f-btn">
+                                        <button class="btn btn-lg text-white f2-btn">
                                             <i class="fas fa-language icon-lg"></i>
                                         </button>
                                     </div>
@@ -654,7 +653,7 @@
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
-                                        <button class="btn btn-lg text-white f-btn">
+                                        <button class="btn btn-lg text-white f2-btn">
                                             <i class="far fa-calendar-alt icon-lg"></i>
                                         </button>
                                     </div>
@@ -670,7 +669,7 @@
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
-                                        <button class="btn btn-lg text-white f-btn">
+                                        <button class="btn btn-lg text-white f2-btn">
                                             <i class="far fa-clock icon-lg"></i>
                                         </button>
                                     </div>
@@ -682,8 +681,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     <div class="row mt-2">
                         <div class="col-12 text-center mt-3">
                             <button type="button" class="save-my-seat-now-button">
@@ -894,7 +891,6 @@
                             </div>
                         </div>
                     </div>
-
 
                     <div class="row mt-2">
                         <div class="col-12 text-center mt-3">
