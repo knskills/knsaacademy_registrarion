@@ -377,7 +377,7 @@
             position: fixed;
             bottom: 0;
             left: 0;
-            width: 96%;
+            width: 100%;
             background-color: #0c0b0b;
             color: white;
             padding: 15px 0;
