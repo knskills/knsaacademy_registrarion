@@ -24,6 +24,30 @@
     <link href="{{ asset('assets/img/favicon_io/android-chrome-192x192.png') }}" rel="icon" type="image/png"
         sizes="192x192">
 
+    <!-- Meta Pixel Code -->
+    <script>
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '365953992779410');
+        fbq('track', 'PageView');
+    </script>
+
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -639,7 +663,8 @@
                 <div class="section-title">
                     <h2>Trainers</h2>
                     <h3>People earned after learning from our sales<span> Techniques</span></h3>
-                    <p>Some of our multimillionaire network marketing leaders who transformed their lives and achieved big success in the network marketing industry...</p>
+                    <p>Some of our multimillionaire network marketing leaders who transformed their lives and achieved
+                        big success in the network marketing industry...</p>
                 </div>
 
                 <div class="row text-center">
@@ -815,7 +840,8 @@
                         <img src="{{ asset('assets/img/sirji2.png') }}" alt="sirji" class="img-fluid">
                     </div>
 
-                    <div class="col-lg-8 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-lg-8 d-flex flex-column justify-content-center" data-aos="fade-up"
+                        data-aos-delay="200">
                         <div class="section-title">
                             <h3><span>Founder of</span> K Narayan Skill Academy</h3>
                         </div>
@@ -845,7 +871,8 @@
         </section><!-- End Team Section -->
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <a href="https://chat.whatsapp.com/KaPgbxDd9eNDfkEFXECaVw" class="wha" target="_blank" title="Join whatsapp group">
+        <a href="https://chat.whatsapp.com/KaPgbxDd9eNDfkEFXECaVw" class="wha" target="_blank"
+            title="Join whatsapp group">
             <i class="fa fa-whatsapp my-float"></i>
         </a>
 
@@ -1075,29 +1102,8 @@
         // Initial call to set the timer immediately
         updateCountdown();
     </script> --}}
-    <!-- Meta Pixel Code -->
-    <script>
-        ! function(f, b, e, v, n, t, s) {
-            if (f.fbq) return;
-            n = f.fbq = function() {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n;
-            n.push = n;
-            n.loaded = !0;
-            n.version = '2.0';
-            n.queue = [];
-            t = b.createElement(e);
-            t.async = !0;
-            t.src = v;
-            s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window, document, 'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '365953992779410');
-        fbq('track', 'PageView');
-    </script>
+
+
 
 
     <script>
