@@ -1019,7 +1019,7 @@
     <section class="black-bg-section">
     </section>
 
-    <section class="service_section layout_padding text-white text-center">
+    <section class="service_section m-layout text-white text-center">
         <div class="container">
             <div class="heading_container heading_center">
                 <h2>
