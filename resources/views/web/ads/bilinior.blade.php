@@ -467,6 +467,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <!-- Repeat the structure for the next columns -->
                         <div class="col-6">
                             <div class="h-black m-1">
@@ -683,7 +684,7 @@
         <div class="container">
             <div class="heading_container heading_center">
                 <h2>
-                    Top 6 reasons why you should join this training?
+                    मुख्य ६ कारण जिससे आपको यह training में शामिल होना चाहिए
                 </h2>
             </div>
             <div class="row">
@@ -860,8 +861,12 @@
     <section class="service_section m-layout">
         <div class="container">
             <div class="heading_container heading_center mb-3">
-                <h2>
+                {{-- <h2>
                     What People Say About Training Event?
+                </h2> --}}
+
+                <h2>
+                    Training Event के बारे में लोग क्या कहते हैं?
                 </h2>
             </div>
             <div class="row">
@@ -966,7 +971,7 @@
                             <h3>Top</h3>
                         </div> --}}
                         <div class="mid text-danger">
-                            <h4><b>Sales e book 15000</b></h4>
+                            <h4 style="color: rgba(0, 0, 139, 0.877);"><b>Sales e book 15000</b></h4>
                         </div>
                         {{-- <div class="foot">
                             <h2>200</h2>
@@ -976,16 +981,17 @@
 
                 <div class="col-md-4 m-auto coupon">
                     <div class="coupon-content text-white">
-                        <div class="mid text-danger">
-                            <h4><b>Communication skill development free pass 10000</b></h4>
+                        <div class="">
+                            <h4 style="color: rgba(0, 0, 139, 0.877);"><b>Communication skill development free pass 10000</b></h4>
                         </div>
                     </div>
                 </div>
 
+
                 <div class="col-md-4 m-auto coupon">
                     <div class="coupon-content text-white">
                         <div class="mid text-danger">
-                            <h4><b>One to one session with mentors 25000</b></h4>
+                            <h4 style="color: rgba(0, 0, 139, 0.877);"><b>One to one session with mentors 25000</b></h4>
                         </div>
                     </div>
                 </div>
