@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+
     {{-- <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@1&display=swap" rel="stylesheet"> --}}
     <link
         href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Tiro+Devanagari+Sanskrit&display=swap"
@@ -407,11 +410,15 @@
             padding-top: 40px;
             padding-bottom: 50px;
         }
+
+        li {
+            list-style: none;
+        }
     </style>
 
     <style>
-        li {
-            list-style: none;
+        .enst{
+            font-family: 'Merriweather', serif;
         }
     </style>
 @endsection
@@ -524,7 +531,7 @@
                             </button>
 
                             {{-- <p class="text-white mt-3" id="rp">
-                                Register today to get a bonus of ₹14,995/-
+                                Register today to get a bonus of ₹50,000/-
                             </p> --}}
 
                             <p class="mt-3 text-white">Offer Ends in <span id="timer2"
@@ -623,34 +630,34 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row enst">
                             <div class="col-md-4 m-auto">
                                 <ul class="text-center">
-                                    <li class="font-weight-bold"> Mumbai </li>
-                                    <li class="font-weight-bold"> Delhi </li>
-                                    <li class="font-weight-bold"> Bangalore </li>
-                                    <li class="font-weight-bold"> Hyderabad </li>
-                                    <li class="font-weight-bold"> Ahmedabad </li>
-                                    <li class="font-weight-bold"> Chennai </li>
-                                    <li class="font-weight-bold"> Kolkata </li>
-                                    <li class="font-weight-bold"> Surat</li>
-                                    <li class="font-weight-bold"> Pune</li>
-                                    <li class="font-weight-bold"> Jaipur</li>
+                                    <li class="font-weight-bold"> <h5>Mumbai</h5> </li>
+                                    <li class="font-weight-bold"> <h5>Delhi</h5> </li>
+                                    <li class="font-weight-bold"> <h5>Bangalore</h5> </li>
+                                    <li class="font-weight-bold"> <h5>Hyderabad</h5> </li>
+                                    <li class="font-weight-bold"> <h5>Ahmedabad</h5> </li>
+                                    <li class="font-weight-bold"> <h5>Chennai</h5> </li>
+                                    <li class="font-weight-bold"> <h5>Kolkata</h5> </li>
+                                    <li class="font-weight-bold"> <h5>Surat</h5></li>
+                                    <li class="font-weight-bold"> <h5>Pune</h5></li>
+                                    <li class="font-weight-bold"> <h5>Jaipur</h5></li>
                                 </ul>
                             </div>
 
                             <div class="col-md-4 m-auto">
                                 <ul class="text-center">
-                                    <li class="font-weight-bold">Raipur</li>
-                                    <li class="font-weight-bold">Lucknow</li>
-                                    <li class="font-weight-bold">Kanpur</li>
-                                    <li class="font-weight-bold">Nagpur</li>
-                                    <li class="font-weight-bold">Indore</li>
-                                    <li class="font-weight-bold">Visakhapatnam</li>
-                                    <li class="font-weight-bold">Patna</li>
-                                    <li class="font-weight-bold">Vadodara</li>
-                                    <li class="font-weight-bold">Ghaziabad</li>
-                                    <li class="font-weight-bold">Agra</li>
+                                    <li class="font-weight-bold"><h5>Raipur</h5></li>
+                                    <li class="font-weight-bold"><h5>Lucknow</h5></li>
+                                    <li class="font-weight-bold"><h5>Kanpur</h5></li>
+                                    <li class="font-weight-bold"><h5>Nagpur</h5></li>
+                                    <li class="font-weight-bold"><h5>Indore</h5></li>
+                                    <li class="font-weight-bold"><h5>Visakhapatnam</h5></li>
+                                    <li class="font-weight-bold"><h5>Patna</h5></li>
+                                    <li class="font-weight-bold"><h5>Vadodara</h5></li>
+                                    <li class="font-weight-bold"><h5>Ghaziabad</h5></li>
+                                    <li class="font-weight-bold"><h5>Agra</h5></li>
                                 </ul>
                             </div>
 
@@ -661,17 +668,37 @@
                             </div> --}}
                         </div>
 
-                        {{-- <p class="hindi">
-                            अपनी संपूर्ण यात्रा के दौरान, हमें भारत के विभिन्न क्षेत्रों में व्यापक प्रशिक्षण सत्र देने का
-                            सौभाग्य मिला है। ये सत्र विशेष रूप से व्यक्तियों को उनकी प्रतिभा और क्षमताओं को भुनाने के लिए
-                            आवश्यक कौशल और ज्ञान के साथ सशक्त बनाने के लिए तैयार किए गए हैं, जो अंततः उन्हें स्वतंत्र रूप से
-                            आजीविका कमाने में सक्षम बनाते हैं। विभिन्न शहरों और कस्बों में कार्यशालाओं और सेमिनारों का आयोजन
-                            करते हुए, हमनें प्रत्यक्ष रूप से देखा है कि कौशल विकास का व्यक्तियों के जीवन पर परिवर्तनकारी
-                            प्रभाव पड़ सकता है। हमारा प्रशिक्षण मॉड्यूल आज के प्रतिस्पर्धी परिदृश्य में सफलता के लिए आवश्यक
-                            व्यावहारिक, लागू कौशल पर ध्यान केंद्रित करते हैं। तकनीकी विशेषज्ञता में महारत हासिल करने से लेकर
-                            उद्यमशीलता कौशल को निखारने तक, हमारा उद्देश्य देश भर के उम्मीदवारों को सशक्त बनाना है, उनकी
-                            अर्जित प्रतिभा के माध्यम से स्थायी आय उत्पन्न करने की उनकी क्षमता को उजागर करना है।
-                        </p> --}}
+                        <div class="row mt-3">
+                            <div class="col-md-10 m-auto">
+                                <p class="hindi">
+                                    𝐒𝐮𝐩𝐞𝐫𝐜𝐡𝐚𝐫𝐠𝐞 𝐘𝐨𝐮𝐫 Selling Skill to rock on your Job, Traditional & NETWORK
+                                    MARKETING BUSINESS” |
+                                    हो जाये तैयार 𝐒𝐀𝐋𝐄𝐒 𝐑𝐄𝐂𝐎𝐑𝐃𝐒 तोड़ने के लिए, NETWORK MARKETING BUSINESS में Sales में
+                                    नयी उंचाईयों तक पहुंचने के लिए क्योंकि सेल्स ही एक ऐसा प्रोफेशन हैं जो सपनो के सारे दरवाजे
+                                    UNLOCK करती हैं|
+        
+                                <ul class="mb-4">
+                                    <li>
+                                        👉 Learn Proven Sales Strategies
+                                    </li>
+                                    <li>
+                                        👉 Join our Online Sales training course
+                                    </li>
+                                    <li>
+                                        👉 Become Top Sales Performer
+                                    </li>
+                                    <li>
+                                        👉 Double Your Sales with Selling Skill, Closing techniques & objection handling Skill
+                                    </li>
+                                </ul>
+        
+                                <span class="hindi">
+                                    Sales में अपनी रूकावट को STOP करे & अपने BUSINESS, NETWORK MARKETING BUSINESS या JOB में सफलता
+                                    पाए, जिसके आप काबिल हे.
+                                </span>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -708,7 +735,8 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">Sales is Art science and skill , learn sales art, sale science and sales skill.</span>
+                            <span class="f18">Sales is Art, Science and skill , learn sales art, sale science and sales
+                                skill.</span>
                         </div>
                     </div>
                 </div>
@@ -716,7 +744,8 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">Generate high quality sales and grow your business all over the world.</span>
+                            <span class="f18">Generate high quality sales and grow your business all over the
+                                world.</span>
                         </div>
                     </div>
                 </div>
@@ -837,7 +866,7 @@
                             </button>
 
                             {{-- <p class="text-white mt-3" id="rp">
-                                Register today to get a bonus of ₹14,995/-
+                                Register today to get a bonus of ₹50,000/-
                             </p> --}}
 
                             <p class="mt-3 text-white">Offer Ends in <span id="timer2"
@@ -947,7 +976,8 @@
                 <div class="col-md-6 m-auto text-white">
                     <div class="card card-cs mt-3">
                         <div class="card-body">
-                            <h4 class="card-title">Get free pass offer personal communication skill development training</h4>
+                            <h4 class="card-title">Get free pass offer personal communication skill development training
+                            </h4>
                         </div>
                     </div>
                 </div>
@@ -982,7 +1012,8 @@
                 <div class="col-md-4 m-auto coupon">
                     <div class="coupon-content text-white">
                         <div class="">
-                            <h4 style="color: rgba(0, 0, 139, 0.877);"><b>Communication skill development free pass 10000</b></h4>
+                            <h4 style="color: rgba(0, 0, 139, 0.877);"><b>Communication skill development free pass
+                                    10000</b></h4>
                         </div>
                     </div>
                 </div>
@@ -1003,7 +1034,7 @@
                         </button>
 
                         <p class="text-white mt-3" id="rp">
-                            Register today to get a bonus of ₹14,995/-
+                            Register today to get a bonus of ₹50,000/-
                         </p>
 
                         {{-- <p class="mt-3 text-white">Offer Ends in <span id="timer2"
@@ -1187,7 +1218,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
+                {{-- <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
                     <div class="member">
                         <div class="member-img">
                             <img src="{{ asset('assets/img/team/dharmendra.jpeg') }}" class="img-fluid" alt="">
@@ -1235,12 +1266,11 @@
                             Income - <span class="text-warning font-weight-bold">₹37 lac</span><br>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
     <!-- end about section -->
-
 
     <!-- Register Now button -->
     <div class="register-btn" id="registerButton">
@@ -1378,10 +1408,9 @@
     </script>
 
     <script>
-        // if click class payment then go to payment page
         $('.payment').click(function() {
             // window.location.href = "{{ route('audience.store') }}";
-             window.location.href = "https://rzp.io/l/xRoxi4cj5u";
+            window.location.href = "https://rzp.io/l/xRoxi4cj5u";
 
         });
     </script>
