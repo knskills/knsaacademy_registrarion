@@ -116,7 +116,7 @@
             /* Position from the left */
             transform: translate(-50%, -50%);
             /* Center the text */
-            color: #ffffff;
+            /* color: #ffffff; */
             /* Set text color */
             text-align: center;
             /* Align text to the center */
@@ -408,6 +408,12 @@
             padding-bottom: 50px;
         }
     </style>
+
+    <style>
+        li {
+            list-style: none;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -416,14 +422,19 @@
         <div class="container" id="top1" style="padding: 20px 0px 70px;">
             <div class="text-center">
                 <h2 class="text-white" style="font-family: 'Noto Sans Devanagari', sans-serif;">
-                    Earn <span class="text-warning font-weight-bold">1 crore</span> in 1 year
+                    How to earn <span class="text-warning font-weight-bold">1 crore</span> in 1 year
                 </h2>
 
             </div>
             <div class="heading_container heading_center">
                 <h2 class="mt-3" id="m1">
-                    Supercharge Yourself By Network Marketing Foundation Skills
+                    Income sales technique that will make you money making machine
                 </h2>
+
+                <h3 id="m11" class="hindi">
+                    हमारी <span class="text-warning">sales techniques </span> के माध्यम से किसी भी product और service की
+                    sale करें
+                </h3>
 
                 {{-- <h3 id="m11" class="hindi">
                     21 दिवसीय चुनौती <span class="text-warning">कमल नारायण साहू </span>द्वारा
@@ -527,6 +538,76 @@
 
     <section class="about_section">
         <div class="container">
+
+            {{-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="box">
+                            <div class="img-box">
+                                <img src="images/client.png" alt="">
+                            </div>
+                            <div class="detail-box">
+                                <h4>
+                                    Minim Veniam
+                                </h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                                    do eiusmod tempor incididunt ut labore et dolore magna
+                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                    ullamco laboris nisi ut aliquip
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item ">
+                        <div class="box">
+                            <div class="img-box">
+                                <img src="images/client.png" alt="">
+                            </div>
+                            <div class="detail-box">
+                                <h4>
+                                    Minim Veniam
+                                </h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                                    do eiusmod tempor incididunt ut labore et dolore magna
+                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                    ullamco laboris nisi ut aliquip
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item ">
+                        <div class="box">
+                            <div class="img-box">
+                                <img src="images/client.png" alt="">
+                            </div>
+                            <div class="detail-box">
+                                <h4>
+                                    Minim Veniam
+                                </h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                                    do eiusmod tempor incididunt ut labore et dolore magna
+                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                    ullamco laboris nisi ut aliquip
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel_btn-box">
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div> --}}
+
             <div class="row">
                 <div class="col-12 px-0">
                     <div class="detail-box">
@@ -540,9 +621,45 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-center" style="margin-top:-40px;">
-                            <img src="{{ asset('assets/img/india2.png') }}" alt="ytm" class="img-fluid">
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <ul class="">
+                                    <li class="font-weight-bold"> Mumbai </li>
+                                    <li class="font-weight-bold"> Delhi </li>
+                                    <li class="font-weight-bold"> Bangalore </li>
+                                    <li class="font-weight-bold"> Hyderabad </li>
+                                    <li class="font-weight-bold"> Ahmedabad </li>
+                                    <li class="font-weight-bold"> Chennai </li>
+                                    <li class="font-weight-bold"> Kolkata </li>
+                                    <li class="font-weight-bold"> Surat</li>
+                                    <li class="font-weight-bold"> Pune</li>
+                                    <li class="font-weight-bold"> Jaipur</li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-2">
+                                <ul>
+                                    <li class="font-weight-bold">Raipur</li>
+                                    <li class="font-weight-bold">Lucknow</li>
+                                    <li class="font-weight-bold">Kanpur</li>
+                                    <li class="font-weight-bold">Nagpur</li>
+                                    <li class="font-weight-bold">Indore</li>
+                                    <li class="font-weight-bold">Visakhapatnam</li>
+                                    <li class="font-weight-bold">Patna</li>
+                                    <li class="font-weight-bold">Vadodara</li>
+                                    <li class="font-weight-bold">Ghaziabad</li>
+                                    <li class="font-weight-bold">Agra</li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-8">
+                                <div class="d-flex justify-content-center" style="margin-top:-40px;">
+                                    <img src="{{ asset('assets/img/india2.png') }}" alt="ytm" class="img-fluid">
+                                </div>
+                            </div>
                         </div>
+
                         <p class="hindi">
                             अपनी संपूर्ण यात्रा के दौरान, हमें भारत के विभिन्न क्षेत्रों में व्यापक प्रशिक्षण सत्र देने का
                             सौभाग्य मिला है। ये सत्र विशेष रूप से व्यक्तियों को उनकी प्रतिभा और क्षमताओं को भुनाने के लिए
@@ -574,7 +691,7 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">This is some text within a card body.</span>
+                            <span class="f18">Improve your sales technique.</span>
                         </div>
                     </div>
                 </div>
@@ -582,7 +699,7 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">This is some text within a card body.</span>
+                            <span class="f18">No prayer knowledge of sales.</span>
                         </div>
                     </div>
                 </div>
@@ -590,7 +707,7 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">This is some text within a card body.</span>
+                            <span class="f18">Sales is Art science and skill , learn sales art sale science and sales skill.</span>
                         </div>
                     </div>
                 </div>
@@ -598,7 +715,7 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">This is some text within a card body.</span>
+                            <span class="f18">Generate high quality sales and grow your business all over the world.</span>
                         </div>
                     </div>
                 </div>
@@ -606,7 +723,7 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">This is some text within a card body.</span>
+                            <span class="f18">Earn 1 crore in one year through our sales.</span>
                         </div>
                     </div>
                 </div>
@@ -614,7 +731,7 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">This is some text within a card body.</span>
+                            <span class="f18">Learn the technique of sales in very less price.</span>
                         </div>
                     </div>
                 </div>
@@ -797,30 +914,35 @@
                 <div class="col-md-6 m-auto text-white">
                     <div class="card card-cs mt-3">
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h3 class="card-title">Unlock bonus of worth rs 50000</h3>
                         </div>
                     </div>
                 </div>
-
-
                 <div class="col-md-6 m-auto text-white">
                     <div class="card card-cs mt-3">
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h3 class="card-title">Get ebook of sales techniques</h3>
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-6 m-auto text-white">
                     <div class="card card-cs mt-3">
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h3 class="card-title">Gate chance to interact 121 with our mentors</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 m-auto text-white">
+                    <div class="card card-cs mt-3">
+                        <div class="card-body">
+                            <h4 class="card-title">Get free pass offer personal communication skill development training</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 m-auto text-white">
+                    <div class="card card-cs mt-3">
+                        <div class="card-body">
+                            <h3 class="card-title">Unlock bonus of worth rs 50000</h3>
                         </div>
                     </div>
                 </div>
@@ -834,41 +956,42 @@
         <div class="container">
             <div class="heading_container heading_center mb-3">
                 <h2>
-                    Get Access to ₹14,995/- Bonus
+                    Get Access to ₹50,000/- Bonus
                 </h2>
             </div>
             <div class="row">
                 <div class="col-md-4 m-auto coupon">
-                    {{-- <div class="coupon-content text-white">
-                        <div class="top" style="width: 90%;">
+                    <div class="coupon-content text-white">
+                        {{-- <div class="top" style="width: 90%;">
                             <h3>Top</h3>
+                        </div> --}}
+                        <div class="mid text-danger">
+                            <h4><b>Sales e book 15000</b></h4>
                         </div>
-                        <div class="mid">
-                            <h4>Midl</h4>
-                        </div>
-                        <div class="foot">
+                        {{-- <div class="foot">
                             <h2>200</h2>
+                        </div> --}}
+                    </div>
+                </div>
+
+                <div class="col-md-4 m-auto coupon">
+                    <div class="coupon-content text-white">
+                        <div class="mid text-danger">
+                            <h4><b>Communication skill development free pass 10000</b></h4>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
 
                 <div class="col-md-4 m-auto coupon">
-                </div>
-
-                <div class="col-md-4 m-auto coupon">
-                </div>
-
-                <div class="col-md-4 m-auto coupon">
-                </div>
-
-                <div class="col-md-4 m-auto coupon">
-                </div>
-
-                <div class="col-md-4 m-auto coupon">
+                    <div class="coupon-content text-white">
+                        <div class="mid text-danger">
+                            <h4><b>One to one session with mentors 25000</b></h4>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row mt-5 m-auto">
-                    <div class="col-12 text-center mt-3 m-auto">
+                    <div class="col-12 text-center mt-5">
                         <button type="button" class="save-my-seat-now-button">
                             SAVE MY SEAT NOW FOR ₹199
                         </button>
@@ -899,7 +1022,7 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">This is some text within a card body.</span>
+                            <span class="f18">Technique technique to grow your business 10x.</span>
                         </div>
                     </div>
                 </div>
@@ -907,7 +1030,7 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">This is some text within a card body.</span>
+                            <span class="f18">Learn advanced skill of Sales.</span>
                         </div>
                     </div>
                 </div>
@@ -915,7 +1038,7 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">This is some text within a card body.</span>
+                            <span class="f18">Guarantee to become crorepati if you follow our techniques.</span>
                         </div>
                     </div>
                 </div>
@@ -923,23 +1046,7 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">This is some text within a card body.</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 p-2">
-                    <div class="card s_bg">
-                        <div class="card-body text-white">
-                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">This is some text within a card body.</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 p-2">
-                    <div class="card s_bg">
-                        <div class="card-body text-white">
-                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">This is some text within a card body.</span>
+                            <span class="f18">Learn how to sell any product and services.</span>
                         </div>
                     </div>
                 </div>
