@@ -519,8 +519,8 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-12 text-center mt-3">
-                            <button type="button" class="save-my-seat-now-button">
-                                SAVE MY SEAT NOW FOR ₹199
+                            <button type="button" class="save-my-seat-now-button payment">
+                                SAVE MY SEAT NOW FOR ₹99
                             </button>
 
                             {{-- <p class="text-white mt-3" id="rp">
@@ -680,7 +680,7 @@
     <!-- end about section -->
 
     <!-- service section -->
-    <section class="service_section layout_padding">
+    <section class="service_section m-layout">
         <div class="container">
             <div class="heading_container heading_center">
                 <h2>
@@ -832,8 +832,8 @@
 
                     <div class="row mt-2">
                         <div class="col-12 text-center mt-3">
-                            <button type="button" class="save-my-seat-now-button">
-                                SAVE MY SEAT NOW FOR ₹199
+                            <button type="button" class="save-my-seat-now-button payment">
+                                SAVE MY SEAT NOW FOR ₹99
                             </button>
 
                             {{-- <p class="text-white mt-3" id="rp">
@@ -998,8 +998,8 @@
 
                 <div class="row mt-5 m-auto">
                     <div class="col-12 text-center mt-5">
-                        <button type="button" class="save-my-seat-now-button">
-                            SAVE MY SEAT NOW FOR ₹199
+                        <button type="button" class="save-my-seat-now-button payment">
+                            SAVE MY SEAT NOW FOR ₹99
                         </button>
 
                         <p class="text-white mt-3" id="rp">
@@ -1060,8 +1060,8 @@
 
             <div class="row m-auto">
                 <div class="col-12 text-center">
-                    <button type="button" class="save-my-seat-now-button text-center">
-                        <span class="mx-5 text-center"> SAVE MY SEAT NOW FOR ₹199</span> <br>
+                    <button type="button" class="save-my-seat-now-button text-center payment">
+                        <span class="mx-5 text-center"> SAVE MY SEAT NOW FOR ₹99</span> <br>
                         <small class="mx-5 text-center">Registration is limited</small>
                     </button>
                 </div>
@@ -1110,8 +1110,8 @@
                         <div class="text-center mt-5 text-white">
                             👇 Secure Your Spot Now! Enroll Today 👇
                         </div>
-                        <button type="button" class="save-my-seat-now-button text-center mt-2">
-                            <span class="mx-5 text-center"> BOOK MY SEAT NOW FOR ₹199</span> <br>
+                        <button type="button" class="save-my-seat-now-button text-center mt-2 payment">
+                            <span class="mx-5 text-center"> BOOK MY SEAT NOW FOR ₹99</span> <br>
                         </button>
                         <div class="d-flex justify-content-center mt-3 text-white">
                             <h4>Limited Seats, Filling Fast...</h4>
@@ -1248,11 +1248,11 @@
             <div class="col-md-6 text-center" id="gh">
                 <div class="hindi" id="cs1">
                     <span class="" style="" id="mprice">
-                        ₹199
+                        ₹99
                     </span>
                     <sub>
                         <span class="twt" style="">
-                            <del>₹1999</del>
+                            <del>₹999</del>
                         </span>
                     </sub>
                 </div>
@@ -1262,7 +1262,7 @@
                 </div>
             </div>
             <div class="col-md-6 text-center">
-                <button type="button" class="reg_btn">
+                <button type="button" class="reg_btn payment">
                     Register Now
                 </button>
             </div>
@@ -1301,6 +1301,7 @@
     <noscript><img height="1" width="1" style="display:none"
             src="https://www.facebook.com/tr?id=365953992779410&ev=PageView&noscript=1" /></noscript>
     <!-- End Meta Pixel Code -->
+
     <script>
         // JavaScript to show/hide "Go to Top" button on scroll
         const goTopBtn = document.getElementById("registerButton");
@@ -1374,5 +1375,14 @@
 
         // Initial call to start the timer
         updateTimer();
+    </script>
+
+    <script>
+        // if click class payment then go to payment page
+        $('.payment').click(function() {
+            // window.location.href = "{{ route('audience.store') }}";
+             window.location.href = "https://rzp.io/l/xRoxi4cj5u";
+
+        });
     </script>
 @endsection
