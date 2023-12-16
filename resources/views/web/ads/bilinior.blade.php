@@ -624,8 +624,8 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-2">
-                                <ul class="">
+                            <div class="col-md-4 m-auto">
+                                <ul class="text-center">
                                     <li class="font-weight-bold"> Mumbai </li>
                                     <li class="font-weight-bold"> Delhi </li>
                                     <li class="font-weight-bold"> Bangalore </li>
@@ -639,8 +639,8 @@
                                 </ul>
                             </div>
 
-                            <div class="col-md-2">
-                                <ul>
+                            <div class="col-md-4 m-auto">
+                                <ul class="text-center">
                                     <li class="font-weight-bold">Raipur</li>
                                     <li class="font-weight-bold">Lucknow</li>
                                     <li class="font-weight-bold">Kanpur</li>
@@ -654,14 +654,14 @@
                                 </ul>
                             </div>
 
-                            <div class="col-md-8">
+                            {{-- <div class="col-md-8">
                                 <div class="d-flex justify-content-center" style="margin-top:-40px;">
                                     <img src="{{ asset('assets/img/india2.png') }}" alt="ytm" class="img-fluid">
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
-                        <p class="hindi">
+                        {{-- <p class="hindi">
                             अपनी संपूर्ण यात्रा के दौरान, हमें भारत के विभिन्न क्षेत्रों में व्यापक प्रशिक्षण सत्र देने का
                             सौभाग्य मिला है। ये सत्र विशेष रूप से व्यक्तियों को उनकी प्रतिभा और क्षमताओं को भुनाने के लिए
                             आवश्यक कौशल और ज्ञान के साथ सशक्त बनाने के लिए तैयार किए गए हैं, जो अंततः उन्हें स्वतंत्र रूप से
@@ -671,7 +671,7 @@
                             व्यावहारिक, लागू कौशल पर ध्यान केंद्रित करते हैं। तकनीकी विशेषज्ञता में महारत हासिल करने से लेकर
                             उद्यमशीलता कौशल को निखारने तक, हमारा उद्देश्य देश भर के उम्मीदवारों को सशक्त बनाना है, उनकी
                             अर्जित प्रतिभा के माध्यम से स्थायी आय उत्पन्न करने की उनकी क्षमता को उजागर करना है।
-                        </p>
+                        </p> --}}
                     </div>
                 </div>
             </div>
@@ -700,7 +700,7 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">No prayer knowledge of sales.</span>
+                            <span class="f18">No prior knowledge of sales.</span>
                         </div>
                     </div>
                 </div>
@@ -708,7 +708,7 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">Sales is Art science and skill , learn sales art sale science and sales skill.</span>
+                            <span class="f18">Sales is Art science and skill , learn sales art, sale science and sales skill.</span>
                         </div>
                     </div>
                 </div>
@@ -916,17 +916,24 @@
                 </h2>
             </div>
             <div class="row">
-                <div class="col-md-6 m-auto text-white">
+                {{-- <div class="col-md-6 m-auto text-white">
                     <div class="card card-cs mt-3">
                         <div class="card-body">
                             <h3 class="card-title">Unlock bonus of worth rs 50000</h3>
+                        </div>
+                    </div>
+                </div> --}}
+                <div class="col-md-6 m-auto text-white">
+                    <div class="card card-cs mt-3">
+                        <div class="card-body">
+                            <h3 class="card-title">Get ebook of sales techniques</h3>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 m-auto text-white">
                     <div class="card card-cs mt-3">
                         <div class="card-body">
-                            <h3 class="card-title">Get ebook of sales techniques</h3>
+                            <h3 class="card-title">Unlock bonus of worth rs 50000</h3>
                         </div>
                     </div>
                 </div>
@@ -941,13 +948,6 @@
                     <div class="card card-cs mt-3">
                         <div class="card-body">
                             <h4 class="card-title">Get free pass offer personal communication skill development training</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 m-auto text-white">
-                    <div class="card card-cs mt-3">
-                        <div class="card-body">
-                            <h3 class="card-title">Unlock bonus of worth rs 50000</h3>
                         </div>
                     </div>
                 </div>
