@@ -20,9 +20,9 @@ use App\Http\Controllers\PageController;
 |
 */
 
-Route::get('/', function () {
-    return view('web.home');
-});
+// Route::get('/', function () {
+//     return view('web.home');
+// });
 Route::view('/mailtest', 'web.resMail');
 Route::post('/audience', [AudienceController::class, 'store'])->name('audience.store'); // first
 // Route::post('/audience', [AutianceSecondController::class, 'store'])->name('audience.store'); // second
@@ -69,4 +69,4 @@ Route::get('lang/change', [LangController::class, 'change'])->name('changeLang')
 
 //======================= Pages =======================//
 Route::get('/beginnertobillionaire', [PageController::class, 'beginnertobillionaire'])->name('beginnertobillionaire');
-Route::get('/billionaire', [PageController::class, 'billionaire'])->name('billionaire');
+Route::get('/', [PageController::class, 'billionaire'])->name('billionaire');
