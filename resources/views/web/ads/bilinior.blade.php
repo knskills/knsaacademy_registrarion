@@ -676,7 +676,7 @@
                                     हो जाये तैयार 𝐒𝐀𝐋𝐄𝐒 𝐑𝐄𝐂𝐎𝐑𝐃𝐒 तोड़ने के लिए, NETWORK MARKETING BUSINESS में Sales में
                                     नयी उंचाईयों तक पहुंचने के लिए क्योंकि सेल्स ही एक ऐसा प्रोफेशन हैं जो सपनो के सारे दरवाजे
                                     UNLOCK करती हैं|
-        
+
                                 <ul class="mb-4">
                                     <li>
                                         👉 Learn Proven Sales Strategies
@@ -691,7 +691,7 @@
                                         👉 Double Your Sales with Selling Skill, Closing techniques & objection handling Skill
                                     </li>
                                 </ul>
-        
+
                                 <span class="hindi">
                                     Sales में अपनी रूकावट को STOP करे & अपने BUSINESS, NETWORK MARKETING BUSINESS या JOB में सफलता
                                     पाए, जिसके आप काबिल हे.
@@ -1271,6 +1271,38 @@
         </div>
     </section>
     <!-- end about section -->
+    <!-- service section -->
+    <section class="service_section m-layout">
+        <div class="container">
+            <div class="heading_container heading_center">
+                <h2>
+                    Who should attend this session?
+                </h2>
+            </div>
+            <div class="row mb-3">
+                <div class="col-12 p-2">
+                    <div class="card s_bg">
+                        <div class="card-body text-white text-center">
+                            {{-- <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i> --}}
+                            {{-- <span class="f18">Students, Entrepreneurs, Small Business Owner, Leaders, Sales professioanls</span> --}}
+
+                            <h3>Students, Entrepreneurs, Small Business Owner, Leaders, Sales professioanls</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row m-auto">
+                <div class="col-12 text-center">
+                    <button type="button" class="save-my-seat-now-button text-center payment">
+                        <span class="mx-5 text-center"> SAVE MY SEAT NOW FOR ₹99</span> <br>
+                        <small class="mx-5 text-center">Registration is limited</small>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end service section -->
 
     <!-- Register Now button -->
     <div class="register-btn" id="registerButton">
