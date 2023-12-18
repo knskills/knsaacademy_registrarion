@@ -435,7 +435,7 @@
             </div>
             <div class="heading_container heading_center">
                 <h2 class="mt-3" id="m1">
-                    Income sales technique that will make you money making machine
+                     sales techniques that will make you money making machine
                 </h2>
 
                 <h3 id="m11" class="hindi">
@@ -469,7 +469,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Duration</span><br>
-                                        <span class="big-bold-text">7 Hours</span>
+                                        <span class="big-bold-text">2 Hours</span>
                                     </div>
                                 </div>
                             </div>
@@ -502,7 +502,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Date</span><br>
-                                        <span class="big-bold-text">17 Dec 2023</span>
+                                        <span class="big-bold-text">31 Dec 2023</span>
                                     </div>
                                 </div>
                             </div>
@@ -518,7 +518,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Time</span><br>
-                                        <span class="big-bold-text">9AM to 4PM</span>
+                                        <span class="big-bold-text">7PM to 9PM</span>
                                     </div>
                                 </div>
                             </div>
@@ -1006,7 +1006,7 @@
                 <div class="col-md-6 m-auto text-white">
                     <div class="card card-cs mt-3">
                         <div class="card-body">
-                            <h3 class="card-title">Unlock bonus of worth rs 50000</h3>
+                            <h3 class="card-title">Unlock bonus of worth ₹50000</h3>
                         </div>
                     </div>
                 </div>
@@ -1045,7 +1045,7 @@
                             <h3>Top</h3>
                         </div> --}}
                         <div class="mid text-danger">
-                            <h4 style="color: rgba(0, 0, 139, 0.877);"><b>Sales e book 15000</b></h4>
+                            <h4 style="color: rgba(0, 0, 139, 0.877);"><b>Sales E-book 15000</b></h4>
                         </div>
                         {{-- <div class="foot">
                             <h2>200</h2>
