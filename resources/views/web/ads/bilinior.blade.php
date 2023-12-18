@@ -417,7 +417,7 @@
     </style>
 
     <style>
-        .enst{
+        .enst {
             font-family: 'Merriweather', serif;
         }
     </style>
@@ -633,31 +633,71 @@
                         <div class="row enst">
                             <div class="col-md-4 m-auto">
                                 <ul class="text-center">
-                                    <li class="font-weight-bold"> <h5>Mumbai</h5> </li>
-                                    <li class="font-weight-bold"> <h5>Delhi</h5> </li>
-                                    <li class="font-weight-bold"> <h5>Bangalore</h5> </li>
-                                    <li class="font-weight-bold"> <h5>Hyderabad</h5> </li>
-                                    <li class="font-weight-bold"> <h5>Ahmedabad</h5> </li>
-                                    <li class="font-weight-bold"> <h5>Chennai</h5> </li>
-                                    <li class="font-weight-bold"> <h5>Kolkata</h5> </li>
-                                    <li class="font-weight-bold"> <h5>Surat</h5></li>
-                                    <li class="font-weight-bold"> <h5>Pune</h5></li>
-                                    <li class="font-weight-bold"> <h5>Jaipur</h5></li>
+                                    <li class="font-weight-bold">
+                                        <h5>Mumbai</h5>
+                                    </li>
+                                    <li class="font-weight-bold">
+                                        <h5>Delhi</h5>
+                                    </li>
+                                    <li class="font-weight-bold">
+                                        <h5>Bangalore</h5>
+                                    </li>
+                                    <li class="font-weight-bold">
+                                        <h5>Hyderabad</h5>
+                                    </li>
+                                    <li class="font-weight-bold">
+                                        <h5>Ahmedabad</h5>
+                                    </li>
+                                    <li class="font-weight-bold">
+                                        <h5>Chennai</h5>
+                                    </li>
+                                    <li class="font-weight-bold">
+                                        <h5>Kolkata</h5>
+                                    </li>
+                                    <li class="font-weight-bold">
+                                        <h5>Surat</h5>
+                                    </li>
+                                    <li class="font-weight-bold">
+                                        <h5>Pune</h5>
+                                    </li>
+                                    <li class="font-weight-bold">
+                                        <h5>Jaipur</h5>
+                                    </li>
                                 </ul>
                             </div>
 
                             <div class="col-md-4 m-auto">
                                 <ul class="text-center">
-                                    <li class="font-weight-bold"><h5>Raipur</h5></li>
-                                    <li class="font-weight-bold"><h5>Lucknow</h5></li>
-                                    <li class="font-weight-bold"><h5>Kanpur</h5></li>
-                                    <li class="font-weight-bold"><h5>Nagpur</h5></li>
-                                    <li class="font-weight-bold"><h5>Indore</h5></li>
-                                    <li class="font-weight-bold"><h5>Visakhapatnam</h5></li>
-                                    <li class="font-weight-bold"><h5>Patna</h5></li>
-                                    <li class="font-weight-bold"><h5>Vadodara</h5></li>
-                                    <li class="font-weight-bold"><h5>Ghaziabad</h5></li>
-                                    <li class="font-weight-bold"><h5>Agra</h5></li>
+                                    <li class="font-weight-bold">
+                                        <h5>Raipur</h5>
+                                    </li>
+                                    <li class="font-weight-bold">
+                                        <h5>Lucknow</h5>
+                                    </li>
+                                    <li class="font-weight-bold">
+                                        <h5>Kanpur</h5>
+                                    </li>
+                                    <li class="font-weight-bold">
+                                        <h5>Nagpur</h5>
+                                    </li>
+                                    <li class="font-weight-bold">
+                                        <h5>Indore</h5>
+                                    </li>
+                                    <li class="font-weight-bold">
+                                        <h5>Visakhapatnam</h5>
+                                    </li>
+                                    <li class="font-weight-bold">
+                                        <h5>Patna</h5>
+                                    </li>
+                                    <li class="font-weight-bold">
+                                        <h5>Vadodara</h5>
+                                    </li>
+                                    <li class="font-weight-bold">
+                                        <h5>Ghaziabad</h5>
+                                    </li>
+                                    <li class="font-weight-bold">
+                                        <h5>Agra</h5>
+                                    </li>
                                 </ul>
                             </div>
 
@@ -673,8 +713,10 @@
                                 <p class="hindi">
                                     𝐒𝐮𝐩𝐞𝐫𝐜𝐡𝐚𝐫𝐠𝐞 𝐘𝐨𝐮𝐫 Selling Skill to rock on your Job, Traditional & NETWORK
                                     MARKETING BUSINESS” |
-                                    हो जाये तैयार 𝐒𝐀𝐋𝐄𝐒 𝐑𝐄𝐂𝐎𝐑𝐃𝐒 तोड़ने के लिए, NETWORK MARKETING BUSINESS में Sales में
-                                    नयी उंचाईयों तक पहुंचने के लिए क्योंकि सेल्स ही एक ऐसा प्रोफेशन हैं जो सपनो के सारे दरवाजे
+                                    हो जाये तैयार 𝐒𝐀𝐋𝐄𝐒 𝐑𝐄𝐂𝐎𝐑𝐃𝐒 तोड़ने के लिए, NETWORK MARKETING BUSINESS में
+                                    Sales में
+                                    नयी उंचाईयों तक पहुंचने के लिए क्योंकि सेल्स ही एक ऐसा प्रोफेशन हैं जो सपनो के सारे
+                                    दरवाजे
                                     UNLOCK करती हैं|
 
                                 <ul class="mb-4">
@@ -688,12 +730,14 @@
                                         👉 Become Top Sales Performer
                                     </li>
                                     <li>
-                                        👉 Double Your Sales with Selling Skill, Closing techniques & objection handling Skill
+                                        👉 Double Your Sales with Selling Skill, Closing techniques & objection handling
+                                        Skill
                                     </li>
                                 </ul>
 
                                 <span class="hindi">
-                                    Sales में अपनी रूकावट को STOP करे & अपने BUSINESS, NETWORK MARKETING BUSINESS या JOB में सफलता
+                                    Sales में अपनी रूकावट को STOP करे & अपने BUSINESS, NETWORK MARKETING BUSINESS या JOB में
+                                    सफलता
                                     पाए, जिसके आप काबिल हे.
                                 </span>
                                 </p>
@@ -886,13 +930,13 @@
     </section>
     <!-- end client section -->
 
-    <!-- contact section -->
+    {{-- <!-- contact section -->
     <section class="service_section m-layout">
         <div class="container">
             <div class="heading_container heading_center mb-3">
-                {{-- <h2>
-                    What People Say About Training Event?
-                </h2> --}}
+                <h2>
+                    What Are People Saying About Training Event?
+                </h2>
 
                 <h2>
                     Training Event के बारे में लोग क्या कहते हैं?
@@ -931,7 +975,7 @@
             </div>
         </div>
     </section>
-    <!-- end contact section -->
+    <!-- end contact section --> --}}
 
     <section class="black-bg-section">
     </section>
@@ -1271,6 +1315,95 @@
         </div>
     </section>
     <!-- end about section -->
+
+    <!-- client section -->
+    <section class="client_section layout_padding">
+        <div class="container ">
+            <div class="heading_container heading_center">
+                <h2>
+                    What Are People Saying About Training Event?
+                </h2>
+            </div>
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="box">
+                            <div class="img-box">
+                                <img src="{{ asset('assets/img/team/dharmendra.jpeg') }}" class="img-fluid" alt="knsa">
+                            </div>
+                            <div class="detail-box">
+                                <h4>
+                                    Dharmendra Yadav
+                                </h4>
+                                <p>
+                                    I recently had the opportunity to attend a training session at Skill Academy on network marketing and I must say, it was a game changer for me. The session was conducted by experienced and knowledgeable trainers who were able to break down the complex concepts of network marketing into simple and easy to understand terms.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item ">
+                        <div class="box">
+                            <div class="img-box">
+                                <img src="{{ asset('assets/img/team/WhatsApp Image 2023-09-09 at 11.55.46 AM (1).jpeg') }}"
+                                class="img-fluid" alt="">
+                            </div>
+                            <div class="detail-box">
+                                <h4>
+                                    Manteshwar
+                                </h4>
+                                <p>
+                                    The first thing that struck me about Skill Academy was their dedication to providing quality education and training. The trainers were not just there to sell their products or services, but genuinely wanted to help us improve our skills and succeed in the network marketing industry. They were patient, approachable, and always willing to answer any questions we had.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item ">
+                        <div class="box">
+                            <div class="img-box">
+                                <img src="{{ asset('assets/img/team/ramprasad.jpeg') }}" class="img-fluid" alt="">
+                            </div>
+                            <div class="detail-box">
+                                <h4>
+                                    Dayanand Prasad
+                                </h4>
+                                <p>
+                                    The training itself was well-structured and covered all aspects of network marketing, from understanding the concept and benefits to practical tips on how to succeed. The trainers used real-life examples and case studies to illustrate their points, making it easier for us to relate and apply the knowledge in our own business.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item ">
+                        <div class="box">
+                            <div class="img-box">
+                                <img src="{{ asset('assets/img/team/WhatsApp Image 2023-09-09 at 11.54.57 AM.jpeg') }}"
+                                class="img-fluid" alt="">
+                            </div>
+                            <div class="detail-box">
+                                <h4>
+                                    Panku Sharma
+                                </h4>
+                                <p>
+                                    Apart from the training, Skill Academy also provided us with resources and tools to help us implement what we learned. They have a comprehensive online platform where we can access training materials, connect with other network marketers, and stay updated with the latest trends and strategies.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel_btn-box">
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end client section -->
+
     <!-- service section -->
     <section class="service_section m-layout">
         <div class="container">
@@ -1303,6 +1436,8 @@
         </div>
     </section>
     <!-- end service section -->
+
+
 
     <!-- Register Now button -->
     <div class="register-btn" id="registerButton">
