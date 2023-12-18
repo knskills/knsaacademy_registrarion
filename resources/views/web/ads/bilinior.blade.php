@@ -858,7 +858,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Duration</span><br>
-                                        <span class="big-bold-text">7 Hours</span>
+                                        <span class="big-bold-text">2 Hours</span>
                                     </div>
                                 </div>
                             </div>
@@ -890,7 +890,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Date</span><br>
-                                        <span class="big-bold-text">17 Dec 2023</span>
+                                        <span class="big-bold-text">31 Dec 2023</span>
                                     </div>
                                 </div>
                             </div>
@@ -906,7 +906,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Time</span><br>
-                                        <span class="big-bold-text">9AM to 4PM</span>
+                                        <span class="big-bold-text">7PM to 9PM</span>
                                     </div>
                                 </div>
                             </div>
