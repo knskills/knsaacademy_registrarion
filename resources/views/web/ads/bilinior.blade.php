@@ -763,7 +763,9 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">Improve your sales technique.</span>
+                            <span class="f18">
+                                If you have Low Conversion Rates on your product/service sales.
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -771,7 +773,9 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">No prior knowledge of sales.</span>
+                            <span class="f18">
+                                Ineffective Sales Presentations that cause loss in business.
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -779,8 +783,9 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">Sales is Art, Science and skill , learn sales art, sale science and sales
-                                skill.</span>
+                            <span class="f18">
+                                Handling Customer Objections from potential clients.
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -788,8 +793,9 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">Generate high quality sales and grow your business all over the
-                                world.</span>
+                            <span class="f18">
+                                Are you not able to retain your customers ?
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -797,7 +803,9 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">Earn 1 crore in one year through our sales.</span>
+                            <span class="f18">
+                                If you facing Competitive Market Challenges.
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -805,7 +813,9 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">Learn the technique of sales in very less price.</span>
+                            <span class="f18">
+                                If you still a low earner in your business do not know how to earn lac and crore.
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -980,7 +990,7 @@
     <section class="black-bg-section">
     </section>
 
-    <!-- contact section -->
+    <!-- Why Register Now section -->
     <section class="service_section m-layout">
         <div class="container">
             <div class="heading_container heading_center mb-3">
@@ -1030,7 +1040,7 @@
     </section>
     <!-- end contact section -->
 
-    <!-- contact section -->
+    <!-- Bonus section -->
     <section class="service_section m-layout" style="">
         <div class="container">
             <div class="heading_container heading_center mb-3">
@@ -1090,7 +1100,7 @@
     </section>
     <!-- end contact section -->
 
-    <!-- service section -->
+    <!-- what will learn section -->
     <section class="service_section m-layout">
         <div class="container">
             <div class="heading_container heading_center">
@@ -1148,7 +1158,7 @@
     <section class="black-bg-section">
     </section>
 
-    <!-- service section -->
+    <!-- About section -->
     <section class="service_section m-layout">
         <div class="container text-whitw">
             <div class="heading_container heading_center">
@@ -1201,6 +1211,7 @@
     <section class="black-bg-section">
     </section>
 
+    <!-- Achivers section -->
     <section class="service_section m-layout text-white text-center">
         <div class="container">
             <div class="heading_container heading_center">
@@ -1316,7 +1327,7 @@
     </section>
     <!-- end about section -->
 
-    <!-- client section -->
+    <!-- Review section -->
     <section class="client_section layout_padding">
         <div class="container ">
             <div class="heading_container heading_center">
