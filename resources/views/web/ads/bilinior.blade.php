@@ -871,7 +871,7 @@
     </section>
     <!-- end client section -->
 
-    {{-- <!-- contact section -->
+    <!-- contact section -->
     <section class="service_section m-layout">
         <div class="container">
             <div class="heading_container heading_center mb-3">
@@ -879,15 +879,15 @@
                     What Are People Saying About Training Event?
                 </h2>
 
-                <h2>
+                {{-- <h2>
                     Training Event के बारे में लोग क्या कहते हैं?
-                </h2>
+                </h2> --}}
             </div>
             <div class="row">
                 <div class="col-md-6 m-auto">
                     <div class="video-container mt-3">
                         <iframe id="yframe"
-                            src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=0&controls=0&&showinfo=0&loop=1"
+                            src="https://www.youtube.com/embed/se2_3oghGpA?si=IqaQt4BXKYpZzO8n?rel=0?version=3&autoplay=0&controls=0&&showinfo=0&loop=1"
                             frameborder="0"
                             allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
@@ -916,7 +916,7 @@
             </div>
         </div>
     </section>
-    <!-- end contact section --> --}}
+    <!-- end contact section -->
 
     <section class="black-bg-section">
     </section>
