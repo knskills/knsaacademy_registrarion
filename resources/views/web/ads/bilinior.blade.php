@@ -876,7 +876,7 @@
         <div class="container">
             <div class="heading_container heading_center mb-3">
                 <h2>
-                    What Are People Saying About Training Event?
+                    The story of the leaders in their own words
                 </h2>
 
                 {{-- <h2>
