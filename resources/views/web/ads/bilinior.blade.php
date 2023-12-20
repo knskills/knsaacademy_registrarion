@@ -7,7 +7,7 @@
 @endsection
 
 @section('title')
-    <title>From Beginner to Billionaire: Kamal Narayan Sahu's Network Marketing Journey</title>
+    <title>Learn sales techniques with Shiv Arora</title>
 @endsection
 
 @section('style')
