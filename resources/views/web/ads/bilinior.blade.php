@@ -1,5 +1,11 @@
 @extends('web.ads.layouts.app2')
 
+@section('meatdata')
+    <meta name="keywords" content="Sales techniques, Shiv Arora, sales strategies, negotiation skills, closing deals, sales mastery, effective selling, sales expertise, sales training, sales education" />
+    <meta name="description" content="Unlock the secrets of successful sales techniques with Shiv Arora's expertise. Explore proven strategies, boost your sales skills, and achieve mastery in closing deals and negotiating effectively." />
+    <meta name="author" content="" />
+@endsection
+
 @section('title')
     <title>From Beginner to Billionaire: Kamal Narayan Sahu's Network Marketing Journey</title>
 @endsection
@@ -435,7 +441,7 @@
             </div>
             <div class="heading_container heading_center">
                 <h2 class="mt-3" id="m1">
-                     sales techniques that will make you money making machine
+                    sales techniques that will make you money making machine
                 </h2>
 
                 <h3 id="m11" class="hindi">
@@ -769,11 +775,15 @@
                     {{-- <h3><span>Contact Us</span></h3> --}}
                     <p>Explore our courses on <a
                             href="https://www.youtube.com/channel/UCzRxWktCEzHvHNRUAmcWJzA?embeds_referring_euri=http%3A%2F%2F127.0.0.1%3A8001%2F&source_ve_path=MzY5MjU&feature=emb_ch_name_ex"
-                            target="_blank">YouTube <img src="{{asset('assets/img/social/youtube.png')}}" alt="kns" class="img-fluid" width="40px;" height="30px;"></a> and stay updated on our latest offerings, success stories, and
+                            target="_blank">YouTube <img src="{{ asset('assets/img/social/youtube.png') }}"
+                                alt="kns" class="img-fluid" width="40px;" height="30px;"></a> and stay updated on
+                        our latest offerings, success stories, and
                         expert insights.</p>
                     <p>
                         Join our community on <a href="https://www.facebook.com/profile.php?id=61551921226266"
-                            target="_blank">Facebook <img src="{{asset('assets/img/social/facebook.png')}}" alt="kns" class="img-fluid" width="40px;" height="10px;"></a> Marketplace to discover more about our courses, connect with
+                            target="_blank">Facebook <img src="{{ asset('assets/img/social/facebook.png') }}"
+                                alt="kns" class="img-fluid" width="40px;" height="10px;"></a> Marketplace to
+                        discover more about our courses, connect with
                         like-minded individuals, and access exclusive resources.
                     </p>
                 </div>
@@ -1271,14 +1281,18 @@
                     <div class="carousel-item active">
                         <div class="box">
                             <div class="img-box">
-                                <img src="{{ asset('assets/img/team/dharmendra.jpeg') }}" class="img-fluid" alt="knsa">
+                                <img src="{{ asset('assets/img/team/dharmendra.jpeg') }}" class="img-fluid"
+                                    alt="knsa">
                             </div>
                             <div class="detail-box">
                                 <h4>
                                     Dharmendra Yadav
                                 </h4>
                                 <p>
-                                    I recently had the opportunity to attend a training session at Skill Academy on network marketing and I must say, it was a game changer for me. The session was conducted by experienced and knowledgeable trainers who were able to break down the complex concepts of network marketing into simple and easy to understand terms.
+                                    I recently had the opportunity to attend a training session at Skill Academy on network
+                                    marketing and I must say, it was a game changer for me. The session was conducted by
+                                    experienced and knowledgeable trainers who were able to break down the complex concepts
+                                    of network marketing into simple and easy to understand terms.
                                 </p>
                             </div>
                         </div>
@@ -1287,14 +1301,18 @@
                         <div class="box">
                             <div class="img-box">
                                 <img src="{{ asset('assets/img/team/WhatsApp Image 2023-09-09 at 11.55.46 AM (1).jpeg') }}"
-                                class="img-fluid" alt="">
+                                    class="img-fluid" alt="">
                             </div>
                             <div class="detail-box">
                                 <h4>
                                     Manteshwar
                                 </h4>
                                 <p>
-                                    The first thing that struck me about Skill Academy was their dedication to providing quality education and training. The trainers were not just there to sell their products or services, but genuinely wanted to help us improve our skills and succeed in the network marketing industry. They were patient, approachable, and always willing to answer any questions we had.
+                                    The first thing that struck me about Skill Academy was their dedication to providing
+                                    quality education and training. The trainers were not just there to sell their products
+                                    or services, but genuinely wanted to help us improve our skills and succeed in the
+                                    network marketing industry. They were patient, approachable, and always willing to
+                                    answer any questions we had.
                                 </p>
                             </div>
                         </div>
@@ -1302,14 +1320,18 @@
                     <div class="carousel-item ">
                         <div class="box">
                             <div class="img-box">
-                                <img src="{{ asset('assets/img/team/ramprasad.jpeg') }}" class="img-fluid" alt="">
+                                <img src="{{ asset('assets/img/team/ramprasad.jpeg') }}" class="img-fluid"
+                                    alt="">
                             </div>
                             <div class="detail-box">
                                 <h4>
                                     Dayanand Prasad
                                 </h4>
                                 <p>
-                                    The training itself was well-structured and covered all aspects of network marketing, from understanding the concept and benefits to practical tips on how to succeed. The trainers used real-life examples and case studies to illustrate their points, making it easier for us to relate and apply the knowledge in our own business.
+                                    The training itself was well-structured and covered all aspects of network marketing,
+                                    from understanding the concept and benefits to practical tips on how to succeed. The
+                                    trainers used real-life examples and case studies to illustrate their points, making it
+                                    easier for us to relate and apply the knowledge in our own business.
                                 </p>
                             </div>
                         </div>
@@ -1318,14 +1340,17 @@
                         <div class="box">
                             <div class="img-box">
                                 <img src="{{ asset('assets/img/team/WhatsApp Image 2023-09-09 at 11.54.57 AM.jpeg') }}"
-                                class="img-fluid" alt="">
+                                    class="img-fluid" alt="">
                             </div>
                             <div class="detail-box">
                                 <h4>
                                     Panku Sharma
                                 </h4>
                                 <p>
-                                    Apart from the training, Skill Academy also provided us with resources and tools to help us implement what we learned. They have a comprehensive online platform where we can access training materials, connect with other network marketers, and stay updated with the latest trends and strategies.
+                                    Apart from the training, Skill Academy also provided us with resources and tools to help
+                                    us implement what we learned. They have a comprehensive online platform where we can
+                                    access training materials, connect with other network marketers, and stay updated with
+                                    the latest trends and strategies.
                                 </p>
                             </div>
                         </div>
@@ -1378,8 +1403,6 @@
         </div>
     </section>
     <!-- end service section -->
-
-
 
     <!-- Register Now button -->
     <div class="register-btn" id="registerButton">
