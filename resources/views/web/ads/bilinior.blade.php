@@ -435,13 +435,16 @@
         <div class="container" id="top1" style="padding: 20px 0px 70px;">
             <div class="text-center">
                 <h2 class="text-white" style="font-family: 'Noto Sans Devanagari', sans-serif;">
-                    How to earn <span class="text-warning font-weight-bold">1 crore</span> in 1 year
+                    {{-- How to earn <span class="text-warning font-weight-bold">1 crore</span> in 1 year --}}
+
+                    How to grow sales with different sales techniques <span class="text-warning font-weight-bold">sales techniques</span>
                 </h2>
 
             </div>
             <div class="heading_container heading_center">
                 <h2 class="mt-3" id="m1">
-                    sales techniques that will make you money making machine
+                    {{-- sales techniques that will make you money making machine --}}
+                    Sales techniques that will grow your sales in fast track
                 </h2>
 
                 <h3 id="m11" class="hindi">
