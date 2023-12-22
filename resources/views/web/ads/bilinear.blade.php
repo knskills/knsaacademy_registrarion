@@ -976,11 +976,6 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-4 m-auto" data-aos="fade-up" data-aos-delay="100">
-                    <img src="{{ asset('assets/img/sirji2.png') }}" alt="sirji" class="img-fluid shadowed-image"
-                        id="sirimg">
-                </div>
-
                 <div class="col-lg-8 d-flex flex-column justify-content-center text-white text-center" data-aos="fade-up"
                     data-aos-delay="200">
                     <div class="section-title">
@@ -1003,6 +998,11 @@
                             2050.</li>
                     </ul>
 
+                </div>
+
+                <div class="col-lg-4 m-auto" data-aos="fade-up" data-aos-delay="100">
+                    <img src="{{ asset('assets/img/sirji2.png') }}" alt="sirji" class="img-fluid shadowed-image"
+                        id="sirimg">
                 </div>
 
                 <div class="row m-auto">
