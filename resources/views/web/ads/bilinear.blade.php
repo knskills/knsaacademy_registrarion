@@ -431,7 +431,7 @@
 
         #price-img {
             /* width: 100%;
-                            height: 100%; */
+            height: 100%; */
 
             max-width: 20%;
             max-height: 20%;
@@ -724,7 +724,7 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
                             <span class="f18">
-                                If you have Low Conversion Rates on your product/service sales.
+                                <b>Expert Guidance</b>: Gain insights from seasoned professionals who have navigated the challenges of Network Marketing successfully.
                             </span>
                         </div>
                     </div>
@@ -734,7 +734,7 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
                             <span class="f18">
-                                Ineffective Sales Presentations that cause loss in business.
+                                <b>Strategic Approach</b>: Acquire a systematic roadmap and strategies tailored to help you grow exponentially in the Network Marketing industry.
                             </span>
                         </div>
                     </div>
@@ -744,7 +744,7 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
                             <span class="f18">
-                                Handling Customer Objections from potential clients.
+                                <b>Proven Success Stories</b>: Access real-life success stories that demonstrate how individuals, much like yourself, achieved remarkable success in Network Marketing, providing you with inspiration and motivation.
                             </span>
                         </div>
                     </div>
@@ -754,7 +754,7 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
                             <span class="f18">
-                                Are you not able to retain your customers ?
+                                <b>Effective Networking Techniques</b>: Discover the art of networking effectively. Learn how to build and expand your network, nurture relationships, and leverage connections to accelerate your business growth.
                             </span>
                         </div>
                     </div>
@@ -764,7 +764,7 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
                             <span class="f18">
-                                If you facing Competitive Market Challenges.
+                                <b>Guaranteed Results</b>: This training promises a results-driven approach. Understand the proven methodologies and techniques that guarantee success when applied diligently and consistently.
                             </span>
                         </div>
                     </div>
@@ -774,7 +774,7 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
                             <span class="f18">
-                                If you still a low earner in your business do not know how to earn lac and crore.
+                                <b>Ongoing Support and Resources</b>: Beyond the training, access ongoing support, resources, and tools essential for your continuous growth and development in Network Marketing. Stay updated with the latest trends and strategies.
                             </span>
                         </div>
                     </div>
