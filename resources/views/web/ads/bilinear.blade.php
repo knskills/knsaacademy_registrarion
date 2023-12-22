@@ -1162,7 +1162,7 @@
                             👇 Secure your spot at no cost👇
                         </div>
                         <button type="button" class="save-my-seat-now-button text-center mt-2 payment">
-                            <span class="mx-5 text-center">Claim your <b style="color: #fd0101">FREE</b> seat
+                            <span class="mx-5 text-center">Claim your seat
                                 today!</span> <br>
                         </button>
                         <div class="d-flex justify-content-center mt-3 text-white">
@@ -1399,7 +1399,7 @@
                     {{-- <img src="{{ asset('assets/img/free3.png') }}" alt="knsa" class="img-fluid" id="price-img"> --}}
                     <sub>
                         <span class="twt" style="">
-                            <del>₹999</del>
+                            <del>₹1999</del>
                         </span>
                     </sub>
                 </div>
