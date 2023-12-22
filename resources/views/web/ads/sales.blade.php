@@ -1107,30 +1107,34 @@
         <div class="container text-whitw">
             <div class="heading_container heading_center">
                 <h2>
-                    About KNSA Founder
+                    About K Narayan Skill Academy
                 </h2>
             </div>
 
             <div class="row">
                 <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <img src="{{ asset('assets/img/sirji2.png') }}" alt="sirji" class="img-fluid shadowed-image"
-                        id="sirimg">
+                    <img src="{{ asset('assets/img/11.png') }}" alt="sirji" class="img-fluid">
                 </div>
 
                 <div class="col-lg-8 d-flex flex-column justify-content-center text-white text-center" data-aos="fade-up"
                     data-aos-delay="200">
                     <div class="section-title">
-                        <h3><span>Founder of</span> K Narayan Skill Academy</h3>
+                        <h3><span>Welcome to</span> K Narayan Skill Academy!</h3>
                     </div>
                     <p>
-                        Kamal Narayan Sahu, an Entrepreneur, Motivational speaker, Leadership &
-                        Direct Selling Coach. He is only matriculate and a school dropper student, and at the early
-                        age of 16, Came to the world’s biggest industry “Sales” Now he has 16 years of sales and
-                        leadership experience. He works to inspire the youth of India and helping people to realize
-                        their true potential. Kamal Narayan Sahu is C.E.O And Managing Director on one of the
-                        Leading Network Marketing/Direct selling Company- (YTM) YASHIKA TRADING & MARKETING PVT.
-                        LTD.
+                        At K Narayan Skill Academy, we are dedicated to empowering individuals through diverse skill development programs tailored to meet the demands of today's dynamic world. Our mission is to equip you with the knowledge and expertise needed to succeed in various domains.
                     </p>
+
+                    <h5 class="mt-2">Why Choose K Narayan Skill Academy?</h5>
+
+                    <ul class="text-left">
+                        <li><b>Expert Guidance:</b> Benefit from the mentorship of experienced professionals and
+                            industry leaders passionate about your success.</li>
+                        <li><b>Hands-On Learning:</b> Engage in practical, real-world projects and exercises that
+                            sharpen your skills and build your portfolio.</li>
+                        <li><b>Flexible Learning:</b> Enjoy flexible schedules and a variety of learning formats,
+                            including online courses and workshops, enabling you to learn at your own pace.</li>
+                    </ul>
 
                 </div>
 

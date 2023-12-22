@@ -30,7 +30,7 @@ class EventController extends Controller
             $events = $event->paginate(10);
             $events->appends($request->except('page'));
 
-            // audinace by new to old
+            // audience by new to old
             return view('admin.events.index', compact('events'));
         } catch (\Exception $e) {
             Log::error($e->getMessage());

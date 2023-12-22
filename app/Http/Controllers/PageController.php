@@ -17,8 +17,13 @@ class PageController extends Controller
         return view('web.ads.beginortobillinior');
     }
 
+    public function sales()
+    {
+        return view('web.ads.sales');
+    }
+
     public function billionaire()
     {
-        return view('web.ads.bilinior');
+        return view('web.ads.bilinear');
     }
 }

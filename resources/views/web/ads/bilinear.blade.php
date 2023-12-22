@@ -1,13 +1,15 @@
 @extends('web.ads.layouts.app2')
 
 @section('meatdata')
-    <meta name="keywords" content="Sales techniques, Shiv Arora, sales strategies, negotiation skills, closing deals, sales mastery, effective selling, sales expertise, sales training, sales education" />
-    <meta name="description" content="Unlock the secrets of successful sales techniques with Shiv Arora's expertise. Explore proven strategies, boost your sales skills, and achieve mastery in closing deals and negotiating effectively." />
+    <meta name="keywords"
+        content="Sales techniques, Shiv Arora, sales strategies, negotiation skills, closing deals, sales mastery, effective selling, sales expertise, sales training, sales education" />
+    <meta name="description"
+        content="Unlock the secrets of successful sales techniques with Shiv Arora's expertise. Explore proven strategies, boost your sales skills, and achieve mastery in closing deals and negotiating effectively." />
     <meta name="author" content="" />
 @endsection
 
 @section('title')
-    <title>Learn sales techniques with Shiv Arora</title>
+    <title>BEGINNER TO BILLIONAIRE</title>
 @endsection
 
 @section('style')
@@ -426,6 +428,14 @@
         .enst {
             font-family: 'Merriweather', serif;
         }
+
+        #price-img {
+            /* width: 100%;
+                        height: 100%; */
+
+            max-width: 20%;
+            max-height: 20%;
+        }
     </style>
 @endsection
 
@@ -435,32 +445,26 @@
         <div class="container" id="top1" style="padding: 20px 0px 70px;">
             <div class="text-center">
                 <h2 class="text-white" style="font-family: 'Noto Sans Devanagari', sans-serif;">
-                    {{-- How to earn <span class="text-warning font-weight-bold">1 crore</span> in 1 year --}}
+                    {{-- How to Grow Exponentially and get Guaranteed success on <span class="text-warning font-weight-bold">Network Marketing Business</span> --}}
 
-                    How to grow sales with different sales techniques <span class="text-warning font-weight-bold">sales techniques</span>
+                    <span class="text-warning font-weight-bold">BEGINNER TO BILLIONAIRE</span>
                 </h2>
 
             </div>
             <div class="heading_container heading_center">
                 <h2 class="mt-3" id="m1">
-                    {{-- sales techniques that will make you money making machine --}}
-                    Sales techniques that will grow your sales in fast track
+                    How to Grow Exponentially and get Guaranteed success on Network Marketing Business
                 </h2>
 
                 <h3 id="m11" class="hindi">
-                    हमारी <span class="text-warning">sales techniques </span> के माध्यम से किसी भी product और service की
-                    sale करें
+                    Secret Foundations of A <span class="text-warning">Network Marketer</span>
                 </h3>
-
-                {{-- <h3 id="m11" class="hindi">
-                    21 दिवसीय चुनौती <span class="text-warning">कमल नारायण साहू </span>द्वारा
-                </h3> --}}
             </div>
             <div class="row mt-4">
                 <div class="col-md-6 mb-4">
                     <div class="video-container">
                         <iframe id="yframe"
-                            src="https://www.youtube.com/embed/X13jh94WpQw?si=hZPyRgUYN9jDs8sq?rel=0?version=3&autoplay=1&controls=0&&showinfo=0&loop=1&modestbranding=0"
+                            src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=0&controls=0&&showinfo=0&loop=1&modestbranding=0"
                             frameborder="0"
                             allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
@@ -478,7 +482,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Duration</span><br>
-                                        <span class="big-bold-text">2 Hours</span>
+                                        <span class="big-bold-text">1 Hours</span>
                                     </div>
                                 </div>
                             </div>
@@ -500,7 +504,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Repeat the structure for the subsequent columns -->
                         <div class="col-6">
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
@@ -511,12 +514,11 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Date</span><br>
-                                        <span class="big-bold-text">31 Dec 2023</span>
+                                        <span class="big-bold-text">30 Dec 2023</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Repeat the structure for the last columns -->
                         <div class="col-6">
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
@@ -527,7 +529,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Time</span><br>
-                                        <span class="big-bold-text">7PM to 9PM</span>
+                                        <span class="big-bold-text">7PM to 8PM</span>
                                     </div>
                                 </div>
                             </div>
@@ -536,7 +538,7 @@
                     <div class="row mt-2">
                         <div class="col-12 text-center mt-3">
                             <button type="button" class="save-my-seat-now-button payment">
-                                SAVE MY SEAT NOW FOR ₹99
+                                SAVE MY SEAT NOW FOR ₹199
                             </button>
 
                             {{-- <p class="text-white mt-3" id="rp">
@@ -651,36 +653,47 @@
                         <div class="row mt-3">
                             <div class="col-md-10 m-auto">
                                 <p class="hindi">
-                                    𝐒𝐮𝐩𝐞𝐫𝐜𝐡𝐚𝐫𝐠𝐞 𝐘𝐨𝐮𝐫 Selling Skill to rock on your Job, Traditional & NETWORK
-                                    MARKETING BUSINESS” |
-                                    हो जाये तैयार 𝐒𝐀𝐋𝐄𝐒 𝐑𝐄𝐂𝐎𝐑𝐃𝐒 तोड़ने के लिए, NETWORK MARKETING BUSINESS में
-                                    Sales में
-                                    नयी उंचाईयों तक पहुंचने के लिए क्योंकि सेल्स ही एक ऐसा प्रोफेशन हैं जो सपनो के सारे
-                                    दरवाजे
-                                    UNLOCK करती हैं|
+                                    <b>नेटवर्क मार्केटिंग</b> में सफल होने के लिए सबसे ज्यादा काम अपने ऊपर करना होता है,
+                                    जबकि लोग दूसरों में कमियां निकाल रहे होते हैं, "यह सुनता नहीं है" "वह सुनता नहीं है" अरे
+                                    वह सुनेगा, उसका खानदान भी सुनेगा, पहले अपने आप को <b>"सुनाने"</b> लायक तो बनाइए।
 
                                 <ul class="mb-4">
                                     <li>
-                                        👉 Learn Proven Sales Strategies
+                                        👉 BEGINNER TO BILLIONAIRE कोर्स नेटवर्क मार्केटर्स के लिए ब्रह्मास्त्र है।
                                     </li>
                                     <li>
-                                        👉 Join our Online Sales training course
+                                        👉 दुनिया के हर एक नेटवर्क मार्केटर्स को एक बार Beginner to billionaire कोर्स अवश्य
+                                        करना चाहिए।
                                     </li>
                                     <li>
-                                        👉 Become Top Sales Performer
+                                        👉 BEGINNER TO BILLIONAIRE कोर्स श्री कमल नारायण साहू सर के 16 साल के टीम वर्क और
+                                        लीडरशिप के अनुभव का निचोड़ हैं जो कोच ने बतौर नेटवर्क मार्केटिंग बिजनेस में
+                                        प्रैक्टिकल रहते हुवे सीखा हैं और लोगो को करोड़पति बनाया हैं वही सारी सफलता का
+                                        महामंत्र हैं।
                                     </li>
                                     <li>
-                                        👉 Double Your Sales with Selling Skill, Closing techniques & objection handling
-                                        Skill
+                                        👉 21ST CENTURY की सबसे बड़ी Free Lancing बिजनेस नेटवर्क मार्केटिंग में नई ऊंचाइयों
+                                        तक पहुंचने के लिए अभी ज्वाइन करे।
                                     </li>
                                 </ul>
 
                                 <span class="hindi">
-                                    Sales में अपनी रूकावट को STOP करे & अपने BUSINESS, NETWORK MARKETING BUSINESS या JOB में
-                                    सफलता
-                                    पाए, जिसके आप काबिल हे.
+                                    To Make yourself Network Marketing PRO get Trained By The Master Trainer <b>Kamal
+                                        Narayan Sahu</b>.
                                 </span>
                                 </p>
+
+                                <p class="text-left">BEGINNER TO BILLIONAIRE Network marketing success blueprint</p>
+
+                                by<b> Kamal Narayan Sahu</b> <br>
+                                Passionate Networker, <br>
+                                Founder of K narayan skill Academic
+
+                                {{-- <div class="col-md-4 d-flex float-right">
+                                    by Kamal Narayan Sahu <br>
+                                    Passionate Networker,  <br>
+                                    Founder of K narayan skill Academic
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -802,7 +815,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Duration</span><br>
-                                        <span class="big-bold-text">2 Hours</span>
+                                        <span class="big-bold-text">1 Hours</span>
                                     </div>
                                 </div>
                             </div>
@@ -850,7 +863,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Time</span><br>
-                                        <span class="big-bold-text">7PM to 9PM</span>
+                                        <span class="big-bold-text">7PM to 8PM</span>
                                     </div>
                                 </div>
                             </div>
@@ -860,7 +873,7 @@
                     <div class="row mt-2">
                         <div class="col-12 text-center mt-3">
                             <button type="button" class="save-my-seat-now-button payment">
-                                SAVE MY SEAT NOW FOR ₹99
+                                SAVE MY SEAT NOW FOR ₹199
                             </button>
 
                             {{-- <p class="text-white mt-3" id="rp">
@@ -1028,7 +1041,7 @@
                 <div class="row mt-5 m-auto">
                     <div class="col-12 text-center mt-5">
                         <button type="button" class="save-my-seat-now-button payment">
-                            SAVE MY SEAT NOW FOR ₹99
+                            SAVE MY SEAT NOW FOR ₹199
                         </button>
 
                         <p class="text-white mt-3" id="rp">
@@ -1037,6 +1050,9 @@
 
                         {{-- <p class="mt-3 text-white">Offer Ends in <span id="timer2"
                                 class="text-warning font-weight-bold"></span> Mins </p> --}}
+
+                        <p class="mt-4 text-white">एक ऐसे जीवन की कल्पना कीजिए जहां आप अपने दिन और समय के मालिक हैं। यह
+                            कोर्स आपकी इस कल्पना को हकीकत में बदल देगा।</p>
                     </div>
                 </div>
             </div>
@@ -1090,7 +1106,7 @@
             <div class="row m-auto">
                 <div class="col-12 text-center">
                     <button type="button" class="save-my-seat-now-button text-center payment">
-                        <span class="mx-5 text-center"> SAVE MY SEAT NOW FOR ₹99</span> <br>
+                        <span class="mx-5 text-center">SAVE MY SEAT NOW FOR ₹199</span> <br>
                         <small class="mx-5 text-center">Registration is limited</small>
                     </button>
                 </div>
@@ -1107,7 +1123,7 @@
         <div class="container text-whitw">
             <div class="heading_container heading_center">
                 <h2>
-                    AboutK Narayan Skill Academy
+                    About K Narayan Skill Academy
                 </h2>
             </div>
 
@@ -1122,7 +1138,9 @@
                         <h3><span>Welcome to</span> K Narayan Skill Academy!</h3>
                     </div>
                     <p>
-                        At K Narayan Skill Academy, we are dedicated to empowering individuals through diverse skill development programs tailored to meet the demands of today's dynamic world. Our mission is to equip you with the knowledge and expertise needed to succeed in various domains.
+                        At K Narayan Skill Academy, we are dedicated to empowering individuals through diverse skill
+                        development programs tailored to meet the demands of today's dynamic world. Our mission is to equip
+                        you with the knowledge and expertise needed to succeed in various domains.
                     </p>
 
                     <h5 class="mt-2">Why Choose K Narayan Skill Academy?</h5>
@@ -1141,10 +1159,11 @@
                 <div class="row m-auto">
                     <div class="col-12 text-center">
                         <div class="text-center mt-5 text-white">
-                            👇 Secure Your Spot Now! Enroll Today 👇
+                            👇 Secure your spot at no cost👇
                         </div>
                         <button type="button" class="save-my-seat-now-button text-center mt-2 payment">
-                            <span class="mx-5 text-center"> BOOK MY SEAT NOW FOR ₹99</span> <br>
+                            <span class="mx-5 text-center">Claim your <b style="color: #fd0101">FREE</b> seat
+                                today!</span> <br>
                         </button>
                         <div class="d-flex justify-content-center mt-3 text-white">
                             <h4>Limited Seats, Filling Fast...</h4>
@@ -1220,56 +1239,6 @@
                         </div>
                     </div>
                 </div>
-
-                {{-- <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
-                    <div class="member">
-                        <div class="member-img">
-                            <img src="{{ asset('assets/img/team/dharmendra.jpeg') }}" class="img-fluid" alt="">
-                        </div>
-                        <div class="member-info">
-                            <h4 class="hindi m-2">Dharmendra Yadav</h4>
-                            Income - <span class="text-warning font-weight-bold">₹1.5 crore</span><br>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
-                    <div class="member">
-                        <div class="member-img">
-                            <img src="{{ asset('assets/img/team/WhatsApp Image 2023-09-09 at 11.55.46 AM (1).jpeg') }}"
-                                class="img-fluid" alt="">
-                        </div>
-                        <div class="member-info">
-                            <h4 class="hindi m-2">Manteshwar</h4>
-                            Income - <span class="text-warning font-weight-bold">₹81 lac</span><br>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="400">
-                    <div class="member">
-                        <div class="member-img">
-                            <img src="{{ asset('assets/img/team/ramprasad.jpeg') }}" class="img-fluid" alt="">
-                        </div>
-                        <div class="member-info">
-                            <h4 class="hindi m-2">Dayanand Prasad</h4>
-                            Income - <span class="text-warning font-weight-bold">₹49 lac</span><br>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="100">
-                    <div class="member">
-                        <div class="member-img">
-                            <img src="{{ asset('assets/img/team/WhatsApp Image 2023-09-09 at 11.54.57 AM.jpeg') }}"
-                                class="img-fluid" alt="">
-                        </div>
-                        <div class="member-info">
-                            <h4 class="hindi m-2">Panku Sharma </h4>
-                            Income - <span class="text-warning font-weight-bold">₹37 lac</span><br>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </section>
@@ -1378,7 +1347,7 @@
     </section>
     <!-- end client section -->
 
-    <!-- service section -->
+    <!-- Who should attend this session section -->
     <section class="service_section m-layout">
         <div class="container">
             <div class="heading_container heading_center">
@@ -1386,12 +1355,20 @@
                     Who should attend this session?
                 </h2>
             </div>
-            <div class="row mb-3">
-                <div class="col-12 p-2">
-                    <div class="card s_bg">
-                        <div class="card-body text-white text-center">
-                            {{-- <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i> --}}
-                            {{-- <span class="f18">Students, Entrepreneurs, Small Business Owner, Leaders, Sales professioanls</span> --}}
+            <div class="card s_bg p-2 mb-3">
+                <div class="card-body text-white text-center">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="{{asset('assets/img/ponting.png')}}" alt="kns" class="img-fluid">
+                        </div>
+                        <div class="col-md-9">
+                            {{-- <div class="row">
+                                <div class="col-md-3">
+                                    <div class="card s_bg">
+                                        <img src="{{asset('assets/img/student2.png')}}" alt="Knsa" class="img-fluid">
+                                    </div>
+                                </div>
+                            </div> --}}
 
                             <h3>Students, Entrepreneurs, Small Business Owner, Leaders, Sales professioanls</h3>
                         </div>
@@ -1402,14 +1379,14 @@
             <div class="row m-auto">
                 <div class="col-12 text-center">
                     <button type="button" class="save-my-seat-now-button text-center payment">
-                        <span class="mx-5 text-center"> SAVE MY SEAT NOW FOR ₹99</span> <br>
+                        <span class="mx-5 text-center">SAVE MY SEAT NOW FOR ₹199</span> <br>
                         <small class="mx-5 text-center">Registration is limited</small>
                     </button>
                 </div>
             </div>
         </div>
     </section>
-    <!-- end service section -->
+    <!-- end Who should attend this session? section -->
 
     <!-- Register Now button -->
     <div class="register-btn" id="registerButton">
@@ -1417,8 +1394,9 @@
             <div class="col-md-6 text-center" id="gh">
                 <div class="hindi" id="cs1">
                     <span class="" style="" id="mprice">
-                        ₹99
+                        ₹199
                     </span>
+                    {{-- <img src="{{ asset('assets/img/free3.png') }}" alt="knsa" class="img-fluid" id="price-img"> --}}
                     <sub>
                         <span class="twt" style="">
                             <del>₹999</del>
@@ -1549,7 +1527,7 @@
     <script>
         $('.payment').click(function() {
             // window.location.href = "{{ route('audience.store') }}";
-            window.location.href = "https://rzp.io/l/xRoxi4cj5u";
+            window.location.href = "https://rzp.io/l/o2gu6qrn";
 
         });
     </script>
