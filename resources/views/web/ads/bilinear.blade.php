@@ -431,10 +431,17 @@
 
         #price-img {
             /* width: 100%;
-                        height: 100%; */
+                            height: 100%; */
 
             max-width: 20%;
             max-height: 20%;
+        }
+
+        /* hide if small size screen  id repre  */
+            @media (max-width: 768px) {
+                #repre{
+                    display: none;
+            }
         }
     </style>
 @endsection
@@ -1358,19 +1365,43 @@
             <div class="card s_bg p-2 mb-3">
                 <div class="card-body text-white text-center">
                     <div class="row">
-                        <div class="col-md-3">
-                            <img src="{{asset('assets/img/ponting.png')}}" alt="kns" class="img-fluid">
+                        <div class="col-md-3" id="repre">
+                            <img src="{{ asset('assets/img/ponting.png') }}" alt="kns" class="img-fluid">
                         </div>
                         <div class="col-md-9">
-                            {{-- <div class="row">
-                                <div class="col-md-3">
-                                    <div class="card s_bg">
-                                        <img src="{{asset('assets/img/student2.png')}}" alt="Knsa" class="img-fluid">
-                                    </div>
+                            <div class="row">
+                                <div class="col-md-4 mt-3 text-center s_bg">
+                                    <img src="{{ asset('assets/img/whos/Sales professionals.jpg') }}" alt="Knsa" width="150px"
+                                        height="200px">
                                 </div>
-                            </div> --}}
 
-                            <h3>Network marketing professionals , Entrepreneurs, Small Business Owner, Leaders, Sales professionals</h3>
+                                <div class="col-md-4 mt-3 text-center s_bg">
+                                    <img src="{{ asset('assets/img/whos/entrp.jpg') }}" alt="Knsa" width="150px"
+                                        height="200px">
+                                </div>
+
+                                <div class="col-md-4 mt-3 text-center s_bg">
+                                    <img src="{{ asset('assets/img/whos/leader.jpg') }}" alt="Knsa" width="150px"
+                                        height="200px">
+                                </div>
+
+                                <div class="col-md-4 mt-3 text-center s_bg">
+                                    <img src="{{ asset('assets/img/whos/smallb.jpg') }}"
+                                        alt="Knsa" width="150px" height="200px">
+                                </div>
+
+                                <div class="col-md-4 mt-3 text-center s_bg">
+                                    <img src="{{ asset('assets/img/whos/Network marketing professionals.jpg') }}"
+                                        alt="Knsa" width="150px" height="200px">
+                                </div>
+
+                                {{-- <div class="col-md-4 mt-3 text-center s_bg">
+                                    <img src="{{ asset('assets/img/whos/Network marketing professionals.jpg') }}"
+                                        alt="Knsa" width="150px" height="200px">
+                                </div> --}}
+                            </div>
+
+                            {{-- <h3>Network marketing professionals , Entrepreneurs, Small Business Owner, Leaders, Sales professionals</h3> --}}
                         </div>
                     </div>
                 </div>
