@@ -1370,7 +1370,7 @@
                                 </div>
                             </div> --}}
 
-                            <h3>Students, Entrepreneurs, Small Business Owner, Leaders, Sales professioanls</h3>
+                            <h3>Network marketing professionals , Entrepreneurs, Small Business Owner, Leaders, Sales professionals</h3>
                         </div>
                     </div>
                 </div>
