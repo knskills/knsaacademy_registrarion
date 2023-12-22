@@ -107,15 +107,17 @@
         }
 
         .coupon {
-            background-image: url('{{ asset('assets/gaurd/images/coupon.png') }}');
+            background-image: url('{{ asset('assets/img/whos/copoun.png') }}');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
+            background-color: white;
             /* height: 300px; */
             min-height: 200px;
             width: 100%;
             position: relative;
             /* Add a positioning context for the text */
+            margin: 2px;
         }
 
         .coupon-content {
@@ -431,16 +433,16 @@
 
         #price-img {
             /* width: 100%;
-            height: 100%; */
+                            height: 100%; */
 
             max-width: 20%;
             max-height: 20%;
         }
 
         /* hide if small size screen  id repre  */
-            @media (max-width: 768px) {
-                #repre{
-                    display: none;
+        @media (max-width: 768px) {
+            #repre {
+                display: none;
             }
         }
     </style>
@@ -724,7 +726,8 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
                             <span class="f18">
-                                <b>Expert Guidance</b>: Gain insights from seasoned professionals who have navigated the challenges of Network Marketing successfully.
+                                <b>Expert Guidance</b>: Gain insights from seasoned professionals who have navigated the
+                                challenges of Network Marketing successfully.
                             </span>
                         </div>
                     </div>
@@ -734,7 +737,8 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
                             <span class="f18">
-                                <b>Strategic Approach</b>: Acquire a systematic roadmap and strategies tailored to help you grow exponentially in the Network Marketing industry.
+                                <b>Strategic Approach</b>: Acquire a systematic roadmap and strategies tailored to help you
+                                grow exponentially in the Network Marketing industry.
                             </span>
                         </div>
                     </div>
@@ -744,7 +748,9 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
                             <span class="f18">
-                                <b>Proven Success Stories</b>: Access real-life success stories that demonstrate how individuals, much like yourself, achieved remarkable success in Network Marketing, providing you with inspiration and motivation.
+                                <b>Proven Success Stories</b>: Access real-life success stories that demonstrate how
+                                individuals, much like yourself, achieved remarkable success in Network Marketing, providing
+                                you with inspiration and motivation.
                             </span>
                         </div>
                     </div>
@@ -754,7 +760,9 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
                             <span class="f18">
-                                <b>Effective Networking Techniques</b>: Discover the art of networking effectively. Learn how to build and expand your network, nurture relationships, and leverage connections to accelerate your business growth.
+                                <b>Effective Networking Techniques</b>: Discover the art of networking effectively. Learn
+                                how to build and expand your network, nurture relationships, and leverage connections to
+                                accelerate your business growth.
                             </span>
                         </div>
                     </div>
@@ -764,7 +772,9 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
                             <span class="f18">
-                                <b>Guaranteed Results</b>: This training promises a results-driven approach. Understand the proven methodologies and techniques that guarantee success when applied diligently and consistently.
+                                <b>Guaranteed Results</b>: This training promises a results-driven approach. Understand the
+                                proven methodologies and techniques that guarantee success when applied diligently and
+                                consistently.
                             </span>
                         </div>
                     </div>
@@ -774,7 +784,9 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
                             <span class="f18">
-                                <b>Ongoing Support and Resources</b>: Beyond the training, access ongoing support, resources, and tools essential for your continuous growth and development in Network Marketing. Stay updated with the latest trends and strategies.
+                                <b>Ongoing Support and Resources</b>: Beyond the training, access ongoing support,
+                                resources, and tools essential for your continuous growth and development in Network
+                                Marketing. Stay updated with the latest trends and strategies.
                             </span>
                         </div>
                     </div>
@@ -904,7 +916,7 @@
     </section>
     <!-- end client section -->
 
-    <!-- contact section -->
+    <!-- feedback video section -->
     <section class="service_section m-layout">
         <div class="container">
             <div class="heading_container heading_center mb-3">
@@ -949,7 +961,67 @@
             </div>
         </div>
     </section>
-    <!-- end contact section -->
+    <!-- end feedback video section -->
+
+    <section class="black-bg-section">
+    </section>
+
+    <!-- About section -->
+    <section class="service_section m-layout">
+        <div class="container text-whitw">
+            <div class="heading_container heading_center">
+                <h2>
+                    About Trainer
+                </h2>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 m-auto" data-aos="fade-up" data-aos-delay="100">
+                    <img src="{{ asset('assets/img/sirji2.png') }}" alt="sirji" class="img-fluid shadowed-image"
+                        id="sirimg">
+                </div>
+
+                <div class="col-lg-8 d-flex flex-column justify-content-center text-white text-center" data-aos="fade-up"
+                    data-aos-delay="200">
+                    <div class="section-title">
+                        <h3><span>Who Is</span> Kamal Narayan Sahu</h3>
+                    </div>
+                    <ul class="text-left">
+                        <li class="mt-2">1) My Identity is KAMAL NARAYAN SAHU And I am Famous as a Youngest CMD of Network Marketing
+                            Industry.</li>
+                        <li class="mt-2">2) I am 31 years Young, Energetic and always ready To Teach and educate People about Top 3
+                            skills Of Success.</li>
+                        <li class="mt-2">3) I have been helping People To look Smart, Stay healthy and achieve Financial Freedom From
+                            Last 8 years</li>
+                        <li class="mt-2">4) I have a very supportive family, its because of My Mothers Blessings and sisters Love, and
+                            Caring of
+                            my elder Brother i am able to live my passion.</li>
+                        <li class="mt-2">5) My achievement is / I have been awarded I am a founder of YTM India (A Direct selling
+                            company)
+                            In an early age of 23 we achieved 100 CR turnover in one financial year 2022-2023.</li>
+                        <li class="mt-2">6) My mission is to help 100 Leaders To become Billionaire Network Marketing Leader by the year
+                            2050.</li>
+                    </ul>
+
+                </div>
+
+                <div class="row m-auto">
+                    <div class="col-12 text-center">
+                        <div class="text-center mt-5 text-white">
+                            👇 Secure your spot at no cost👇
+                        </div>
+                        <button type="button" class="save-my-seat-now-button text-center mt-2 payment">
+                            <span class="mx-5 text-center">Claim your seat
+                                today!</span> <br>
+                        </button>
+                        <div class="d-flex justify-content-center mt-3 text-white">
+                            <h4>Limited Seats, Filling Fast...</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="black-bg-section">
     </section>
@@ -963,24 +1035,17 @@
                 </h2>
             </div>
             <div class="row">
-                {{-- <div class="col-md-6 m-auto text-white">
-                    <div class="card card-cs mt-3">
-                        <div class="card-body">
-                            <h3 class="card-title">Unlock bonus of worth rs 50000</h3>
-                        </div>
-                    </div>
-                </div> --}}
                 <div class="col-md-6 m-auto text-white">
                     <div class="card card-cs mt-3">
                         <div class="card-body">
-                            <h3 class="card-title">Get ebook of sales techniques</h3>
+                            <h3 class="card-title">Get ebook of sales and marketing techniques</h3>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 m-auto text-white">
                     <div class="card card-cs mt-3">
                         <div class="card-body">
-                            <h3 class="card-title">Unlock bonus of worth ₹50000</h3>
+                            <h3 class="card-title">Unlock bonus of worth ₹30000</h3>
                         </div>
                     </div>
                 </div>
@@ -1009,25 +1074,20 @@
         <div class="container">
             <div class="heading_container heading_center mb-3">
                 <h2>
-                    Get Access to ₹50,000/- Bonus
+                    Get Access to ₹30,000/- Bonus
                 </h2>
             </div>
             <div class="row">
-                <div class="col-md-4 m-auto coupon">
+                {{-- <div class="col-md-4 m-auto coupon">
                     <div class="coupon-content text-white">
-                        {{-- <div class="top" style="width: 90%;">
-                            <h3>Top</h3>
-                        </div> --}}
                         <div class="mid text-danger">
                             <h4 style="color: rgba(0, 0, 139, 0.877);"><b>Sales E-book 15000</b></h4>
                         </div>
-                        {{-- <div class="foot">
-                            <h2>200</h2>
-                        </div> --}}
                     </div>
                 </div>
 
-                <div class="col-md-4 m-auto coupon">
+                <div class="col-md-4 m-auto ">
+                    <div class="coupon"></div>
                     <div class="coupon-content text-white">
                         <div class="">
                             <h4 style="color: rgba(0, 0, 139, 0.877);"><b>Communication skill development free pass
@@ -1041,6 +1101,37 @@
                     <div class="coupon-content text-white">
                         <div class="mid text-danger">
                             <h4 style="color: rgba(0, 0, 139, 0.877);"><b>One to one session with mentors 25000</b></h4>
+                        </div>
+                    </div>
+                </div> --}}
+
+                <div class="col-md-4 p-2">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h4>Get Free Access of Recorded HD videos of Full training Beginner to Billionaire worth ₹
+                                10000
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 p-2">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h4 style="mx-5">3
+                                mistake of networker recorded session ₹10000 </h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                            <div class="mt-2"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 p-2">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h4>Get FULL Presentation PDF of Beginner To Billionaire workshop
+                                absolutely free worth ₹ 10000
+                            </h4>
                         </div>
                     </div>
                 </div>
@@ -1371,8 +1462,8 @@
                         <div class="col-md-9">
                             <div class="row">
                                 <div class="col-md-4 mt-3 text-center s_bg">
-                                    <img src="{{ asset('assets/img/whos/Sales professionals.jpg') }}" alt="Knsa" width="150px"
-                                        height="200px">
+                                    <img src="{{ asset('assets/img/whos/Sales professionals.jpg') }}" alt="Knsa"
+                                        width="150px" height="200px">
                                 </div>
 
                                 <div class="col-md-4 mt-3 text-center s_bg">
@@ -1386,8 +1477,8 @@
                                 </div>
 
                                 <div class="col-md-4 mt-3 text-center s_bg">
-                                    <img src="{{ asset('assets/img/whos/smallb.jpg') }}"
-                                        alt="Knsa" width="150px" height="200px">
+                                    <img src="{{ asset('assets/img/whos/smallb.jpg') }}" alt="Knsa" width="150px"
+                                        height="200px">
                                 </div>
 
                                 <div class="col-md-4 mt-3 text-center s_bg">
