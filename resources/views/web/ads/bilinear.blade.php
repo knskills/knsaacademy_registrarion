@@ -1463,27 +1463,27 @@
                             <div class="row">
                                 <div class="col-md-4 mt-3 text-center s_bg">
                                     <img src="{{ asset('assets/img/whos/Sales professionals.jpg') }}" alt="Knsa"
-                                        width="150px" height="200px">
+                                        width="200px" height="250px">
                                 </div>
 
                                 <div class="col-md-4 mt-3 text-center s_bg">
-                                    <img src="{{ asset('assets/img/whos/entrp.jpg') }}" alt="Knsa" width="150px"
-                                        height="200px">
+                                    <img src="{{ asset('assets/img/whos/entrp.jpg') }}" alt="Knsa" width="200px"
+                                        height="250px">
                                 </div>
 
                                 <div class="col-md-4 mt-3 text-center s_bg">
-                                    <img src="{{ asset('assets/img/whos/leader.jpg') }}" alt="Knsa" width="150px"
-                                        height="200px">
+                                    <img src="{{ asset('assets/img/whos/leader.jpg') }}" alt="Knsa" width="200px"
+                                        height="250px">
                                 </div>
 
                                 <div class="col-md-4 mt-3 text-center s_bg">
-                                    <img src="{{ asset('assets/img/whos/smallb.jpg') }}" alt="Knsa" width="150px"
-                                        height="200px">
+                                    <img src="{{ asset('assets/img/whos/smallb.jpg') }}" alt="Knsa" width="200px"
+                                        height="250x">
                                 </div>
 
                                 <div class="col-md-4 mt-3 text-center s_bg">
                                     <img src="{{ asset('assets/img/whos/Network marketing professionals.jpg') }}"
-                                        alt="Knsa" width="150px" height="200px">
+                                        alt="Knsa" width="200px" height="250px">
                                 </div>
 
                                 {{-- <div class="col-md-4 mt-3 text-center s_bg">
