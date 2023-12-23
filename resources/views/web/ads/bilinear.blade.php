@@ -985,22 +985,11 @@
                         <h3><span>Who Is</span> Kamal Narayan Sahu</h3>
                     </div>
                     <ul class="text-left">
-                        <li class="mt-2">1) My Identity is KAMAL NARAYAN SAHU And I am Famous as a Youngest CMD of Network Marketing
-                            Industry.</li>
-                        <li class="mt-2">2) I am 31 years Young, Energetic and always ready To Teach and educate People about Top 3
-                            skills Of Success.</li>
-                        <li class="mt-2">3) I have been helping People To look Smart, Stay healthy and achieve Financial Freedom From
-                            Last 8 years</li>
-                        <li class="mt-2">4) I have a very supportive family, its because of My Mothers Blessings and sisters Love, and
-                            Caring of
-                            my elder Brother i am able to live my passion.</li>
-                        <li class="mt-2">5) My achievement is / I have been awarded I am a founder of YTM India (A Direct selling
-                            company)
-                            In an early age of 23 we achieved 100 CR turnover in one financial year 2022-2023.</li>
-                        <li class="mt-2">6) My mission is to help 100 Leaders To become Billionaire Network Marketing Leader by the year
-                            2050.</li>
+                        <li class="mt-2">1) His name is Kamal Narayan Sahu and I am famous as the youngest CMD of Network Marketing Industry.</li>
+                        <li class="mt-2">2) He is 31 years young, and always ready to teach and educate people about the top 3 skills of success.</li>
+                        <li class="mt-2">3) They have been helping people look smarter, stay healthy and achieve financial freedom for the last 8 years</li>
+                        <li class="mt-2">4) His Achievements – He is the founder of YTM India (a direct selling company). At the young age of 23, he achieved a turnover of Rs 100 crore in the financial year 2022-2023.</li>
                     </ul>
-
                 </div>
 
                 <div class="col-lg-4 m-auto" data-aos="fade-up" data-aos-delay="100">
