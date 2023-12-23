@@ -551,7 +551,7 @@
                             </button>
 
                             {{-- <p class="text-white mt-3" id="rp">
-                                Register today to get a bonus of ₹50,000/-
+                                Register today to get a bonus of ₹30,000/-
                             </p> --}}
 
                             <p class="mt-3 text-white">Offer Ends in <span id="timer2"
@@ -896,7 +896,7 @@
                             </button>
 
                             {{-- <p class="text-white mt-3" id="rp">
-                                Register today to get a bonus of ₹50,000/-
+                                Register today to get a bonus of ₹30,000/-
                             </p> --}}
 
                             <p class="mt-3 text-white">Offer Ends in <span id="timer2"
@@ -1091,7 +1091,7 @@
                     <div class="coupon-content text-white">
                         <div class="">
                             <h4 style="color: rgba(0, 0, 139, 0.877);"><b>Communication skill development free pass
-                                    10000</b></h4>
+                                    10,000</b></h4>
                         </div>
                     </div>
                 </div>
@@ -1109,7 +1109,7 @@
                     <div class="card">
                         <div class="card-body text-center">
                             <h4>Get Free Access of Recorded HD videos of Full training Beginner to Billionaire worth ₹
-                                10000
+                                10,000
                             </h4>
                         </div>
                     </div>
@@ -1119,7 +1119,7 @@
                     <div class="card">
                         <div class="card-body text-center">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h4 style="mx-5">3
-                                mistake of networker recorded session ₹10000 </h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                mistake of networker recorded session ₹10,000 </h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                             <div class="mt-2"></div>
                         </div>
@@ -1130,7 +1130,7 @@
                     <div class="card">
                         <div class="card-body text-center">
                             <h4>Get FULL Presentation PDF of Beginner To Billionaire workshop
-                                absolutely free worth ₹ 10000
+                                absolutely free worth ₹ 10,000
                             </h4>
                         </div>
                     </div>
@@ -1143,7 +1143,7 @@
                         </button>
 
                         <p class="text-white mt-3" id="rp">
-                            Register today to get a bonus of ₹50,000/-
+                            Register today to get a bonus of ₹30,000/-
                         </p>
 
                         {{-- <p class="mt-3 text-white">Offer Ends in <span id="timer2"
