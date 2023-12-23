@@ -6,6 +6,8 @@
     <meta name="description"
         content="Embark on a transformative journey from novice to billionaire within the realm of network marketing guided by Kamal Narayan Sahu. Learn proven strategies for exponential growth and assured success in the network marketing industry." />
     <meta name="author" content="" />
+
+    <meta name="google-site-verification" content="JUFL02GuiTUG5SPtb7_7opD5z5TVjYeQL0hdKBda38o" />
 @endsection
 
 @section('title')
