@@ -427,16 +427,14 @@
         li {
             list-style: none;
         }
-    </style>
 
-    <style>
         .enst {
             font-family: 'Merriweather', serif;
         }
 
         #price-img {
             /* width: 100%;
-                            height: 100%; */
+                                height: 100%; */
 
             max-width: 20%;
             max-height: 20%;
@@ -447,6 +445,18 @@
             #repre {
                 display: none;
             }
+        }
+
+        /* CSS for styling b_price on a dark background */
+        #b_price {
+            color: #ffffff;
+            /* Set text color to white or any contrasting color */
+            background-color: #333333;
+            /* Set a dark background color */
+            padding: 4px 8px;
+            /* Add padding for better visibility */
+            border-radius: 4px;
+            /* Optionally, add border-radius for rounded corners */
         }
     </style>
 @endsection
@@ -809,7 +819,7 @@
             </div>
 
             <div class="row mt-4">
-                <div class="col-md-6 mt-5">
+                <div class="col-md-6 mt-1">
                     {{-- <h3><span>Contact Us</span></h3> --}}
                     <p>Explore our courses on <a
                             href="https://www.youtube.com/channel/UCzRxWktCEzHvHNRUAmcWJzA?embeds_referring_euri=http%3A%2F%2F127.0.0.1%3A8001%2F&source_ve_path=MzY5MjU&feature=emb_ch_name_ex"
@@ -985,10 +995,15 @@
                         <h3><span>Who Is</span> Kamal Narayan Sahu</h3>
                     </div>
                     <ul class="text-left">
-                        <li class="mt-2">1) His name is Kamal Narayan Sahu and he is famous as the youngest CMD of network marketing industry.</li>
-                        <li class="mt-2">2) He is 31 years young, and always ready to teach and educate people about the top 3 skills of success.</li>
-                        <li class="mt-2">3) They have been helping people look smarter, stay healthy and achieve financial freedom for the last 8 years</li>
-                        <li class="mt-2">4) His Achievements – He is the founder of YTM India (a direct selling company). At the young age of 23, he achieved a turnover of Rs 100 crore in the financial year 2022-2023.</li>
+                        <li class="mt-2">1) His name is Kamal Narayan Sahu and he is famous as the youngest CMD of
+                            network marketing industry.</li>
+                        <li class="mt-2">2) He is 31 years young, and always ready to teach and educate people about the
+                            top 3 skills of success.</li>
+                        <li class="mt-2">3) They have been helping people look smarter, stay healthy and achieve
+                            financial freedom for the last 8 years</li>
+                        <li class="mt-2">4) His Achievements – He is the founder of YTM India (a direct selling company).
+                            At the young age of 23, he achieved a turnover of Rs 100 crore in the financial year 2022-2023.
+                        </li>
                     </ul>
                 </div>
 
@@ -1037,7 +1052,7 @@
                 <div class="col-md-6 m-auto text-white">
                     <div class="card card-cs mt-3">
                         <div class="card-body">
-                            <h3 class="card-title">Unlock bonus of worth ₹30000</h3>
+                            <h3 class="card-title">Unlock bonus of worth ₹30,000</h3>
                         </div>
                     </div>
                 </div>
@@ -1066,7 +1081,7 @@
         <div class="container">
             <div class="heading_container heading_center mb-3">
                 <h2>
-                    Get Access to ₹30,000/- Bonus
+                    Get Access to <span id="b_price" class="hindi">₹30,000/</span>- Bonus
                 </h2>
             </div>
             <div class="row">
@@ -1100,8 +1115,7 @@
                 <div class="col-md-4 p-2">
                     <div class="card">
                         <div class="card-body text-center">
-                            <h4>Get Free Access of Recorded HD videos of Full training Beginner to Billionaire worth ₹
-                                10,000
+                            <h4>Get Free Access of Recorded <b>HD videos <i class="fa-solid fa-video text-primary"></b></i> of Full training Beginner to Billionaire worth ₹<b>10,000</b>
                             </h4>
                         </div>
                     </div>
@@ -1111,7 +1125,7 @@
                     <div class="card">
                         <div class="card-body text-center">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h4 style="mx-5">3
-                                mistake of networker recorded session ₹10,000 </h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                mistake of networker recorded session ₹<b>10,000</b></h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                             <div class="mt-2"></div>
                         </div>
@@ -1121,8 +1135,8 @@
                 <div class="col-md-4 p-2">
                     <div class="card">
                         <div class="card-body text-center">
-                            <h4>Get FULL Presentation PDF of Beginner To Billionaire workshop
-                                absolutely free worth ₹ 10,000
+                            <h4>Get FULL Presentation <i class="fa-solid fa-file-pdf text-danger"></i> <b>PDF</b> of Beginner To Billionaire workshop
+                                absolutely free worth ₹<b>10,000</b>
                             </h4>
                         </div>
                     </div>
@@ -1187,7 +1201,8 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">आप नेटवर्क मार्केटिंग की सफलता में trust and communication के महत्व को सीखेंगे.</span>
+                            <span class="f18">आप नेटवर्क मार्केटिंग की सफलता में trust and communication के महत्व को
+                                सीखेंगे.</span>
                         </div>
                     </div>
                 </div>
