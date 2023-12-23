@@ -2,9 +2,9 @@
 
 @section('meatdata')
     <meta name="keywords"
-        content="Sales techniques, Shiv Arora, sales strategies, negotiation skills, closing deals, sales mastery, effective selling, sales expertise, sales training, sales education" />
+        content="Beginner to Billionaire,Network Marketing Success,Kamal Narayan Sahu,Exponential Growth Strategies,Guaranteed Success,Network Marketing Business Tips,Entrepreneurial Growth,Wealth Creation Techniques,Business Expansion Tactics,Network Marketing Mastery" />
     <meta name="description"
-        content="Unlock the secrets of successful sales techniques with Shiv Arora's expertise. Explore proven strategies, boost your sales skills, and achieve mastery in closing deals and negotiating effectively." />
+        content="Embark on a transformative journey from novice to billionaire within the realm of network marketing guided by Kamal Narayan Sahu. Learn proven strategies for exponential growth and assured success in the network marketing industry." />
     <meta name="author" content="" />
 @endsection
 
