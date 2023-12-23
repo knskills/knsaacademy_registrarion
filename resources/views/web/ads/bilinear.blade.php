@@ -985,7 +985,7 @@
                         <h3><span>Who Is</span> Kamal Narayan Sahu</h3>
                     </div>
                     <ul class="text-left">
-                        <li class="mt-2">1) His name is Kamal Narayan Sahu and I am famous as the youngest CMD of Network Marketing Industry.</li>
+                        <li class="mt-2">1) His name is Kamal Narayan Sahu and he is famous as the youngest CMD of network marketing industry.</li>
                         <li class="mt-2">2) He is 31 years young, and always ready to teach and educate people about the top 3 skills of success.</li>
                         <li class="mt-2">3) They have been helping people look smarter, stay healthy and achieve financial freedom for the last 8 years</li>
                         <li class="mt-2">4) His Achievements – He is the founder of YTM India (a direct selling company). At the young age of 23, he achieved a turnover of Rs 100 crore in the financial year 2022-2023.</li>
