@@ -1163,7 +1163,7 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">Technique technique to grow your business 10x.</span>
+                            <span class="f18">ग्राहकों को पहचानना है और उनसे जुड़ने के महत्‍वपूर्ण तरीके सीखे</span>
                         </div>
                     </div>
                 </div>
@@ -1171,7 +1171,7 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">Learn advanced skill of Sales.</span>
+                            <span class="f18">strong relationship and supportive network बनाना सीखे.</span>
                         </div>
                     </div>
                 </div>
@@ -1179,7 +1179,7 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">Guarantee to become crorepati if you follow our techniques.</span>
+                            <span class="f18">सोशल मीडिया और डिजिटल मार्केटिंग से नेटवर्क कैसे बनाएं सीखें.</span>
                         </div>
                     </div>
                 </div>
@@ -1187,7 +1187,7 @@
                     <div class="card s_bg">
                         <div class="card-body text-white">
                             <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">Learn how to sell any product and services.</span>
+                            <span class="f18">आप नेटवर्क मार्केटिंग की सफलता में trust and communication के महत्व को सीखेंगे.</span>
                         </div>
                     </div>
                 </div>
