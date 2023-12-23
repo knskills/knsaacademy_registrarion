@@ -8,6 +8,7 @@
     <meta name="author" content="" />
 
     <meta name="google-site-verification" content="JUFL02GuiTUG5SPtb7_7opD5z5TVjYeQL0hdKBda38o" />
+    <meta name="msvalidate.01" content="4B0B39016B338C3058F48C0FCA42DF57" />
 @endsection
 
 @section('title')
