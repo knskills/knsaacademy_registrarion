@@ -434,7 +434,7 @@
 
         #price-img {
             /* width: 100%;
-                                height: 100%; */
+                                    height: 100%; */
 
             max-width: 20%;
             max-height: 20%;
@@ -1115,7 +1115,8 @@
                 <div class="col-md-4 p-2">
                     <div class="card">
                         <div class="card-body text-center">
-                            <h4>Get Free Access of Recorded <b>HD videos <i class="fa-solid fa-video text-primary"></b></i> of Full training Beginner to Billionaire worth ₹<b>10,000</b>
+                            <h4>Get Free Access of Recorded <b>HD videos <i class="fa-solid fa-video text-primary"></b></i>
+                                of Full training Beginner to Billionaire worth ₹<b>10,000</b>
                             </h4>
                         </div>
                     </div>
@@ -1135,7 +1136,8 @@
                 <div class="col-md-4 p-2">
                     <div class="card">
                         <div class="card-body text-center">
-                            <h4>Get FULL Presentation <i class="fa-solid fa-file-pdf text-danger"></i> <b>PDF</b> of Beginner To Billionaire workshop
+                            <h4>Get FULL Presentation <i class="fa-solid fa-file-pdf text-danger"></i> <b>PDF</b> of
+                                Beginner To Billionaire workshop
                                 absolutely free worth ₹<b>10,000</b>
                             </h4>
                         </div>
@@ -1350,7 +1352,7 @@
     <!-- end about section -->
 
     <!-- Review section -->
-    <section class="client_section layout_padding">
+    {{-- <section class="client_section layout_padding">
         <div class="container ">
             <div class="heading_container heading_center">
                 <h2>
@@ -1449,6 +1451,141 @@
                 </div>
             </div>
         </div>
+    </section> --}}
+
+    <section>
+        <div class="heading_container heading_center mt-3">
+            <h2>
+                What Are People Saying About Training Event?
+            </h2>
+        </div>
+
+        <div class="row text-center m-3">
+            <div class="col-md-4 mb-5 mb-md-0">
+                <div class="d-flex justify-content-center mb-4">
+                    <img src="{{ asset('assets/img/team/dharmendra.jpeg') }}"
+                        class="rounded-circle shadow-1-strong" width="150" height="150" />
+                </div>
+                <h5 class="mb-3">Dharmendra Yadav</h5>
+                {{-- <h6 class="text-primary mb-3">Web Developer</h6> --}}
+                <p class="px-xl-3">
+                    <i class="fas fa-quote-left pe-2"></i>I recently had the opportunity to attend a training session at Skill Academy on network
+                    marketing and I must say, it was a game changer for me. The session was conducted by
+                    experienced and knowledgeable trainers who were able to break down the complex concepts
+                    of network marketing into simple and easy to understand terms.
+                </p>
+                <ul class="list-unstyled d-flex justify-content-center mb-0">
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star-half-alt fa-sm text-warning"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4 mb-5 mb-md-0">
+                <div class="d-flex justify-content-center mb-4">
+                    <img src="{{ asset('assets/img/team/WhatsApp Image 2023-09-09 at 11.55.46 AM (1).jpeg') }}"
+                        class="rounded-circle shadow-1-strong" width="150" height="150" />
+                </div>
+                <h5 class="mb-3">Manteshwar</h5>
+                {{-- <h6 class="text-primary mb-3">Graphic Designer</h6> --}}
+                <p class="px-xl-3">
+                    <i class="fas fa-quote-left pe-2"></i>The first thing that struck me about Skill Academy was their dedication to providing
+                    quality education and training. The trainers were not just there to sell their products
+                    or services, but genuinely wanted to help us improve our skills and succeed in the
+                    network marketing industry. They were patient, approachable, and always willing to
+                    answer any questions we had.
+                </p>
+                <ul class="list-unstyled d-flex justify-content-center mb-0">
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4 mb-5 mb-md-0">
+                <div class="d-flex justify-content-center mb-4">
+                    <img src="{{ asset('assets/img/team/WhatsApp Image 2023-09-09 at 11.54.57 AM.jpeg') }}"
+                        class="rounded-circle shadow-1-strong" width="150" height="150" />
+                </div>
+                <h5 class="mb-3">Panku Sharma</h5>
+                {{-- <h6 class="text-primary mb-3">Graphic Designer</h6> --}}
+                <p class="px-xl-3">
+                    <i class="fas fa-quote-left pe-2"></i>The training itself was well-structured and covered all aspects of network marketing,
+                    from understanding the concept and benefits to practical tips on how to succeed. The
+                    trainers used real-life examples and case studies to illustrate their points, making it
+                    easier for us to relate and apply the knowledge in our own business.
+                </p>
+                <ul class="list-unstyled d-flex justify-content-center mb-0">
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                </ul>
+            </div>
+            {{-- <div class="col-md-4 mb-0">
+                <div class="d-flex justify-content-center mb-4">
+                    <img src="{{ asset('assets/img/team/ramprasad.jpeg') }}"
+                        class="rounded-circle shadow-1-strong" width="150" height="150" />
+                </div>
+                <h5 class="mb-3">Dayanand Prasad</h5>
+                <p class="px-xl-3">
+                    <i class="fas fa-quote-left pe-2"></i>The training itself was well-structured and covered all aspects of network marketing,
+                    from understanding the concept and benefits to practical tips on how to succeed. The
+                    trainers used real-life examples and case studies to illustrate their points, making it
+                    easier for us to relate and apply the knowledge in our own business.
+                </p>
+                <ul class="list-unstyled d-flex justify-content-center mb-0">
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-warning"></i>
+                    </li>
+                    <li>
+                        <i class="far fa-star fa-sm text-warning"></i>
+                    </li>
+                </ul>
+            </div> --}}
+        </div>
     </section>
     <!-- end client section -->
 
@@ -1492,14 +1629,7 @@
                                     <img src="{{ asset('assets/img/whos/Network marketing professionals.jpg') }}"
                                         alt="Knsa" width="200px" height="250px">
                                 </div>
-
-                                {{-- <div class="col-md-4 mt-3 text-center s_bg">
-                                    <img src="{{ asset('assets/img/whos/Network marketing professionals.jpg') }}"
-                                        alt="Knsa" width="150px" height="200px">
-                                </div> --}}
                             </div>
-
-                            {{-- <h3>Network marketing professionals , Entrepreneurs, Small Business Owner, Leaders, Sales professionals</h3> --}}
                         </div>
                     </div>
                 </div>
