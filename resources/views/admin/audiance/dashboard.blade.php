@@ -30,8 +30,13 @@
                                     First event
                                 </a>
                             </li>
-                            <li role="presentation">
+                            {{-- <li role="presentation">
                                 <a class="dropdown-item" href="{{ route('audiences', ['event' => 'art of sale']) }}">
+                                    Art of sale
+                                </a>
+                            </li> --}}
+                            <li role="presentation">
+                                <a class="dropdown-item" href="{{ route('audiences', ['event' => 'beginner_to_billionaire']) }}">
                                     Art of sale
                                 </a>
                             </li>

@@ -504,7 +504,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Duration</span><br>
-                                        <span class="big-bold-text">2 Hours</span>
+                                        <span class="big-bold-text">1 Hour</span>
                                     </div>
                                 </div>
                             </div>
@@ -536,7 +536,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Date</span><br>
-                                        <span class="big-bold-text">30 Dec 2023</span>
+                                        <span class="big-bold-text">1 Jan 2024</span>
                                     </div>
                                 </div>
                             </div>
@@ -551,7 +551,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Time</span><br>
-                                        <span class="big-bold-text">7PM to 9PM</span>
+                                        <span class="big-bold-text">7PM to 8PM</span>
                                     </div>
                                 </div>
                             </div>
@@ -560,7 +560,7 @@
                     <div class="row mt-2">
                         <div class="col-12 text-center mt-3">
                             <button type="button" class="save-my-seat-now-button payment">
-                                SAVE MY SEAT NOW FOR ₹199
+                                Book Now Your Free Seat
                             </button>
 
                             {{-- <p class="text-white mt-3" id="rp">
@@ -847,7 +847,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Duration</span><br>
-                                        <span class="big-bold-text">2 Hours</span>
+                                        <span class="big-bold-text">1 Hour</span>
                                     </div>
                                 </div>
                             </div>
@@ -879,7 +879,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Date</span><br>
-                                        <span class="big-bold-text">31 Dec 2023</span>
+                                        <span class="big-bold-text">1 Jan 2024</span>
                                     </div>
                                 </div>
                             </div>
@@ -895,7 +895,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Time</span><br>
-                                        <span class="big-bold-text">7PM to 9PM</span>
+                                        <span class="big-bold-text">7PM to 8PM</span>
                                     </div>
                                 </div>
                             </div>
@@ -905,7 +905,7 @@
                     <div class="row mt-2">
                         <div class="col-12 text-center mt-3">
                             <button type="button" class="save-my-seat-now-button payment">
-                                SAVE MY SEAT NOW FOR ₹199
+                                Book Now Your Free Seat
                             </button>
 
                             {{-- <p class="text-white mt-3" id="rp">
@@ -1147,7 +1147,7 @@
                 <div class="row mt-5 m-auto">
                     <div class="col-12 text-center mt-5">
                         <button type="button" class="save-my-seat-now-button payment">
-                            SAVE MY SEAT NOW FOR ₹199
+                            Book Now Your Free Seat
                         </button>
 
                         <p class="text-white mt-3" id="rp">
@@ -1213,7 +1213,7 @@
             <div class="row m-auto">
                 <div class="col-12 text-center">
                     <button type="button" class="save-my-seat-now-button text-center payment">
-                        <span class="mx-5 text-center">SAVE MY SEAT NOW FOR ₹199</span> <br>
+                        <span class="mx-5 text-center">Book Now Your Free Seat</span> <br>
                         <small class="mx-5 text-center">Registration is limited</small>
                     </button>
                 </div>
@@ -1641,7 +1641,7 @@
             <div class="row m-auto">
                 <div class="col-12 text-center">
                     <button type="button" class="save-my-seat-now-button text-center payment">
-                        <span class="mx-5 text-center">SAVE MY SEAT NOW FOR ₹199</span> <br>
+                        <span class="mx-5 text-center">Book Now Your Free Seat</span> <br>
                         <small class="mx-5 text-center">Registration is limited</small>
                     </button>
                 </div>

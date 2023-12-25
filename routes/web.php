@@ -38,7 +38,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/audience/{audience}', [AudienceController::class, 'adminShow'])->name('audience.show');
     Route::get('/admin/audience/{audience}/edit', [AudienceController::class, 'adminEdit'])->name('audience.edit');
     Route::put('/admin/audience/{audience}', [AudienceController::class, 'adminUpdate'])->name('audience.update');
-    Route::delete('/admin/audience/{audience}', [AudienceController::class, 'adminDestroy'])->name('audience.destroy');
+    // Route::delete('/admin/audience/{audience}', [AudienceController::class, 'adminDestroy'])->name('audience.destroy');
+    Route::delete('/admin/audience/{audience}', [AudienceController::class, 'destroy'])->name('audience.destroy');
     Route::get('/audiences', [App\Http\Controllers\AudienceController::class, 'index'])->name('audiences');
 
     Route::resource('events', EventController::class);
