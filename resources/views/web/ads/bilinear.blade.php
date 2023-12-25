@@ -1651,9 +1651,9 @@
     <!-- end Who should attend this session? section -->
 
     <!-- Register Modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reg_model_t">
+    {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reg_model_t">
         Launch demo modal
-    </button>
+    </button> --}}
 
     <div class="modal fade" id="reg_model_t" tabindex="-1" aria-labelledby="reg_model" aria-hidden="true">
         <div class="modal-dialog">
