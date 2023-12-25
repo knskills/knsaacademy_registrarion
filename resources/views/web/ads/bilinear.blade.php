@@ -434,7 +434,7 @@
 
         #price-img {
             /* width: 100%;
-                                    height: 100%; */
+                                            height: 100%; */
 
             max-width: 20%;
             max-height: 20%;
@@ -1463,13 +1463,14 @@
         <div class="row text-center m-3">
             <div class="col-md-4 mb-5 mb-md-0">
                 <div class="d-flex justify-content-center mb-4">
-                    <img src="{{ asset('assets/img/team/dharmendra.jpeg') }}"
-                        class="rounded-circle shadow-1-strong" width="150" height="150" />
+                    <img src="{{ asset('assets/img/team/dharmendra.jpeg') }}" class="rounded-circle shadow-1-strong"
+                        width="150" height="150" />
                 </div>
                 <h5 class="mb-3">Dharmendra Yadav</h5>
                 {{-- <h6 class="text-primary mb-3">Web Developer</h6> --}}
                 <p class="px-xl-3">
-                    <i class="fas fa-quote-left pe-2"></i>I recently had the opportunity to attend a training session at Skill Academy on network
+                    <i class="fas fa-quote-left pe-2"></i>I recently had the opportunity to attend a training session at
+                    Skill Academy on network
                     marketing and I must say, it was a game changer for me. The session was conducted by
                     experienced and knowledgeable trainers who were able to break down the complex concepts
                     of network marketing into simple and easy to understand terms.
@@ -1500,7 +1501,8 @@
                 <h5 class="mb-3">Manteshwar</h5>
                 {{-- <h6 class="text-primary mb-3">Graphic Designer</h6> --}}
                 <p class="px-xl-3">
-                    <i class="fas fa-quote-left pe-2"></i>The first thing that struck me about Skill Academy was their dedication to providing
+                    <i class="fas fa-quote-left pe-2"></i>The first thing that struck me about Skill Academy was their
+                    dedication to providing
                     quality education and training. The trainers were not just there to sell their products
                     or services, but genuinely wanted to help us improve our skills and succeed in the
                     network marketing industry. They were patient, approachable, and always willing to
@@ -1532,7 +1534,8 @@
                 <h5 class="mb-3">Panku Sharma</h5>
                 {{-- <h6 class="text-primary mb-3">Graphic Designer</h6> --}}
                 <p class="px-xl-3">
-                    <i class="fas fa-quote-left pe-2"></i>The training itself was well-structured and covered all aspects of network marketing,
+                    <i class="fas fa-quote-left pe-2"></i>The training itself was well-structured and covered all aspects
+                    of network marketing,
                     from understanding the concept and benefits to practical tips on how to succeed. The
                     trainers used real-life examples and case studies to illustrate their points, making it
                     easier for us to relate and apply the knowledge in our own business.
@@ -1646,6 +1649,67 @@
         </div>
     </section>
     <!-- end Who should attend this session? section -->
+
+    <!-- Register Modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reg_model_t">
+        Launch demo modal
+    </button>
+
+    <div class="modal fade" id="reg_model_t" tabindex="-1" aria-labelledby="reg_model" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reg_model"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h5 class="card-title mb-3">Registration Form</h5>
+                        </div>
+
+                        <div class="alert alert-success" id="success" style="display: none">
+                        </div>
+
+                        <div class="alert alert-danger" style="display: none" id="err_div">
+                            <ul id="errors">
+
+                            </ul>
+                        </div>
+
+                        <form method="post" id="registration">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder=""
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder=""
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Contact Number</label>
+                                <input type="text" class="form-control" id="phone"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')" minlength="10"
+                                    name="phone" maxlength="10" placeholder="" required>
+                            </div>
+                            <button class="btn btn-primary float-right" type="button" id="submit">
+                                Submit
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                {{-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div> --}}
+            </div>
+        </div>
+    </div>
+    <!-- end Register Modal -->
 
     <!-- Register Now button -->
     <div class="register-btn" id="registerButton">
@@ -1786,8 +1850,83 @@
     <script>
         $('.payment').click(function() {
             // window.location.href = "{{ route('audience.store') }}";
-            window.location.href = "https://rzp.io/l/o2gu6qrn";
+            // window.location.href = "https://rzp.io/l/o2gu6qrn";
 
+            // open reg_model_t modal
+            $('#reg_model_t').modal('show');
+
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#submit').click(function() {
+                var name = $('#name').val();
+                var email = $('#email').val();
+                var phone = $('#phone').val();
+
+                $.ajax({
+                    url: "{{ route('audience.store') }}",
+                    type: "POST",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        name: name,
+                        email: email,
+                        phone: phone,
+                        event_name: 'beginner_to_billionaire',
+                    },
+                    success: function(response) {
+                        $('#registration')[0].reset();
+                        $('#submit').attr('disabled', false);
+                        $('#submit').html('Submit');
+                        $('#success').show();
+                        $('#success').html(response.message);
+                        if (response.message) {
+                            // $('#confirm_msg').modal('show');
+
+                            let whatsapp_route = '{{ route('whatsapp') }}'
+
+                            // go to whatsapp page
+                            // window.location.href = whatsapp_route + "?name=" + name + "&email=" + email + "&phone=" + phone + "&event_name=beginner_to_billionaire";
+                            window.location.href = whatsapp_route;
+
+                        } else if (response.errors) {
+                            let errors = response.errors;
+
+                            $('#success').hide();
+                            $('#err_div').show();
+                            $('#errors').html('');
+                            $('#errors').parent().hide();
+                            $.each(errors, function(key, value) {
+                                $('#errors').parent().show();
+                                $('#errors').append('<li>' + value + '</li>');
+                            });
+                            $('#err_div').show();
+
+                        }
+                        setTimeout(function() {
+                            $('.alert').hide();
+                        }, 5000);
+                    },
+                    error: function(response) {
+                        $('#errors').html('');
+                        $('#errors').parent().hide();
+                        $('#submit').attr('disabled', false);
+                        $('#submit').html('Submit');
+                        $.each(response.responseJSON.errors, function(key, value) {
+                            $('#errors').parent().show();
+                            $('#errors').append('<li>' + value + '</li>');
+                        });
+
+                        $('.alert').removeClass('alert-success');
+                        $('.alert').addClass('alert-danger');
+                        setTimeout(function() {
+                            $('.alert').hide();
+                        }, 3000);
+
+                    }
+                });
+            });
         });
     </script>
 @endsection

@@ -85,10 +85,12 @@ class AudienceController extends Controller
             // });
 
             // Mail using template file
-            Mail::send('web.resMail', ['name' => $request->name], function ($message) use ($request) {
-                $message->to($request->email)
-                    ->subject('Audience Registration');
-            });
+            if ($request->email) {
+                Mail::send('web.resMail', ['name' => $request->name], function ($message) use ($request) {
+                    $message->to($request->email)
+                        ->subject('Audience Registration');
+                });
+            }
 
             // return redirect()->back()->with('success', 'Audience created successfully');
             return response()->json([

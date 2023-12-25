@@ -69,15 +69,15 @@
                     <a href="tel:+919343643552">+91 9343643552</a>
                 </i>
             </div>
-            <div class="social-links d-none d-md-flex align-items-center">
-                {{-- <a href="#" class="twitter"><i class="bi bi-twitter"></i></a> --}}
+            {{-- <div class="social-links d-none d-md-flex align-items-center">
+                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                 <a href="https://www.facebook.com/p/KAMAL-NARAYAN-SAHU-100063653929924/" class="facebook"><i
                         class="bi bi-facebook"></i></a>
                 <a href="https://www.instagram.com/kamal_narayan_sahu/?hl=en" class="instagram"><i
                         class="bi bi-instagram"></i></a>
                 <a href="https://www.linkedin.com/in/kamal-narayan-sahu-34003983/?originalSubdomain=in"
                     class="linkedin"><i class="bi bi-linkedin"></i></i></a>
-            </div>
+            </div> --}}
         </div>
     </section>
 
@@ -108,12 +108,14 @@
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <a href="https://chat.whatsapp.com/IshpBcPJjM21Qok48SjlAX"
+                                        <a href="https://chat.whatsapp.com/EtYrruY9dsp5EY1QWbegzQ"
                                             class="btn btn-success">Join
                                             Whatsapp Group</a>
                                     </div>
                                     <div class="col-md-6">
-                                        <a href="{{ url('/') }}" class="btn btn-primary float-end">Back</a>
+                                        {{-- <a href="{{ url('/') }}" class="btn btn-primary float-end">Back</a> --}}
+
+                                        <a href="{{ route('billionaire') }}" class="btn btn-primary float-end">Back</a>
                                     </div>
                                 </div>
                             </div>
@@ -131,9 +133,9 @@
         <div class="container py-4">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="copyright">
+                    {{-- <div class="copyright">
                         &copy; Copyright <strong><span>Kamal Narayan Sahu</span></strong>. All Rights Reserved
-                    </div>
+                    </div> --}}
 
                     <div class="float-end">
                         <a href="{{ route('terms') }}" class="ml-3">Term & Conditions</a>,
