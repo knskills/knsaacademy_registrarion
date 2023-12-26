@@ -536,7 +536,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Date</span><br>
-                                        <span class="big-bold-text">1 Jan 2024</span>
+                                        <span class="big-bold-text">2 Jan 2024</span>
                                     </div>
                                 </div>
                             </div>
@@ -879,7 +879,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Date</span><br>
-                                        <span class="big-bold-text">1 Jan 2024</span>
+                                        <span class="big-bold-text">2 Jan 2024</span>
                                     </div>
                                 </div>
                             </div>
@@ -1716,10 +1716,10 @@
         <div class="row">
             <div class="col-md-6 text-center" id="gh">
                 <div class="hindi" id="cs1">
-                    <span class="" style="" id="mprice">
+                    {{-- <span class="" style="" id="mprice">
                         ₹199
-                    </span>
-                    {{-- <img src="{{ asset('assets/img/free3.png') }}" alt="knsa" class="img-fluid" id="price-img"> --}}
+                    </span> --}}
+                    <img src="{{ asset('assets/img/free3.png') }}" alt="knsa" class="img-fluid" id="price-img">
                     <sub>
                         <span class="twt" style="">
                             <del>₹1999</del>
