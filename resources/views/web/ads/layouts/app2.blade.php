@@ -45,9 +45,11 @@
     {{-- <link rel="stylesheet" href="{{ asset('assets/gaurd/css/custom.css') }}"> --}}
 
 
-    <!-- responsive style -->
+    <!-- Responsive style -->
     <link href="{{ url('assets/gaurd/css/responsive.css') }}" rel="stylesheet" />
 
+    <!-- Facebook meta tags -->
+    <meta name="facebook-domain-verification" content="v15nfn4tot57f46sv6e1uway7qqiue" />
     @yield('style')
 </head>
 
