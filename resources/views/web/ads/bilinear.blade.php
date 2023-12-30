@@ -1146,19 +1146,19 @@
 
                 <div class="col-md-4">
                     <div class="card">
-                            <img src="{{asset('assets/gaurd/offer/first_offer.jpeg')}}" alt="knsa" class="img-fluid p-2">
+                            <img src="{{asset('assets/gaurd/offer/first_offer.jpeg')}}" alt="knsa" class="img-fluid p-1">
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <div class="card">
-                            <img src="{{asset('assets/gaurd/offer/second_offer.jpeg')}}" alt="knsa" class="img-fluid p-2">
+                            <img src="{{asset('assets/gaurd/offer/second_offer.jpeg')}}" alt="knsa" class="img-fluid p-1">
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <div class="card">
-                            <img src="{{asset('assets/gaurd/offer/third_offer.jpeg')}}" alt="knsa" class="img-fluid p-2">
+                            <img src="{{asset('assets/gaurd/offer/third_offer.jpeg')}}" alt="knsa" class="img-fluid p-1">
                     </div>
                 </div>
 
