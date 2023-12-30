@@ -486,7 +486,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="video-container">
                         <iframe id="yframe"
-                            src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=0&controls=0&&showinfo=0&loop=1&modestbranding=0"
+                            src="https://www.youtube.com/embed/nLxiVgG22tE?si=eJ4aNuazEjuBi26I?rel=0?version=3&autoplay=0&controls=0&&showinfo=0&loop=1&modestbranding=0"
                             frameborder="0"
                             allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
@@ -955,7 +955,7 @@
                 <div class="col-md-6 m-auto">
                     <div class="video-container mt-3">
                         <iframe id="yframe"
-                            src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=0&controls=0&&showinfo=0&loop=1"
+                            src="https://www.youtube.com/embed/nLxiVgG22tE?si=eJ4aNuazEjuBi26I?rel=0?version=3&autoplay=0&controls=0&&showinfo=0&loop=1"
                             frameborder="0"
                             allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
@@ -965,7 +965,7 @@
                 <div class="col-md-6 m-auto">
                     <div class="video-container mt-3">
                         <iframe id="yframe"
-                            src="https://www.youtube.com/embed/6Xr8UZiA7Zg?si=FgHjIjw61Q2FZKdV?rel=0?version=3&autoplay=0&controls=0&&showinfo=0&loop=1"
+                            src="https://www.youtube.com/embed/nLxiVgG22tE?si=eJ4aNuazEjuBi26I?rel=0?version=3&autoplay=0&controls=0&&showinfo=0&loop=1"
                             frameborder="0"
                             allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
