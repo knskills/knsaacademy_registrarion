@@ -1112,7 +1112,7 @@
                     </div>
                 </div> --}}
 
-                <div class="col-md-4 p-2">
+                {{-- <div class="col-md-4 p-2">
                     <div class="card">
                         <div class="card-body text-center">
                             <h4>Get Free Access of Recorded <b>HD videos <i class="fa-solid fa-video text-primary"></b></i>
@@ -1141,6 +1141,24 @@
                                 absolutely free worth ₹<b>10,000</b>
                             </h4>
                         </div>
+                    </div>
+                </div> --}}
+
+                <div class="col-md-4">
+                    <div class="card">
+                            <img src="{{asset('assets/gaurd/offer/first_offer.jpeg')}}" alt="knsa" class="img-fluid p-2">
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                            <img src="{{asset('assets/gaurd/offer/second_offer.jpeg')}}" alt="knsa" class="img-fluid p-2">
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                            <img src="{{asset('assets/gaurd/offer/third_offer.jpeg')}}" alt="knsa" class="img-fluid p-2">
                     </div>
                 </div>
 
