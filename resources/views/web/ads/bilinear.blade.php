@@ -1715,7 +1715,7 @@
                         <form method="post" id="registration" action="{{route('audience.store')}}">
                             @csrf
                             <div class="mb-3">
-                                <input type="text" name="event_name" id="event_name" value="beginner_to_billionaire">
+                                <input type="hidden" name="event_name" id="event_name" value="beginner_to_billionaire">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="name" name="name" placeholder=""
                                     required>
