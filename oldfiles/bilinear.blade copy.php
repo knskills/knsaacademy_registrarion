@@ -1712,10 +1712,8 @@
                             </ul>
                         </div>
 
-                        <form method="post" id="registration" action="{{route('audience.store')}}">
-                            @csrf
+                        <form method="post" id="registration">
                             <div class="mb-3">
-                                <input type="text" name="event_name" id="event_name" value="beginner_to_billionaire">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="name" name="name" placeholder=""
                                     required>
@@ -1731,7 +1729,7 @@
                                     oninput="this.value = this.value.replace(/[^0-9]/g, '')" minlength="10"
                                     name="phone" maxlength="10" placeholder="" required>
                             </div>
-                            <button class="btn btn-primary float-right" type="submit" id="submit">
+                            <button class="btn btn-primary float-right" type="button" id="submit">
                                 Submit
                             </button>
                         </form>
@@ -1893,7 +1891,7 @@
         });
     </script>
 
-    {{-- <script>
+    <script>
         $(document).ready(function() {
             $('#submit').click(function() {
                 var name = $('#name').val();
@@ -1963,5 +1961,5 @@
                 });
             });
         });
-    </script> --}}
+    </script>
 @endsection
