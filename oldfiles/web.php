@@ -20,17 +20,8 @@ use App\Http\Controllers\PageController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('web.home');
-// });
 Route::view('/mailtest', 'web.resMail');
 Route::post('/audience', [AudienceController::class, 'store'])->name('audience.store'); // first
-// Route::post('/audience', [AutianceSecondController::class, 'store'])->name('audience.store'); // second
-// Route::get('/audience', [AudienceController::class, 'index'])->name('audience.index');
-// Route::get('/audience/{audience}', [AudienceController::class, 'show'])->name('audience.show');
-// Route::get('/audience/{audience}/edit', [AudienceController::class, 'edit'])->name('audience.edit');
-// Route::put('/audience/{audience}', [AudienceController::class, 'update'])->name('audience.update');
-// Route::delete('/audience/{audience}', [AudienceController::class, 'destroy'])->name('audience.destroy');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', [AudienceController::class, 'admin'])->name('admin');
