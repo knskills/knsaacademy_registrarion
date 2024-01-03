@@ -70,5 +70,9 @@ Route::get('lang/change', [LangController::class, 'change'])->name('changeLang')
 
 //======================= Pages =======================//
 Route::get('/beginnertobillionaire', [PageController::class, 'beginnertobillionaire'])->name('beginnertobillionaire');
-Route::get('/', [PageController::class, 'sales'])->name('sales');
+// Route::get('/', [PageController::class, 'sales'])->name('sales');
 Route::get('/beginnerobillionaire', [PageController::class, 'billionaire'])->name('billionaire');
+
+Route::get('/', function () {
+    return redirect('/beginnerobillionaire');
+})->name('register');
