@@ -536,7 +536,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Date</span><br>
-                                        <span class="big-bold-text">2 Jan 2024</span>
+                                        <span class="big-bold-text">9 Jan 2024</span>
                                     </div>
                                 </div>
                             </div>
@@ -879,7 +879,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Date</span><br>
-                                        <span class="big-bold-text">2 Jan 2024</span>
+                                        <span class="big-bold-text">9 Jan 2024</span>
                                     </div>
                                 </div>
                             </div>
