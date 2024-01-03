@@ -244,6 +244,11 @@
             font-weight: bold;
         }
 
+        .big2-bold-text {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
         /* Default styles for larger screens */
         #m1 {
             font-size: 30px;
@@ -273,6 +278,11 @@
 
             .big-bold-text {
                 font-size: 12px;
+                font-weight: bold;
+            }
+
+            .big2-bold-text {
+                font-size: 11px;
                 font-weight: bold;
             }
 
@@ -330,6 +340,11 @@
 
             .big-bold-text {
                 font-size: 12px;
+                font-weight: bold;
+            }
+
+            .big2-bold-text {
+                font-size: 11px;
                 font-weight: bold;
             }
 
@@ -536,7 +551,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Date</span><br>
-                                        <span class="big-bold-text" style="font-size: 22px;">9 & 16 Jan 2024</span>
+                                        <span class="big2-bold-text">9 & 16 Jan 2024</span>
                                     </div>
                                 </div>
                             </div>
@@ -879,7 +894,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Date</span><br>
-                                        <span class="big-bold-text text-center" style="font-size: 20px;">9 & 16 Jan 2024</span>
+                                        <span class="big2-bold-text text-center">9 & 16 Jan 2024</span>
                                     </div>
                                 </div>
                             </div>
