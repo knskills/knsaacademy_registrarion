@@ -58,8 +58,8 @@
                                         <th>Email</th>
                                         <th class="numeric">Phone</th>
                                         <th>Event</th>
-                                        <th>Event Date</th>
-                                        <th>Event Time</th>
+                                        <th>Register Date</th>
+                                        <th>Register Time</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
