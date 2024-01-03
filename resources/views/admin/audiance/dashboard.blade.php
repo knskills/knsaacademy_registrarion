@@ -37,7 +37,7 @@
                             </li> --}}
                             <li role="presentation">
                                 <a class="dropdown-item" href="{{ route('audiences', ['event' => 'beginner_to_billionaire']) }}">
-                                    Art of sale
+                                    Beginner to Billionaire
                                 </a>
                             </li>
                             <li role="presentation">
