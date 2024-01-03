@@ -58,8 +58,8 @@
                                         <th>Email</th>
                                         <th class="numeric">Phone</th>
                                         <th>Event</th>
-                                        <th>Register Date</th>
-                                        <th>Register Time</th>
+                                        <th class="text-center">Register Date</th>
+                                        <th class="text-center">Register Time</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -71,10 +71,10 @@
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->phone }}</td>
                                             <td>{{ $item->event_name }}</td>
-                                            <td>
+                                            <td class="text-center">
                                                 {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 {{ \Carbon\Carbon::parse($item->created_at)->format('h:i A') }}
                                             <td>
                                                 {{-- <a href="{{ route('admin.audiance.show', $item->id) }}"
