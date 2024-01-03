@@ -49,7 +49,7 @@
                     <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
                 </div>
                 <!--logo start-->
-                <a href="{{ route('audiences') }}" class="logo"><b>YASHIKA TRADING</b></a>
+                <a href="{{ route('audiences') }}" class="logo"><b>KNSA Academy</b></a>
                 <div class="top-menu">
                     <ul class="nav pull-right top-menu">
                         <li>
