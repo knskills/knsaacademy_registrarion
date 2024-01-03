@@ -58,6 +58,8 @@
                                         <th>Email</th>
                                         <th class="numeric">Phone</th>
                                         <th>Event</th>
+                                        <th>Event Date</th>
+                                        <th>Event Time</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -69,6 +71,11 @@
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->phone }}</td>
                                             <td>{{ $item->event_name }}</td>
+                                            <td>
+                                                {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}
+                                            </td>
+                                            <td>
+                                                {{ \Carbon\Carbon::parse($item->created_at)->format('h:i A') }}
                                             <td>
                                                 {{-- <a href="{{ route('admin.audiance.show', $item->id) }}"
                                                     class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
