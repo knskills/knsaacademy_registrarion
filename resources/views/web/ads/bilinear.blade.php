@@ -1766,8 +1766,8 @@
                     Offer Ends in <span id="timer" class="text-warning font-weight-bold"></span> Mins
                 </div>
             </div>
-            <div class="col-md-6 text-center">
-                <button type="button" class="reg_btn payment">
+            <div class="col-md-6 text-center m-auto">
+                <button type="button" class="reg_btn payment m-auto">
                     Register Now
                 </button>
             </div>
