@@ -82,7 +82,7 @@
                                                 <a href="{{ route('admin.audiance.edit', $item->id) }}"
                                                     class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i>
                                                 </a> --}}
-                                                <form action="{{ route('audience.destroy', $item->id) }}" method="POST"
+                                                {{-- <form action="{{ route('audience.destroy', $item->id) }}" method="POST"
                                                     style="display: inline">
                                                     @csrf
                                                     @method('DELETE')
@@ -90,7 +90,7 @@
                                                         onclick="return confirm('Are you sure delete this item? ')">
                                                         <i class="fa fa-trash-o "></i>
                                                     </button>
-                                                </form>
+                                                </form> --}}
                                             </td>
                                         </tr>
                                     @endforeach
