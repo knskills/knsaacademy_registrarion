@@ -33,7 +33,7 @@
                                         <th>Sr No.</th>
                                         <th>Name</th>
                                         <th>Email</th>
-                                        <th class="numeric">Phone</th>
+                                        <th>Phone</th>
                                         <th>Event</th>
                                         <th class="text-center">Register Date</th>
                                         <th class="text-center">Register Time</th>
@@ -65,7 +65,7 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-xs"
                                                         onclick="return confirm('Are you sure delete this item? ')">
-                                                        <i class="fa fa-trash-o "></i>
+                                                        <i class="bi bi-trash "></i>
                                                     </button>
                                                 </form>
                                             </td>
