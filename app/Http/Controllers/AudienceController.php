@@ -78,13 +78,13 @@ class AudienceController extends Controller
             $audience->event_name = $request->event_name;
             $audience->save();
 
-            // // Mail using template file
-            // if ($request->email) {
-            //     Mail::send('web.resMail', ['name' => $request->name], function ($message) use ($request) {
-            //         $message->to($request->email)
-            //             ->subject('Audience Registration');
-            //     });
-            // }
+            // Mail using template file
+            if ($request->email) {
+                Mail::send('web.resMail', ['name' => $request->name], function ($message) use ($request) {
+                    $message->to($request->email)
+                        ->subject('Audience Registration');
+                });
+            }
 
             return redirect()->route('whatsapp');
         } catch (\Exception $e) {
