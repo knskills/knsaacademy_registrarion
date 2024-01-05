@@ -6,7 +6,7 @@
             <h1>Audiance</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{route('audience')}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('audience') }}">Home</a></li>
                     <li class="breadcrumb-item">Audiance List</li>
                 </ol>
             </nav>
@@ -18,7 +18,35 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Audiance</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="card-title">Audiance</h5>
+                                </div>
+
+                                <div class="col-md-6 mt-2 float-end text-end">
+
+                                    <!-- Example single danger button -->
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-danger dropdown-toggle"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            Filter by event
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item"
+                                                href="{{ route('audiences', ['event' => 'first event']) }}">
+                                                First event
+                                            </a></li>
+                                            <li><a class="dropdown-item"
+                                                href="{{ route('audiences', ['event' => 'beginner_to_billionaire']) }}">
+                                                Beginner to Billionaire
+                                            </a></li>
+                                            <li><a class="dropdown-item" href="{{ route('audiences') }}">
+                                                Reset
+                                            </a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
 
                             @if (session('success'))
                                 <div class="alert alert-success">
@@ -59,7 +87,7 @@
                                                 <a href="{{ route('admin.audiance.edit', $item->id) }}"
                                                     class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i>
                                                 </a> --}}
-                                                <form action="{{ route('audience.destroy', $item->id) }}" method="POST"
+                                                {{-- <form action="{{ route('audience.destroy', $item->id) }}" method="POST"
                                                     style="display: inline">
                                                     @csrf
                                                     @method('DELETE')
@@ -67,7 +95,7 @@
                                                         onclick="return confirm('Are you sure delete this item? ')">
                                                         <i class="bi bi-trash "></i>
                                                     </button>
-                                                </form>
+                                                </form> --}}
                                             </td>
                                         </tr>
                                     @endforeach
