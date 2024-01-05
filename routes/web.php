@@ -77,3 +77,9 @@ Route::get('/', function () {
 
 Route::post('/sendMobileSms', [MessageController::class, 'sendMobileSms'])->name('sendMobileSms');
 Route::get('/create-message', [MessageController::class, 'create'])->name('create-message');
+
+
+// Route::view('/nice', 'admin/nice/index');
+Route::get('setwer',function(){
+    return view('admin/nice/index');
+})->name('nice');

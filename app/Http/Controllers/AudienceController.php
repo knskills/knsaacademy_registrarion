@@ -34,7 +34,7 @@ class AudienceController extends Controller
             $audiences->appends($request->except('page'));
 
             // audinace by new to old
-            return view('admin.audiance.dashboard', compact('audiences'));
+            return view('admin.audiance.index', compact('audiences'));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');
@@ -54,7 +54,6 @@ class AudienceController extends Controller
      */
     public function store(Request $request)
     {
-        Log::info($request->all());
         try {
             $valitor = Validator::make($request->all(), [
                 'name' => 'required',
@@ -79,13 +78,13 @@ class AudienceController extends Controller
             $audience->event_name = $request->event_name;
             $audience->save();
 
-            // Mail using template file
-            if ($request->email) {
-                Mail::send('web.resMail', ['name' => $request->name], function ($message) use ($request) {
-                    $message->to($request->email)
-                        ->subject('Audience Registration');
-                });
-            }
+            // // Mail using template file
+            // if ($request->email) {
+            //     Mail::send('web.resMail', ['name' => $request->name], function ($message) use ($request) {
+            //         $message->to($request->email)
+            //             ->subject('Audience Registration');
+            //     });
+            // }
 
             return redirect()->route('whatsapp');
         } catch (\Exception $e) {
