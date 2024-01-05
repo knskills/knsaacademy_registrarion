@@ -39,6 +39,14 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('nice/assets/css/style.css') }}" rel="stylesheet">
 
+    <style>
+        @media (max-width: 768px) {
+            .table-responsive {
+                overflow-x: auto;
+            }
+        }
+    </style>
+
     @yield('styles')
 
 <body>
