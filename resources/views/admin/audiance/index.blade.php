@@ -6,7 +6,7 @@
             <h1>Audiance</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('audience') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('audiences.index') }}">Home</a></li>
                     <li class="breadcrumb-item">Audiance List</li>
                 </ol>
             </nav>
@@ -33,16 +33,16 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item"
-                                                href="{{ route('audiences', ['event' => 'first event']) }}">
-                                                First event
-                                            </a></li>
+                                                    href="{{ route('audiences.index', ['event' => 'first event']) }}">
+                                                    First event
+                                                </a></li>
                                             <li><a class="dropdown-item"
-                                                href="{{ route('audiences', ['event' => 'beginner_to_billionaire']) }}">
-                                                Beginner to Billionaire
-                                            </a></li>
-                                            <li><a class="dropdown-item" href="{{ route('audiences') }}">
-                                                Reset
-                                            </a></li>
+                                                    href="{{ route('audiences.index', ['event' => 'beginner_to_billionaire']) }}">
+                                                    Beginner to Billionaire
+                                                </a></li>
+                                            <li><a class="dropdown-item" href="{{ route('audiences.index') }}">
+                                                    Reset
+                                                </a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -75,7 +75,7 @@
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->phone }}</td>
-                                            <td>{{ $item->event_name }}</td>
+                                            <td>{{ ucwords(str_replace('_', ' ', $item->event_name)) }}</td>
                                             <td class="text-center">
                                                 {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}
                                             </td>
