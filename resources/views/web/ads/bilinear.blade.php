@@ -1023,7 +1023,7 @@
                 </div>
 
                 <div class="col-lg-4 m-auto" data-aos="fade-up" data-aos-delay="100">
-                    <img src="{{ asset('assets/img/sirji2.png') }}" alt="sirji" class="img-fluid shadowed-image"
+                    <img src="{{ asset('assets/img/sirji2.png') }}" alt="sirji" class="img-fluid" style="filter:drop-shadow(1px 2px 12px white)"
                         id="sirimg">
                 </div>
 

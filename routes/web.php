@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\LangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\MessageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,9 +21,6 @@ use App\Http\Controllers\PageController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('web.home');
-// });
 Route::view('/mailtest', 'web.resMail');
 Route::post('/audience', [AudienceController::class, 'store'])->name('audience.store'); // first
 // Route::post('/audience', [AutianceSecondController::class, 'store'])->name('audience.store'); // second
@@ -76,3 +74,5 @@ Route::get('/beginnerobillionaire', [PageController::class, 'billionaire'])->nam
 Route::get('/', function () {
     return redirect('/beginnerobillionaire');
 })->name('register');
+
+Route::post('/sendMobileSms', [MessageController::class, 'sendMobileSms'])->name('sendMobileSms');
