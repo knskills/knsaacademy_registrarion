@@ -6,7 +6,7 @@
             <h1>Audiance</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{route('audience')}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('audiences.index') }}">Home</a></li>
                     <li class="breadcrumb-item">Audiance List</li>
                 </ol>
             </nav>
@@ -18,7 +18,35 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Audiance</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="card-title">Audiance</h5>
+                                </div>
+
+                                <div class="col-md-6 mt-2 float-end text-end">
+
+                                    <!-- Example single danger button -->
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-danger dropdown-toggle"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            Filter by event
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item"
+                                                    href="{{ route('audiences.index', ['event' => 'first event']) }}">
+                                                    First event
+                                                </a></li>
+                                            <li><a class="dropdown-item"
+                                                    href="{{ route('audiences.index', ['event' => 'beginner_to_billionaire']) }}">
+                                                    Beginner to Billionaire
+                                                </a></li>
+                                            <li><a class="dropdown-item" href="{{ route('audiences.index') }}">
+                                                    Reset
+                                                </a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
 
                             @if (session('success'))
                                 <div class="alert alert-success">
@@ -33,7 +61,7 @@
                                         <th>Sr No.</th>
                                         <th>Name</th>
                                         <th>Email</th>
-                                        <th class="numeric">Phone</th>
+                                        <th>Phone</th>
                                         <th>Event</th>
                                         <th class="text-center">Register Date</th>
                                         <th class="text-center">Register Time</th>
@@ -47,7 +75,7 @@
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->phone }}</td>
-                                            <td>{{ $item->event_name }}</td>
+                                            <td>{{ ucwords(str_replace('_', ' ', $item->event_name)) }}</td>
                                             <td class="text-center">
                                                 {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}
                                             </td>
@@ -65,7 +93,7 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-xs"
                                                         onclick="return confirm('Are you sure delete this item? ')">
-                                                        <i class="fa fa-trash-o "></i>
+                                                        <i class="bi bi-trash "></i>
                                                     </button>
                                                 </form> --}}
                                             </td>
