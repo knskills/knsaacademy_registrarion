@@ -27,11 +27,6 @@ class MessageController extends Controller
 
     public function sendMobileSms(Request $request)
     {
-        // Log::info($request->all());
-        // Log::info(getenv("SMS_SENDER_ID"));
-        // Log::info(getenv("SMS_SERVER_URL"));
-        // Log::info(getenv("SMS_AUTH_KEY"));
-        // Log::info(getenv("SMS_ROUTE"));
 
         $mobileNumber = $request->mobileNumber;
         $message = $request->message;
