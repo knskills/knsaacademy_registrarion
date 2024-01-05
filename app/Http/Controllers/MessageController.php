@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use App\Models\Message;
 
 class MessageController extends Controller
 {
@@ -12,20 +14,37 @@ class MessageController extends Controller
     //     parent::__construct();
     // }
 
+    public function index()
+    {
+        $messages = Message::all();
+        return view('messages.index', compact('messages'));
+    }
+
+    public function create()
+    {
+        return view('admin.messages.create');
+    }
+
     public function sendMobileSms(Request $request)
     {
-        $mobileNumber = $request['to'];
-        $message = $request['message'];
+        // Log::info($request->all());
+        // Log::info(getenv("SMS_SENDER_ID"));
+        // Log::info(getenv("SMS_SERVER_URL"));
+        // Log::info(getenv("SMS_AUTH_KEY"));
+        // Log::info(getenv("SMS_ROUTE"));
+
+        $mobileNumber = $request->mobileNumber;
+        $message = $request->message;
         $senderId = getenv("SMS_SENDER_ID");
         $serverUrl = getenv("SMS_SERVER_URL");
         $authKey = getenv("SMS_AUTH_KEY");
-        $route = getenv("SMS_ROUTE");
-        $this->sendsmsGET($mobileNumber, $senderId, $route, $message, $serverUrl, $authKey);
+        $routeId = getenv("SMS_ROUTE");
+        $this->sendsmsGET($mobileNumber, $senderId, $routeId, $message, $serverUrl, $authKey);
     }
 
-    public function sendsmsGET($mobileNumber, $senderId, $routeId, $message, $serverUrl, $authKey, $route)
+    public function sendsmsGET($mobileNumber, $senderId, $routeId, $message, $serverUrl, $authKey)
     {
-        $route = $route;
+        $route = $routeId;
         $getData = 'mobileNos=' . $mobileNumber . '&message=' . urlencode($message) . '&senderId=' . $senderId . '&routeId=' . $routeId;
 
         /* API URL */
@@ -49,6 +68,8 @@ class MessageController extends Controller
         }
 
         curl_close($ch);
+
+        Log::info($output);
 
         return $output;
     }

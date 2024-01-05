@@ -89,7 +89,17 @@
                                 <span>Event</span>
                             </a>
                         </li>
-
+                        <li href="{{ route('events.index') }}" class="{{ request()->is('events*') ? 'active' : '' }}">
+                            <a href="javascript:;">
+                                <i class="fa fa-envelope"></i>
+                                <span>Messages</span>
+                                <i class="fa fa-angle-down" style="float: right;"></i>
+                            </a>
+                            <ul class="sub">
+                                <li><a href="#">All Messages</a></li>
+                                <li><a href="{{route('create-message')}}">New</a></li>
+                            </ul>
+                        </li>
                         {{-- <li class="sub-menu">
                             <a href="javascript:;">
                                 <i class="fa fa-desktop"></i>

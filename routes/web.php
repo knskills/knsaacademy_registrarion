@@ -2,10 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\AudienceController;
 use App\Http\Controllers\AutianceSecondController;
 use App\Http\Controllers\EventController;
-use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\LangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
@@ -76,3 +76,4 @@ Route::get('/', function () {
 })->name('register');
 
 Route::post('/sendMobileSms', [MessageController::class, 'sendMobileSms'])->name('sendMobileSms');
+Route::get('/create-message', [MessageController::class, 'create'])->name('create-message');
