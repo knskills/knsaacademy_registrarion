@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\audience;
+use App\Exports\AudienceExport;
+use App\Imports\AudienceImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AudienceController extends Controller
 {
@@ -132,6 +135,53 @@ class AudienceController extends Controller
         try {
             $audience->delete();
             return redirect()->back()->with('success', 'Audience deleted successfully');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
+    }
+
+
+    /**
+     * Export audience data
+     */
+    public function export(Request $request)
+    {
+        Log::info("Exporting audience data");
+        try {
+            // return Excel::download(new AudienceExport, 'audience.xlsx');
+
+            return Excel::download(new AudienceExport(''), 'audiance_' . date('d-m-Y_H-i-s') . '.xlsx');
+
+            // $filetype = $request->filetype;
+            // $filename = 'audience.' . $filetype;
+
+            // if ($filetype == 'csv') {
+            //     return Excel::download(new AudienceExport, $filename, \Maatwebsite\Excel\Excel::CSV);
+            // } elseif ($filetype == 'xlsx') {
+            //     return Excel::download(new AudienceExport, $filename, \Maatwebsite\Excel\Excel::XLSX);
+            // } elseif ($filetype == 'xls') {
+            //     return Excel::download(new AudienceExport, $filename, \Maatwebsite\Excel\Excel::XLS);
+            // }
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
+    }
+
+    /**
+     * Import audience data
+     */
+    public function import(Request $request)
+    {
+        try {
+            $request->validate([
+                'file' => 'required|mimes:xls,xlsx'
+            ]);
+
+            Excel::import(new AudienceImport, $request->file('file'));
+
+            return redirect()->back()->with('success', 'Audience imported successfully');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');

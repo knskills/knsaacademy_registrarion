@@ -29,6 +29,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/sendMobileSms', [MessageController::class, 'sendMobileSms'])->name('sendMobileSms');
     Route::get('/create-message', [MessageController::class, 'create'])->name('create-message');
     Route::resource('audiences', AudienceController::class);
+    Route::get('/audience/export', [AudienceController::class, 'export'])->name('audiences.export');
+    Route::post('/audience/import', [AudienceController::class, 'import'])->name('audiences.import');
     Route::resource('events', EventController::class);
     Route::resource('messages', MessageController::class);
     Route::resource('templates', TemplateController::class);

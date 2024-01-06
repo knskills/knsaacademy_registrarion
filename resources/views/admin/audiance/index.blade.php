@@ -1,7 +1,6 @@
 @extends('admin.layouts.niceapp')
 
 @section('styles')
-
 @endsection
 
 @section('content')
@@ -29,6 +28,27 @@
                                 </div>
 
                                 <div class="col-6 mt-3 float-end text-end">
+
+                                    <!-- Export buttons -->
+                                    <div class="btn-group">
+                                        <a href="{{ route('audiences.export') }}" class="btn btn-primary">
+                                            Export <i class="bi bi-file-earmark-arrow-down"></i>
+                                        </a>
+                                    </div>
+
+                                    {{-- <div class="btn-group">
+                                        <button type="button" class="btn btn-primary dropdown-toggle"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            Export
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#">Copy</a></li>
+                                            <li><a class="dropdown-item" href="#">CSV</a></li>
+                                            <li><a class="dropdown-item" href="#">Excel</a></li>
+                                            <li><a class="dropdown-item" href="#">PDF</a></li>
+                                            <li><a class="dropdown-item" href="#">Print</a></li>
+                                        </ul>
+                                    </div> --}}
 
                                     <!-- Example single danger button -->
                                     <div class="btn-group">
