@@ -1,212 +1,117 @@
-@extends('admin.layouts.app')
+@extends('admin.layouts.niceapp')
+
+@section('styles')
+@endsection
 
 @section('content')
-    <section id="container">
+    <main id="main" class="main">
 
-        <!--main content start-->
-        <section id="main-content">
-            <section class="wrapper">
-                <h3><i class="fa fa-angle-right"></i>Event</h3>
+        <div class="pagetitle">
+            <h1>Templates</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                    <li class="breadcrumb-item">New Template</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
 
-                <!-- BASIC FORM ELELEMNTS -->
-                <div class="row mt">
-
-                    <div class="col-lg-12">
-                        <div>
-                            <a href="{{ route('events.index') }}" class="btn btn-danger ml-2">Back</a>
-                        </div>
-
-                        <div class="form-panel">
-                            @if ($errors->any())
-                                <ul class="alert">
-                                    @foreach ($errors->all() as $error)
-                                        <li class="text-danger">{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            @endif
-
-                            @if (session('success'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
-
-                            @if (session('error'))
-                                <div class="alert alert-danger">
-                                    {{ session('error') }}
-                                </div>
-                            @endif
-
-                            <h4 class="mb"><i class="fa fa-angle-right"></i> New Element</h4>
-                            <form class="form-horizontal style-form" action="{{ route('events.store') }}" method="POST">
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">SMS Template</h5>
+                            <form action="{{ route('templates.store') }}" method="post">
                                 @csrf
-                                <div class="form-group">
-                                    <div class="col-md-6 mt-2">
-                                        <div class="row">
-                                            <label class="col-sm-2 col-sm-2 control-label">
-                                                Event name
-                                            </label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="event_name">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 mt-2">
-                                        <div class="row">
-                                            <label class="col-sm-2 col-sm-2 control-label">Event date</label>
-                                            <div class="col-sm-10">
-                                                <input type="date" class="form-control" name="event_date">
-                                            </div>
-                                        </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 col-form-label">Template Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="name" value="Template 1">
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <div class="col-md-6 mt-2">
-                                        <div class="row">
-                                            <label class="col-sm-2 col-sm-2 control-label">
-                                                Event time
-                                            </label>
-                                            <div class="col-sm-10">
-                                                <input type="time" class="form-control" name="event_time">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 mt-2">
-                                        <div class="row">
-                                            <label class="col-sm-2 col-sm-2 control-label">
-                                                Event link
-                                            </label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="event_link">
-                                            </div>
-                                        </div>
+                                <div class="row">
+                                    <label for="inputText" class="col-md-3 col-form-label">
+                                        Message
+                                        {{-- <span class="text-danger">*</span> --}}
+                                    </label>
+                                    <div class="col-md-9">
+                                        <textarea id="message" name="message" class="form-control" rows="10" >Hii</textarea>
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <div class="col-md-6 mt-2">
-                                        <div class="row">
-                                            <label class="col-sm-2 col-sm-2 control-label">
-                                                Youtube link
-                                            </label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="youtube_link">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 mt-2">
-                                        <div class="row">
-                                            <label class="col-sm-2 col-sm-2 control-label">
-                                                Button text
-                                            </label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="button_text">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-6 mt-2">
-                                        <div class="row">
-                                            <label class="col-sm-2 col-sm-2 control-label">
-                                                Price
-                                            </label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="price">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 mt-2">
-                                        <div class="row">
-                                            <label class="col-sm-2 col-sm-2 control-label">
-                                                Payment link
-                                            </label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="payment_link">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-6 mt-2">
-                                        <div class="row">
-                                            <label class="col-sm-2 col-sm-2 control-label">
-                                                Whatsapp link
-                                            </label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="whatsapp_link">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 mt-2">
-                                        <div class="row">
-                                            <label class="col-sm-2 col-sm-2 control-label">
-                                                Status
-                                            </label>
-                                            <div class="col-sm-10">
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="radio" class="form-control" name="is_active" checked>
-                                                        Active
-                                                    </label>
-
-                                                    <label>
-                                                        <input type="radio" class="form-control" name="is_active">
-                                                        Inactive
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-                                </div>
+                                <button type="submit" class="btn btn-primary float-end mt-3">
+                                    Save
+                                </button>
                             </form>
                         </div>
-                    </div><!-- col-lg-12-->
-                </div><!-- /row -->
-            </section>
-        </section><!-- /MAIN CONTENT -->
+                    </div>
 
-        <!--main content end-->
+                </div>
 
-        {{-- <!--footer start-->
-        <footer class="site-footer">
-            <div class="text-center">
-                <span id="year"></span> - Alvarez.is
-                <a href="form_component.html#" class="go-top">
-                    <i class="fa fa-angle-up"></i>
-                </a>
+                <div class="col-lg-3">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Variables</h5>
+                            <p>
+                                Variables are used to replace the values of the variables in the template.
+                            </p>
+                            <div>
+                                <ul style="list-style: none" data-name="name" class="text-center">
+                                    <li id="first_name">
+                                        <span class="badge bg-primary">First Name</span>
+                                    </li>
+                                    <li id="mobile">
+                                        <span class="badge bg-primary">Mobile</span>
+                                    </li>
+                                    <li id="email">
+                                        <span class="badge bg-primary">Email</span>
+                                    </li>
+                                    <li id="event">
+                                        <span class="badge bg-primary">Event</span>
+                                    </li>
+                                    <li id="date">
+                                        <span class="badge bg-primary">Date</span>
+                                    </li>
+                                    <li id="time">
+                                        <span class="badge bg-primary">Time</span>
+                                    </li>
+                                    <li id="link">
+                                        <span class="badge bg-primary">Link</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </footer>
-        <!--footer end--> --}}
-    </section>
+        </section>
+
+    </main><!-- End #main -->
 @endsection
 
 @section('scripts')
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         $(document).ready(function() {
-            // remove alert after 3 seconds
+            // close alert automatically after 3 seconds
             setTimeout(function() {
-                $('.alert').remove();
+                $(".alert").alert('close');
             }, 3000);
-
-            // get year for footer
-            $('#year').text(new Date().getFullYear());
         });
 
-        $(function() {
-            $('select.styled').customSelect();
+        // if select or click on variable then add it to the editor at the cursor position
+        $('ul[data-name]').on('click', 'li', function() {
+            var name = $(this).attr('id');
+            var message = $('#message').val();
+            var cursorPos = $('#message').prop('selectionStart');
+            var v = $('#message').val();
+            var textBefore = v.substring(0, cursorPos);
+            var textAfter = v.substring(cursorPos, v.length);
+            $('#message').val(textBefore + '{' + name + '}' + textAfter);
         });
+
     </script>
 @endsection

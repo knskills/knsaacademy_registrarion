@@ -1,101 +1,95 @@
-@extends('admin.layouts.app')
+@extends('admin.layouts.niceapp')
+
+@section('styles')
+@endsection
 
 @section('content')
-    <section id="container">
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Templates</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                    <li class="breadcrumb-item">New Template</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
 
-        <!--main content start-->
-        <section id="main-content">
-            <section class="wrapper">
-                <h3>Messages</h3>
+        <section class="section">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">SMS Template</h5>
 
-                <!-- BASIC FORM ELELEMNTS -->
-                <div class="row mt">
-                    <div class="col-lg-12">
-                        <div class="form-panel">
-                            @if ($errors->any())
-                                <ul class="alert">
-                                    @foreach ($errors->all() as $error)
-                                        <li class="text-danger">{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            @endif
+                    <div>
+                        @if ($errors->any())
+                            <ul class="alert">
+                                @foreach ($errors->all() as $error)
+                                    <li class="text-danger">{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        @endif
 
-                            @if (session('success'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
 
-                            @if (session('error'))
-                                <div class="alert alert-danger">
-                                    {{ session('error') }}
-                                </div>
-                            @endif
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h4 class="mb"> New Message</h4>
-                                </div>
-                                <div class="col-md-6">
-                                    <a href="#" class="btn btn-primary pull-right">
-                                        <i class="fa fa-angle-left"></i>
-                                        Back
-                                    </a>
+                    </div>
+                    <form class="form-horizontal style-form mt-3" action="{{ route('sendMobileSms') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <div class="col-md-6 mt-2">
+                                <div class="row">
+                                    <label class="col-sm-3 col-sm-3 control-label">
+                                        Events
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Select event</option>
+                                            <@foreach ($events as $event)
+                                                <option value="{{ $event->id }}">{{ $event->name }}</option>
+                                                @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
 
-                            <form class="form-horizontal style-form mt-3" action="{{ route('sendMobileSms') }}"
-                                method="POST">
-                                @csrf
-                                <div class="form-group">
-                                    <div class="col-md-6 mt-2">
-                                        <div class="row">
-                                            <label class="col-sm-3 col-sm-3 control-label">
-                                                Mobile number
-                                            </label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="mobileNumber">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 mt-2">
-                                        <div class="row">
-                                            <label class="col-sm-2 col-sm-2 control-label">Message</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="message">
-                                            </div>
-                                        </div>
+                            <div class="col-md-6 mt-2">
+                                <div class="row">
+                                    <label class="col-sm-2 col-sm-2 control-label">Message</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="message">
                                     </div>
                                 </div>
-                                <div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
-                    </div><!-- col-lg-12-->
-                </div><!-- /row -->
-            </section>
-        </section><!-- /MAIN CONTENT -->
+                        <div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
 
-        <!--main content end-->
-    </section>
+    </main><!-- End #main -->
 @endsection
 
 @section('scripts')
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         $(document).ready(function() {
-            // remove alert after 3 seconds
+            // close alert automatically after 3 seconds
             setTimeout(function() {
-                $('.alert').remove();
+                $(".alert").alert('close');
             }, 3000);
-
-            // get year for footer
-            $('#year').text(new Date().getFullYear());
         });
-
-        $(function() {
-            $('select.styled').customSelect();
-        });
+        x
     </script>
 @endsection

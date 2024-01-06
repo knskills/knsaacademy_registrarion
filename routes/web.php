@@ -10,6 +10,7 @@ use App\Http\Controllers\LangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\TemplateController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,21 +21,17 @@ use App\Http\Controllers\MessageController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::view('/mailtest', 'web.resMail');
-Route::post('/audience', [AudienceController::class, 'store'])->name('audience.store'); // first
-// Route::post('/audience', [AutianceSecondController::class, 'store'])->name('audience.store'); // second
-// Route::get('/audience', [AudienceController::class, 'index'])->name('audience.index');
-// Route::get('/audience/{audience}', [AudienceController::class, 'show'])->name('audience.show');
-// Route::get('/audience/{audience}/edit', [AudienceController::class, 'edit'])->name('audience.edit');
-// Route::put('/audience/{audience}', [AudienceController::class, 'update'])->name('audience.update');
-// Route::delete('/audience/{audience}', [AudienceController::class, 'destroy'])->name('audience.destroy');
+Route::post('/audience', [AudienceController::class, 'store'])->name('audience.store');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [AudienceController::class, 'dashboard'])->name('dashboard');
-    // Route::get('/audiences', [AudienceController::class, 'index'])->name('audiences');
+    Route::post('/sendMobileSms', [MessageController::class, 'sendMobileSms'])->name('sendMobileSms');
+    Route::get('/create-message', [MessageController::class, 'create'])->name('create-message');
     Route::resource('audiences', AudienceController::class);
     Route::resource('events', EventController::class);
+    Route::resource('messages', MessageController::class);
+    Route::resource('templates', TemplateController::class);
 });
 
 Route::get('/terms', [AudienceController::class, 'terms'])->name('terms');
@@ -67,13 +64,4 @@ Route::get('/beginnerobillionaire', [PageController::class, 'billionaire'])->nam
 
 Route::get('/', function () {
     return redirect('/beginnerobillionaire');
-})->name('register');
-
-Route::post('/sendMobileSms', [MessageController::class, 'sendMobileSms'])->name('sendMobileSms');
-Route::get('/create-message', [MessageController::class, 'create'])->name('create-message');
-
-
-// Route::view('/nice', 'admin/nice/index');
-Route::get('setwer',function(){
-    return view('admin/nice/index');
-})->name('nice');
+});

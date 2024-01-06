@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Models\Message;
+use App\Models\MessageTemplate;
+use App\Models\Audience;
+use App\Models\Event;
 
 class MessageController extends Controller
 {
@@ -22,12 +25,13 @@ class MessageController extends Controller
 
     public function create()
     {
-        return view('admin.messages.create');
+        $templates = MessageTemplate::all();
+        $events = Event::all();
+        return view('admin.messages.create', compact('templates', 'events'));
     }
 
     public function sendMobileSms(Request $request)
     {
-
         $mobileNumber = $request->mobileNumber;
         $message = $request->message;
         $senderId = getenv("SMS_SENDER_ID");

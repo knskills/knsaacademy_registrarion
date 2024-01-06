@@ -21,6 +21,8 @@
     <link rel="shortcut icon" href="{{ asset('assets/img/favicon_io/favicon-16x16.png') }}" type="image/x-icon">
 
 
+
+
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link
@@ -38,6 +40,7 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('nice/assets/css/style.css') }}" rel="stylesheet">
+
 
     <style>
         @media (max-width: 768px) {

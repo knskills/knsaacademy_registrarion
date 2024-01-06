@@ -2,7 +2,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
+        <a href="#" class="logo d-flex align-items-center">
             <img src="assets/img/logo.png" alt="">
             <span class="d-none d-lg-block">Knsa</span>
         </a>
@@ -183,7 +183,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <a class="dropdown-item d-flex align-items-center" href="#">
                             <i class="bi bi-person"></i>
                             <span>My Profile</span>
                         </a>
@@ -193,7 +193,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <a class="dropdown-item d-flex align-items-center" href="#">
                             <i class="bi bi-gear"></i>
                             <span>Account Settings</span>
                         </a>
@@ -203,7 +203,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                        <a class="dropdown-item d-flex align-items-center" href="#">
                             <i class="bi bi-question-circle"></i>
                             <span>Need Help?</span>
                         </a>
@@ -267,6 +267,54 @@
                         <i class="bi bi-circle"></i><span>New products</span>
                     </a>
                 </li> --}}
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ Route::currentRouteNamed('templates.*') ? '' : 'collapsed' }}"
+                data-bs-target="#Template-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-back"></i>
+                <span>Template</span>
+                <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="Template-nav"
+                class="nav-content collapse {{ Route::currentRouteNamed('templates.*') ? 'show' : '' }} "
+                data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="{{ route('templates.index') }}"
+                        class="{{ Route::currentRouteNamed('templates.index') ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Templates</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('templates.create') }}"
+                        class="{{ Route::currentRouteNamed('templates.create') ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>New</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ Route::currentRouteNamed('messages.*') ? '' : 'collapsed' }}"
+                data-bs-target="#messages-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-envelope"></i>
+                <span>Message</span>
+                <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="messages-nav"
+                class="nav-content collapse {{ Route::currentRouteNamed('messages.*') ? 'show' : '' }} "
+                data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="{{ route('messages.index') }}"
+                        class="{{ Route::currentRouteNamed('messages.index') ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Messages</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('messages.create') }}"
+                        class="{{ Route::currentRouteNamed('messages.create') ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>New</span>
+                    </a>
+                </li>
             </ul>
         </li>
     </ul>

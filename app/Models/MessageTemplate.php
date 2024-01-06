@@ -14,9 +14,6 @@ class MessageTemplate extends Model
         'subject',
         'message',
         'type',
-        'to',
-        'cc',
-        'bcc',
         'status',
         'event_name',
     ];

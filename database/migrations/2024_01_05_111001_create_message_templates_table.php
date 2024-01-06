@@ -17,9 +17,6 @@ return new class extends Migration
             $table->string('subject')->nullable();
             $table->text('message')->nullable();
             $table->string('type')->nullable();
-            $table->json('to')->nullable();
-            $table->json('cc')->nullable();
-            $table->json('bcc')->nullable();
             $table->string('status')->nullable();
             $table->string('event_name')->nullable();
             $table->timestamps();
