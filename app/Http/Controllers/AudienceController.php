@@ -147,7 +147,6 @@ class AudienceController extends Controller
      */
     public function export(Request $request)
     {
-        Log::info("Exporting audience data");
         try {
             // return Excel::download(new AudienceExport, 'audience.xlsx');
 

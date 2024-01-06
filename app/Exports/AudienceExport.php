@@ -49,7 +49,7 @@ class AudienceExport implements FromCollection, WithHeadings, WithMapping, Shoul
             $customer->email,
             $customer->event_name,
             $customer->created_at->format('d-m-Y'),
-            $customer->created_at->format('H:i:s'),
+            $customer->created_at->format('h:i A'),
         ];
     }
     /**
