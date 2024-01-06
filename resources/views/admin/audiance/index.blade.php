@@ -31,9 +31,10 @@
 
                                     <!-- Import buttons -->
                                     <div class="btn-group">
-                                        <a href="{{ route('audiences.import') }}" class="btn btn-primary">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#importexcel">
                                             Import <i class="bi bi-file-earmark-arrow-up"></i>
-                                        </a>
+                                        </button>
                                     </div>
 
                                     <!-- Export buttons -->
@@ -152,6 +153,45 @@
                 </div>
             </div>
         </section>
+
+        <!-- Import file -->
+        <div class="modal fade" id="importexcel" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Import Audiance Data</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="{{ route('audiences.import') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="col-form-label">Events</label>
+                                <div class="">
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option value="">select events</option>
+                                        @foreach ($events as $event)
+                                            <option value="{{ $event->id }}">
+                                                {{ $event->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="file" class="form-label">Choose file</label>
+                                <input class="form-control" type="file" id="file" name="file" required>
+                            </div>
+                            {{-- <button type="submit" class="btn btn-primary">Import</button> --}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Import</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div><!-- End Vertically centered Modal-->
 
     </main><!-- End #main -->
 @endsection

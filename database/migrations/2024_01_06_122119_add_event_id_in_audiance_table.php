@@ -13,9 +13,18 @@ return new class extends Migration
     {
         Schema::table('audiences', function (Blueprint $table) {
             $table->unsignedBigInteger('event_id')->nullable()->after('id');
-
             $table->foreign('event_id')->references('id')->on('events')->onDelete('Set Null');
+
+            $table->timestamp('registration_date')->nullable()->after('event_id');
         });
+
+        // Update existing records' registration_date with values from created_at
+        DB::statement('UPDATE audiences SET registration_date = created_at');
+
+        // If you want to maintain the column and its data integrity
+        // Schema::table('audiences', function (Blueprint $table) {
+        //     $table->timestamp('registration_date')->nullable(false)->change();
+        // });
     }
 
     /**
@@ -28,6 +37,7 @@ return new class extends Migration
             // $table->dropColumn('event_id');
 
             $table->dropColumn(['event_id']);
+            $table->dropColumn(['registration_date']);
         });
     }
 };

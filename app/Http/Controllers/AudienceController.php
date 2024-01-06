@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\audience;
 use App\Exports\AudienceExport;
 use App\Imports\AudienceImport;
+use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -28,6 +29,7 @@ class AudienceController extends Controller
     {
         try {
             $audianceQuery = Audience::query();
+            $events = Event::all();
 
             if ($request->has('search')) {
                 $searchTerm = $request->search;
@@ -44,7 +46,7 @@ class AudienceController extends Controller
             $audiences->appends($request->except('page'));
 
             // audinace by new to old
-            return view('admin.audiance.index', compact('audiences'));
+            return view('admin.audiance.index', compact('audiences', 'events'));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');
@@ -88,13 +90,13 @@ class AudienceController extends Controller
             $audience->event_name = $request->event_name;
             $audience->save();
 
-            // Mail using template file
-            if ($request->email) {
-                Mail::send('web.resMail', ['name' => $request->name], function ($message) use ($request) {
-                    $message->to($request->email)
-                        ->subject('Audience Registration');
-                });
-            }
+            // // Mail using template file
+            // if ($request->email) {
+            //     Mail::send('web.resMail', ['name' => $request->name], function ($message) use ($request) {
+            //         $message->to($request->email)
+            //             ->subject('Audience Registration');
+            //     });
+            // }
 
             return redirect()->route('whatsapp');
         } catch (\Exception $e) {

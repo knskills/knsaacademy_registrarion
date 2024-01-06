@@ -13,9 +13,19 @@ class audience extends Model
      * The attributes that are mass assignable.
      */
     protected $fillable = [
+        'event_id',
         'name',
         'email',
         'phone',
         'event_name',
+        'registration_date',
     ];
+
+    /**
+     * Get the event that owns the audience.
+     */
+    public function event()
+    {
+        return $this->belongsTo(Event::class);
+    }
 }
