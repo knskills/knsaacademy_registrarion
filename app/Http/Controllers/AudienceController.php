@@ -83,12 +83,18 @@ class AudienceController extends Controller
                 ]);
             }
 
-            $audience = new audience();
-            $audience->name = $request->name;
-            $audience->email = $request->email;
-            $audience->phone = $request->phone;
-            $audience->event_name = $request->event_name;
-            $audience->save();
+            // check if email and phone already exists in database
+            // $audience = Audience::where('email', $request->email)->orWhere('phone', $request->phone)->first();
+            $audience = Audience::where('email', $request->email)->where('phone', $request->phone)->first();
+
+            if (!$audience) {
+                $audience = new audience();
+                $audience->name = $request->name;
+                $audience->email = $request->email;
+                $audience->phone = $request->phone;
+                $audience->event_name = $request->event_name;
+                $audience->save();
+            }
 
             // // Mail using template file
             // if ($request->email) {
