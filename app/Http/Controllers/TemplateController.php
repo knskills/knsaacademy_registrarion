@@ -12,10 +12,13 @@ class TemplateController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $templates = MessageTemplate::all();
+            $templates = MessageTemplate::paginate(10);
+
+            $templates->appends($request->except('page'));
+
             return view('admin.templates.index', compact('templates'));
         } catch (\Throwable $th) {
             Log::error($th);
@@ -42,7 +45,6 @@ class TemplateController extends Controller
     public function store(Request $request)
     {
         try {
-            Log::info($request->all());
             $valitor = Validator::make($request->all(), [
                 'name' => 'required',
                 'message' => 'required',
@@ -57,9 +59,6 @@ class TemplateController extends Controller
                 'subject' => $request->subject ?? '',
                 'message' => $request->message ?? '',
                 'type' => $request->type ?? '',
-                'to' => $request->to ?? '',
-                'cc' => $request->cc ?? '',
-                'bcc' => $request->bcc ?? '',
                 'status' => $request->status ?? '',
                 'event_name' => $request->event_name ?? '',
             ]);
@@ -84,7 +83,14 @@ class TemplateController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        try {
+            $template = MessageTemplate::findOrFail($id);
+
+            return view('admin.templates.edit', compact('template'));
+        } catch (\Throwable $th) {
+            Log::error($th);
+            return redirect()->back()->with('error', 'Something went wrong!');
+        }
     }
 
     /**
@@ -92,7 +98,31 @@ class TemplateController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            $valitor = Validator::make($request->all(), [
+                'name' => 'required',
+                'message' => 'required',
+            ]);
+
+            if ($valitor->fails()) {
+                return redirect()->back()->withErrors($valitor)->withInput();
+            }
+
+            $template = MessageTemplate::findOrFail($id);
+            $template->update([
+                'name' => $request->name ?? '',
+                'subject' => $request->subject ?? '',
+                'message' => $request->message ?? '',
+                'type' => $request->type ?? '',
+                'status' => $request->status ?? '',
+                'event_name' => $request->event_name ?? '',
+            ]);
+
+            return redirect()->route('templates.index')->with('success', 'Template updated successfully!');
+        } catch (\Throwable $th) {
+            Log::error($th);
+            return redirect()->back()->with('error', 'Something went wrong!');
+        }
     }
 
     /**
@@ -100,6 +130,14 @@ class TemplateController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $template = MessageTemplate::findOrFail($id);
+            $template->delete();
+
+            return redirect()->route('templates.index')->with('success', 'Template deleted successfully!');
+        } catch (\Throwable $th) {
+            Log::error($th);
+            return redirect()->back()->with('error', 'Something went wrong!');
+        }
     }
 }

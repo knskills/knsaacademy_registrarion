@@ -90,6 +90,5 @@
                 $(".alert").alert('close');
             }, 3000);
         });
-        x
     </script>
 @endsection

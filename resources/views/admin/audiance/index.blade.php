@@ -23,11 +23,11 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <h5 class="card-title">Audiance</h5>
                                 </div>
 
-                                <div class="col-6 mt-3 float-end text-end">
+                                <div class="col-md-6 mt-3 text-end">
 
                                     <!-- Import buttons -->
                                     <div class="btn-group">
@@ -123,18 +123,18 @@
                                                 <td>
                                                     {{-- <a href="{{ route('admin.audiance.show', $item->id) }}"
                                                     class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
-                                                <a href="{{ route('admin.audiance.edit', $item->id) }}"
-                                                    class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i>
-                                                </a> --}}
-                                                    {{-- <form action="{{ route('audiences.destroy', $item->id) }}" method="POST"
-                                                    style="display: inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-xs"
-                                                        onclick="return confirm('Are you sure delete this item? ')">
-                                                        <i class="bi bi-trash "></i>
-                                                    </button>
-                                                </form> --}}
+                                                    <a href="{{ route('admin.audiance.edit', $item->id) }}"
+                                                        class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i>
+                                                    </a> --}}
+                                                        {{-- <form action="{{ route('audiences.destroy', $item->id) }}" method="POST"
+                                                        style="display: inline">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-xs"
+                                                            onclick="return confirm('Are you sure delete this item? ')">
+                                                            <i class="bi bi-trash "></i>
+                                                        </button>
+                                                    </form> --}}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -143,7 +143,7 @@
                             </div>
 
                             <!-- Place the pagination links outside the table -->
-                            <div class="d-flex justify-content-center text-center mt-3">
+                            <div class="d-flex justify-content-center mt-3">
                                 {!! $audiences->links() !!}
                             </div>
 

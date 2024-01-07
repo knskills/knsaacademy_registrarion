@@ -236,7 +236,6 @@
 <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
-
         <li class="nav-item">
             <a class="nav-link {{ Route::currentRouteNamed('dashboard') ? '' : 'collapsed' }}"
                 href="{{ route('dashboard') }}" class="{{ Route::currentRouteNamed('dashboard') ? 'active' : '' }}">
@@ -248,7 +247,7 @@
         <li class="nav-item">
             <a class="nav-link {{ Route::currentRouteNamed('audiences.*') ? '' : 'collapsed' }}"
                 data-bs-target="#audiance-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-box"></i>
+                <i class="bi bi-people"></i>
                 <span>Audiance</span>
                 <i class="bi bi-chevron-down ms-auto"></i>
             </a>
@@ -293,6 +292,7 @@
                 </li>
             </ul>
         </li>
+
         <li class="nav-item">
             <a class="nav-link {{ Route::currentRouteNamed('messages.*') ? '' : 'collapsed' }}"
                 data-bs-target="#messages-nav" data-bs-toggle="collapse" href="#">
