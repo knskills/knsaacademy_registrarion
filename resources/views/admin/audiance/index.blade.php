@@ -1,6 +1,59 @@
 @extends('admin.layouts.niceapp')
 
 @section('styles')
+    <style>
+        /* Basic Pagination Styling */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+        }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+        .pagination a,
+        .pagination .active span {
+            display: block;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .pagination a:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Responsive Styling for Pagination */
+        @media (max-width: 576px) {
+            .pagination {
+                flex-wrap: wrap;
+            }
+
+            .pagination li {
+                margin: 5px 0;
+            }
+
+            .pagination li {
+                display: none;
+            }
+
+            .pagination li:first-child,
+            .pagination li:nth-child(2),
+            .pagination .active,
+            .pagination li:last-child {
+                display: block;
+            }
+
+            .pagination a,
+            .pagination .active span {
+                padding: 5px 8px;
+            }
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -126,7 +179,7 @@
                                                     <a href="{{ route('admin.audiance.edit', $item->id) }}"
                                                         class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i>
                                                     </a> --}}
-                                                        {{-- <form action="{{ route('audiences.destroy', $item->id) }}" method="POST"
+                                                    {{-- <form action="{{ route('audiences.destroy', $item->id) }}" method="POST"
                                                         style="display: inline">
                                                         @csrf
                                                         @method('DELETE')
@@ -146,7 +199,6 @@
                             <div class="d-flex justify-content-center mt-3">
                                 {!! $audiences->links() !!}
                             </div>
-
                         </div>
                     </div>
 
