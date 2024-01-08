@@ -21,6 +21,17 @@ use App\Http\Controllers\TemplateController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+// Clear Cache
+Route::get('clear', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    Artisan::call('optimize:clear');
+    Artisan::call('config:cache');
+    return "Cleared!";
+});
+
+
 Route::view('/mailtest', 'web.resMail');
 Route::post('/audience', [AudienceController::class, 'store'])->name('audience.store');
 
@@ -36,30 +47,20 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('templates', TemplateController::class);
 });
 
-Route::get('/terms', [AudienceController::class, 'terms'])->name('terms');
-Route::get('/privacy', [AudienceController::class, 'privacy'])->name('privacy');
-Route::get('/whatsapp', [AudienceController::class, 'whatsapp'])->name('whatsapp');
+
 
 Auth::routes();
-
 Route::get('register', function () {
     return redirect('/');
 })->name('register');
 
 
-// Clear Cache
-Route::get('clear', function () {
-    Artisan::call('cache:clear');
-    Artisan::call('view:clear');
-    Artisan::call('optimize:clear');
-    Artisan::call('config:cache');
-    return "Cleared!";
-});
-
-Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
-
-
 //======================= Pages =======================//
+Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
+Route::get('/terms', [PageController::class, 'terms'])->name('terms');
+Route::get('/privacy', [PageController::class, 'privacy'])->name('privacy');
+Route::get('/whatsapp', [PageController::class, 'whatsapp'])->name('whatsapp');
+
 Route::get('/beginnertobillionaire', [PageController::class, 'beginnertobillionaire'])->name('beginnertobillionaire');
 // Route::get('/', [PageController::class, 'sales'])->name('sales');
 Route::get('/beginnerobillionaire', [PageController::class, 'billionaire'])->name('billionaire');

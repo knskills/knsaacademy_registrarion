@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Kamal Narayan Sahu - Network Marketing</title>
+    <title>KNSA</title>
     <meta
         content="Join Kamal Narayan Sahu's Network Marketing Webinar for expert insights, strategies, and success stories. Discover the secrets to building a thriving network marketing business. Register now!"
         name="description">
@@ -120,7 +120,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

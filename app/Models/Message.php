@@ -15,19 +15,18 @@ class Message extends Model
     protected $fillable = [
         'event_id',
         'message_template_id',
-        'name',
-        'subject',
-        'message',
         'type',
-        'to',
-        'template_id',
+        'audience',
+        'schedule_date',
+        'schedule_time',
+        'status',
     ];
 
     /**
      * Cast attributes.
      */
     protected $casts = [
-        'to' => 'array',
+        'audience' => 'array',
     ];
 
     /**

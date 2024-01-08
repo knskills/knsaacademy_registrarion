@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Kamal Narayan Sahu - Terms & Conditions</title>
+    <title>KNSA</title>
     <meta
         content="Join Kamal Narayan Sahu's Network Marketing Webinar for expert insights, strategies, and success stories. Discover the secrets to building a thriving network marketing business. Register now!"
         name="description">
@@ -188,7 +188,7 @@
     <header id="header" class="d-flex align-items-center">
         <div class="container d-flex align-items-center justify-content-between">
             <span></span>
-            <nav id="navbar" class="navbar">
+            {{-- <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto" href="{{ url('/') }}">Home</a></li>
                     <li><a class="nav-link scrollto" href="{{ url('/') }}">About</a></li>
@@ -206,7 +206,7 @@
                     </li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
+            </nav><!-- .navbar --> --}}
 
         </div>
     </header><!-- End Header -->

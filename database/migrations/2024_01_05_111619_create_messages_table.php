@@ -15,12 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('event_id')->nullable();
             $table->unsignedBigInteger('message_template_id')->nullable();
-            $table->string('name')->nullable();
-            $table->string('subject')->nullable();
-            $table->text('message')->nullable();
             $table->string('type')->nullable();
-            $table->json('to')->nullable();
-            $table->string('template_id')->nullable();
+            $table->json('audience')->nullable();
+            $table->date('schedule_date')->nullable();
+            $table->string('schedule_time')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

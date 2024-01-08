@@ -21,7 +21,7 @@
                 <div class="col-lg-9">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">SMS Template</h5>
+                            <h5 class="card-title">Template</h5>
 
                             @if ($errors->any())
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">

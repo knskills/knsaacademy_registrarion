@@ -6,11 +6,11 @@
 @section('content')
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Templates</h1>
+            <h1>Message</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                    <li class="breadcrumb-item">New Template</li>
+                    <li class="breadcrumb-item">Send Message</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -18,7 +18,7 @@
         <section class="section">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">SMS Template</h5>
+                    <h5 class="card-title">Send Message</h5>
 
                     <div>
                         @if ($errors->any())
@@ -48,14 +48,14 @@
                             <div class="col-md-6 mt-2">
                                 <div class="row">
                                     <label class="col-sm-3 col-sm-3 control-label">
-                                        Events
+                                        Event
                                     </label>
                                     <div class="col-sm-9">
                                         <select class="form-select" aria-label="Default select example">
                                             <option selected>Select event</option>
-                                            <@foreach ($events as $event)
+                                            @foreach ($events as $event)
                                                 <option value="{{ $event->id }}">{{ $event->name }}</option>
-                                                @endforeach
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>

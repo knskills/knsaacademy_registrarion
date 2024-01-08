@@ -21,7 +21,7 @@
                 <div class="col-lg-9">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">SMS Template</h5>
+                            <h5 class="card-title">Template</h5>
                             <form action="{{ route('templates.store') }}" method="post">
                                 @csrf
                                 <div class="row mb-3">

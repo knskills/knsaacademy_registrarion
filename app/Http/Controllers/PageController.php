@@ -26,4 +26,28 @@ class PageController extends Controller
     {
         return view('web.ads.bilinear');
     }
+
+    public function terms()
+    {
+        return view('web.terms');
+    }
+
+    public function privacy()
+    {
+        return view('web.privacy');
+    }
+
+    /**
+     * Whatsapp page
+     */
+    public function whatsapp(Request $request)
+    {
+        // if ($request->has('phone')) {
+        //     $phone = $request->phone;
+        //     $message = $request->message;
+        //     $url = 'https://api.whatsapp.com/send?phone=' . $phone . '&text=' . $message;
+        //     return redirect($url);
+        // }
+        return view('web.whatsapp');
+    }
 }

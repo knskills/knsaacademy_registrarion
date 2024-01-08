@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Models\Message;
 use App\Models\MessageTemplate;
-use App\Models\Audience;
+use App\Models\audience as Audience;
 use App\Models\Event;
 
 class MessageController extends Controller
