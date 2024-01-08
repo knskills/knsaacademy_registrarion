@@ -269,6 +269,31 @@
             </ul>
         </li>
         <li class="nav-item">
+            <a class="nav-link {{ Route::currentRouteNamed('events.*') ? '' : 'collapsed' }}"
+                data-bs-target="#Event-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-calendar-event"></i>
+                <span>Event</span>
+                <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="Event-nav"
+                class="nav-content collapse {{ Route::currentRouteNamed('events.*') ? 'show' : '' }} "
+                data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="{{ route('events.index') }}"
+                        class="{{ Route::currentRouteNamed('events.index') ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Events</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('events.create') }}"
+                        class="{{ Route::currentRouteNamed('events.create') ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>New</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link {{ Route::currentRouteNamed('templates.*') ? '' : 'collapsed' }}"
                 data-bs-target="#Template-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-back"></i>

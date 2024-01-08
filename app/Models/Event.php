@@ -38,4 +38,10 @@ class Event extends Model
     {
         return 'slug';
     }
+
+    // convert string to date format event_date
+    public function setEventDateAttribute($value)
+    {
+        $this->attributes['event_date'] = date('Y-m-d', strtotime($value));
+    }
 }

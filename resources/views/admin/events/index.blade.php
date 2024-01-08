@@ -1,36 +1,46 @@
-@extends('admin.layouts.app')
+@extends('admin.layouts.niceapp')
+
+@section('styles')
+@endsection
 
 @section('content')
-    <!--main content start-->
-    <section id="main-content">
-        <section class="wrapper">
-            <h3>
-                <i class="fa fa-angle-right"></i> Registerd Audience
-            </h3>
+    <main id="main" class="main">
 
+        <div class="pagetitle">
+            <h1>Audiance</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Home</a></li>
+                    <li class="breadcrumb-item">Audiance List</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section">
             <div class="row">
-                @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
                 <div class="col-lg-12">
-                    <div>
-                        <a href="{{ route('events.create') }}" class="btn btn-lg btn-success">New</a>
-                    </div>
 
-                    <div class="content-panel" style="margin-top: 20px;">
-                        <section id="unseen">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Audiance</h5>
+
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-condensed">
+                                <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Sr No</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
+                                            <th>Sr No.</th>
                                             <th>Event</th>
+                                            <td>Type</td>
+                                            <th>Event Date</th>
+                                            <th>Start Time</th>
+                                            <th>End Time</th>
+                                            <th>Price(₹)</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -39,17 +49,29 @@
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $item->event_name }}</td>
-                                                <td>{{ $item->email }}</td> <!-- Update with actual email data -->
-                                                <td>{{ $item->phone }}</td> <!-- Update with actual phone data -->
-                                                <td>{{ $item->event }}</td> <!-- Update with actual event data -->
+                                                <td>{{ $item->event_type }}</td>
+                                                <td>{{ $item->event_date }}</td>
                                                 <td>
-                                                    <form action="{{ route('audience.destroy', $item->id) }}" method="POST"
+                                                    {{ \Carbon\Carbon::parse($item->event_start_time)->format('h:i A') }}
+                                                </td>
+                                                <td>
+                                                    {{ \Carbon\Carbon::parse($item->event_end_time)->format('h:i A') }}
+                                                </td>
+                                                <td>{{ $item->price }}</td>
+                                                <td>
+                                                    {{-- <a href="{{ route('admin.audiance.show', $item->id) }}"
+                                                    class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a> --}}
+                                                    <a href="{{ route('events.edit', $item->id) }}"
+                                                        class="btn btn-warning btn-xs">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </a>
+                                                    <form action="{{ route('events.destroy', $item->id) }}" method="POST"
                                                         style="display: inline">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger btn-xs"
-                                                            onclick="return confirm('Are you sure you want to delete this item?')">
-                                                            <i class="fa fa-trash-o"></i>
+                                                            onclick="return confirm('Are you sure delete this item? ')">
+                                                            <i class="bi bi-trash "></i>
                                                         </button>
                                                     </form>
                                                 </td>
@@ -58,25 +80,17 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="d-flex justify-content-center text-center mt-3">
+
+                            <!-- Place the pagination links outside the table -->
+                            <div class="d-flex justify-content-center mt-3">
                                 {!! $events->links() !!}
                             </div>
-                        </section>
-                    </div><!-- /content-panel -->
+                        </div>
+                    </div>
 
-                </div><!-- /col-lg-4 -->
-            </div><!-- /row -->
+                </div>
+            </div>
         </section>
-    </section>
-@endsection
 
-@section('scripts')
-    <script>
-        $(document).ready(function() {
-            // remove alert after 3 seconds
-            setTimeout(function() {
-                $('.alert').remove();
-            }, 3000);
-        });
-    </script>
+    </main><!-- End #main -->
 @endsection

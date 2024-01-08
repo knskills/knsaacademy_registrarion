@@ -36,7 +36,7 @@
                                     <div class="col-sm-9">
                                         <select name="type" id="type" class="form-control">
                                             <option value="sms">SMS</option>
-                                            <option value="whtasapp">Whatsapp</option>
+                                            <option value="whatsapp">Whatsapp</option>
                                         </select>
                                     </div>
                                 </div>

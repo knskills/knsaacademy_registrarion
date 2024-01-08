@@ -57,34 +57,56 @@ class EventController extends Controller
     public function store(Request $request)
     {
         try {
-            $valitor = Validator::make($request->all(), [
+            $validator = Validator::make($request->all(), [
                 'event_name' => 'required',
-                'youtube_link' => 'required',
-                'button_text' => 'required',
-                'price' => 'required',
-                'payment_link' => 'required',
-                'is_active' => 'required',
-                'whatsapp_link' => 'required',
+                'youtube_link' => 'nullable',
+                'price' => 'nullable',
+                'payment_link' => 'nullable',
+                'is_active' => 'nullable',
+                'whatsapp_link' => 'nullable',
             ]);
 
-            if ($valitor->fails()) {
-                return redirect()->back()->withErrors($valitor)->withInput();
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+                Log::error($validator->errors());
             }
 
-            $event = new Event();
-            $event->event_name = $request->event_name;
-            $event->youtube_link = $request->youtube_link;
-            $event->button_text = $request->button_text;
-            $event->price = $request->price;
-            $event->payment_link = $request->payment_link;
-            $event->whatsapp_link = $request->whatsapp_link;
-            $event->event_date = $request->event_date;
-            $event->event_time = $request->event_time;
-            $event->event_link = $request->event_link;
-            $event->event_description = $request->event_description;
-            $event->is_active = $request->is_active == 'on' ? 1 : 0;
-            $event->event_image = $request->event_image;
-            $event->save();
+            // $event = new Event();
+            // $event->event_name = $request->event_name;
+            // $event->youtube_link = $request->youtube_link;
+            // $event->button_text = $request->button_text;
+            // $event->price = $request->price;
+            // $event->payment_link = $request->payment_link;
+            // $event->whatsapp_link = $request->whatsapp_link;
+            // $event->event_date = $request->event_date;
+            // $event->event_time = $request->event_time;
+            // $event->event_link = $request->event_link;
+            // $event->event_description = $request->event_description;
+            // $event->is_active = $request->is_active == 'on' ? 1 : 0;
+            // $event->event_image = $request->event_image;
+            // $event->save();
+
+            $event = Event::create([
+                'event_name' => $request->event_name,
+                'youtube_link' => $request->youtube_link,
+                'button_text' => $request->button_text,
+                'price' => $request->price,
+                'payment_link' => $request->payment_link,
+                'whatsapp_link' => $request->whatsapp_link,
+                'event_date' => $request->event_date,
+                'event_start_time' => $request->event_start_time,
+                'event_end_time' => $request->event_end_time,
+                'event_link' => $request->event_link,
+                'event_description' => $request->event_description,
+                'is_active' => $request->is_active == 'on' ? 1 : 0,
+                'event_image' => $request->event_image,
+                'event_type' => $request->event_type,
+                'event_language' => $request->event_language,
+                'event_duration' => $request->event_duration,
+                'timer_time' => $request->timer_time,
+                'original_price' => $request->original_price,
+                'slug' => $request->event_name,
+            ]);
 
             return redirect()->route('events.index')->with('success', 'Event created successfully');
 
@@ -108,17 +130,65 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Event $event)
+    public function edit($id)
     {
-        //
+        try {
+            $event = Event::find($id);
+            return view('admin.events.edit', compact('event'));
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, $id)
     {
-        //
+        try {
+            $validator = Validator::make($request->all(), [
+                'event_name' => 'required',
+                'youtube_link' => 'nullable',
+                'price' => 'nullable',
+                'payment_link' => 'nullable',
+                'is_active' => 'nullable',
+                'whatsapp_link' => 'nullable',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+                Log::error($validator->errors());
+            }
+
+            $event = Event::find($id);
+
+            $event->event_name = $request->event_name;
+            $event->youtube_link = $request->youtube_link;
+            $event->button_text = $request->button_text;
+            $event->price = $request->price;
+            $event->payment_link = $request->payment_link;
+            $event->whatsapp_link = $request->whatsapp_link;
+            $event->event_date = $request->event_date;
+            $event->event_start_time = $request->event_start_time;
+            $event->event_end_time = $request->event_end_time;
+            $event->event_link = $request->event_link;
+            $event->event_description = $request->event_description;
+            $event->is_active = $request->is_active == 'on' ? 1 : 0;
+            $event->event_image = $request->event_image;
+            $event->event_type = $request->event_type;
+            $event->event_language = $request->event_language;
+            $event->event_duration = $request->event_duration;
+            $event->timer_time = $request->timer_time;
+            $event->original_price = $request->original_price;
+            $event->slug = $request->event_name;
+            $event->save();
+
+            return redirect()->route('events.index')->with('success', 'Event updated successfully');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 
     /**
