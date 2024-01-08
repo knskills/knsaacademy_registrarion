@@ -208,4 +208,41 @@ class EventController extends Controller
             return redirect()->back()->with('error', 'Something went wrong');
         }
     }
+
+    //============================================================================================//
+    //=====================================Custom methods=========================================//
+    //============================================================================================//
+
+    /**
+     * get events acording to event type
+     */
+    public function getEvents(Request $request)
+    {
+        try {
+            $event = Event::query();
+
+            if ($request->has('search')) {
+                $searchTerm = $request->search;
+                $event->where('name', 'like', '%' . $searchTerm . '%');
+            } elseif ($request->has('event')) {
+                $event = $request->event;
+                $event->where('event_name', $event);
+            } else {
+                $event->orderBy('id', 'desc');
+            }
+
+            $events = $event->get();
+
+            return response()->json([
+                'success' => true,
+                'events' => $events,
+            ]);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
+    }
 }

@@ -197,5 +197,22 @@ class AudienceController extends Controller
     //===========================================================================================//
     //===========================================================================================//
 
+    /**
+     * get audiance acording to event id
+     */
+    public function getAudiance(Request $request)
+    {
+        try {
+            $event = Event::where('id', $request->event_id)->first()->event_name;
+            $audiences = Audience::where('event_name', $event)->get();
 
+            return response()->json([
+                'success' => true,
+                'audiences' => $audiences,
+            ]);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
+    }
 }

@@ -16,7 +16,8 @@ class Message extends Model
         'event_id',
         'message_template_id',
         'type',
-        'audience',
+        'audience_numbers',
+        'audience_ids',
         'schedule_date',
         'schedule_time',
         'status',
@@ -26,7 +27,8 @@ class Message extends Model
      * Cast attributes.
      */
     protected $casts = [
-        'audience' => 'array',
+        'audience_ids' => 'array',
+        'audience_numbers' => 'array',
     ];
 
     /**

@@ -11,12 +11,6 @@ use App\Models\Event;
 
 class MessageController extends Controller
 {
-
-    // public function __construct()
-    // {
-    //     parent::__construct();
-    // }
-
     public function index()
     {
         $messages = Message::all();
@@ -28,6 +22,12 @@ class MessageController extends Controller
         $templates = MessageTemplate::all();
         $events = Event::all();
         return view('admin.messages.create', compact('templates', 'events'));
+    }
+
+    public function store(Request $request)
+    {
+        $message = Message::create($request->all());
+        return redirect()->route('messages.index')->with('success', 'Message created successfully');
     }
 
     public function sendMobileSms(Request $request)

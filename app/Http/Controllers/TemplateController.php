@@ -140,4 +140,60 @@ class TemplateController extends Controller
             return redirect()->back()->with('error', 'Something went wrong!');
         }
     }
+
+    //=========================================================================================//
+    //=========================================Custom Methods==================================//
+    /**
+     * get templates acording to template type
+     */
+    public function getTemplates(Request $request)
+    {
+        try {
+            $template = MessageTemplate::query();
+
+            if ($request->has('search')) {
+                $searchTerm = $request->search;
+                $template->where('name', 'like', '%' . $searchTerm . '%');
+            } elseif ($request->has('type')) {
+                $type = $request->type;
+                $template->where('type', $type);
+            } else {
+                $template->orderBy('id', 'desc');
+            }
+
+            $templates = $template->get();
+
+            return response()->json([
+                'success' => true,
+                'templates' => $templates,
+            ]);
+        } catch (\Throwable $th) {
+            Log::error($th);
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong!',
+            ]);
+        }
+    }
+
+    /**
+     * get templates message acording to template id
+     */
+    public function getTemplateMessage(Request $request)
+    {
+        try {
+            $message = MessageTemplate::findOrFail($request->id)->message;
+
+            return response()->json([
+                'success' => true,
+                'message' => $message,
+            ]);
+        } catch (\Throwable $th) {
+            Log::error($th);
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong!',
+            ]);
+        }
+    }
 }

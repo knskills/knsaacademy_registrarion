@@ -16,7 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('event_id')->nullable();
             $table->unsignedBigInteger('message_template_id')->nullable();
             $table->string('type')->nullable();
-            $table->json('audience')->nullable();
+            $table->json('audience_numbers')->nullable();
+            $table->json('audience_ids')->nullable();
             $table->date('schedule_date')->nullable();
             $table->string('schedule_time')->nullable();
             $table->string('status')->nullable();
