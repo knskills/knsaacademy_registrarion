@@ -6,6 +6,7 @@ use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class EventController extends Controller
 {
@@ -86,6 +87,8 @@ class EventController extends Controller
             // $event->event_image = $request->event_image;
             // $event->save();
 
+            // create slug using name of event convert small leter and space replace with _
+            $slug = Str::slug($request->event_name, '_');
             $event = Event::create([
                 'event_name' => $request->event_name,
                 'youtube_link' => $request->youtube_link,
@@ -105,7 +108,7 @@ class EventController extends Controller
                 'event_duration' => $request->event_duration,
                 'timer_time' => $request->timer_time,
                 'original_price' => $request->original_price,
-                'slug' => $request->event_name,
+                'slug' => $slug,
             ]);
 
             return redirect()->route('events.index')->with('success', 'Event created successfully');
@@ -194,9 +197,10 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Event $event)
+    public function destroy($id)
     {
         try {
+            $event = Event::find($id);
             $event->delete();
             return redirect()->back()->with('success', 'Event deleted successfully');
         } catch (\Exception $e) {

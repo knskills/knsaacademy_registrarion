@@ -122,3 +122,15 @@
 
     </main><!-- End #main -->
 @endsection
+
+@section('scripts')
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // close alert automatically after 3 seconds
+            setTimeout(function() {
+                $(".alert").alert('close');
+            }, 3000);
+        });
+    </script>
+@endsection

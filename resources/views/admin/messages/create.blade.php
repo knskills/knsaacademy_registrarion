@@ -55,7 +55,7 @@
                                             <option selected>Select event</option>
                                             @foreach ($events as $event)
                                                 <option value="{{ $event->id }}">
-                                                    {{ $event->name }}
+                                                    {{ ucwords(str_replace('_', ' ', $event->event_name)) }}
                                                 </option>
                                             @endforeach
                                         </select>
