@@ -31,13 +31,23 @@
                                     </div>
                                 </div>
 
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 col-form-label">Template Type</label>
+                                    <div class="col-sm-9">
+                                        <select name="type" id="type" class="form-control">
+                                            <option value="sms">SMS</option>
+                                            <option value="whtasapp">Whatsapp</option>
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <div class="row">
                                     <label for="inputText" class="col-md-3 col-form-label">
                                         Message
                                         {{-- <span class="text-danger">*</span> --}}
                                     </label>
                                     <div class="col-md-9">
-                                        <textarea id="message" name="message" class="form-control" rows="10" >Hii</textarea>
+                                        <textarea id="message" name="message" class="form-control" rows="10">Hii</textarea>
                                     </div>
                                 </div>
 
@@ -112,6 +122,5 @@
             var textAfter = v.substring(cursorPos, v.length);
             $('#message').val(textBefore + '{' + name + '}' + textAfter);
         });
-
     </script>
 @endsection

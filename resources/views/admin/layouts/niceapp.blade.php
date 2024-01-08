@@ -40,6 +40,7 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('nice/assets/css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('admin/lineicons/pagination.css')}}">
 
 
     <style>

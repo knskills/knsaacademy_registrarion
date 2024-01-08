@@ -51,7 +51,19 @@
                                 <div class="row mb-3">
                                     <label class="col-sm-3 col-form-label">Template Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="name" value="Template 1">
+                                        <input type="text" class="form-control" name="name" value="{{ $template->name }}">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 col-form-label">Template Type</label>
+                                    <div class="col-sm-9">
+                                        <select name="type" id="type" class="form-control">
+                                            <option value="sms" {{ $template->type == 'sms' ? 'selected' : '' }}>SMS
+                                            </option>
+                                            <option value="whatsapp" {{ $template->type == 'whatsapp' ? 'selected' : '' }}>
+                                                Whatsapp</option>
+                                        </select>
                                     </div>
                                 </div>
 

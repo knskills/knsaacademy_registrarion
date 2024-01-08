@@ -40,6 +40,7 @@
                                         <tr>
                                             <th>Sr No.</th>
                                             <th>Name</th>
+                                            <th>Type</th>
                                             <th>Message</th>
                                             <th>Action</th>
                                         </tr>
@@ -49,12 +50,13 @@
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $item->name }}</td>
+                                                <td>{{ ucfirst($item->type) }}</td>
                                                 <td style="width: 60%">{{ $item->message }}</td>
                                                 <td nowrap class="text-center">
-                                                    <a href="{{ route('templates.show', $item->id) }}"
+                                                    {{-- <a href="{{ route('templates.show', $item->id) }}"
                                                         class="btn btn-primary btn-xs">
                                                         <i class="bi bi-eye"></i>
-                                                    </a>
+                                                    </a> --}}
                                                     <a href="{{ route('templates.edit', $item->id) }}"
                                                         class="btn btn-warning btn-xs">
                                                         <i class="bi bi-pencil"></i>
