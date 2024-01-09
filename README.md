@@ -19,3 +19,12 @@ Add src link in -?rel=0&amp;controls=0
 ## Conversion api package
 
 [Conversion api](https://github.com/esign/laravel-conversions-api)
+
+## WHasapp and Sms api
+
+1. [twilio](https://www.twilio.com/whatsapp)
+2. 2. [msgclub.net](https://www.msgclub.net/)
+
+### Error codes 
+1. [twilio](https://www.twilio.com/docs/api/errors)
+2. [msgclub.net](https://www.msgclub.net/bulk-sms-gateway-api/error-codes.html)

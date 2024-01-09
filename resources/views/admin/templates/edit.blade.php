@@ -96,10 +96,10 @@
                             </p>
                             <div>
                                 <ul style="list-style: none" data-name="name" class="text-center">
-                                    <li id="first_name">
-                                        <span class="badge bg-primary">First Name</span>
+                                    <li id="name">
+                                        <span class="badge bg-primary">Name</span>
                                     </li>
-                                    <li id="mobile">
+                                    <li id="phone">
                                         <span class="badge bg-primary">Mobile</span>
                                     </li>
                                     <li id="email">

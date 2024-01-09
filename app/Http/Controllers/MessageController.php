@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 use App\Models\Message;
 use App\Models\MessageTemplate;
 use App\Models\audience as Audience;
@@ -11,10 +12,29 @@ use App\Models\Event;
 
 class MessageController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $messages = Message::all();
-        return view('messages.index', compact('messages'));
+        $messagesQuery = Message::with('messageTemplate', 'event');
+
+        if ($request->has('search')) {
+            $searchTerm = $request->search;
+            // Assuming 'name' is a column in the 'messages' table
+            $messagesQuery->where('name', 'like', '%' . $searchTerm . '%');
+        } elseif ($request->has('event')) {
+            $event = $request->event;
+            // Assuming 'event_name' is a column in the 'messages' table
+            $messagesQuery->whereHas('event', function ($query) use ($event) {
+                $query->where('name', $event);
+            });
+        } else {
+            $messagesQuery->orderBy('id', 'desc');
+        }
+
+        $messages = $messagesQuery->paginate(10);
+
+        $messages->appends($request->except('page'));
+
+        return view('admin.messages.index', compact('messages'));
     }
 
     public function create()
@@ -27,27 +47,53 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         $message = Message::create($request->all());
+        $audience_ids = $request->audience_ids;
+
+        foreach ($audience_ids as $key => $audience_id) {
+            $audience = Audience::where('id', $audience_id)->first();
+            $message = MessageTemplate::where('id', $request->message_template_id)->first()->message;
+
+            // replace variables in message
+            $message = str_replace("{name}", $audience->name, $message);
+            $message = str_replace("{email}", $audience->email, $message);
+            $message = str_replace("{phone}", $audience->phone, $message);
+            // $message = str_replace("{event}", $audience->event->name, $message);
+            // $message = str_replace("{date}", $audience->event->date, $message);
+            // $message = str_replace("{time}", $audience->event->time, $message);
+
+            if ($request->type == 'whatsapp') {
+                $reasult = $this->sendWhatsAppMessage($audience->phone, $message);
+            } else {
+                $reasult = $this->sendSms($audience->phone, $message);
+            }
+        }
         return redirect()->route('messages.index')->with('success', 'Message created successfully');
     }
 
-    public function sendMobileSms(Request $request)
+    public function sendSms($phone, $message)
     {
-        $mobileNumber = $request->mobileNumber;
-        $message = $request->message;
-        $senderId = getenv("SMS_SENDER_ID");
-        $serverUrl = getenv("SMS_SERVER_URL");
-        $authKey = getenv("SMS_AUTH_KEY");
-        $routeId = getenv("SMS_ROUTE");
-        $this->sendsmsGET($mobileNumber, $senderId, $routeId, $message, $serverUrl, $authKey);
+        try {
+            $mobileNumber = $phone;
+            $message =  $message;
+            $senderId = getenv("MSGCLUB_SENDER_ID");
+            $serverUrl = getenv("MSGCLUB_SERVER_URL");
+            $authKey = getenv("MSGCLUB_AUTH_KEY");
+            $routeId = getenv("MSGCLUB_SMS_ROUTE");
+            $this->sendsmsGET($mobileNumber, $senderId, $routeId, $message, $serverUrl, $authKey);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+        }
     }
 
     public function sendsmsGET($mobileNumber, $senderId, $routeId, $message, $serverUrl, $authKey)
     {
         $route = $routeId;
-        $getData = 'mobileNos=' . $mobileNumber . '&message=' . urlencode($message) . '&senderId=' . $senderId . '&routeId=' . $routeId;
+        $getData = 'mobileNos=' . $mobileNumber . '&message=' . urlencode($message) . '&senderId=' . $senderId . '&routeId=' . $route;
 
         /* API URL */
         $url = "http://" . $serverUrl . "/rest/services/sendSMS/sendGroupSms?AUTH_KEY=" . $authKey . "&" . $getData;
+
+        Log::info($url);
 
         /* init the resource */
         $ch = curl_init();
@@ -73,143 +119,32 @@ class MessageController extends Controller
         return $output;
     }
 
-    public function sendSingleSms($params)
+    public function sendWhatsAppMessage($phone, $message)
     {
-        $mobileNumber = $params['to']; /*Separate mobile no with commas */
-        $message = $params['message']; /* message */
-        $senderId = "abcd"; /* Sender ID */
-        $serverUrl = "msg.msgclub.net";
-        $authKey = ""; /* Authentication key (get from sms service provider)*/
-        $route = "1";
-        $this->sendsmsGET($mobileNumber, $senderId, $route, $message, $serverUrl, $authKey);
-    }
+        $authKey = getenv("MSGCLUB_AUTH_KEY");
+        $whatsappNumber = getenv("MSGCLUB_AWHATSAPP_NO");
+        $toNumber = $phone; // Replace with the recipient's WhatsApp number
+        $bodyText = $message; // Replace with the message body text
 
-    public function sendEmail($params)
-    {
-        $to = $params['to'];
-        $subject = $params['subject'];
-        $message = $params['message'];
-        $headers = "From: " . $params['from'] . "\r\n";
-        $headers .= "Reply-To: " . $params['from'] . "\r\n";
-        $headers .= "CC: " . $params['cc'] . "\r\n";
-        $headers .= "BCC: " . $params['bcc'] . "\r\n";
-        $headers .= "MIME-Version: 1.0\r\n";
-        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n"; /* For HTML Email*/
-        mail($to, $subject, $message, $headers);
-    }
+        $url = 'http://msg.msgclub.net/rest/services/sendSMS/v2/sendtemplate?AUTH_KEY=' . $authKey;
 
-    public function sendWhatsapp($params)
-    {
-        $to = $params['to'];
-        $message = $params['message'];
-        $url = "https://api.whatsapp.com/send?phone=" . $to . "&text=" . $message;
-        header("Location: $url");
-    }
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Cookie' => 'JSESSIONID=23BD7D8B4F08B438F9A42E5334C2DDEB.node3',
+        ])->post($url, [
+            'senderId' => $whatsappNumber,
+            'component' => [
+                'messaging_product' => 'whatsapp',
+                'recipient_type' => 'individual',
+                'to' => $toNumber,
+                'type' => 'text',
+                'text' => [
+                    'preview_url' => true,
+                    'body' => $bodyText,
+                ],
+            ],
+        ]);
 
-    public function sendTelegram($params)
-    {
-        $to = $params['to'];
-        $message = $params['message'];
-        $url = "https://api.telegram.org/bot" . $params['token'] . "/sendMessage?chat_id=" . $to . "&text=" . $message;
-        header("Location: $url");
-    }
-
-
-    public function send($params)
-    {
-        $type = $params['type'];
-        if ($type == 'sms') {
-            $this->sendSingleSms($params);
-        } else if ($type == 'email') {
-            $this->sendEmail($params);
-        } else if ($type == 'whatsapp') {
-            $this->sendWhatsapp($params);
-        } else if ($type == 'telegram') {
-            $this->sendTelegram($params);
-        }
-    }
-
-    public function sendBulk($params)
-    {
-        $type = $params['type'];
-        if ($type == 'sms') {
-            $this->sendMobileSms($params);
-        } else if ($type == 'email') {
-            $this->sendEmail($params);
-        } else if ($type == 'whatsapp') {
-            $this->sendWhatsapp($params);
-        } else if ($type == 'telegram') {
-            $this->sendTelegram($params);
-        }
-    }
-
-    public function sendBulkSms(Request $request)
-    {
-        $params = $request->all();
-        $this->sendBulk($params);
-    }
-
-    public function sendSms(Request $request)
-    {
-        $params = $request->all();
-        $this->send($params);
-    }
-
-    public function sendEmails(Request $request)
-    {
-        $params = $request->all();
-        $this->send($params);
-    }
-
-    public function sendWhatsapps(Request $request)
-    {
-        $params = $request->all();
-        $this->send($params);
-    }
-
-    public function sendTelegrams(Request $request)
-    {
-        $params = $request->all();
-        $this->send($params);
-    }
-
-    public function sendEmailsBulk(Request $request)
-    {
-        $params = $request->all();
-        $this->sendBulk($params);
-    }
-
-    public function sendWhatsappsBulk(Request $request)
-    {
-        $params = $request->all();
-        $this->sendBulk($params);
-    }
-
-    public function sendTelegramsBulk(Request $request)
-    {
-        $params = $request->all();
-        $this->sendBulk($params);
-    }
-
-    public function sendBulkEmails(Request $request)
-    {
-        $params = $request->all();
-        $this->sendBulk($params);
-    }
-
-    public function sendBulkWhatsapps(Request $request)
-    {
-        $params = $request->all();
-        $this->sendBulk($params);
-    }
-
-    public function test()
-    {
-        $params = [
-            'to' => '919999999999',
-            'message' => 'Test message',
-            'type' => 'sms'
-        ];
-        $this->send($params);
+        return $response->body();
     }
 }

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Carbon;
 
 class AudienceController extends Controller
 {
@@ -93,6 +94,7 @@ class AudienceController extends Controller
                 $audience->email = $request->email;
                 $audience->phone = $request->phone;
                 $audience->event_name = $request->event_name;
+                $audience->registration_date = Carbon::now();
                 $audience->save();
             }
 
