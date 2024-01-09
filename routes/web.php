@@ -35,9 +35,7 @@ Route::view('/mailtest', 'web.resMail');
 Route::post('/audience', [AudienceController::class, 'store'])->name('audience.store');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [AudienceController::class, 'dashboard'])->name('dashboard');
-    Route::post('/sendMobileSms', [MessageController::class, 'sendMobileSms'])->name('sendMobileSms');
-    Route::get('/create-message', [MessageController::class, 'create'])->name('create-message');
+    Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
 
     Route::resource('audiences', AudienceController::class);
     Route::get('/audience/export', [AudienceController::class, 'export'])->name('audiences.export');

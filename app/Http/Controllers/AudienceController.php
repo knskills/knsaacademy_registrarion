@@ -16,14 +16,6 @@ use Illuminate\Support\Carbon;
 class AudienceController extends Controller
 {
     /**
-     * Dashboard
-     */
-    public function dashboard()
-    {
-        return view('admin.dashboard.index');
-    }
-
-    /**
      * Display a listing of the resource.
      */
     public function index(Request $request)

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\Models\audience as Audience;
+use App\Models\Event;
+use App\Models\Message;
 
 class PageController extends Controller
 {
@@ -49,5 +52,25 @@ class PageController extends Controller
         //     return redirect($url);
         // }
         return view('web.whatsapp');
+    }
+
+
+    //========================================================================================
+    //====================================== Admin pages =====================================
+    //========================================================================================
+
+    /*
+     * Dashboard
+     */
+    public function dashboard()
+    {
+        $audience = Audience::count();
+        $events = Event::count();
+        $messages = Message::count();
+        return view('admin.dashboard.index')->with([
+            'audience' => $audience,
+            'events' => $events,
+            'messages' => $messages,
+        ]);
     }
 }
