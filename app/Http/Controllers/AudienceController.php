@@ -105,7 +105,6 @@ class AudienceController extends Controller
 
                 // send message
                 if ($message_type == 'whatsapp') {
-                    Log::info('Sending whatsapp message to: ' . $audience->phone);
                     sendWhatsAppMessage($audience->phone, $message);
                 } else {
                     sendSms($audience->phone, $message);
