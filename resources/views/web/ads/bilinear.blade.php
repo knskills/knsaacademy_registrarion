@@ -449,7 +449,7 @@
 
         #price-img {
             /* width: 100%;
-                                            height: 100%; */
+                                                height: 100%; */
 
             max-width: 20%;
             max-height: 20%;
@@ -1023,8 +1023,8 @@
                 </div>
 
                 <div class="col-lg-4 m-auto" data-aos="fade-up" data-aos-delay="100">
-                    <img src="{{ asset('assets/img/sirji2.png') }}" alt="sirji" class="img-fluid" style="filter:drop-shadow(1px 2px 12px white)"
-                        id="sirimg">
+                    <img src="{{ asset('assets/img/sirji2.png') }}" alt="sirji" class="img-fluid"
+                        style="filter:drop-shadow(1px 2px 12px white)" id="sirimg">
                 </div>
 
                 <div class="row m-auto">
@@ -1161,19 +1161,22 @@
 
                 <div class="col-md-4">
                     <div class="card">
-                            <img src="{{asset('assets/gaurd/offer/first_offer.jpeg')}}" alt="knsa" class="img-fluid p-1">
+                        <img src="{{ asset('assets/gaurd/offer/first_offer.jpeg') }}" alt="knsa"
+                            class="img-fluid p-1">
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <div class="card">
-                            <img src="{{asset('assets/gaurd/offer/second_offer.jpeg')}}" alt="knsa" class="img-fluid p-1">
+                        <img src="{{ asset('assets/gaurd/offer/second_offer.jpeg') }}" alt="knsa"
+                            class="img-fluid p-1">
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <div class="card">
-                            <img src="{{asset('assets/gaurd/offer/third_offer.jpeg')}}" alt="knsa" class="img-fluid p-1">
+                        <img src="{{ asset('assets/gaurd/offer/third_offer.jpeg') }}" alt="knsa"
+                            class="img-fluid p-1">
                     </div>
                 </div>
 
@@ -1712,29 +1715,30 @@
                             </ul>
                         </div>
 
-                        <form method="post" id="registration" action="{{route('audience.store')}}">
+                        <form method="post" id="registration" action="{{ route('audience.store') }}">
                             @csrf
                             <div class="mb-3">
                                 <input type="hidden" name="event_name" id="event_name" value="beginner_to_billionaire">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder=""
-                                    required>
+                                <input type="text" class="form-control" id="name" name="name"
+                                    placeholder="Enter your name" required>
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder=""
-                                    required>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="Enter your email" required>
                             </div>
                             <div class="mb-3">
-                                <label for="phone" class="form-label">Contact Number</label>
+                                <label for="phone" class="form-label">Contact Number (WhatsApp)</label>
                                 <input type="text" class="form-control" id="phone"
                                     oninput="this.value = this.value.replace(/[^0-9]/g, '')" minlength="10"
-                                    name="phone" maxlength="10" placeholder="" required>
+                                    name="phone" maxlength="10" placeholder="Enter your WhatsApp number" required>
                             </div>
                             <button class="btn btn-primary float-right" type="submit" id="submit">
                                 Submit
                             </button>
                         </form>
+
                     </div>
                 </div>
                 {{-- <div class="modal-footer">
