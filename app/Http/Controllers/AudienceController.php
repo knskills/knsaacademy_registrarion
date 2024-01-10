@@ -103,12 +103,12 @@ class AudienceController extends Controller
                 // $message = str_replace("{date}", $audience->event->date, $message);
                 // $message = str_replace("{time}", $audience->event->time, $message);
 
-                // send message
-                if ($message_type == 'whatsapp') {
-                    sendWhatsAppMessage($audience->phone, $message);
-                } else {
-                    sendSms($audience->phone, $message);
-                }
+                // // send message
+                // if ($message_type == 'whatsapp') {
+                //     sendWhatsAppMessage($audience->phone, $message);
+                // } else {
+                //     sendSms($audience->phone, $message);
+                // }
             }
 
             // Mail using template file
