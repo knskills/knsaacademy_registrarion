@@ -6,6 +6,7 @@ use App\Models\audience;
 use App\Exports\AudienceExport;
 use App\Imports\AudienceImport;
 use App\Models\Event;
+use App\Models\MessageTemplate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -88,6 +89,26 @@ class AudienceController extends Controller
                 $audience->event_name = $request->event_name;
                 $audience->registration_date = Carbon::now();
                 $audience->save();
+
+
+                $audience = Audience::where('id', $audience->id)->first();
+                $messageTemp = MessageTemplate::where('name', 'Welcome whatsapp')->first();
+                $message = $messageTemp->message;
+                $message_type = $messageTemp->type;
+                // replace variables in message
+                $message = str_replace("{name}", $audience->name, $message);
+                $message = str_replace("{email}", $audience->email, $message);
+                $message = str_replace("{phone}", $audience->phone, $message);
+                // $message = str_replace("{event}", $audience->event->name, $message);
+                // $message = str_replace("{date}", $audience->event->date, $message);
+                // $message = str_replace("{time}", $audience->event->time, $message);
+
+                // send message
+                if ($message_type == 'whatsapp') {
+                    sendWhatsAppMessage($audience->phone, $message);
+                } else {
+                    sendSms($audience->phone, $message);
+                }
             }
 
             // Mail using template file
@@ -143,7 +164,8 @@ class AudienceController extends Controller
         }
     }
 
-
+    //===========================================================================================//
+    //=================================== Import & Export =======================================//
     /**
      * Export audience data
      */

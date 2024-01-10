@@ -77,10 +77,10 @@
                                             <td>{{ $item->messageTemplate->name }}</td>
                                             <td>{{ ucfirst($item->type) }}</td>
                                             <td class="text-center">
-                                                {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}
+                                                {{ \Carbon\Carbon::parse($item->schedule_date)->format('d-m-Y') }}
                                             </td>
                                             <td class="text-center">
-                                                {{ \Carbon\Carbon::parse($item->created_at)->format('h:i A') }}
+                                                {{ \Carbon\Carbon::parse($item->schedule_time)->format('h:i A') }}
                                             </td>
                                         </tr>
                                     @endforeach
