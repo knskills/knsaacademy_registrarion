@@ -80,5 +80,7 @@ function sendWhatsAppMessage($phone, $message)
         ],
     ]);
 
+    Log::info($response->body());
+
     return $response->body();
 }
