@@ -83,7 +83,7 @@
                                                 {{ \Carbon\Carbon::parse($item->schedule_time)->format('h:i A') }}
                                             </td>
                                             <td>
-                                                <form action="{{ route('audiences.destroy', $item->id) }}" method="POST"
+                                                <form action="{{ route('messages.destroy', $item->id) }}" method="POST"
                                                     style="display: inline">
                                                     @csrf
                                                     @method('DELETE')
