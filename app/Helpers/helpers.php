@@ -82,3 +82,38 @@ function sendWhatsAppMessage($phone, $message)
 
     return $response->body();
 }
+
+
+// not used
+function sendBulkWhatsAppMessages(array $phones, $message)
+{
+    $authKey = getenv("MSGCLUB_AUTH_KEY");
+    $whatsappNumber = getenv("MSGCLUB_AWHATSAPP_NO");
+
+    $url = 'http://msg.msgclub.net/rest/services/sendSMS/v2/sendtemplate?AUTH_KEY=' . $authKey;
+
+    $responses = [];
+
+    foreach ($phones as $phone) {
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Cookie' => 'JSESSIONID=23BD7D8B4F08B438F9A42E5334C2DDEB.node3',
+        ])->post($url, [
+            'senderId' => $whatsappNumber,
+            'component' => [
+                'messaging_product' => 'whatsapp',
+                'recipient_type' => 'individual',
+                'to' => $phone,
+                'type' => 'text',
+                'text' => [
+                    'preview_url' => true,
+                    'body' => $message,
+                ],
+            ],
+        ]);
+
+        $responses[] = $response->json();
+    }
+
+    return $responses;
+}
