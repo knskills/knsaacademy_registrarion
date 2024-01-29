@@ -69,4 +69,33 @@ class MessageController extends Controller
         // }
         return redirect()->route('messages.index')->with('success', 'Message created successfully');
     }
+
+    public function show($id)
+    {
+        $message = Message::with('messageTemplate', 'event')->findOrFail($id);
+        return view('admin.messages.show', compact('message'));
+    }
+
+    public function edit($id)
+    {
+        $message = Message::findOrFail($id);
+        $templates = MessageTemplate::all();
+        $events = Event::all();
+        return view('admin.messages.edit', compact('message', 'templates', 'events'));
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $message = Message::findOrFail($id);
+        $message->update($request->all());
+        return redirect()->route('messages.index')->with('success', 'Message updated successfully');
+    }
+
+    public function destroy($id)
+    {
+        $message = Message::findOrFail($id);
+        $message->delete();
+        return redirect()->route('messages.index')->with('success', 'Message deleted successfully');
+    }
 }
