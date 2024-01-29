@@ -82,15 +82,17 @@
                                             <td class="text-center">
                                                 {{ \Carbon\Carbon::parse($item->schedule_time)->format('h:i A') }}
                                             </td>
-                                            <form action="{{ route('audiences.destroy', $item->id) }}" method="POST"
-                                                style="display: inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-xs"
-                                                    onclick="return confirm('Are you sure delete this item? ')">
-                                                    <i class="bi bi-trash "></i>
-                                                </button>
-                                            </form>
+                                            <td>
+                                                <form action="{{ route('audiences.destroy', $item->id) }}" method="POST"
+                                                    style="display: inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-xs"
+                                                        onclick="return confirm('Are you sure delete this item? ')">
+                                                        <i class="bi bi-trash "></i>
+                                                    </button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
