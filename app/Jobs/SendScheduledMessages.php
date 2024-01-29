@@ -36,7 +36,7 @@ class SendScheduledMessages implements ShouldQueue
     {
         $messages = Message::where('schedule_date', Carbon::now()->format('Y-m-d'))->where('schedule_time', Carbon::now()->format('H:i'))->get();
 
-        Log::info('Messages sheduled for today: ' . count($messages));
+        // Log::info('Messages sheduled for today: ' . count($messages));
 
         foreach ($messages as $message) {
             $audience_ids = $message->audience_ids;
