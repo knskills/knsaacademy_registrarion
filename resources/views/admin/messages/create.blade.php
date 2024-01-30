@@ -405,16 +405,12 @@
                         // Remove duplicates
                         var unique_array = Array.from(new Set(sel2div_array));
 
-                        console.log(unique_array);
-
                         // call the function to change the select2 data
                         changeSelData(unique_array);
 
                         // // Set the new array to sel2div
                         // $('#sel2div').val(unique_array).trigger('change');
                     } else {
-                        console.log(new_phone_no_array);
-
                         // call the function to change the select2 data
                         changeSelData(new_phone_no_array);
 
@@ -441,9 +437,6 @@
             var audience_numbers = '';
 
             $.each(data, function(index, audience) {
-                console.log(audience);
-                console.log(index);
-
                 audienceOptions += '<option value="' + audience + '">' +
                     audience + '</option>';
                 audience_numbers += '<option value="' + audience +
