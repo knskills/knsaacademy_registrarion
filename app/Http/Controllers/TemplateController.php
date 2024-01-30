@@ -44,7 +44,7 @@ class TemplateController extends Controller
      */
     public function store(Request $request)
     {
-        Log::info($request->all());
+        // Log::info($request->all());
         try {
             $valitor = Validator::make($request->all(), [
                 'name' => 'required',
@@ -55,23 +55,23 @@ class TemplateController extends Controller
                 return redirect()->back()->withErrors($valitor)->withInput();
             }
 
-            // if media_file in input then convert it into base64 imageToBase64
-            if ($request->has('media_file')) {
-                $image = $request->file('media_file');
-                $imageToBase64 = base64_encode(file_get_contents($image));
+            // // if media_file in input then convert it into base64 imageToBase64
+            // if ($request->has('media_file')) {
+            //     $image = $request->file('media_file');
+            //     $imageToBase64 = base64_encode(file_get_contents($image));
 
-                Log::info($imageToBase64);
-            }
+            //     Log::info($imageToBase64);
+            // }
 
-            // $template = MessageTemplate::create([
-            //     'name' => $request->name ?? '',
-            //     'subject' => $request->subject ?? '',
-            //     'message' => $request->message ?? '',
-            //     'media_file' => $request->has('media_file') ? $imageToBase64 : '',
-            //     'type' => $request->type ?? '',
-            //     'status' => $request->status ?? '',
-            //     'event_name' => $request->event_name ?? '',
-            // ]);
+            $template = MessageTemplate::create([
+                'name' => $request->name ?? '',
+                'subject' => $request->subject ?? '',
+                'message' => $request->message ?? '',
+                // 'media_file' => $request->has('media_file') ? $imageToBase64 : '',
+                'type' => $request->type ?? '',
+                'status' => $request->status ?? '',
+                'event_name' => $request->event_name ?? '',
+            ]);
 
             return redirect()->route('templates.index')->with('success', 'Template created successfully!');
         } catch (\Throwable $th) {
