@@ -78,7 +78,9 @@
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>
-                                                {{ ucwords(str_replace('_', ' ', $item->event->event_name)) }}
+                                                {{-- {{ ucwords(str_replace('_', ' ', $item->event->event_name))}} --}}
+
+                                                {{ $item->event_id ? ucwords(str_replace('_', ' ', $item->event->event_name)) : 'No Event' }}
                                             </td>
                                             <td>{{ $item->messageTemplate->name }}</td>
                                             <td>{{ ucfirst($item->type) }}</td>

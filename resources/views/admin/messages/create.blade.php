@@ -60,7 +60,7 @@
                                         Template Type
                                     </label>
                                     <div class="col-md-8">
-                                        <select name="type" id="type" class="form-select">
+                                        <select name="type" id="type" class="form-select" required>
                                             <option value="">Select type</option>
                                             <option value="sms">SMS</option>
                                             <option value="whatsapp">Whatsapp</option>
@@ -75,7 +75,7 @@
                                         Template
                                     </label>
                                     <div class="col-md-8">
-                                        <select name="message_template_id" id="template_id" class="form-select">
+                                        <select name="message_template_id" id="template_id" class="form-select" required>
                                             <option value="">Select template</option>
                                         </select>
                                     </div>
@@ -89,7 +89,7 @@
                                     </label>
                                     <div class="col-md-8">
                                         <input type="date" name="schedule_date" id="schedule_date"
-                                            value="{{ old('schedule_date') }}" class="form-control">
+                                            value="{{ old('schedule_date') }}" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -137,13 +137,13 @@
                                     </div>
 
                                     <div class="col-md-3">
-                                        <button type="button" class="btn btn-danger btn-sm" id="deselect-all">
+                                        <button type="button" class="btn btn-danger btn-sm" id="deselect-all" id="adn">
                                             Deselect all
                                         </button>
 
                                         <!-- add new number -->
                                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#newnum" type="button">
+                                            data-bs-target="#newnum" type="button" >
                                             Add new
                                         </button>
 
@@ -482,6 +482,16 @@
                     $('#schedule_time').val(now);
                 }
             });
+
+            // // if change event and not empty, enable the adn button
+            // $('#event').on('change', function() {
+            //     var event_id = $(this).val();
+            //     if (event_id != '') {
+            //         $('#adn').prop('disabled', false);
+            //     } else {
+            //         $('#adn').prop('disabled', true);
+            //     }
+            // });
         });
     </script>
 @endsection

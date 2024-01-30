@@ -105,7 +105,6 @@ class SendScheduledMessages implements ShouldQueue
                 // send message
                 if ($message_type == 'whatsapp') {
                     $result = sendWhatsAppMessage($audience_number, $modifiedMessage);
-                    config(['app.timezone' => 'Asia/Kolkata']);
                 } else {
                     $result = sendSms($audience_number, $modifiedMessage);
                 }
