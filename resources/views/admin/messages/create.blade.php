@@ -101,7 +101,7 @@
                                     </label>
                                     <div class="col-md-8">
                                         <input type="time" name="schedule_time" id="schedule_time"
-                                            value="{{ old('schedule_time') }}" class="form-control">
+                                            value="{{ old('schedule_time') }}" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -312,7 +312,8 @@
                         $.each(response.audiences, function(index, audience) {
                             // audienceOptions += '<option value="' + audience.id + '">' +
                             //     audience.name + '</option>';
-                            audienceOptions += '<option value="' + audience.phone + '">' +
+                            audienceOptions += '<option value="' + audience.phone +
+                                '">' +
                                 audience.phone + '</option>';
                             audience_numbers += '<option value="' + audience.phone +
                                 '">' +
@@ -383,9 +384,8 @@
 
             $('#schedule_time').attr('min', now);
 
-            // set default time to now
-            $('#schedule_time').val(now);
-
+            // // set default time to now
+            // $('#schedule_time').val(now);
         });
     </script>
 
@@ -458,5 +458,30 @@
                 return audience;
             })).trigger('change');
         }
+
+        $(document).ready(function() {
+            // check onchange schedule_time if it is less than now
+            $('#schedule_time').on('change', function() {
+                var schedule_time = $(this).val();
+                var now = new Date();
+                var hh = now.getHours();
+                var mm = now.getMinutes();
+
+                if (hh < 10) {
+                    hh = '0' + hh;
+                }
+
+                if (mm < 10) {
+                    mm = '0' + mm;
+                }
+
+                var now = hh + ':' + mm;
+
+                if (schedule_time < now) {
+                    alert('Please select time greater than now');
+                    $('#schedule_time').val(now);
+                }
+            });
+        });
     </script>
 @endsection
