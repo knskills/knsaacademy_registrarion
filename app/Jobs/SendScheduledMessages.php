@@ -105,8 +105,10 @@ class SendScheduledMessages implements ShouldQueue
                 // send message
                 if ($message_type == 'whatsapp') {
                     $result = sendWhatsAppMessage($audience_number, $modifiedMessage);
+                    Log::info($result);
                 } else {
                     $result = sendSms($audience_number, $modifiedMessage);
+                    Log::info($result);
                 }
             }
         }
