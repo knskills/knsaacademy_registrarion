@@ -76,24 +76,38 @@ class SendScheduledMessages implements ShouldQueue
             ->get();
 
         foreach ($messages as $message) {
-            $audience_ids = $message->audience_ids;
+            $audience_numbers = $message->audience_numbers;
+            Log::info('Messages sheduled for today: ' . count($audience_numbers));
 
-            foreach ($audience_ids as $key => $audience_id) {
-                $audience = Audience::where('id', $audience_id)->first();
+            foreach ($audience_numbers as $key => $audience_number) {
+                $audience = Audience::where('phone', $audience_number)->first();
                 $messageTemp = MessageTemplate::where('id', $message->message_template_id)->first();
                 $originalMessage = $messageTemp->message;
                 $message_type = $messageTemp->type;
 
-                // replace variables in message
-                $modifiedMessage = str_replace("{name}", $audience->name, $originalMessage);
-                $modifiedMessage = str_replace("{email}", $audience->email, $modifiedMessage);
-                $modifiedMessage = str_replace("{phone}", $audience->phone, $modifiedMessage);
+
+                if ($audience) {
+                    // replace variables in message
+                    $modifiedMessage = str_replace("{name}", $audience->name, $originalMessage);
+                    $modifiedMessage = str_replace("{email}", $audience->email, $modifiedMessage);
+                    $modifiedMessage = str_replace("{phone}", $audience->phone, $modifiedMessage);
+                } else {
+                    $modifiedMessage = str_replace("{name}", "sir/mam", $originalMessage);
+                    $modifiedMessage = str_replace("{email}", $audience_number, $modifiedMessage);
+                    $modifiedMessage = str_replace("{phone}", $audience_number, $modifiedMessage);
+                }
+
+                // // replace variables in message
+                // $modifiedMessage = str_replace("{name}", $audience->name, $originalMessage);
+                // $modifiedMessage = str_replace("{email}", $audience->email, $modifiedMessage);
+                // $modifiedMessage = str_replace("{phone}", $audience->phone, $modifiedMessage);
 
                 // send message
                 if ($message_type == 'whatsapp') {
-                    $result = sendWhatsAppMessage($audience->phone, $modifiedMessage);
+                    $result = sendWhatsAppMessage($audience_number, $modifiedMessage);
+                    config(['app.timezone' => 'Asia/Kolkata']);
                 } else {
-                    $result = sendSms($audience->phone, $modifiedMessage);
+                    $result = sendSms($audience_number, $modifiedMessage);
                 }
             }
         }

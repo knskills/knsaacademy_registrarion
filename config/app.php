@@ -188,4 +188,12 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ])->toArray(),
 
+
+    /**
+     * Custom Configurations
+     */
+    'files' => [
+        config_path('msgclub_error.php'),
+    ],
+
 ];

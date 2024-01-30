@@ -114,7 +114,7 @@
                                     <div class="col-md-8">
                                         <select class="form-select" aria-label="Default select" id="event"
                                             name="event_id">
-                                            <option selected>Select event</option>
+                                            <option value="">Select event</option>
                                             @foreach ($events as $event)
                                                 <option value="{{ $event->id }}">
                                                     {{ ucwords(str_replace('_', ' ', $event->event_name)) }}
@@ -130,10 +130,53 @@
                                     <label class="col-md-2 control-label">
                                         Recipients
                                     </label>
-                                    <div class="col-md-10">
+                                    <div class="col-md-7">
                                         <select class="form-control select2" id="sel2div"
                                             data-placeholder="Choose anything" multiple name="audience_ids[]">
                                         </select>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <button type="button" class="btn btn-danger btn-sm" id="deselect-all">
+                                            Deselect all
+                                        </button>
+
+                                        <!-- add new number -->
+                                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#newnum" type="button">
+                                            Add new
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="newnum" tabindex="-1" aria-labelledby="newnumLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="newnumLabel">
+                                                            Add new number
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <input type="text" name="phone[]" class="form-control"
+                                                            id="new_phone_no" placeholder="Please enter mobile number">
+
+                                                        <!-- notice line if multiple numbers -->
+                                                        <h6 class="text-primary">
+                                                            <small>Please enter multiple numbers separated by comma</small>
+                                                        </h6>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Cancel</button>
+                                                        <button type="button" class="btn btn-primary"
+                                                            id="add_number">Add</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -244,6 +287,14 @@
                 closeOnSelect: false,
             });
 
+            $("#deselect-all").click(function() {
+                $('#sel2div').val(null).trigger('change');
+                $('#audience_numbers').val(null).trigger('change');
+
+                // reset event
+                $('#event').val(null).trigger('change');
+            });
+
             // get the audience based on event selected
             $('#event').on('change', function() {
                 var event_id = $(this).val();
@@ -259,8 +310,10 @@
                         var audienceOptions = '';
                         var audience_numbers = '';
                         $.each(response.audiences, function(index, audience) {
-                            audienceOptions += '<option value="' + audience.id + '">' +
-                                audience.name + '</option>';
+                            // audienceOptions += '<option value="' + audience.id + '">' +
+                            //     audience.name + '</option>';
+                            audienceOptions += '<option value="' + audience.phone + '">' +
+                                audience.phone + '</option>';
                             audience_numbers += '<option value="' + audience.phone +
                                 '">' +
                                 audience.phone + '</option>';
@@ -272,7 +325,7 @@
 
                         // default select all audience
                         $('#sel2div').val(response.audiences.map(function(audience) {
-                            return audience.id;
+                            return audience.phone;
                         })).trigger('change');
 
                         // default select all audience
@@ -334,5 +387,83 @@
             $('#schedule_time').val(now);
 
         });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#add_number').on('click', function() {
+                var new_phone_no = $('#new_phone_no').val();
+                var new_phone_no_array = new_phone_no.split(',');
+
+                // Check if sel2div is initialized as a Select2
+                if ($('#sel2div').data('select2')) {
+                    // If sel2div is not empty, add new numbers to sel2div
+                    if ($('#sel2div').val().length > 0) {
+                        var sel2div = $('#sel2div').val();
+                        var sel2div_array = sel2div.concat(new_phone_no_array);
+
+                        // Remove duplicates
+                        var unique_array = Array.from(new Set(sel2div_array));
+
+                        console.log(unique_array);
+
+                        // call the function to change the select2 data
+                        changeSelData(unique_array);
+
+                        // // Set the new array to sel2div
+                        // $('#sel2div').val(unique_array).trigger('change');
+                    } else {
+                        console.log(new_phone_no_array);
+
+                        // call the function to change the select2 data
+                        changeSelData(new_phone_no_array);
+
+                        // // If sel2div is empty, set it to the new numbers
+                        // $('#sel2div').val(new_phone_no_array).trigger('change');
+                    }
+                } else {
+                    // If not initialized, initialize it
+                    $('#sel2div').select2();
+
+                    // Set it to the new numbers
+                    $('#sel2div').val(new_phone_no_array).trigger('change');
+                }
+
+                // Close the modal
+                $('#newnum').modal('hide');
+            });
+
+        });
+
+        function changeSelData(data) {
+            // set the audience options
+            var audienceOptions = '';
+            var audience_numbers = '';
+
+            $.each(data, function(index, audience) {
+                console.log(audience);
+                console.log(index);
+
+                audienceOptions += '<option value="' + audience + '">' +
+                    audience + '</option>';
+                audience_numbers += '<option value="' + audience +
+                    '">' +
+                    audience + '</option>';
+            });
+
+            // set the audience options
+            $('#sel2div').html(audienceOptions);
+            $('#audience_numbers').html(audience_numbers);
+
+            // default select all audience
+            $('#sel2div').val(data.map(function(audience) {
+                return audience;
+            })).trigger('change');
+
+            // default select all audience
+            $('#audience_numbers').val(data.map(function(audience) {
+                return audience;
+            })).trigger('change');
+        }
     </script>
 @endsection

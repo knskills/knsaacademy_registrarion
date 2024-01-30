@@ -47,26 +47,10 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         $message = Message::create($request->all());
-        $audience_ids = $request->audience_ids;
+        // $audience_ids = $request->audience_ids;
+        // $audience = Audience::find($audience_ids);
+        // $message->audience()->attach($audience);
 
-        // foreach ($audience_ids as $key => $audience_id) {
-        //     $audience = Audience::where('id', $audience_id)->first();
-        //     $message = MessageTemplate::where('id', $request->message_template_id)->first()->message;
-
-        //     // replace variables in message
-        //     $message = str_replace("{name}", $audience->name, $message);
-        //     $message = str_replace("{email}", $audience->email, $message);
-        //     $message = str_replace("{phone}", $audience->phone, $message);
-        //     // $message = str_replace("{event}", $audience->event->name, $message);
-        //     // $message = str_replace("{date}", $audience->event->date, $message);
-        //     // $message = str_replace("{time}", $audience->event->time, $message);
-
-        //     if ($request->type == 'whatsapp') {
-        //         $reasult = sendWhatsAppMessage($audience->phone, $message);
-        //     } else {
-        //         $reasult = sendSms($audience->phone, $message);
-        //     }
-        // }
         return redirect()->route('messages.index')->with('success', 'Message created successfully');
     }
 
