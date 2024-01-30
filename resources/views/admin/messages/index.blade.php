@@ -27,22 +27,28 @@
 
                             <div class="col-6 mt-3 float-end text-end">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown"
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
                                         aria-expanded="false">
                                         Filter by event
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item"
+                                        <li>
+                                            <a class="dropdown-item"
                                                 href="{{ route('audiences.index', ['event' => 'first event']) }}">
                                                 First event
-                                            </a></li>
-                                        <li><a class="dropdown-item"
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item"
                                                 href="{{ route('audiences.index', ['event' => 'beginner_to_billionaire']) }}">
                                                 Beginner to Billionaire
-                                            </a></li>
-                                        <li><a class="dropdown-item" href="{{ route('audiences.index') }}">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('audiences.index') }}">
                                                 Reset
-                                            </a></li>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
