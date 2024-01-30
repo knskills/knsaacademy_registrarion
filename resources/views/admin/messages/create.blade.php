@@ -163,7 +163,9 @@
                             </div>
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="col-md-8 m-auto mt-3">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -176,6 +178,7 @@
 @section('scripts')
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script>
         $(document).ready(function() {
             // close alert automatically after 3 seconds
@@ -232,6 +235,7 @@
             });
         });
     </script>
+
     <script>
         $(document).ready(function() {
 
@@ -282,6 +286,53 @@
                     }
                 });
             });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
+            var yyyy = today.getFullYear();
+
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+
+            var today = yyyy + '-' + mm + '-' + dd;
+
+            $('#schedule_date').attr('min', today);
+
+            // set default date to today
+            $('#schedule_date').val(today);
+
+            //===================================================================//
+
+            // set default time to now
+            var current = new Date();
+            var hh = current.getHours();
+            var mm = current.getMinutes();
+
+            if (hh < 10) {
+                hh = '0' + hh;
+            }
+
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
+
+            var now = hh + ':' + mm;
+
+            $('#schedule_time').attr('min', now);
+
+            // set default time to now
+            $('#schedule_time').val(now);
+
         });
     </script>
 @endsection
