@@ -13,6 +13,7 @@ class MessageTemplate extends Model
         'name',
         'subject',
         'message',
+        'media_file',
         'type',
         'status',
         'event_name',

@@ -41,6 +41,13 @@
                                     </div>
                                 </div>
 
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 col-form-label">Media File</label>
+                                    <div class="col-sm-9">
+                                        <input type="file" class="form-control" name="media_file">
+                                    </div>
+                                </div>
+
                                 <div class="row">
                                     <label for="inputText" class="col-md-3 col-form-label">
                                         Message

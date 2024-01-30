@@ -117,3 +117,45 @@ function sendBulkWhatsAppMessages(array $phones, $message)
 
     return $responses;
 }
+
+
+function sendWhatsAppMessageWithMedia($phone, $message, $mediaFileName, $mediaFileData)
+{
+    $authKey = getenv("MSGCLUB_AUTH_KEY");
+    $whatsappNumber = getenv("MSGCLUB_WHATSAPP_NO");
+    $toNumber = $phone;
+    $bodyText = $message;
+
+    $url = 'http://msg.msgclub.net/rest/services/sendSMS/v2/sendtemplate?AUTH_KEY=' . $authKey;
+
+    $response = Http::withHeaders([
+        'Content-Type' => 'application/json',
+        'Cookie' => 'JSESSIONID=23BD7D8B4F08B438F9A42E5334C2DDEB.node3',
+    ])->post($url, [
+        'senderId' => $whatsappNumber,
+        'component' => [
+            'messaging_product' => 'whatsapp',
+            'recipient_type' => 'individual',
+            'to' => $toNumber,
+            'type' => 'media', // Set the type to 'media' for sending multimedia content
+            'media' => [
+                'preview_url' => true,
+                'filename' => $mediaFileName,
+                'filedata' => $mediaFileData,
+                'caption' => $bodyText, // Caption for the media
+            ],
+        ],
+    ]);
+
+    return $response->body();
+}
+// not used
+
+
+// convert image to base64
+function imageToBase64($imagePath)
+{
+    $image = file_get_contents($imagePath);
+    $imageBase64 = base64_encode($image);
+    return $imageBase64;
+}
