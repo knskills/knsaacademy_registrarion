@@ -87,11 +87,11 @@ class TemplateController extends Controller
             }
 
             $template = MessageTemplate::create([
-                'template_id' => $request->input('template_id', ''),
+                //'template_id' => $request->input('template_id', ''),
                 'name' => $request->input('name', ''),
                 'subject' => $request->input('subject', ''),
                 'message' => $request->input('message', ''),
-                'media_file' => $path ?? '',
+                //'media_file' => $path ?? '',
                 'type' => $request->input('type', ''),
                 'status' => $request->input('status', ''),
                 'event_name' => $request->input('event_name', ''),
