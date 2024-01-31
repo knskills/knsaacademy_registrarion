@@ -3,6 +3,7 @@
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 function sendSms($phone, $message)
 {
@@ -13,7 +14,8 @@ function sendSms($phone, $message)
         $serverUrl = getenv("MSGCLUB_SERVER_URL");
         $authKey = getenv("MSGCLUB_AUTH_KEY");
         $routeId = getenv("MSGCLUB_SMS_ROUTE");
-        sendsmsGET($mobileNumber, $senderId, $routeId, $message, $serverUrl, $authKey);
+        $result = sendsmsGET($mobileNumber, $senderId, $routeId, $message, $serverUrl, $authKey);
+        return $result;
     } catch (\Exception $e) {
         Log::error($e->getMessage());
     }
@@ -82,6 +84,10 @@ function sendWhatsAppMessage($phone, $message)
 
     return $response->body();
 }
+
+
+// send email
+
 
 
 // not used

@@ -82,7 +82,7 @@
 
                                                 {{ $item->event_id ? ucwords(str_replace('_', ' ', $item->event->event_name)) : 'No Event' }}
                                             </td>
-                                            <td>{{ $item->messageTemplate->name }}</td>
+                                            <td>{{ $item->messageTemplate->name ?? "" }}</td>
                                             <td>{{ ucfirst($item->type) }}</td>
                                             <td class="text-center">
                                                 {{ \Carbon\Carbon::parse($item->schedule_date)->format('d-m-Y') }}

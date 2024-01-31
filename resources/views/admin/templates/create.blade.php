@@ -22,31 +22,70 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Template</h5>
-                            <form action="{{ route('templates.store') }}" method="post">
+
+                            <div class="my-3">
+                                @if ($errors->any())
+                                    <div class="alert alert-danger alert-dismissible fade show mt-5 error-message"
+                                        role="alert">
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+                                            aria-label="Close">
+                                        </button>
+
+                                        <strong>Error!</strong> Please fix the following issues:
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
+                                @if (session('success'))
+                                    <div class="alert alert-success sent-message">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+
+                                @if (session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
+                            </div>
+
+                            <form action="{{ route('templates.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row mb-3">
                                     <label class="col-sm-3 col-form-label">Template Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="name" value="Template 1">
+                                        <input type="text" class="form-control" name="name" value="" required placeholder="Please type your template name">
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <label class="col-sm-3 col-form-label">Template Type</label>
                                     <div class="col-sm-9">
-                                        <select name="type" id="type" class="form-control">
+                                        <select name="type" id="type" class="form-control" required>
+                                            <option value="">Select Template Type</option>
                                             <option value="sms">SMS</option>
                                             <option value="whatsapp">Whatsapp</option>
                                         </select>
                                     </div>
                                 </div>
 
-                                {{-- <div class="row mb-3">
+                                <div class="row mb-3" style="display:none" id="temp_id">
+                                    <label class="col-sm-3 col-form-label">Template Id</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="template_id" placeholder="Please enter your template id">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3" style="display:none" id="md_file">
                                     <label class="col-sm-3 col-form-label">Media File</label>
                                     <div class="col-sm-9">
                                         <input type="file" class="form-control" name="media_file">
                                     </div>
-                                </div> --}}
+                                </div>
 
                                 <div class="row">
                                     <label for="inputText" class="col-md-3 col-form-label">
@@ -54,7 +93,7 @@
                                         {{-- <span class="text-danger">*</span> --}}
                                     </label>
                                     <div class="col-md-9">
-                                        <textarea id="message" name="message" class="form-control" rows="10">Hii</textarea>
+                                        <textarea id="message" name="message" class="form-control" rows="10" placeholder="Please type or paste your message" required></textarea>
                                     </div>
                                 </div>
 
@@ -105,7 +144,6 @@
                 </div>
             </div>
         </section>
-
     </main><!-- End #main -->
 @endsection
 
@@ -114,9 +152,35 @@
     <script>
         $(document).ready(function() {
             // close alert automatically after 3 seconds
-            setTimeout(function() {
-                $(".alert").alert('close');
-            }, 3000);
+            // setTimeout(function() {
+            //     $(".alert").alert('close');
+            // }, 3000);
+
+            $(".alert").fadeTo(2000, 500).slideUp(500, function() {
+                $(".alert").slideUp(500);
+            });
+
+            // if type is whatsapp then show media file and type is sms then show template id
+            $('#type').on('change', function() {
+                var type = $(this).val();
+                // temp_id md_file
+                if (type == 'whatsapp') {
+                    // $('div[style="display:none"]').show();
+                    // $('div[style="display:none"]').next().show();
+                    // $('div[style="display:none"]').next().next().hide();
+                    // $('div[style="display:none"]').next().next().next().hide();
+                    $('#md_file').show();
+                    $('#temp_id').hide();
+                } else {
+                    // $('div[style="display:none"]').hide();
+                    // $('div[style="display:none"]').next().hide();
+                    // $('div[style="display:none"]').next().next().show();
+                    // $('div[style="display:none"]').next().next().next().show();
+
+                    $('#temp_id').show();
+                    $('#md_file').hide();
+                }
+            });
         });
 
         // if select or click on variable then add it to the editor at the cursor position

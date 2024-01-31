@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('message_templates', function (Blueprint $table) {
-            $table->string('media_file')->nullable()->after('message');
+            $table->text('media_file')->nullable()->after('message');
+            $table->unsignedBigInteger('template_id')->nullable()->after('id');
         });
     }
 
@@ -23,6 +24,7 @@ return new class extends Migration
     {
         Schema::table('message_templates', function (Blueprint $table) {
             $table->dropColumn('media_file');
+            $table->dropColumn('template_id');
         });
     }
 };

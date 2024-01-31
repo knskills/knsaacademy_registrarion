@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use App\Models\MessageTemplate;
+use Illuminate\Support\Facades\Storage;
 
 class TemplateController extends Controller
 {
@@ -44,33 +45,56 @@ class TemplateController extends Controller
      */
     public function store(Request $request)
     {
-        // Log::info($request->all());
         try {
-            $valitor = Validator::make($request->all(), [
+            $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'message' => 'required',
+                'media_file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Add appropriate validation for media_file
             ]);
 
-            if ($valitor->fails()) {
-                return redirect()->back()->withErrors($valitor)->withInput();
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
             }
 
-            // // if media_file in input then convert it into base64 imageToBase64
-            // if ($request->has('media_file')) {
-            //     $image = $request->file('media_file');
-            //     $imageToBase64 = base64_encode(file_get_contents($image));
+            if ($request->hasFile('media_file')) {
+                $image = $request->file('media_file');
+                $imageName = time() . '_' . $image->getClientOriginalName();
 
-            //     Log::info($imageToBase64);
-            // }
+                $path = 'template/img/' . $imageName;
+                $image_path = public_path('template/img/' . $imageName);
+                $image->move(public_path('template/img/'), $imageName);
+
+
+
+                // $imageBase64 = base64_encode(file_get_contents($image_path));
+
+                // Log::info($imageBase64);
+                // $imageBase64 = "data:image/png;base64," . base64_encode(file_get_contents($image_path));
+
+                // // $imagePath = public_path("images/20220405140258.jpg");
+                // // $image = "data:image/png;base64," . base64_encode(file_get_contents($imagePath));
+
+                // //dd($imageBase64);
+                // echo '<img src="' . $imageBase64 . '" alt="Base64 Image">';
+
+                // // dd imageBase64 an image format
+
+
+                // // store base64 image to storage
+                // // $file_name = storeBase64Image($imageBase64, $request->file('media_file')->getClientOriginalName());
+                // // $finle_image = $file_name;
+
+            }
 
             $template = MessageTemplate::create([
-                'name' => $request->name ?? '',
-                'subject' => $request->subject ?? '',
-                'message' => $request->message ?? '',
-                // 'media_file' => $request->has('media_file') ? $imageToBase64 : '',
-                'type' => $request->type ?? '',
-                'status' => $request->status ?? '',
-                'event_name' => $request->event_name ?? '',
+                'template_id' => $request->input('template_id', ''),
+                'name' => $request->input('name', ''),
+                'subject' => $request->input('subject', ''),
+                'message' => $request->input('message', ''),
+                'media_file' => $path ?? '',
+                'type' => $request->input('type', ''),
+                'status' => $request->input('status', ''),
+                'event_name' => $request->input('event_name', ''),
             ]);
 
             return redirect()->route('templates.index')->with('success', 'Template created successfully!');
@@ -142,6 +166,13 @@ class TemplateController extends Controller
     {
         try {
             $template = MessageTemplate::findOrFail($id);
+
+            // check if media_file is not empty then delete it from storage
+            if (!empty($template->media_file)) {
+                // Storage::delete($template->media_file);
+
+                unlink(public_path($template->media_file));
+            }
             $template->delete();
 
             return redirect()->route('templates.index')->with('success', 'Template deleted successfully!');

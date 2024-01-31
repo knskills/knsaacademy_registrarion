@@ -24,6 +24,7 @@ Add src link in -?rel=0&amp;controls=0
 
 1. [twilio](https://www.twilio.com/whatsapp)
 2. [msgclub.net](https://www.msgclub.net/)
+3. [msgclub home](https://www.msgclub.net/plugins/msgclub-chrome-plugin.aspx)
 
 ### Error codes
 
@@ -64,3 +65,6 @@ Add src link in -?rel=0&amp;controls=0
         return $response->body();
     }
 ```
+
+### convert image to base64
+[convert image to base64](https://www.itsolutionstuff.com/post/how-to-convert-image-to-base64-in-laravelexample.html)

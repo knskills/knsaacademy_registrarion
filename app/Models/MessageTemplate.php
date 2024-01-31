@@ -10,6 +10,7 @@ class MessageTemplate extends Model
     use HasFactory;
 
     protected $fillable = [
+        'template_id',
         'name',
         'subject',
         'message',
