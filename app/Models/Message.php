@@ -17,6 +17,7 @@ class Message extends Model
         'message_template_id',
         'type',
         'audience_numbers',
+        'emails',
         'audience_ids',
         'schedule_date',
         'schedule_time',
@@ -29,6 +30,7 @@ class Message extends Model
     protected $casts = [
         'audience_ids' => 'array',
         'audience_numbers' => 'array',
+        'emails' => 'array',
     ];
 
     /**

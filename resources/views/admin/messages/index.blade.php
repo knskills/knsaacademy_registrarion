@@ -70,6 +70,7 @@
                                         <th>Type</th>
                                         <th class="text-center">Sending Date</th>
                                         <th class="text-center">Sending Time</th>
+                                        <th class="text-center">Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -90,12 +91,23 @@
                                             <td class="text-center">
                                                 {{ \Carbon\Carbon::parse($item->schedule_time)->format('h:i A') }}
                                             </td>
-                                            <td>
+                                            <td class="text-center">
+                                                {{-- @if ($item->status == 'pending')
+                                                    <span class="badge bg-warning text-dark">{{ ucfirst($item->status) }}</span>
+                                                @elseif($item->status == 'sent')
+                                                    <span class="badge bg-success">{{ ucfirst($item->status) }}</span>
+                                                @elseif($item->status == 'failed')
+                                                    <span class="badge bg-danger">{{ ucfirst($item->status) }}</span>
+                                                @endif --}}
+
+                                                {{ ucfirst($item->status) }}
+                                            </td>
+                                            <td class="text-center" nowrap>
                                                 <form action="{{ route('messages.destroy', $item->id) }}" method="POST"
                                                     style="display: inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-xs"
+                                                    <button type="submit" class="btn btn-sm btn-danger btn-xs"
                                                         onclick="return confirm('Are you sure delete this item? ')">
                                                         <i class="bi bi-trash "></i>
                                                     </button>

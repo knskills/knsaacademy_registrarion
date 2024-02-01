@@ -22,7 +22,7 @@
                     <li class="breadcrumb-item">Send Message</li>
                 </ol>
             </nav>
-        </div><!-- End Page Title -->
+        </div>
 
         <section class="section">
             <div class="card">
@@ -91,6 +91,9 @@
                                     <div class="col-md-8">
                                         <input type="date" name="schedule_date" id="schedule_date"
                                             value="{{ old('schedule_date') }}" class="form-control" required>
+
+                                        <input type="text" name="status" id="status" value="Schedule"
+                                            class="form-control" hidden>
                                     </div>
                                 </div>
                             </div>
@@ -126,7 +129,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-12 mt-2">
+                            <div class="col-md-12 mt-2" id="sms_cont">
                                 <div class="row">
                                     <label class="col-md-2 control-label">
                                         Recipients
@@ -234,6 +237,23 @@
             // get templates based on type selected (sms or whatsapp) ajax call
             $('#type').on('change', function() {
                 var type = $(this).val();
+
+                // if type is email change sel2div name to emails[]
+                if (type == 'email') {
+                    $('#sel2div').attr('name', 'emails[]');
+                } else {
+                    $('#sel2div').attr('name', 'audience_ids[]');
+                }
+
+                // // if type is email, show the email recipients
+                // if (type == 'email') {
+                //     $('#email_cont').show();
+                //     $('#sms_cont').hide();
+                // } else {
+                //     $('#email_cont').hide();
+                //     $('#sms_cont').show();
+                // }
+
                 $.ajax({
                     url: "{{ route('get-templates') }}",
                     type: "GET",
@@ -300,36 +320,75 @@
             // get the audience based on event selected
             $('#event').on('change', function() {
                 var event_id = $(this).val();
+                var type = $('#type').val();
                 $.ajax({
                     url: "{{ route('get-audience') }}",
                     type: "GET",
                     data: {
                         "_token": "{{ csrf_token() }}",
-                        "event_id": event_id
+                        "event_id": event_id,
+                        "type": type
                     },
                     success: function(response) {
                         // set the audience options
                         var audienceOptions = '';
                         var audience_numbers = '';
-                        $.each(response.audiences, function(index, audience) {
-                            // audienceOptions += '<option value="' + audience.id + '">' +
-                            //     audience.name + '</option>';
-                            audienceOptions += '<option value="' + audience.phone +
-                                '">' +
-                                audience.phone + '</option>';
-                            audience_numbers += '<option value="' + audience.phone +
-                                '">' +
-                                audience.phone + '</option>';
-                        });
+                        var audience_emails = '';
+
+                        // $.each(response.audiences, function(index, audience) {
+                        //     // audienceOptions += '<option value="' + audience.id + '">' +
+                        //     //     audience.name + '</option>';
+                        //     audienceOptions += '<option value="' + audience.phone +
+                        //         '">' +
+                        //         audience.phone + '</option>';
+                        //     audience_numbers += '<option value="' + audience.phone +
+                        //         '">' +
+                        //         audience.phone + '</option>';
+                        // });
+
+                        if (type == 'email') {
+                            $('#sel2div').attr('name', 'emails[]');
+
+                            $.each(response.audiences, function(index, audience) {
+                                audienceOptions += '<option value="' + audience.email +
+                                    '">' +
+                                    audience.email + '</option>';
+                                audience_numbers += '<option value="' + audience.phone +
+                                    '">' +
+                                    audience.phone + '</option>';
+                            });
+                        } else {
+                            $('#sel2div').attr('name', 'audience_ids[]');
+                            $.each(response.audiences, function(index, audience) {
+                                // audienceOptions += '<option value="' + audience.id + '">' +
+                                //     audience.name + '</option>';
+                                audienceOptions += '<option value="' + audience.phone +
+                                    '">' +
+                                    audience.phone + '</option>';
+                                audience_numbers += '<option value="' + audience.phone +
+                                    '">' +
+                                    audience.phone + '</option>';
+                            });
+                        }
 
                         // set the audience options
                         $('#sel2div').html(audienceOptions);
                         $('#audience_numbers').html(audience_numbers);
 
                         // default select all audience
-                        $('#sel2div').val(response.audiences.map(function(audience) {
-                            return audience.phone;
-                        })).trigger('change');
+                        // $('#sel2div').val(response.audiences.map(function(audience) {
+                        //     return audience.phone;
+                        // })).trigger('change');
+
+                        if (type == 'email') {
+                            $('#sel2div').val(response.audiences.map(function(audience) {
+                                return audience.email;
+                            })).trigger('change');
+                        } else {
+                            $('#sel2div').val(response.audiences.map(function(audience) {
+                                return audience.phone;
+                            })).trigger('change');
+                        }
 
                         // default select all audience
                         $('#audience_numbers').val(response.audiences.map(function(audience) {

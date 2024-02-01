@@ -52,7 +52,8 @@ class SendScheduledMessages implements ShouldQueue
                 if ($audience) {
                     // replace variables in message
                     $modifiedMessage = str_replace("{name}", $audience->name, $originalMessage);
-                    $modifiedMessage = str_replace("{email}", $audience->email, $modifiedMessage);
+                    // $modifiedMessage = str_replace("{email}", $audience->email, $modifiedMessage);
+                    $modifiedMessage = str_replace("{email}", $audience->phone, $modifiedMessage);
                     $modifiedMessage = str_replace("{phone}", $audience->phone, $modifiedMessage);
                 } else {
                     $modifiedMessage = str_replace("{name}", "sir/mam", $originalMessage);
@@ -60,11 +61,13 @@ class SendScheduledMessages implements ShouldQueue
                     $modifiedMessage = str_replace("{phone}", $audience_number, $modifiedMessage);
                 }
 
+                Log::info($modifiedMessage);
+
                 // send message
                 if ($message_type == 'whatsapp') {
                     $result = sendWhatsAppMessage($audience_number, $modifiedMessage);
                     Log::info($result);
-                } else {
+                } elseif ($message_type == 'sms') {
                     $result = sendSms($audience_number, $modifiedMessage);
                     Log::info($result);
                 }
