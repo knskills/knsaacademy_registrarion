@@ -64,6 +64,7 @@
                                             <option value="">Select type</option>
                                             <option value="sms">SMS</option>
                                             <option value="whatsapp">Whatsapp</option>
+                                            <option value="email">Email</option>
                                         </select>
                                     </div>
                                 </div>
@@ -137,13 +138,14 @@
                                     </div>
 
                                     <div class="col-md-3">
-                                        <button type="button" class="btn btn-danger btn-sm" id="deselect-all" id="adn">
+                                        <button type="button" class="btn btn-danger btn-sm" id="deselect-all"
+                                            id="adn">
                                             Deselect all
                                         </button>
 
                                         <!-- add new number -->
                                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#newnum" type="button" >
+                                            data-bs-target="#newnum" type="button">
                                             Add new
                                         </button>
 

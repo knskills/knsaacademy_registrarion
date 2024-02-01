@@ -44,14 +44,16 @@
                                 </div>
                             @endif
 
-                            <form action="{{ route('templates.update', $template->id) }}" method="POST">
+                            <form action="{{ route('templates.update', $template->id) }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
 
                                 <div class="row mb-3">
                                     <label class="col-sm-3 col-form-label">Template Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="name" value="{{ $template->name }}">
+                                        <input type="text" class="form-control" name="name"
+                                            value="{{ $template->name }}">
                                     </div>
                                 </div>
 
@@ -63,9 +65,81 @@
                                             </option>
                                             <option value="whatsapp" {{ $template->type == 'whatsapp' ? 'selected' : '' }}>
                                                 Whatsapp</option>
+                                            <option value="email" {{ $template->type == 'email' ? 'selected' : '' }}>
+                                                Email</option>
                                         </select>
                                     </div>
                                 </div>
+
+                                <div class="row mb-3" style="display:none" id="temp_id">
+                                    <label class="col-sm-3 col-form-label">Template Id</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="template_id"
+                                            placeholder="Please enter your template id"
+                                            value="{{ $template->template_id }}">
+                                    </div>
+                                </div>
+
+                                @if ($template->type == 'email')
+                                    <div class="row mb-3" id="if_mail" style="display:none">
+                                        <label class="col-sm-3 col-form-label">CC</label>
+                                        <div class="col-sm-9">
+                                            @foreach ($template->cc as $cc)
+                                                <input type="text" class="form-control" name="cc[]"
+                                                    placeholder="test@test.com testuser" value="{{ $cc }}">
+                                            @endforeach
+
+                                            <!-- notice line if multiple numbers -->
+                                            <h6 class="text-info mt-1">
+                                                <small>
+                                                    Please enter email addresses first, followed by names with spaces. If
+                                                    entering multiple entries, separate them with commas(,).
+                                                </small>
+                                            </h6>
+                                        </div>
+
+                                        <label class="col-sm-3 col-form-label">BCC</label>
+                                        <div class="col-sm-9">
+                                            @foreach ($template->bcc as $bcc)
+                                                <input type="text" class="form-control" name="bcc[]"
+                                                    placeholder="test@test.com testuser" value="{{ $bcc }}">
+                                            @endforeach
+
+                                            <!-- notice line if multiple numbers -->
+                                            <h6 class="text-info mt-1">
+                                                <small>
+                                                    Please enter email addresses first, followed by names with spaces. If
+                                                    entering multiple entries, separate them with commas(,).
+                                                </small>
+                                            </h6>
+                                        </div>
+
+                                        <label class="col-sm-3 col-form-label">Subject</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="subject"
+                                                placeholder="Please enter subject" value="{{ $template->subject }}">
+                                        </div>
+                                    </div>
+                                @endif
+
+
+                                @if ($template->type == 'email' || $template->type == 'whatsapp')
+                                    <div class="row mb-3" style="display:none" id="md_file">
+                                        <label class="col-sm-3 col-form-label">Media File</label>
+                                        <div class="col-sm-9">
+                                            <input type="file" class="form-control" name="media_file">
+
+                                            <span class="mt-2">
+                                                @if ($template->media_file)
+                                                    <a href="{{ asset($template->media_file) }}" target="_blank">View
+                                                        File</a>
+                                                @else
+                                                    No file uploaded
+                                                @endif
+                                            </span>
+                                        </div>
+                                    </div>
+                                @endif
 
                                 <div class="row">
                                     <label for="inputText" class="col-md-3 col-form-label">
@@ -132,10 +206,19 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         $(document).ready(function() {
-            // close alert automatically after 3 seconds
-            setTimeout(function() {
-                $(".alert").alert('close');
-            }, 3000);
+            $(".alert").fadeTo(2000, 500).slideUp(500, function() {
+                $(".alert").slideUp(500);
+            });
+
+            // if type is whatsapp then show fields
+            $('#type').on('change', function() {
+                var type = $(this).val();
+                changefields(type);
+            });
+
+            // check onload page type
+            var type = $('#type').val();
+            changefields(type);
         });
 
         // if select or click on variable then add it to the editor at the cursor position
@@ -148,5 +231,21 @@
             var textAfter = v.substring(cursorPos, v.length);
             $('#message').val(textBefore + '{' + name + '}' + textAfter);
         });
+
+        function changefields(type) {
+            if (type == 'whatsapp') {
+                $('#md_file').show();
+                $('#temp_id').hide();
+                $('#if_mail').hide();
+            } else if (type == 'email') {
+                $('#if_mail').show();
+                $('#md_file').show();
+                $('#temp_id').hide();
+            } else if (type == 'sms') {
+                $('#temp_id').show();
+                $('#md_file').hide();
+                $('#if_mail').hide();
+            }
+        }
     </script>
 @endsection

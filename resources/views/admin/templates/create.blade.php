@@ -58,7 +58,8 @@
                                 <div class="row mb-3">
                                     <label class="col-sm-3 col-form-label">Template Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="name" value="" required placeholder="Please type your template name">
+                                        <input type="text" class="form-control" name="name" value="" required
+                                            placeholder="Please type your template name">
                                     </div>
                                 </div>
 
@@ -69,6 +70,7 @@
                                             <option value="">Select Template Type</option>
                                             <option value="sms">SMS</option>
                                             <option value="whatsapp">Whatsapp</option>
+                                            <option value="email">Email</option>
                                         </select>
                                     </div>
                                 </div>
@@ -76,7 +78,44 @@
                                 <div class="row mb-3" style="display:none" id="temp_id">
                                     <label class="col-sm-3 col-form-label">Template Id</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="template_id" placeholder="Please enter your template id">
+                                        <input type="text" class="form-control" name="template_id"
+                                            placeholder="Please enter your template id">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3" id="if_mail" style="display:none">
+                                    <label class="col-sm-3 col-form-label">CC</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="cc[]"
+                                            placeholder="test@test.com testuser,">
+
+                                        <!-- notice line if multiple numbers -->
+                                        <h6 class="text-primary mt-1">
+                                            <small>
+                                                Please enter email addresses first, followed by names with spaces. If
+                                                entering multiple entries, separate them with commas(,).
+                                            </small>
+                                        </h6>
+                                    </div>
+
+                                    <label class="col-sm-3 col-form-label">BCC</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="bcc[]"
+                                            placeholder="test@test.com testuser,">
+
+                                        <!-- notice line if multiple numbers -->
+                                        <h6 class="text-primary mt-1">
+                                            <small>
+                                                Please enter email addresses first, followed by names with spaces. If
+                                                entering multiple entries, separate them with commas(,).
+                                            </small>
+                                        </h6>
+                                    </div>
+
+                                    <label class="col-sm-3 col-form-label">Subject</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="subject"
+                                            placeholder="Please enter subject">
                                     </div>
                                 </div>
 
@@ -93,7 +132,8 @@
                                         {{-- <span class="text-danger">*</span> --}}
                                     </label>
                                     <div class="col-md-9">
-                                        <textarea id="message" name="message" class="form-control" rows="10" placeholder="Please type or paste your message" required></textarea>
+                                        <textarea id="message" name="message" class="form-control" rows="10"
+                                            placeholder="Please type or paste your message" required></textarea>
                                     </div>
                                 </div>
 
@@ -163,22 +203,18 @@
             // if type is whatsapp then show media file and type is sms then show template id
             $('#type').on('change', function() {
                 var type = $(this).val();
-                // temp_id md_file
                 if (type == 'whatsapp') {
-                    // $('div[style="display:none"]').show();
-                    // $('div[style="display:none"]').next().show();
-                    // $('div[style="display:none"]').next().next().hide();
-                    // $('div[style="display:none"]').next().next().next().hide();
                     $('#md_file').show();
                     $('#temp_id').hide();
-                } else {
-                    // $('div[style="display:none"]').hide();
-                    // $('div[style="display:none"]').next().hide();
-                    // $('div[style="display:none"]').next().next().show();
-                    // $('div[style="display:none"]').next().next().next().show();
-
+                    $('#if_mail').hide();
+                } else if (type == 'email') {
+                    $('#if_mail').show();
+                    $('#md_file').show();
+                    $('#temp_id').hide();
+                } else if (type == 'sms') {
                     $('#temp_id').show();
                     $('#md_file').hide();
+                    $('#if_mail').hide();
                 }
             });
         });

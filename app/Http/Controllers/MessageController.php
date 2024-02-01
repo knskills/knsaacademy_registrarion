@@ -18,11 +18,9 @@ class MessageController extends Controller
 
         if ($request->has('search')) {
             $searchTerm = $request->search;
-            // Assuming 'name' is a column in the 'messages' table
             $messagesQuery->where('name', 'like', '%' . $searchTerm . '%');
         } elseif ($request->has('event')) {
             $event = $request->event;
-            // Assuming 'event_name' is a column in the 'messages' table
             $messagesQuery->whereHas('event', function ($query) use ($event) {
                 $query->where('name', $event);
             });

@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::table('message_templates', function (Blueprint $table) {
             $table->text('media_file')->nullable()->after('message');
             $table->unsignedBigInteger('template_id')->nullable()->after('id');
+            $table->json('cc')->nullable()->after('media_file');
+            $table->json('bcc')->nullable()->after('cc');
         });
     }
 
@@ -25,6 +27,8 @@ return new class extends Migration
         Schema::table('message_templates', function (Blueprint $table) {
             $table->dropColumn('media_file');
             $table->dropColumn('template_id');
+            $table->dropColumn('cc');
+            $table->dropColumn('bcc');
         });
     }
 };

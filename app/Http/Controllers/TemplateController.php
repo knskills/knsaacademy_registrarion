@@ -17,7 +17,6 @@ class TemplateController extends Controller
     {
         try {
             $templates = MessageTemplate::paginate(10);
-
             $templates->appends($request->except('page'));
 
             return view('admin.templates.index', compact('templates'));
@@ -87,14 +86,16 @@ class TemplateController extends Controller
             }
 
             $template = MessageTemplate::create([
-                //'template_id' => $request->input('template_id', ''),
+                'template_id' => $request->input('template_id', ''),
                 'name' => $request->input('name', ''),
                 'subject' => $request->input('subject', ''),
                 'message' => $request->input('message', ''),
-                //'media_file' => $path ?? '',
+                'media_file' => $path ?? '',
                 'type' => $request->input('type', ''),
                 'status' => $request->input('status', ''),
                 'event_name' => $request->input('event_name', ''),
+                'cc' => $request->input('cc', ''),
+                'bcc' => $request->input('bcc', ''),
             ]);
 
             return redirect()->route('templates.index')->with('success', 'Template created successfully!');
@@ -133,18 +134,40 @@ class TemplateController extends Controller
     public function update(Request $request, string $id)
     {
         try {
-            $valitor = Validator::make($request->all(), [
+            $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'message' => 'required',
+                'media_file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable',
             ]);
 
-            if ($valitor->fails()) {
-                return redirect()->back()->withErrors($valitor)->withInput();
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
             }
 
             $template = MessageTemplate::findOrFail($id);
+
+            if ($request->hasFile('media_file')) {
+                // check if media_file is not empty then delete it from storage
+                if (!empty($template->media_file)) {
+                    unlink(public_path($template->media_file));
+                }
+
+                $image = $request->file('media_file');
+                $imageName = time() . '_' . $image->getClientOriginalName();
+
+                $path = 'template/img/' . $imageName;
+                $image_path = public_path('template/img/' . $imageName);
+                $image->move(public_path('template/img/'), $imageName);
+            } else {
+                $path = $template->media_file;
+            }
+
             $template->update([
                 'name' => $request->name ?? '',
+                'media_file' => $path ?? '',
+                'cc' => $request->cc ?? '',
+                'bcc' => $request->bcc ?? '',
+                'template_id' => $request->template_id ?? null,
                 'subject' => $request->subject ?? '',
                 'message' => $request->message ?? '',
                 'type' => $request->type ?? '',
