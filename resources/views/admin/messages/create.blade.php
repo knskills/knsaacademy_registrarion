@@ -167,7 +167,7 @@
 
                                                         <!-- notice line if multiple numbers -->
                                                         <h6 class="text-primary mt-1">
-                                                            <small>Please enter multiple numbers separated by comma</small>
+                                                            <small>Please enter multiple numbers separated by comma(,).</small>
                                                         </h6>
                                                     </div>
                                                     <div class="modal-footer">
