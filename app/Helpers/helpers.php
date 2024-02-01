@@ -3,6 +3,7 @@
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 function sendSms($phone, $message)
 {
@@ -53,7 +54,6 @@ function sendsmsGET($mobileNumber, $senderId, $routeId, $message, $serverUrl, $a
         Log::error($e->getMessage());
     }
 }
-
 
 function sendWhatsAppMessage($phone, $message)
 {
@@ -151,3 +151,29 @@ function sendWhatsAppMessageWithMedia($phone, $message, $mediaFileName, $mediaFi
     return $response->body();
 }
 // not used
+
+
+// send email
+function sendEmail($to, $subject, $message, $cc = null, $bcc = null)
+{
+    Log::info('sendEmail');
+    try {
+        $from = getenv("MAIL_FROM_ADDRESS");
+        $fromName = getenv("MAIL_FROM_NAME");
+        // $data = [
+        //     'to' => $to,
+        //     'subject' => $subject,
+        //     'message' => $message,
+        //     'cc' => $cc,
+        //     'bcc' => $bcc,
+        // ];
+        // Mail::send('emails.email', $data, function ($message) use ($from, $fromName, $to, $subject) {
+        //     $message->from($from, $fromName);
+        //     $message->to($to)->subject($subject);
+        // });
+    } catch (\Exception $e) {
+        Log::error($e->getMessage());
+    } catch (\Exception $e) {
+        Log::error($e->getMessage());
+    }
+}
