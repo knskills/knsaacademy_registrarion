@@ -43,7 +43,8 @@
                                 </tr>
                                 <tr>
                                     <td style="padding:0 35px; white-space: pre-wrap; word-wrap: break-word;">
-                                        {{$body}}
+                                        {{-- {{$body}} --}}
+                                        {{ $data['body'] }}
                                     </td>
                                 </tr>
                                 <tr>

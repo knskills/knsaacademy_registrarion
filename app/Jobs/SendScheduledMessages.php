@@ -15,6 +15,7 @@ use App\Models\Message;
 use App\Models\MessageTemplate;
 use App\Models\audience as Audience;
 use App\Models\Event;
+use App\Mail\TempMail;
 use Log;
 use PgSql\Lob;
 
@@ -99,34 +100,40 @@ class SendScheduledMessages implements ShouldQueue
                         "attachmentPath" => $attachmentPath,
                     ];
 
-                    // // Log information for debugging
-                    // Log::info('Sending email to: ' . $to);
-                    // Log::info('Sending email subject: ' . $subject);
-                    // Log::info('Sending email message: ' . $temp_message);
-                    // Log::info('Sending email cc: ' . $cc);
-                    // Log::info('Sending email bcc: ' . $bcc);
-                    // Log::info('Sending email attachmentPath: ' . $attachmentPath);
-
                     // Use try-catch for error handling during email sending
                     try {
-                        $result = Mail::send('admin.mails.temp', $data, function ($message) use ($to, $subject, $cc, $bcc, $attachmentPath) {
-                            $message->to($to)
-                                ->subject($subject);
+                        // $result = Mail::send('admin.mails.temp', $data, function ($message) use ($to, $subject, $cc, $bcc, $attachmentPath) {
+                        //     $message->to($to)
+                        //         ->subject($subject);
 
-                            // Add CC and BCC
-                            if (!empty($cc)) {
-                                $message->cc($cc);
-                            }
+                        //     // // Add CC and BCC
+                        //     // if (!empty($cc)) {
+                        //     //     $message->cc($cc);
+                        //     // }
 
-                            if (!empty($bcc)) {
-                                $message->bcc($bcc);
-                            }
+                        //     // if (!empty($bcc)) {
+                        //     //     $message->bcc($bcc);
+                        //     // }
 
-                            // Add attachment if provided
-                            if ($attachmentPath) {
-                                $message->attach($attachmentPath);
-                            }
-                        });
+                        //     // // Add attachment if provided
+                        //     // if ($attachmentPath) {
+                        //     //     $message->attach($attachmentPath);
+                        //     // }
+                        // });
+
+
+                        $data = [
+                            "email" => $audience_identifier,
+                            "subject" => $subject,
+                            "body" => $temp_message,
+                            "cc" => $cc,
+                            "bcc" => $bcc,
+                            "attachmentPath" => $attachmentPath,
+                        ];
+                        Mail::to($to)
+                        ->cc($cc)
+                        ->bcc($bcc)
+                        ->send(new TempMail($data));
 
                         Log::info('Email sent successfully.');
                     } catch (\Exception $e) {
