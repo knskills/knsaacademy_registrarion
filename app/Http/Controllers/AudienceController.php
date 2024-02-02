@@ -79,9 +79,10 @@ class AudienceController extends Controller
 
             // check if email and phone already exists in database
             // $audience = Audience::where('email', $request->email)->orWhere('phone', $request->phone)->first();
-            $audience = Audience::where('email', $request->email)->where('phone', $request->phone)->first();
 
-            if (!$audience) {
+            // $audience = Audience::where('email', $request->email)->where('phone', $request->phone)->first();
+
+            // if (!$audience) {
                 $audience = new audience();
                 $audience->name = $request->name;
                 $audience->email = $request->email;
@@ -109,7 +110,7 @@ class AudienceController extends Controller
                 // } else {
                 //     sendSms($audience->phone, $message);
                 // }
-            }
+            // }
 
             // Mail using template file
             if ($request->email) {
