@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Log;
 use App\Models\audience as Audience;
 use App\Models\Event;
 use App\Models\Message;
+use Illuminate\Support\Facades\Mail;
 
 class PageController extends Controller
 {
@@ -72,5 +73,28 @@ class PageController extends Controller
             'events' => $events,
             'messages' => $messages,
         ]);
+    }
+
+
+    /**
+     * Send test email
+     */
+    public function sendTestEmail()
+    {
+        $data = [
+            'name' => 'John Doe',
+            'email' => 'test@gmail.com',
+            'subject' => 'Test Email',
+            'body' => 'This is a test email'
+        ];
+
+        Mail::send('admin.mails.temp', $data, function ($message) use ($data) {
+            $message->to($data['email'], $data['name'])->subject($data['subject']);
+        });
+
+        return "Test email sent successfully";
+
+
+        // return redirect()->back()->with('success', 'Test email sent successfully');
     }
 }

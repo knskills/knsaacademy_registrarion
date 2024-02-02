@@ -26,6 +26,7 @@ Route::get('clear', function () {
     Artisan::call('cache:clear');
     Artisan::call('view:clear');
     Artisan::call('optimize:clear');
+    Artisan::call('config:clear');
     Artisan::call('config:cache');
     return "Cleared!";
 });
@@ -64,6 +65,10 @@ Route::get('lang/change', [LangController::class, 'change'])->name('changeLang')
 Route::get('/terms', [PageController::class, 'terms'])->name('terms');
 Route::get('/privacy', [PageController::class, 'privacy'])->name('privacy');
 Route::get('/whatsapp', [PageController::class, 'whatsapp'])->name('whatsapp');
+
+// send mail
+// Route::get('/send-mail', [PageController::class, 'sendTestEmail'])->name('send-mail');
+Route::view('admin.mails.temp', 'admin.mails.temp');
 
 Route::get('/beginnertobillionaire', [PageController::class, 'beginnertobillionaire'])->name('beginnertobillionaire');
 // Route::get('/', [PageController::class, 'sales'])->name('sales');

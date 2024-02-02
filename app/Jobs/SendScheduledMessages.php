@@ -56,6 +56,12 @@ class SendScheduledMessages implements ShouldQueue
 
                 $originalMessage = $messageTemp->message;
                 $message_type = $messageTemp->type;
+                $cc = $messageTemp->cc;
+                $bcc = $messageTemp->bcc;
+
+                // if($message->type == 'whatsapp' && $message->type == 'whatsapp') {
+                //     $originalMessage = str_replace(["\r\n", "\r", "\n"], '%0a', $originalMessage);
+                // }
 
                 if ($audience) {
                     // replace variables in message
@@ -72,25 +78,28 @@ class SendScheduledMessages implements ShouldQueue
                     $result = sendSms($audience_identifier, $modifiedMessage);
                     Log::info($result);
                 } elseif ($message_type == 'email' && $message->type == 'email') {
-                    // $result = sendEmail($audience_identifier, $messageTemp->subject, $modifiedMessage, $messageTemp->cc, $messageTemp->bcc);
-                    // Log::info($result);
 
                     $to = $audience_identifier;
                     $subject = $messageTemp->subject;
                     $temp_message = $modifiedMessage;
-                    $cc = $messageTemp->cc;
-                    $bcc = $messageTemp->bcc;
+                    $cc = $messageTemp->cc ?? [];
+                    $bcc = $messageTemp->bcc ?? [];
                     $attachmentPath = null;
 
-                    // convert array to string for cc and bcc
-                    if ($cc) {
-                        $cc = implode(',', $cc);
-                    }
+                    // // Convert array to string for cc and bcc
+                    // $cc = implode(',', $cc);
+                    // $bcc = implode(',', $bcc);
 
-                    if ($bcc) {
-                        $bcc = implode(',', $bcc);
-                    }
+                    $data = [
+                        "email" => $audience_identifier,
+                        "subject" => $subject,
+                        "body" => $temp_message,
+                        "cc" => $cc,
+                        "bcc" => $bcc,
+                        "attachmentPath" => $attachmentPath,
+                    ];
 
+                    // // Log information for debugging
                     // Log::info('Sending email to: ' . $to);
                     // Log::info('Sending email subject: ' . $subject);
                     // Log::info('Sending email message: ' . $temp_message);
@@ -98,68 +107,31 @@ class SendScheduledMessages implements ShouldQueue
                     // Log::info('Sending email bcc: ' . $bcc);
                     // Log::info('Sending email attachmentPath: ' . $attachmentPath);
 
+                    // Use try-catch for error handling during email sending
+                    try {
+                        $result = Mail::send('admin.mails.temp', $data, function ($message) use ($to, $subject, $cc, $bcc, $attachmentPath) {
+                            $message->to($to)
+                                ->subject($subject);
 
+                            // Add CC and BCC
+                            if (!empty($cc)) {
+                                $message->cc($cc);
+                            }
 
-                    // $result = Mail::send('web.res', ['message' => $temp_message], function ($message) use ($audience_identifier, $subject, $cc, $bcc, $attachmentPath) {
-                    //     $message->to($audience_identifier)
-                    //         ->subject($subject);
+                            if (!empty($bcc)) {
+                                $message->bcc($bcc);
+                            }
 
-                    //     // // Add CC and BCC
-                    //     // if ($cc) {
-                    //     //     $message->cc($cc);
-                    //     // }
+                            // Add attachment if provided
+                            if ($attachmentPath) {
+                                $message->attach($attachmentPath);
+                            }
+                        });
 
-                    //     // if ($bcc) {
-                    //     //     $message->bcc($bcc);
-                    //     // }
-
-                    //     // // Add attachment if provided
-                    //     // if ($attachmentPath) {
-                    //     //     $message->attach($attachmentPath);
-                    //     // }
-                    // });
-
-                    // $result = Mail::raw($temp_message, function ($message) {
-                    //     $message->to('test@test.com')
-                    //         ->subject('This is a test email');
-                    // });
-
-
-
-                    $data = [
-                        "email" => $audience_identifier,
-                        "subject" => $subject,
-                        "message" => $temp_message,
-                        "cc" => $cc,
-                        "bcc" => $bcc,
-                        "attachmentPath" => $attachmentPath,
-                    ];
-
-                    Log::info('Sending email to: ' . $to);
-                    Log::info('Sending email subject: ' . $subject);
-                    Log::info('Sending email message: ' . $temp_message);
-                    Log::info('Sending email cc: ' . $cc);
-                    Log::info('Sending email bcc: ' . $bcc);
-                    Log::info('Sending email attachmentPath: ' . $attachmentPath);
-
-                    $result = Mail::send('admin.mails.temp', ['message' => $temp_message], function ($message) use ($audience_identifier, $subject, $cc, $bcc, $attachmentPath) {
-                        $message->to($audience_identifier)
-                            ->subject($subject);
-
-                        // // Add CC and BCC
-                        // if ($cc) {
-                        //     $message->cc($cc);
-                        // }
-
-                        // if ($bcc) {
-                        //     $message->bcc($bcc);
-                        // }
-
-                        // // Add attachment if provided
-                        // if ($attachmentPath) {
-                        //     $message->attach($attachmentPath);
-                        // }
-                    });
+                        Log::info('Email sent successfully.');
+                    } catch (\Exception $e) {
+                        Log::error('Error sending email: ' . $e->getMessage());
+                    }
                 }
             }
         }
