@@ -26,9 +26,9 @@
                     </tr>
                     <tr>
                         <td style="text-align:center;">
-                            <a href="#" title="logo" target="_blank">
+                            {{-- <a href="#" title="logo" target="_blank">
                                 <img width="60" src="" title="logo" alt="logo">
-                            </a>
+                            </a> --}}
                         </td>
                     </tr>
                     <tr>
@@ -57,9 +57,9 @@
                     </tr>
                     <tr>
                         <td style="text-align:center;">
-                            <p
+                            {{-- <p
                                 style="font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0 0 0;">
-                                &copy; <strong>www.shrivenunaturals.com</strong></p>
+                                &copy; <strong>www.shrivenunaturals.com</strong></p> --}}
                         </td>
                     </tr>
                     <tr>

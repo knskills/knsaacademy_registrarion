@@ -42,12 +42,9 @@ class SendScheduledMessages implements ShouldQueue
 
         foreach ($messages as $message) {
             $audiences = ($message->type == 'whatsapp' || $message->type == 'sms') ? $message->audience_numbers : $message->emails;
-            Log::info($audiences);
             Log::info('Messages scheduled for today: ' . count($audiences));
 
             foreach ($audiences as $key => $audience_identifier) {
-                Log::info('Sending message to: ' . $audience_identifier);
-
                 $audience = Audience::where($message->type == 'email' ? 'email' : 'phone', $audience_identifier)->first();
                 $messageTemp = MessageTemplate::find($message->message_template_id);
 
@@ -74,9 +71,17 @@ class SendScheduledMessages implements ShouldQueue
                 // send message
                 if ($message_type == 'whatsapp' && $message->type == 'whatsapp') {
                     $result = sendWhatsAppMessage($audience_identifier, $modifiedMessage);
+
+                    // update message status
+                    $message->status = $result;
+                    $message->save();
                     Log::info($result);
                 } elseif ($message_type == 'sms' && $message->type == 'sms') {
                     $result = sendSms($audience_identifier, $modifiedMessage);
+
+                    // update message status
+                    $message->status = $result;
+                    $message->save();
                     Log::info($result);
                 } elseif ($message_type == 'email' && $message->type == 'email') {
 
@@ -134,6 +139,10 @@ class SendScheduledMessages implements ShouldQueue
                         ->cc($cc)
                         ->bcc($bcc)
                         ->send(new TempMail($data));
+
+                        // update message status
+                        $message->status = 'sent';
+                        $message->save();
 
                         Log::info('Email sent successfully.');
                     } catch (\Exception $e) {
