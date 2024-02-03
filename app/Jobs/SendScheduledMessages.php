@@ -88,45 +88,12 @@ class SendScheduledMessages implements ShouldQueue
                     $to = $audience_identifier;
                     $subject = $messageTemp->subject;
                     $temp_message = $modifiedMessage;
-                    $cc = $messageTemp->cc ?? [];
-                    $bcc = $messageTemp->bcc ?? [];
+                    $cc = array_filter($messageTemp->cc) ?? [];
+                    $bcc = array_filter($messageTemp->bcc) ?? [];
                     $attachmentPath = $messageTemp->media_file;
-
-                    // // Convert array to string for cc and bcc
-                    // $cc = implode(',', $cc);
-                    // $bcc = implode(',', $bcc);
-
-                    // $data = [
-                    //     "email" => $audience_identifier,
-                    //     "subject" => $subject,
-                    //     "body" => $temp_message,
-                    //     "cc" => $cc,
-                    //     "bcc" => $bcc,
-                    //     "attachmentPath" => $attachmentPath,
-                    // ];
 
                     // Use try-catch for error handling during email sending
                     try {
-                        // $result = Mail::send('admin.mails.temp', $data, function ($message) use ($to, $subject, $cc, $bcc, $attachmentPath) {
-                        //     $message->to($to)
-                        //         ->subject($subject);
-
-                        //     // // Add CC and BCC
-                        //     // if (!empty($cc)) {
-                        //     //     $message->cc($cc);
-                        //     // }
-
-                        //     // if (!empty($bcc)) {
-                        //     //     $message->bcc($bcc);
-                        //     // }
-
-                        //     // // Add attachment if provided
-                        //     // if ($attachmentPath) {
-                        //     //     $message->attach($attachmentPath);
-                        //     // }
-                        // });
-
-
                         $data = [
                             "email" => $audience_identifier,
                             "subject" => $subject,
@@ -136,12 +103,20 @@ class SendScheduledMessages implements ShouldQueue
                             "attachmentPath" => $attachmentPath,
                         ];
 
-                        Mail::to($to)->cc($cc)->bcc($bcc)->send(new TempMail($data));
+                        $mail = Mail::to($to);
 
-                        // add attachment if provided
-                        if ($attachmentPath) {
-                            Mail::to($to)->cc($cc)->bcc($bcc)->send(new TempMail($data));
+                        // Add CC if available
+                        if (!empty($cc)) {
+                            $mail->cc($cc);
                         }
+
+                        // Add BCC if available
+                        if (!empty($bcc)) {
+                            $mail->bcc($bcc);
+                        }
+
+                        // Send email
+                        $mail->send(new TempMail($data));
 
                         // update message status
                         $message->status = 'sent';
@@ -150,11 +125,12 @@ class SendScheduledMessages implements ShouldQueue
                         Log::info('Email sent successfully.');
                     } catch (\Exception $e) {
                         // update message status
-                        $message->status = 'faild';
+                        $message->status = 'failed';
                         $message->save();
                         Log::error('Error sending email: ' . $e->getMessage());
                     }
                 }
+
             }
         }
     }

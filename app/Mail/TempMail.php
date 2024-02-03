@@ -22,9 +22,6 @@ class TempMail extends Mailable
     public function __construct($data)
     {
         $this->data = $data;
-        \Log::info('TempMail: ' . $data['subject']);
-
-        // \Log::info('TempMail: ' . $data['subject']);
     }
 
     /**
