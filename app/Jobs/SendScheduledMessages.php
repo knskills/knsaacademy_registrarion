@@ -90,20 +90,20 @@ class SendScheduledMessages implements ShouldQueue
                     $temp_message = $modifiedMessage;
                     $cc = $messageTemp->cc ?? [];
                     $bcc = $messageTemp->bcc ?? [];
-                    $attachmentPath = null;
+                    $attachmentPath = $messageTemp->media_file;
 
                     // // Convert array to string for cc and bcc
                     // $cc = implode(',', $cc);
                     // $bcc = implode(',', $bcc);
 
-                    $data = [
-                        "email" => $audience_identifier,
-                        "subject" => $subject,
-                        "body" => $temp_message,
-                        "cc" => $cc,
-                        "bcc" => $bcc,
-                        "attachmentPath" => $attachmentPath,
-                    ];
+                    // $data = [
+                    //     "email" => $audience_identifier,
+                    //     "subject" => $subject,
+                    //     "body" => $temp_message,
+                    //     "cc" => $cc,
+                    //     "bcc" => $bcc,
+                    //     "attachmentPath" => $attachmentPath,
+                    // ];
 
                     // Use try-catch for error handling during email sending
                     try {
@@ -135,10 +135,13 @@ class SendScheduledMessages implements ShouldQueue
                             "bcc" => $bcc,
                             "attachmentPath" => $attachmentPath,
                         ];
-                        Mail::to($to)
-                        ->cc($cc)
-                        ->bcc($bcc)
-                        ->send(new TempMail($data));
+
+                        Mail::to($to)->cc($cc)->bcc($bcc)->send(new TempMail($data));
+
+                        // add attachment if provided
+                        if ($attachmentPath) {
+                            Mail::to($to)->cc($cc)->bcc($bcc)->send(new TempMail($data));
+                        }
 
                         // update message status
                         $message->status = 'sent';
