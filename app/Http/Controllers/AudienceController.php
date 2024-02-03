@@ -80,9 +80,9 @@ class AudienceController extends Controller
             // check if email and phone already exists in database
             // $audience = Audience::where('email', $request->email)->orWhere('phone', $request->phone)->first();
 
-            // $audience = Audience::where('email', $request->email)->where('phone', $request->phone)->first();
+            $audience = Audience::where('email', $request->email)->where('phone', $request->phone)->first();
 
-            // if (!$audience) {
+            if (!$audience) {
                 $audience = new audience();
                 $audience->name = $request->name;
                 $audience->email = $request->email;
@@ -110,7 +110,12 @@ class AudienceController extends Controller
                 // } else {
                 //     sendSms($audience->phone, $message);
                 // }
-            // }
+            }else{
+                // update event name and registration date
+                $audience->event_name = $request->event_name;
+                $audience->registration_date = Carbon::now();
+                $audience->save();
+            }
 
             // Mail using template file
             if ($request->email) {

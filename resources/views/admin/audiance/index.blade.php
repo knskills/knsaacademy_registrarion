@@ -116,10 +116,10 @@
                                                 <td>{{ $item->phone }}</td>
                                                 <td>{{ ucwords(str_replace('_', ' ', $item->event_name)) }}</td>
                                                 <td class="text-center">
-                                                    {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}
+                                                    {{ \Carbon\Carbon::parse($item->registration_date)->format('d-m-Y') }}
                                                 </td>
                                                 <td class="text-center">
-                                                    {{ \Carbon\Carbon::parse($item->created_at)->format('h:i A') }}
+                                                    {{ \Carbon\Carbon::parse($item->registration_date)->format('h:i A') }}
                                                 <td>
                                                     {{-- <a href="{{ route('admin.audiance.show', $item->id) }}"
                                                     class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
