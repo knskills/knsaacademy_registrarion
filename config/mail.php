@@ -35,9 +35,9 @@ return [
 
     'mailers' => [
         'smtp' => [
-            // 'transport' => 'mail', // change smtp to mail for hostinger mail
+            'transport' => 'mail', // change smtp to mail for hostinger mail
             // 'transport' => 'smtp', // change smtp to mail for local mail
-            'transport' => env('MAIL_MAILER', 'mail'),
+            // 'transport' => env('MAIL_MAILER', 'mail'),
             'url' => env('MAIL_URL'),
             'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
             'port' => env('MAIL_PORT', 587),
