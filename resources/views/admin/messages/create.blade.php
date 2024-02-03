@@ -159,18 +159,18 @@
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="newnumLabel">
-                                                            Add new number
+                                                            Add numbers or emails
                                                         </h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <input type="text" name="phone[]" class="form-control"
-                                                            id="new_phone_no" placeholder="Please enter mobile number">
+                                                            id="new_phone_no" placeholder="Please enter mobile numbers or emails">
 
                                                         <!-- notice line if multiple numbers -->
                                                         <h6 class="text-primary mt-1">
-                                                            <small>Please enter multiple numbers separated by comma(,).</small>
+                                                            <small>Please enter multiple numbers or emails separated by comma(,).</small>
                                                         </h6>
                                                     </div>
                                                     <div class="modal-footer">

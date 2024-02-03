@@ -87,13 +87,12 @@
                                     <label class="col-sm-3 col-form-label">CC</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="cc[]"
-                                            placeholder="test@test.com testuser,">
+                                            placeholder="test@test.com,">
 
                                         <!-- notice line if multiple numbers -->
                                         <h6 class="text-primary mt-1">
                                             <small>
-                                                Please enter email addresses first, followed by names with spaces. If
-                                                entering multiple entries, separate them with commas(,).
+                                                Please enter multiple emails separated by comma(,).
                                             </small>
                                         </h6>
                                     </div>
@@ -101,13 +100,12 @@
                                     <label class="col-sm-3 col-form-label">BCC</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="bcc[]"
-                                            placeholder="test@test.com testuser,">
+                                            placeholder="test@test.com,">
 
                                         <!-- notice line if multiple numbers -->
                                         <h6 class="text-primary mt-1">
                                             <small>
-                                                Please enter email addresses first, followed by names with spaces. If
-                                                entering multiple entries, separate them with commas(,).
+                                                Please enter multiple emails separated by comma(,).
                                             </small>
                                         </h6>
                                     </div>
