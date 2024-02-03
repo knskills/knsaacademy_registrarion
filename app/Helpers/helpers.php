@@ -15,7 +15,7 @@ function sendSms($phone, $message)
         $authKey = getenv("MSGCLUB_AUTH_KEY");
         $routeId = getenv("MSGCLUB_SMS_ROUTE");
         $result = sendsmsGET($mobileNumber, $senderId, $routeId, $message, $serverUrl, $authKey);
-
+        // Log::info('sendSms result: ' . $result);
         $result = result($result);
         return $result;
     } catch (\Exception $e) {
@@ -84,6 +84,7 @@ function sendWhatsAppMessage($phone, $message)
     ]);
 
     $result = $response->body();
+    // Log::info('sendWhatsAppMessage result: ' . $result);
     return result($result);
 
     return $response->body();
@@ -96,11 +97,11 @@ function result($result)
 
     // Check if the responseCode is 3001
     if (isset($decodedResult['responseCode']) && $decodedResult['responseCode'] == '3001') {
-        Log::info('WhatsApp message sent successfully. Response: ' . $result);
+        Log::info('Message sent successfully. Response: ' . $result);
         return 'sent';
     } else {
         // Update message status to 'failed'
-        Log::error('Error sending WhatsApp message. Response: ' . $result);
+        Log::error('Error sending message. Response: ' . $result);
         return 'failed';
     }
 }
