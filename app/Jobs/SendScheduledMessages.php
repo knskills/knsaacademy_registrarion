@@ -149,6 +149,9 @@ class SendScheduledMessages implements ShouldQueue
 
                         Log::info('Email sent successfully.');
                     } catch (\Exception $e) {
+                        // update message status
+                        $message->status = 'faild';
+                        $message->save();
                         Log::error('Error sending email: ' . $e->getMessage());
                     }
                 }
