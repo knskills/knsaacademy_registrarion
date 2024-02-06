@@ -68,3 +68,9 @@ Add src link in -?rel=0&amp;controls=0
 
 ### convert image to base64
 [convert image to base64](https://www.itsolutionstuff.com/post/how-to-convert-image-to-base64-in-laravelexample.html)
+
+### Composer autoload
+
+```bash
+composer dump-autoload
+```
