@@ -484,7 +484,7 @@
                 <h2 class="text-white" style="font-family: 'Noto Sans Devanagari', sans-serif;">
                     {{-- How to Grow Exponentially and get Guaranteed success on <span class="text-warning font-weight-bold">Network Marketing Business</span> --}}
 
-                    <span class="text-warning font-weight-bold">BEGINNER TO BILLIONAIRE 50.45</span>
+                    <span class="text-warning font-weight-bold">BEGINNER TO BILLIONAIRE</span>
                 </h2>
 
             </div>
