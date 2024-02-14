@@ -551,7 +551,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Date</span><br>
-                                        <span class="big2-bold-text" style="font-size: 20px;">13 Feb 2024</span>
+                                        <span class="big-bold-text" style="font-size: 20px;">20 Feb 2024</span>
 
                                         {{-- <span class="big2-bold-text" style="font-size: 20px;">2,3 & 4 Feb 2024</span> --}}
                                     </div>
@@ -896,7 +896,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Date</span><br>
-                                        <span class="big2-bold-text text-center">13 Feb 2024</span>
+                                        <span class="big-bold-text text-center">20 Feb 2024</span>
                                     </div>
                                 </div>
                             </div>
