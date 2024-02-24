@@ -449,7 +449,7 @@
 
         #price-img {
             /* width: 100%;
-                                                    height: 100%; */
+                                                            height: 100%; */
 
             max-width: 20%;
             max-height: 20%;
@@ -549,9 +549,9 @@
                                             <i class="far fa-calendar-alt icon-lg"></i>
                                         </button>
                                     </div>
-                                    <div class="ml-3">
+                                    <div class="ml-3" id="seminar-dates">
                                         <span class="small-text">Date</span><br>
-                                        <span class="big-bold-text seminar-date seminar-date" style="font-size: 20px;">27 Feb 2024</span>
+                                        <span class="big-bold-text seminar-date" style="font-size: 20px;" id="next-tuesday">29 Feb 2024</span>
 
                                         {{-- <span class="big2-bold-text" style="font-size: 20px;">2,3 & 4 Feb 2024</span> --}}
                                     </div>
@@ -894,9 +894,9 @@
                                             <i class="far fa-calendar-alt icon-lg"></i>
                                         </button>
                                     </div>
-                                    <div class="ml-3">
+                                    <div class="ml-3" id="seminar-dates">
                                         <span class="small-text">Date</span><br>
-                                        <span class="big-bold-text text-center">27 Feb 2024</span>
+                                        <span class="big-bold-text text-center seminar-date" id="next-tuesday2">29 Feb 2024</span>
                                     </div>
                                 </div>
                             </div>
@@ -1968,4 +1968,62 @@
             });
         });
     </script> --}}
+
+    <script>
+        // $(document).ready(function() {
+        //     var currentDate = new Date();
+        //     var lastTuesday = new Date(currentDate);
+
+        //     // If today is not Tuesday, find the last Tuesday
+        //     if (currentDate.getDay() !== 2) { // 2 represents Tuesday
+        //         lastTuesday.setDate(lastTuesday.getDate() - (currentDate.getDay() + 5) % 7);
+        //     }
+
+        //     // // Display next tuesday date
+        //     // var formattedDate = lastTuesday.getDate() + ' ' + monthNames[lastTuesday.getMonth()] + ' ' +
+        //     //     lastTuesday.getFullYear();
+        //     // $('#next-tuesday').html(formattedDate);
+
+
+        //     // Display seminar dates
+        //     for (var i = 0; i < 5; i++) { // Display for 5 consecutive Tuesdays
+        //         var formattedDate = lastTuesday.getDate() + ' ' + monthNames[lastTuesday.getMonth()] + ' ' +
+        //             lastTuesday.getFullYear();
+
+        //         $('#seminar-dates').append(
+        //             '<div class="ml-3"><span class="small-text">Date</span><br><span class="big-bold-text seminar-date" style="font-size: 20px;">' +
+        //             formattedDate + '</span></div>');
+        //         lastTuesday.setDate(lastTuesday.getDate() + 7); // Move to next Tuesday
+        //     }
+        // });
+
+        // // Array of month names
+        // var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        //     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        // ];
+
+        $(document).ready(function() {
+            var currentDate = new Date();
+            var lastTuesday = new Date(currentDate);
+
+            // If today is not Tuesday, find the last Tuesday
+            if (currentDate.getDay() !== 2) { // 2 represents Tuesday
+                lastTuesday.setDate(lastTuesday.getDate() - (currentDate.getDay() + 5) % 7);
+            }
+
+            // Display next Tuesday's date
+            var nextTuesday = new Date(lastTuesday);
+            nextTuesday.setDate(nextTuesday.getDate() + 7); // Add 7 days to get the next Tuesday
+
+            var formattedNextTuesday = nextTuesday.getDate() + ' ' + monthNames[nextTuesday.getMonth()] + ' ' +
+                nextTuesday.getFullYear();
+            $('#next-tuesday').html(formattedNextTuesday);
+            $('#next-tuesday2').html(formattedNextTuesday);
+        });
+
+        // Array of month names
+        var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ];
+    </script>
 @endsection
