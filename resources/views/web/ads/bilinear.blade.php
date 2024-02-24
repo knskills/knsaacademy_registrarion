@@ -449,7 +449,7 @@
 
         #price-img {
             /* width: 100%;
-                                                height: 100%; */
+                                                    height: 100%; */
 
             max-width: 20%;
             max-height: 20%;
@@ -551,7 +551,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Date</span><br>
-                                        <span class="big-bold-text" style="font-size: 20px;">20 Feb 2024</span>
+                                        <span class="big-bold-text seminar-date seminar-date" style="font-size: 20px;">27 Feb 2024</span>
 
                                         {{-- <span class="big2-bold-text" style="font-size: 20px;">2,3 & 4 Feb 2024</span> --}}
                                     </div>
@@ -896,7 +896,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Date</span><br>
-                                        <span class="big-bold-text text-center">20 Feb 2024</span>
+                                        <span class="big-bold-text text-center">27 Feb 2024</span>
                                     </div>
                                 </div>
                             </div>
@@ -1886,9 +1886,7 @@
 
         // Initial call to start the timer
         updateTimer();
-    </script>
 
-    <script>
         $('.payment').click(function() {
             // window.location.href = "{{ route('audience.store') }}";
             // window.location.href = "https://rzp.io/l/o2gu6qrn";
