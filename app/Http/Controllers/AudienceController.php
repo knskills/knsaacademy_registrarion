@@ -93,7 +93,7 @@ class AudienceController extends Controller
                 $audience->registration_date = Carbon::now();
                 $audience->save();
 
-                sendFBMessage();
+                sendFBMessage($request->phone);
 
                 $audience = Audience::where('id', $audience->id)->first();
                 $messageTemp = MessageTemplate::where('name', 'Welcome whatsapp')->first();
@@ -121,7 +121,7 @@ class AudienceController extends Controller
                 $audience->registration_date = Carbon::now();
                 $audience->save();
 
-                sendFBMessage();
+                sendFBMessage($request->phone);
 
             }
 
