@@ -60,7 +60,7 @@ class AudienceController extends Controller
      */
     public function store(Request $request)
     {
-        Log::info($request->all());
+        // Log::info($request->all());
 
         try {
             $valitor = Validator::make($request->all(), [
@@ -115,7 +115,7 @@ class AudienceController extends Controller
                 //     sendSms($audience->phone, $message);
                 // }
             }else{
-                Log::info('Audience already exists');
+                // Log::info('Audience already exists');
                 // update event name and registration date
                 $audience->event_name = $request->event_name;
                 $audience->registration_date = Carbon::now();
