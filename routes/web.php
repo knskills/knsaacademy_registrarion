@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\TemplateController;
+use App\Http\Controllers\WhatsappController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -65,6 +66,8 @@ Route::get('lang/change', [LangController::class, 'change'])->name('changeLang')
 Route::get('/terms', [PageController::class, 'terms'])->name('terms');
 Route::get('/privacy', [PageController::class, 'privacy'])->name('privacy');
 Route::get('/whatsapp', [PageController::class, 'whatsapp'])->name('whatsapp');
+// Route::get('/send-message', [PageController::class, 'sendMessage'])->name('sendMessage');
+Route::get('/send-message', [PageController::class, 'sendFBMessage'])->name('sendMessage');
 
 // send mail
 // Route::get('/send-mail', [PageController::class, 'sendTestEmail'])->name('send-mail');
@@ -77,3 +80,5 @@ Route::get('/beginnerobillionaire', [PageController::class, 'billionaire'])->nam
 Route::get('/', function () {
     return redirect('/beginnerobillionaire');
 });
+
+Route::post('/whatsapp/webhook', [WhatsappController::class, 'webhook']);

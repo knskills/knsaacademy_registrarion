@@ -551,7 +551,7 @@
                                     </div>
                                     <div class="ml-3" id="seminar-dates">
                                         <span class="small-text">Date</span><br>
-                                        <span class="big-bold-text seminar-date" style="font-size: 20px;" id="next-tuesday">29 Feb 2024</span>
+                                        <span class="big-bold-text seminar-date" id="next-tuesday">29 Feb 2024</span>
 
                                         {{-- <span class="big2-bold-text" style="font-size: 20px;">2,3 & 4 Feb 2024</span> --}}
                                     </div>

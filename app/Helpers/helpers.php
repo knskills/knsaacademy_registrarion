@@ -4,6 +4,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+use Twilio\Rest\Client;
 
 function sendSms($phone, $message)
 {
@@ -199,3 +200,93 @@ function sendEmail($to, $subject, $message, $cc = null, $bcc = null)
         Log::error($e->getMessage());
     }
 }
+
+
+//============================================== TWILIO ========================================//
+// send message
+function sendMessage()
+{
+    try {
+        $sid = getenv("TWILIO_ACCOUNT_SID");
+        $token = getenv("TWILIO_AUTH_TOKEN");
+        $twilioNumber = getenv("TWILIO_NUMBER");
+        $twilio = new Client($sid, $token);
+
+        $message = $twilio->messages
+            ->create(
+                "whatsapp:+919770019148", // to +14155238886
+                [
+                    "body" => "This is a message that I want to send over WhatsApp with Twilio!",
+                    "from" => "whatsapp:" . $twilioNumber,
+                ]
+            );
+
+        return $message->sid;
+    } catch (\Exception $e) {
+        Log::error($e->getMessage());
+    }
+}
+
+// send email
+function sendEmailWithTwilio($to, $subject, $message, $cc = null, $bcc = null)
+{
+    Log::info('sendEmailWithTwilio');
+    try {
+        $from = getenv("MAIL_FROM_ADDRESS");
+        $fromName = getenv("MAIL_FROM_NAME");
+        $data = [
+            'to' => $to,
+            'subject' => $subject,
+            'message' => $message,
+            'cc' => $cc,
+            'bcc' => $bcc,
+        ];
+        Mail::send('emails.email', $data, function ($message) use ($from, $fromName, $to, $subject) {
+            $message->from($from, $fromName);
+            $message->to($to)->subject($subject);
+        });
+    } catch (\Exception $e) {
+        Log::error($e->getMessage());
+    }
+}
+
+//======================================== Facebook =================================================//
+function sendFBMessage()
+    {
+
+        // $response = Http::withHeaders([
+        //     'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
+        //     'Content-Type' => 'application/json',
+        // ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
+        //     'messaging_product' => 'whatsapp',
+        //     'recipient_type' => 'individual',
+        //     'to' => '+919770019148',
+        //     'type' => 'text',
+        //     'text' => [
+        //         'body' => 'Welcome and congratulations!! This message demonstrates your ability to send a WhatsApp message notification from the Cloud API, hosted by Meta. Thank you for taking the time to test with us.'
+        //     ]
+        // ]);
+
+        // return $response->body();
+
+        // Log::info(getenv("FB_METADATA_TOKEN"));
+
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
+            'Content-Type' => 'application/json',
+        ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
+            'messaging_product' => 'whatsapp',
+            "recipient_type" => "individual",
+            'to' => '+919770019148',
+            'type' => 'template',
+            'template' => [
+                'name' => 'hello_world',
+                'language' => [
+                    'code' => 'en_US'
+                ]
+            ]
+        ]);
+
+        return $response->body();
+    }
+

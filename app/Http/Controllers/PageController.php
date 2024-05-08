@@ -8,6 +8,8 @@ use App\Models\audience as Audience;
 use App\Models\Event;
 use App\Models\Message;
 use Illuminate\Support\Facades\Mail;
+use Twilio\Rest\Client;
+use Illuminate\Support\Facades\Http;
 
 class PageController extends Controller
 {
@@ -96,5 +98,137 @@ class PageController extends Controller
 
 
         // return redirect()->back()->with('success', 'Test email sent successfully');
+    }
+
+    function sendMessage()
+    {
+        try {
+            $sid = getenv("TWILIO_ACCOUNT_SID");
+            $token = getenv("TWILIO_AUTH_TOKEN");
+            $twilioNumber = getenv("TWILIO_NUMBER");
+            $twilio = new Client($sid, $token);
+
+            Log::info(getenv("TWILIO_ACCOUNT_SID"));
+
+            $message = $twilio->messages
+                ->create(
+                    "whatsapp:+919770019148", // to
+                    [
+                        "body" => "Hello rohit!",
+                        "from" => "whatsapp:+14155238886", // from
+                    ]
+                );
+
+            Log::info($message->sid);
+
+            return $message->sid;
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+        }
+    }
+
+    //======================================= Whatsapp Cloud api ==============================//
+    public function sendFBMessage(Request $request)
+    {
+
+        // $response = Http::withHeaders([
+        //     'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
+        //     'Content-Type' => 'application/json',
+        // ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
+        //     'messaging_product' => 'whatsapp',
+        //     'recipient_type' => 'individual',
+        //     'to' => '+919770019148',
+        //     'type' => 'text',
+        //     'text' => [
+        //         'body' => 'Welcome and congratulations!! This message demonstrates your ability to send a WhatsApp message notification from the Cloud API, hosted by Meta. Thank you for taking the time to test with us.'
+        //     ]
+        // ]);
+
+        // return $response->body();
+
+        // Log::info(getenv("FB_METADATA_TOKEN"));
+
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
+            'Content-Type' => 'application/json',
+        ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
+            'messaging_product' => 'whatsapp',
+            "recipient_type" => "individual",
+            'to' => '+919770019148',
+            'type' => 'template',
+            'template' => [
+                'name' => 'hello_world',
+                'language' => [
+                    'code' => 'en_US'
+                ]
+            ]
+        ]);
+
+        return $response->body();
+    }
+
+
+    public function sendTempMessage(Request $request)
+    {
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
+            'Content-Type' => 'application/json',
+        ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
+            'messaging_product' => 'whatsapp',
+            'recipient_type' => 'individual',
+            'to' => 'PHONE_NUMBER',
+            'type' => 'template',
+            'template' => [
+                'name' => 'TEST',
+                'language' => [
+                    'code' => 'en_US'
+                ],
+                'components' => [
+                    [
+                        'type' => 'body',
+                        'parameters' => [
+                            [
+                                'type' => 'text',
+                                'text' => 'text-string'
+                            ],
+                            [
+                                'type' => 'currency',
+                                'currency' => [
+                                    'fallback_value' => 'VALUE',
+                                    'code' => 'USD',
+                                    'amount_1000' => 'NUMBER'
+                                ]
+                            ],
+                            [
+                                'type' => 'date_time',
+                                'date_time' => [
+                                    'fallback_value' => 'DATE'
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+
+        return $response->body();
+    }
+
+    public function sendPlainTextMessage()
+    {
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
+            'Content-Type' => 'application/json',
+        ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
+            'messaging_product' => 'whatsapp',
+            "recipient_type" => "individual",
+            'to' => '+919770019148',
+            'type' => 'text',
+            'text' => [
+                'body' => "testing"
+            ]
+        ]);
+
+        return $response->body();
     }
 }

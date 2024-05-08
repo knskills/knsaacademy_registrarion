@@ -60,6 +60,8 @@ class AudienceController extends Controller
      */
     public function store(Request $request)
     {
+        Log::info($request->all());
+
         try {
             $valitor = Validator::make($request->all(), [
                 'name' => 'required',
@@ -91,11 +93,13 @@ class AudienceController extends Controller
                 $audience->registration_date = Carbon::now();
                 $audience->save();
 
+                sendFBMessage();
 
                 $audience = Audience::where('id', $audience->id)->first();
                 $messageTemp = MessageTemplate::where('name', 'Welcome whatsapp')->first();
                 $message = $messageTemp->message;
                 $message_type = $messageTemp->type;
+
                 // replace variables in message
                 $message = str_replace("{name}", $audience->name, $message);
                 $message = str_replace("{email}", $audience->email, $message);
@@ -116,6 +120,9 @@ class AudienceController extends Controller
                 $audience->event_name = $request->event_name;
                 $audience->registration_date = Carbon::now();
                 $audience->save();
+
+                sendFBMessage();
+
             }
 
             // Mail using template file
@@ -125,6 +132,7 @@ class AudienceController extends Controller
                         ->subject('Audience Registration');
                 });
             }
+
 
             return redirect()->route('whatsapp');
         } catch (\Exception $e) {
