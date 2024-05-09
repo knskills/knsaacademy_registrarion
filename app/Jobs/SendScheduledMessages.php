@@ -70,12 +70,14 @@ class SendScheduledMessages implements ShouldQueue
 
                 // send message
                 if ($message_type == 'whatsapp' && $message->type == 'whatsapp') {
-                    $result = sendWhatsAppMessage($audience_identifier, $modifiedMessage);
+                    // $result = sendWhatsAppMessage($audience_identifier, $modifiedMessage);
 
-                    // update message status
-                    $message->status = $result;
-                    $message->save();
-                    Log::info($result);
+                    // // update message status
+                    // $message->status = $result;
+                    // $message->save();
+                    // Log::info($result);
+
+                    sendFBMessage($audience_identifier);
                 } elseif ($message_type == 'sms' && $message->type == 'sms') {
                     $result = sendSms($audience_identifier, $modifiedMessage);
 

@@ -37,4 +37,9 @@ return [
         'auth_key' => env('SMS_AUTH_KEY'),
         'route_id' => env('SMS_ROUTE'),
     ],
+
+    'whatsapp' => [
+        'from-phone-number-id' => env('FB_PHONE_NUMBER'),
+        'token' => env('FB_METADATA_TOKEN'),
+    ],
 ];
