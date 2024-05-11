@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ae4c01d1f71659ca6a4ec45ad6ff8ac3",
+    "content-hash": "ac0c30e1d4de8bfb9caceddd2af195ea",
     "packages": [
         {
             "name": "brick/math",
@@ -2546,77 +2546,6 @@
                 }
             ],
             "time": "2023-08-03T09:00:52+00:00"
-        },
-        {
-            "name": "netflie/laravel-notification-whatsapp",
-            "version": "1.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/netflie/laravel-notification-whatsapp.git",
-                "reference": "c2e6dd650488db3feb8d65962ebd68d1684709aa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/netflie/laravel-notification-whatsapp/zipball/c2e6dd650488db3feb8d65962ebd68d1684709aa",
-                "reference": "c2e6dd650488db3feb8d65962ebd68d1684709aa",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/notifications": "^8.0 || ^9.0 || ^10.0 || ^11.0",
-                "illuminate/support": "^8.0 || ^9.0 || ^10.0 || ^11.0",
-                "netflie/whatsapp-cloud-api": "^2.2.0",
-                "php": ">=7.4"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.0",
-                "phpstan/phpstan": "^1.9",
-                "phpunit/phpunit": "^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "NotificationChannels\\WhatsApp\\WhatsAppServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "NotificationChannels\\WhatsApp\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Álex Albarca",
-                    "email": "alex@netflie.es",
-                    "homepage": "https://www.netflie.es",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Laravel notification driver for WhatsApp",
-            "homepage": "https://github.com/netflie/laravel-notification-whatsapp",
-            "keywords": [
-                "laravel",
-                "notification",
-                "whatsapp",
-                "whatsapp notification",
-                "whatsapp notifications channel"
-            ],
-            "support": {
-                "issues": "https://github.com/netflie/laravel-notification-whatsapp/issues",
-                "source": "https://github.com/netflie/laravel-notification-whatsapp/tree/1.3.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/aalbarca",
-                    "type": "github"
-                }
-            ],
-            "time": "2024-04-29T17:21:00+00:00"
         },
         {
             "name": "netflie/whatsapp-cloud-api",

@@ -253,7 +253,7 @@ function sendEmailWithTwilio($to, $subject, $message, $cc = null, $bcc = null)
 //======================================== Facebook =================================================//
 function sendFBMessage($phone = null)
 {
-    Log::info($phone);
+    // Log::info($phone);
 
     // $response = Http::withHeaders([
     //     'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
@@ -280,10 +280,17 @@ function sendFBMessage($phone = null)
         "recipient_type" => "individual",
         'to' => '+91' . $phone,
         'type' => 'template',
+        // 'template' => [
+        //     'name' => 'hello_world',
+        //     'language' => [
+        //         'code' => 'en_US'
+        //     ]
+        // ]
+
         'template' => [
-            'name' => 'hello_world',
+            'name' => 'testing',
             'language' => [
-                'code' => 'en_US'
+                'code' => 'hi'
             ]
         ]
     ]);

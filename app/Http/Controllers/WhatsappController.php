@@ -2,13 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\WhatsappApi;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
 
 class WhatsappController extends Controller
 {
+
+    // create
+    public function create(Request $request)
+    {
+        $data = WhatsappApi::first();
+        return view('admin.whatsapp.create', compact('data'));
+    }
+
+
+    //================================ Cloud Api ============================//
     public function webhook(Request $request)
     {
         // Handle incoming webhook request
@@ -63,10 +76,42 @@ class WhatsappController extends Controller
         // Ensure you comply with Facebook's terms of service and guidelines.
     }
 
+    public function sendWhatsappMessage(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'phone_number' => 'required|string',
+            'message' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+
+        $phone_number = $request->input('phone_number');
+        $message = $request->input('message');
+
+        $client = new Client();
+        $response = $client->request('POST', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . getenv('FB_ACCESS_TOKEN'),
+                'Content-Type' => 'application/json',
+            ],
+            'json' => [
+                'messaging_product' => 'whatsapp',
+                'to' => $phone_number,
+                'text' => [
+                    'body' => $message,
+                ],
+            ],
+        ]);
+    }
+
+    // ==================================== Profile =================================//
+
     public function getProfile(Request $request)
     {
-        $fromPhoneNumberId = 'FROM_PHONE_NUMBER_ID';
-        $accessToken = 'ACCESS_TOKEN';
+        $fromPhoneNumberId = getenv("FB_PHONE_NUMBER");
+        $accessToken = getenv("FB_METADATA_TOKEN");
 
         $client = new Client([
             'base_uri' => 'https://graph.facebook.com/v19.0/',
@@ -95,14 +140,29 @@ class WhatsappController extends Controller
 
     public function updateProfile(Request $request)
     {
-        $phoneNumberId = 'PHONE_NUMBER_ID';
-        $accessToken = 'ACCESS_TOKEN';
+        // Log::info($request->all());
+        $phoneNumberId = getenv("FB_PHONE_NUMBER");
+        $accessToken = getenv("FB_METADATA_TOKEN");
 
         $client = new Client([
             'base_uri' => 'https://graph.facebook.com/v19.0/',
         ]);
 
         try {
+            $validator = Validator::make($request->all(), [
+                'about' => 'required',
+                'address' => 'required',
+                'description' => 'required',
+                'vartical' => 'required',
+                'email' => 'required',
+                'website_1' => 'nullable',
+                'website_2' => 'nullable',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+
             $response = $client->request('POST', $phoneNumberId . '/whatsapp_business_profile', [
                 'headers' => [
                     'Authorization' => 'Bearer ' . $accessToken,
@@ -110,28 +170,98 @@ class WhatsappController extends Controller
                 ],
                 'json' => [
                     "messaging_product" => "whatsapp",
-                    "about" => "ABOUT",
-                    "address" => "ADDRESS",
-                    "description" => "DESCRIPTION",
-                    "vertical" => "INDUSTRY",
-                    "email" => "EMAIL",
+                    "about" => $request->get('about'),
+                    "address" => $request->get('address'),
+                    "description" => $request->get('description'),
+                    "vertical" => $request->get('vartical'),
+                    "email" => $request->get('email'),
                     "websites" => [
-                        "https://WEBSITE-1",
-                        "https://WEBSITE-2"
+                        $request->get('website_1'),
+                        // $request->get('website_2'),
                     ],
-                    "profile_picture_handle" => "HANDLE_OF_PROFILE_PICTURE"
+                    // "profile_picture_handle" => "HANDLE_OF_PROFILE_PICTURE"
                 ],
             ]);
 
             $statusCode = $response->getStatusCode();
 
             if ($statusCode === 200) {
-                return response()->json(['success' => true], 200);
+                // return response()->json(['success' => true], 200);
+                // Log::info('WhatsApp profile updated successfully');
+                return redirect()->back()->with('success', 'Whatsapp Profile updated successfully');
             } else {
-                return response()->json(['error' => 'Failed to update WhatsApp profile'], $statusCode);
+                Log::error('Failed to update WhatsApp profile');
+                // return response()->json(['error' => 'Failed to update WhatsApp profile'], $statusCode);
+                return redirect()->back()->with('error', 'Something went wrong!');
             }
         } catch (\Exception $e) {
+            Log::error('Failed to update WhatsApp profile: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong!');
+            // return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    //============================ Profile picture =============================
+    /**
+     * create profile picture session
+     */
+    public function createProfilePictureSession(Request $request)
+    {
+        try {
+            $apiVersion = "v19.0";
+            $appId = getenv("FB_APP_ID");
+            $phoneNumberId = getenv("FB_PHONE_NUMBER");
+            $accessToken = getenv("FB_METADATA_TOKEN");
+            $fileLength = "";
+            $fileType = "";
+
+            $validator = Validator::make($request->all(), [
+                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $imageName = time() . '_' . $image->getClientOriginalName();
+
+                $path = 'template/img/' . $imageName;
+                $image_path = public_path('template/img/' . $imageName);
+                $image->move(public_path('template/img/'), $imageName);
+            }
+
+            // $response = Http::post("https://graph.facebook.com/{$apiVersion}/{$appId}/uploads", [
+            //     'file_length' => $fileLength,
+            //     'file_type' => $fileType,
+            //     'access_token' => $accessToken,
+            // ]);
+        } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    /**
+     * Get profile picture
+     */
+    public function uploadImage()
+    {
+        // Replace with your access token and upload ID
+        $accessToken = 'YOUR_ACCESS_TOKEN';
+        $uploadId = 'YOUR_UPLOAD_ID';
+
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $accessToken,
+            'Content-Type' => 'image/jpeg',
+            'file_offset' => '0',
+        ])->attach('photo', file_get_contents('/Users/Sample.jpg'))
+            ->post('https://graph.facebook.com/v19.0/' . $uploadId);
+
+        if ($response->successful()) {
+            return $response->json(); // If you expect JSON response
+        } else {
+            return "Error uploading image: " . $response->status();
         }
     }
 }

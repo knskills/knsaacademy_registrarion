@@ -10,6 +10,7 @@ use App\Models\Message;
 use Illuminate\Support\Facades\Mail;
 use Twilio\Rest\Client;
 use Illuminate\Support\Facades\Http;
+use Netflie\WhatsAppCloudApi\WhatsAppCloudApi;
 
 class PageController extends Controller
 {
@@ -154,12 +155,19 @@ class PageController extends Controller
         ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
             'messaging_product' => 'whatsapp',
             "recipient_type" => "individual",
-            'to' => '+919770019148',
+            'to' => '+918878526807',
             'type' => 'template',
+            // 'template' => [
+            //     'name' => 'hello_world',
+            //     'language' => [
+            //         'code' => 'en_US'
+            //     ]
+            // ]
+
             'template' => [
-                'name' => 'hello_world',
+                'name' => 'testing',
                 'language' => [
-                    'code' => 'en_US'
+                    'code' => 'hi'
                 ]
             ]
         ]);
@@ -230,5 +238,46 @@ class PageController extends Controller
         ]);
 
         return $response->body();
+    }
+
+    public function sendWPMessage()
+    {
+        // Instantiate the WhatsAppCloudApi super class.
+        $whatsapp_cloud_api = new WhatsAppCloudApi([
+            'from_phone_number_id' => getenv("FB_PHONE_NUMBER"),
+            'access_token' => getenv("FB_METADATA_TOKEN"),
+        ]);
+
+        // Replace the recipient phone number and message with your desired values.
+        $recipientPhoneNumber = '+919770019148';
+        $message = "Hey there! I'm using WhatsApp Cloud API. Visit https://www.netflie.es";
+
+        // Send the text message.
+        $response = $whatsapp_cloud_api->sendTextMessage($recipientPhoneNumber, $message);
+
+        // Log::info($response);
+
+        // Optionally, you can return a response or perform any other actions after sending the message.
+        return response()->json(['message' => 'Message sent successfully']);
+    }
+
+    public function sendTemplateMessage()
+    {
+        // Instantiate the WhatsAppCloudApi super class.
+        $whatsapp_cloud_api = new WhatsAppCloudApi([
+            'from_phone_number_id' => getenv("FB_PHONE_NUMBER"),
+            'access_token' => getenv("FB_METADATA_TOKEN"),
+        ]);
+
+        // Replace the recipient phone number, template name, and language with your desired values.
+        $recipientPhoneNumber = '+919770019148';
+        $templateName = 'hello_world';
+        $language = 'en_US'; // Language is optional, remove this line if not needed.
+
+        // Send the template message.
+        $whatsapp_cloud_api->sendTemplate($recipientPhoneNumber, $templateName, $language);
+
+        // Optionally, you can return a response or perform any other actions after sending the message.
+        return response()->json(['message' => 'Template message sent successfully']);
     }
 }

@@ -81,4 +81,16 @@ Route::get('/', function () {
     return redirect('/beginnerobillionaire');
 });
 
-Route::post('/whatsapp/webhook', [WhatsappController::class, 'webhook']);
+Route::post('/whatsapp/webhook', [WhatsappController::class, 'webhook'])->name('whatsapp.webhook');
+
+// update profile
+Route::post('/whatsapp/update-profile', [WhatsappController::class, 'updateProfile'])->name('whatsapp.update-profile');
+
+// get profile
+Route::get('/whatsapp/get-profile', [WhatsappController::class, 'getProfile'])->name('whatsapp.get-profile');
+
+Route::get('/whatsapp/setting', [WhatsappController::class, 'create'])->name('whatsapp.setting');
+
+Route::get('/whatsapp/get-profile-picture', [WhatsappController::class, 'getProfilePicture'])->name('whatsapp.get-profile-picture');
+
+Route::get('/whatsapp/get-profile-information', [WhatsappController::class, 'getProfileInformation'])->name('whatsapp.get-profile-information');

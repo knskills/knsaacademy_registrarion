@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
+// use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\Message;
 use App\Models\MessageTemplate;
 use App\Models\audience as Audience;
-use App\Models\Event;
+// use App\Models\Event;
 use App\Mail\TempMail;
 use Log;
-use PgSql\Lob;
+// use PgSql\Lob;
 
 class SendScheduledMessages implements ShouldQueue
 {
