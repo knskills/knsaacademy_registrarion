@@ -283,7 +283,7 @@ function sendFBMessage($phone = null)
         'template' => [
             'name' => 'welcome',
             'language' => [
-                'code' => 'en_US'
+                'code' => 'en'
             ]
         ]
     ]);

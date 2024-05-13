@@ -157,9 +157,9 @@ class PageController extends Controller
             'to' => '+919770019148',
             'type' => 'template',
             'template' => [
-                'name' => 'hello_world',
+                'name' => 'testing',
                 'language' => [
-                    'code' => 'en_US'
+                    'code' => 'hi'
                 ]
             ]
         ]);
