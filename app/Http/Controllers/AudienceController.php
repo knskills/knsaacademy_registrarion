@@ -60,7 +60,7 @@ class AudienceController extends Controller
      */
     public function store(Request $request)
     {
-        // Log::info($request->all());
+        Log::info($request->all());
 
         try {
             $valitor = Validator::make($request->all(), [
@@ -95,25 +95,25 @@ class AudienceController extends Controller
 
                 sendFBMessage($request->phone);
 
-                $audience = Audience::where('id', $audience->id)->first();
-                $messageTemp = MessageTemplate::where('name', 'Welcome whatsapp')->first();
-                $message = $messageTemp->message;
-                $message_type = $messageTemp->type;
+                // $audience = Audience::where('id', $audience->id)->first();
+                // $messageTemp = MessageTemplate::where('name', 'Welcome whatsapp')->first();
+                // $message = $messageTemp->message;
+                // $message_type = $messageTemp->type;
 
-                // replace variables in message
-                $message = str_replace("{name}", $audience->name, $message);
-                $message = str_replace("{email}", $audience->email, $message);
-                $message = str_replace("{phone}", $audience->phone, $message);
-                // $message = str_replace("{event}", $audience->event->name, $message);
-                // $message = str_replace("{date}", $audience->event->date, $message);
-                // $message = str_replace("{time}", $audience->event->time, $message);
+                // // replace variables in message
+                // $message = str_replace("{name}", $audience->name, $message);
+                // $message = str_replace("{email}", $audience->email, $message);
+                // $message = str_replace("{phone}", $audience->phone, $message);
+                // // $message = str_replace("{event}", $audience->event->name, $message);
+                // // $message = str_replace("{date}", $audience->event->date, $message);
+                // // $message = str_replace("{time}", $audience->event->time, $message);
 
-                // // send message
-                // if ($message_type == 'whatsapp') {
-                //     sendWhatsAppMessage($audience->phone, $message);
-                // } else {
-                //     sendSms($audience->phone, $message);
-                // }
+                // // // send message
+                // // if ($message_type == 'whatsapp') {
+                // //     sendWhatsAppMessage($audience->phone, $message);
+                // // } else {
+                // //     sendSms($audience->phone, $message);
+                // // }
             }else{
                 // Log::info('Audience already exists');
                 // update event name and registration date
@@ -125,13 +125,13 @@ class AudienceController extends Controller
 
             }
 
-            // Mail using template file
-            if ($request->email) {
-                Mail::send('web.resMail', ['name' => $request->name], function ($message) use ($request) {
-                    $message->to($request->email)
-                        ->subject('Audience Registration');
-                });
-            }
+            // // Mail using template file
+            // if ($request->email) {
+            //     Mail::send('web.resMail', ['name' => $request->name], function ($message) use ($request) {
+            //         $message->to($request->email)
+            //             ->subject('Audience Registration');
+            //     });
+            // }
 
 
             return redirect()->route('whatsapp');
