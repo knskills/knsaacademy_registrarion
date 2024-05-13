@@ -287,10 +287,17 @@ function sendFBMessage($phone = null)
         //     ]
         // ]
 
+        // 'template' => [
+        //     'name' => 'testing',
+        //     'language' => [
+        //         'code' => 'hi'
+        //     ]
+        // ]
+
         'template' => [
-            'name' => 'testing',
+            'name' => 'welcome',
             'language' => [
-                'code' => 'hi'
+                'code' => 'en'
             ]
         ]
     ]);
