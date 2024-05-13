@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
         "maatwebsite/excel": "^3.1",
+        "netflie/whatsapp-cloud-api": "^2.2",
         "twilio/sdk": "^8.0"
     },
     "require-dev": {

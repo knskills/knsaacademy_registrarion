@@ -342,6 +342,39 @@
                 </li>
             </ul>
         </li>
+
+        {{-- <li class="nav-item">
+            <a class="nav-link {{ Route::currentRouteNamed('whatsapp.setting') ? '' : 'collapsed' }}"
+                href="{{ route('whatsapp.setting') }}" class="{{ Route::currentRouteNamed('whatsapp.setting') ? 'active' : '' }}">
+                <i class="bi bi-whatsapp"></i>
+                <span>Whatsapp Setting</span>
+            </a>
+        </li> --}}
+
+        <li class="nav-item">
+            <a class="nav-link {{ Route::currentRouteNamed('whatsapp.*') ? '' : 'collapsed' }}"
+                data-bs-target="#whatsapp-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-whatsapp"></i>
+                <span>Whatsapp</span>
+                <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="whatsapp-nav"
+                class="nav-content collapse {{ Route::currentRouteNamed('whatsapp.*') ? 'show' : '' }} "
+                data-bs-parent="#sidebar-nav">
+                {{-- <li>
+                    <a href="{{ route('whatsapp.index') }}"
+                        class="{{ Route::currentRouteNamed('whatsapp.index') ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>whatsapp</span>
+                    </a>
+                </li> --}}
+                <li>
+                    <a href="{{ route('whatsapp.setting') }}"
+                        class="{{ Route::currentRouteNamed('whatsapp.setting') ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Profile Setting</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
     </ul>
 
 </aside><!-- End Sidebar-->
