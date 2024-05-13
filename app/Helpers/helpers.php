@@ -281,7 +281,7 @@ function sendFBMessage($phone = null)
         'to' => '+91' . $phone,
         'type' => 'template',
         'template' => [
-            'name' => 'hello_world',
+            'name' => 'welcome',
             'language' => [
                 'code' => 'en_US'
             ]
