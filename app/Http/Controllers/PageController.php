@@ -155,7 +155,7 @@ class PageController extends Controller
         ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
             'messaging_product' => 'whatsapp',
             "recipient_type" => "individual",
-            'to' => '+918878526807',
+            'to' => '+919770019148',
             'type' => 'template',
             // 'template' => [
             //     'name' => 'hello_world',
