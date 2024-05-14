@@ -306,7 +306,9 @@ class WhatsappController extends Controller
 
         Log::info($cleanHubChallenge);
 
-        return response()->json($cleanHubChallenge);
+        // return response()->json($cleanHubChallenge);
+        return response($hubChallenge);
+
     }
 
 
