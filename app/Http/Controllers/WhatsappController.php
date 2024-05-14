@@ -289,13 +289,13 @@ class WhatsappController extends Controller
 
     public function setupWebhook(Request $request)
     {
-        Log::info($request->all());
+        // Log::info($request->all());
         $hubMode = $request->query('hub_mode');
         $hubChallenge = $request->query('hub_challenge');
         $hubVerifyToken = $request->query('hub_verify_token');
 
-        Log::info('WebHook with get executed.');
-        Log::info("Parameters: hub_mode=$hubMode  hub_challenge=$hubChallenge  hub_verify_token=$hubVerifyToken");
+        // Log::info('WebHook with get executed.');
+        // Log::info("Parameters: hub_mode=$hubMode  hub_challenge=$hubChallenge  hub_verify_token=$hubVerifyToken");
 
         if ($hubVerifyToken !== self::VERIFY_TOKEN) {
             return response()->json(['error' => 'VerifyToken doesn\'t match'], 403);
@@ -303,8 +303,6 @@ class WhatsappController extends Controller
 
         // Remove double quotes from the received challenge value
         $cleanHubChallenge = trim($hubChallenge, '"');
-
-        Log::info($cleanHubChallenge);
 
         // return response()->json($cleanHubChallenge);
         return response($hubChallenge);
