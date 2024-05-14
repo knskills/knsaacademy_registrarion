@@ -301,10 +301,14 @@ class WhatsappController extends Controller
             return response()->json(['error' => 'VerifyToken doesn\'t match'], 403);
         }
 
-        Log::info($hubChallenge);
+        // Remove double quotes from the received challenge value
+        $cleanHubChallenge = trim($hubChallenge, '"');
 
-        return response()->json($hubChallenge);
+        Log::info($cleanHubChallenge);
+
+        return response()->json($cleanHubChallenge);
     }
+
 
     public function receiveNotification(Request $request)
     {
