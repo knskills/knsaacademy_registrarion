@@ -301,6 +301,8 @@ class WhatsappController extends Controller
             return response()->json(['error' => 'VerifyToken doesn\'t match'], 403);
         }
 
+        Log::info($hubChallenge);
+
         return response()->json($hubChallenge);
     }
 
