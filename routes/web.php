@@ -94,3 +94,7 @@ Route::get('/whatsapp/setting', [WhatsappController::class, 'create'])->name('wh
 Route::get('/whatsapp/get-profile-picture', [WhatsappController::class, 'getProfilePicture'])->name('whatsapp.get-profile-picture');
 
 Route::get('/whatsapp/get-profile-information', [WhatsappController::class, 'getProfileInformation'])->name('whatsapp.get-profile-information');
+
+Route::get('/whatsapp/handleWebhook', [WhatsappController::class, 'handleWebhook'])->name('whatsapp.handleWebhook');
+
+Route::get('/whatsapp/setupWebhook', [WhatsappController::class, 'setupWebhook'])->name('whatsapp.setupWebhook');

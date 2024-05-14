@@ -9,17 +9,17 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
+use Netflie\WhatsAppCloudApi\WebHook;
 
 class WhatsappController extends Controller
 {
 
-    // create
+    // create whatsapp api
     public function create(Request $request)
     {
         $data = WhatsappApi::first();
         return view('admin.whatsapp.create', compact('data'));
     }
-
 
     //================================ Cloud Api ============================//
     public function webhook(Request $request)
@@ -263,5 +263,54 @@ class WhatsappController extends Controller
         } else {
             return "Error uploading image: " . $response->status();
         }
+    }
+
+    public function handleWebhook(Request $request)
+    {
+        // Instantiate the WhatsAppCloudApi WebHook class
+        $webhook = new WebHook();
+
+        // Parameters from the request
+        $params = $request->all();
+
+        // The verify token from your Laravel config or environment variables
+        $verifyToken = getenv("FB_METADATA_TOKEN");
+
+        // Verify the webhook request
+        $verificationResult = $webhook->verify($params, $verifyToken);
+
+        // Return the verification result
+        return response()->json($verificationResult);
+    }
+
+
+    //======================================= Trail code =================================
+    const VERIFY_TOKEN = 'LaravelToken';
+
+    public function setupWebhook(Request $request)
+    {
+        Log::info($request->all());
+        $hubMode = $request->query('hub_mode');
+        $hubChallenge = $request->query('hub_challenge');
+        $hubVerifyToken = $request->query('hub_verify_token');
+
+        Log::info('WebHook with get executed.');
+        Log::info("Parameters: hub_mode=$hubMode  hub_challenge=$hubChallenge  hub_verify_token=$hubVerifyToken");
+
+        if ($hubVerifyToken !== self::VERIFY_TOKEN) {
+            return response()->json(['error' => 'VerifyToken doesn\'t match'], 403);
+        }
+
+        return response()->json($hubChallenge);
+    }
+
+    public function receiveNotification(Request $request)
+    {
+        $data = $request->getContent();
+
+        Log::info('WebHook with Post executed.');
+        Log::info($data);
+
+        return response()->json();
     }
 }

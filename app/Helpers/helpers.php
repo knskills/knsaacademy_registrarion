@@ -302,5 +302,7 @@ function sendFBMessage($phone = null)
         ]
     ]);
 
-    return $response->body();
+    Log::info($response->body());
+
+    // return $response->body();
 }
