@@ -157,6 +157,7 @@ class PageController extends Controller
             "recipient_type" => "individual",
             'to' => '+919770019148',
             'type' => 'template',
+
             // 'template' => [
             //     'name' => 'hello_world',
             //     'language' => [
@@ -165,9 +166,9 @@ class PageController extends Controller
             // ]
 
             'template' => [
-                'name' => 'testing',
+                'name' => 'welcome',
                 'language' => [
-                    'code' => 'hi'
+                    'code' => 'en'
                 ]
             ]
         ]);
