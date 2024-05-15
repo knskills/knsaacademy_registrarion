@@ -88,8 +88,11 @@ Route::post('/whatsapp/update-profile', [WhatsappController::class, 'updateProfi
 
 Route::get('/whatsapp/get-profile', [WhatsappController::class, 'getProfile'])->name('whatsapp.get-profile');
 
-Route::get('/whatsapp/setupWebhook', [WhatsappController::class, 'setupWebhook'])->name('whatsapp.setupWebhook');
+// Route::get('/whatsapp/setupWebhook', [WhatsappController::class, 'setupWebhook'])->name('whatsapp.setupWebhook');
 
 Route::get('/whatsapp/getSubscribedApps', [WhatsappController::class, 'getSubscribedApps'])->name('whatsapp.getSubscribedApps');
 
 Route::get('/whatsapp/test', [WhatsappController::class, 'test'])->name('whatsapp.test');
+
+// webhook routes
+Route::match(['get', 'post'], '/webhook', [WhatsappController::class, 'setupWebhook']);

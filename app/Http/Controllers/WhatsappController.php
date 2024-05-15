@@ -25,6 +25,42 @@ class WhatsappController extends Controller
     //======================================= Webhook =================================
     const VERIFY_TOKEN = 'LaravelToken';
 
+    public function setupWebhook(Request $request)
+    {
+        Log::info($request->all());
+
+        if ($request->isMethod('get')) {
+            $hubMode = $request->query('hub_mode');
+            $hubChallenge = $request->query('hub_challenge');
+            $hubVerifyToken = $request->query('hub_verify_token');
+
+            if ($hubVerifyToken !== self::VERIFY_TOKEN) {
+                return response()->json(['error' => 'VerifyToken doesn\'t match'], 403);
+            }
+
+            Log::info('WebHook with GET executed.');
+            Log::info("Parameters: hub_mode=$hubMode  hub_challenge=$hubChallenge  hub_verify_token=$hubVerifyToken");
+
+            return response($hubChallenge);
+        } elseif ($request->isMethod('post')) {
+            $accessToken = $request->header('Authorization');
+
+            // if ($accessToken !== 'Bearer ' . env('WEBHOOK_ACCESS_TOKEN')) {
+            //     return response()->json(['error' => 'Unauthorized'], 401);
+            // }
+
+            $data = $request->json()->all();
+
+            // Log the inbound message data for debugging purposes
+            Log::info('Inbound message:', $data);
+
+            // Respond with 200 OK to acknowledge receipt of the message
+            return response()->json(['status' => 'Message received'], 200);
+        } else {
+            return response()->json(['error' => 'Invalid request method'], 405);
+        }
+    }
+
     // public function setupWebhook(Request $request)
     // {
     //     Log::info($request->all());
@@ -46,34 +82,34 @@ class WhatsappController extends Controller
     //     return response($hubChallenge);
     // }
 
-    public function setupWebhook(Request $request)
-    {
-        // Log::info($request->all());
-        if ($request->isMethod('get')) {
-            $hubMode = $request->query('hub_mode');
-            $hubChallenge = $request->query('hub_challenge');
-            $hubVerifyToken = $request->query('hub_verify_token');
+    // public function setupWebhook(Request $request)
+    // {
+    //     Log::info($request->all());
+    //     if ($request->isMethod('get')) {
+    //         $hubMode = $request->query('hub_mode');
+    //         $hubChallenge = $request->query('hub_challenge');
+    //         $hubVerifyToken = $request->query('hub_verify_token');
 
-            if ($hubVerifyToken !== self::VERIFY_TOKEN) {
-                return response()->json(['error' => 'VerifyToken doesn\'t match'], 403);
-            }
+    //         if ($hubVerifyToken !== self::VERIFY_TOKEN) {
+    //             return response()->json(['error' => 'VerifyToken doesn\'t match'], 403);
+    //         }
 
-            // Log::info('WebHook with get executed.');
-            // Log::info("Parameters: hub_mode=$hubMode  hub_challenge=$hubChallenge  hub_verify_token=$hubVerifyToken");
+    //         Log::info('WebHook with get executed.');
+    //         Log::info("Parameters: hub_mode=$hubMode  hub_challenge=$hubChallenge  hub_verify_token=$hubVerifyToken");
 
-            return response($hubChallenge);
-        } elseif ($request->isMethod('post')) {
-            $data = $request->json()->all();
+    //         return response($hubChallenge);
+    //     } elseif ($request->isMethod('post')) {
+    //         $data = $request->json()->all();
 
-            // Log the inbound message data for debugging purposes
-            Log::info('Inbound message:', $data);
+    //         // Log the inbound message data for debugging purposes
+    //         Log::info('Inbound message:', $data);
 
-            // Respond with 200 OK to acknowledge receipt of the message
-            return response()->json(['status' => 'Message received'], 200);
-        } else {
-            return response()->json(['error' => 'Invalid request method'], 405);
-        }
-    }
+    //         // Respond with 200 OK to acknowledge receipt of the message
+    //         return response()->json(['status' => 'Message received'], 200);
+    //     } else {
+    //         return response()->json(['error' => 'Invalid request method'], 405);
+    //     }
+    // }
 
 
     // ==================================== Profile =================================//
