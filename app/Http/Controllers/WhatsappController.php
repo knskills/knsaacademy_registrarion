@@ -48,7 +48,7 @@ class WhatsappController extends Controller
 
     public function setupWebhook(Request $request)
     {
-        Log::info($request->all());
+        // Log::info($request->all());
         if ($request->isMethod('get')) {
             $hubMode = $request->query('hub_mode');
             $hubChallenge = $request->query('hub_challenge');
@@ -58,8 +58,8 @@ class WhatsappController extends Controller
                 return response()->json(['error' => 'VerifyToken doesn\'t match'], 403);
             }
 
-            Log::info('WebHook with get executed.');
-            Log::info("Parameters: hub_mode=$hubMode  hub_challenge=$hubChallenge  hub_verify_token=$hubVerifyToken");
+            // Log::info('WebHook with get executed.');
+            // Log::info("Parameters: hub_mode=$hubMode  hub_challenge=$hubChallenge  hub_verify_token=$hubVerifyToken");
 
             return response($hubChallenge);
         } elseif ($request->isMethod('post')) {
