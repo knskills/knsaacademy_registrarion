@@ -27,7 +27,7 @@ class WhatsappController extends Controller
 
     public function setupWebhook(Request $request)
     {
-        Log::info($request->all());
+        // Log::info($request->all());
 
         if ($request->isMethod('get')) {
             $hubMode = $request->query('hub_mode');
@@ -188,6 +188,29 @@ class WhatsappController extends Controller
         } catch (\Exception $e) {
             // Handle exceptions
             return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    //========================== Other ===============================
+    public function markAsRead($messageId)
+    {
+        $fromPhoneNumberId = env('FB_ACCOUNT_ID');
+        $accessToken = env('FB_METADATA_TOKEN');
+        $version = 'v19.0';
+
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $accessToken,
+            'Content-Type' => 'application/json',
+        ])->post("https://graph.facebook.com/{$version}/{$fromPhoneNumberId}/messages", [
+            'messaging_product' => 'whatsapp',
+            'status' => 'read',
+            'message_id' => $messageId,
+        ]);
+
+        if ($response->successful()) {
+            return response()->json(['status' => 'Message marked as read', 'response' => $response->json()], 200);
+        } else {
+            return response()->json(['error' => 'Failed to mark message as read', 'response' => $response->body()], $response->status());
         }
     }
 }
