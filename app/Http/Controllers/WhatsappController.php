@@ -25,55 +25,26 @@ class WhatsappController extends Controller
     //======================================= Webhook =================================
     const VERIFY_TOKEN = 'LaravelToken';
 
-    // public function setupWebhook(Request $request)
-    // {
-    //     // Log::info($request->all());
-    //     $hubMode = $request->query('hub_mode');
-    //     $hubChallenge = $request->query('hub_challenge');
-    //     $hubVerifyToken = $request->query('hub_verify_token');
-
-    //     // Log::info('WebHook with get executed.');
-    //     // Log::info("Parameters: hub_mode=$hubMode  hub_challenge=$hubChallenge  hub_verify_token=$hubVerifyToken");
-
-    //     if ($hubVerifyToken !== self::VERIFY_TOKEN) {
-    //         return response()->json(['error' => 'VerifyToken doesn\'t match'], 403);
-    //     }
-
-    //     // Remove double quotes from the received challenge value
-    //     $cleanHubChallenge = trim($hubChallenge, '"');
-
-    //     // return response()->json($cleanHubChallenge);
-    //     return response($hubChallenge);
-    // }
     public function setupWebhook(Request $request)
     {
-        if ($request->isMethod('get')) {
-            $hubMode = $request->query('hub_mode');
-            $hubChallenge = $request->query('hub_challenge');
-            $hubVerifyToken = $request->query('hub_verify_token');
+        // Log::info($request->all());
+        $hubMode = $request->query('hub_mode');
+        $hubChallenge = $request->query('hub_challenge');
+        $hubVerifyToken = $request->query('hub_verify_token');
 
-            if ($hubVerifyToken !== self::VERIFY_TOKEN) {
-                return response()->json(['error' => 'VerifyToken doesn\'t match'], 403);
-            }
+        Log::info('WebHook with get executed.');
+        Log::info("Parameters: hub_mode=$hubMode  hub_challenge=$hubChallenge  hub_verify_token=$hubVerifyToken");
 
-            Log::info('WebHook with get executed.');
-            Log::info("Parameters: hub_mode=$hubMode  hub_challenge=$hubChallenge  hub_verify_token=$hubVerifyToken");
-
-            // Respond with the hub_challenge to verify the webhook
-            return response($hubChallenge);
-        } elseif ($request->isMethod('post')) {
-            $data = $request->json()->all();
-
-            // Log the inbound message data for debugging purposes
-            Log::info('Inbound message:', $data);
-
-            // Respond with 200 OK to acknowledge receipt of the message
-            return response()->json(['status' => 'Message received'], 200);
-        } else {
-            return response()->json(['error' => 'Invalid request method'], 405);
+        if ($hubVerifyToken !== self::VERIFY_TOKEN) {
+            return response()->json(['error' => 'VerifyToken doesn\'t match'], 403);
         }
-    }
 
+        // Remove double quotes from the received challenge value
+        $cleanHubChallenge = trim($hubChallenge, '"');
+
+        // return response()->json($cleanHubChallenge);
+        return response($hubChallenge);
+    }
 
     // ==================================== Profile =================================//
     public function getProfile(Request $request)
@@ -201,39 +172,6 @@ class WhatsappController extends Controller
             }
         } catch (\Exception $e) {
             // Handle exceptions
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
-    }
-
-    //===================================== Testing ==============================
-    public function test(Request $request)
-    {
-        $fromPhoneNumberId = getenv("FB_PHONE_NUMBER");
-        $accessToken = getenv("FB_METADATA_TOKEN");
-        try {
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . $accessToken,
-                'Content-Type' => 'application/json',
-            ])->post('https://graph.facebook.com/v19.0/' . $fromPhoneNumberId . '/messages', [
-                'messaging_product' => 'whatsapp',
-                'recipient_type' => 'individual',
-                'to' => '919770019148',
-                'type' => 'text',
-                'text' => [
-                    'body' => 'Hello rohit!'
-                ],
-            ]);
-
-            // Check response
-            if ($response->successful()) {
-                // Handle successful response
-                dd($response->json());
-            } else {
-                // Handle error response
-                dd($response->body());
-            }
-        } catch (\Exception $e) {
-            Log::error($e->getMessage());
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
