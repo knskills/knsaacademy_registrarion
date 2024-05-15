@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\WhatsappApi;
+use App\Models\WhatsappMessage;
+use App\Models\WhatsappMessageReply;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -51,7 +53,7 @@ class WhatsappController extends Controller
             $data = $request->json()->all();
 
             // Log the inbound message data for debugging purposes
-            // Log::info('Inbound message:', $data);
+            Log::info('Inbound message:', $data);
 
             // Respond with 200 OK to acknowledge receipt of the message
             return response()->json(['status' => 'Message received'], 200);

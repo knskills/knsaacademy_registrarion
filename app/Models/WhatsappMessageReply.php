@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class WhatsappMessage extends Model
+class WhatsappMessageReply extends Model
 {
     use HasFactory;
 
@@ -14,12 +14,22 @@ class WhatsappMessage extends Model
      */
     protected $fillable = [
         'message_id',
-        'whatsapp_message',
-        'template_name',
+        'reply',
+        'profile_name',
         'type',
+        'reply_at',
         'status',
+        'message_id',
         'phone_number',
-        'from',
         'recipient_id',
+        'from',
+    ];
+
+    /**
+     * Cast attributes.
+     */
+    protected $casts = [
+        'reply_at' => 'datetime',
+        'reply' => 'array',
     ];
 }

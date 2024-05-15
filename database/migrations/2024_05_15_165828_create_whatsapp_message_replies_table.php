@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('whatsapp_messages', function (Blueprint $table) {
+        Schema::create('whatsapp_message_replies', function (Blueprint $table) {
             $table->id();
             $table->string('message_id')->nullable();
-            $table->text('whatsapp_message')->nullable();
-            $table->string('template_name')->nullable();
+            $table->json('reply')->nullable();
+            $table->string('profile_name')->nullable();
             $table->string('type')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('status')->nullable();
             $table->string('from')->nullable();
             $table->string('recipient_id')->nullable();
-            $table->timestamp('send_at')->nullable();
+            $table->timestamp('reply_at')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('whatsapp_messages');
+        Schema::dropIfExists('whatsapp_message_replies');
     }
 };
