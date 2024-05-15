@@ -27,7 +27,7 @@ class WhatsappController extends Controller
 
     public function setupWebhook(Request $request)
     {
-        // Log::info($request->all());
+        Log::info($request->all());
         $hubMode = $request->query('hub_mode');
         $hubChallenge = $request->query('hub_challenge');
         $hubVerifyToken = $request->query('hub_verify_token');
