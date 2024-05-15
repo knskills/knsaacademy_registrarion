@@ -43,6 +43,7 @@ class WhatsappController extends Controller
 
             return response($hubChallenge);
         } elseif ($request->isMethod('post')) {
+           LOg::info( $request->all());
             $accessToken = $request->header('Authorization');
 
             // if ($accessToken !== 'Bearer ' . env('WEBHOOK_ACCESS_TOKEN')) {
@@ -60,57 +61,6 @@ class WhatsappController extends Controller
             return response()->json(['error' => 'Invalid request method'], 405);
         }
     }
-
-    // public function setupWebhook(Request $request)
-    // {
-    //     Log::info($request->all());
-    //     $hubMode = $request->query('hub_mode');
-    //     $hubChallenge = $request->query('hub_challenge');
-    //     $hubVerifyToken = $request->query('hub_verify_token');
-
-    //     Log::info('WebHook with get executed.');
-    //     Log::info("Parameters: hub_mode=$hubMode  hub_challenge=$hubChallenge  hub_verify_token=$hubVerifyToken");
-
-    //     if ($hubVerifyToken !== self::VERIFY_TOKEN) {
-    //         return response()->json(['error' => 'VerifyToken doesn\'t match'], 403);
-    //     }
-
-    //     // Remove double quotes from the received challenge value
-    //     $cleanHubChallenge = trim($hubChallenge, '"');
-
-    //     // return response()->json($cleanHubChallenge);
-    //     return response($hubChallenge);
-    // }
-
-    // public function setupWebhook(Request $request)
-    // {
-    //     Log::info($request->all());
-    //     if ($request->isMethod('get')) {
-    //         $hubMode = $request->query('hub_mode');
-    //         $hubChallenge = $request->query('hub_challenge');
-    //         $hubVerifyToken = $request->query('hub_verify_token');
-
-    //         if ($hubVerifyToken !== self::VERIFY_TOKEN) {
-    //             return response()->json(['error' => 'VerifyToken doesn\'t match'], 403);
-    //         }
-
-    //         Log::info('WebHook with get executed.');
-    //         Log::info("Parameters: hub_mode=$hubMode  hub_challenge=$hubChallenge  hub_verify_token=$hubVerifyToken");
-
-    //         return response($hubChallenge);
-    //     } elseif ($request->isMethod('post')) {
-    //         $data = $request->json()->all();
-
-    //         // Log the inbound message data for debugging purposes
-    //         Log::info('Inbound message:', $data);
-
-    //         // Respond with 200 OK to acknowledge receipt of the message
-    //         return response()->json(['status' => 'Message received'], 200);
-    //     } else {
-    //         return response()->json(['error' => 'Invalid request method'], 405);
-    //     }
-    // }
-
 
     // ==================================== Profile =================================//
     public function getProfile(Request $request)
