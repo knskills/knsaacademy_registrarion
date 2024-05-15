@@ -256,7 +256,7 @@ class PageController extends Controller
         // Send the text message.
         $response = $whatsapp_cloud_api->sendTextMessage($recipientPhoneNumber, $message);
 
-        // Log::info($response);
+        Log::info($response);
 
         // Optionally, you can return a response or perform any other actions after sending the message.
         return response()->json(['message' => 'Message sent successfully']);

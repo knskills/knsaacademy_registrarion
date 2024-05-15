@@ -51,6 +51,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('templates', TemplateController::class);
     Route::get('/get-templates', [TemplateController::class, 'getTemplates'])->name('get-templates');
     Route::get('/get-message', [TemplateController::class, 'getTemplateMessage'])->name('get-message');
+
+    // Whatsapp Cloud Api
+    Route::get('/whatsapp/setting', [WhatsappController::class, 'create'])->name('whatsapp.setting');
+
 });
 
 
@@ -70,31 +74,22 @@ Route::get('/whatsapp', [PageController::class, 'whatsapp'])->name('whatsapp');
 Route::get('/send-message', [PageController::class, 'sendFBMessage'])->name('sendMessage');
 
 // send mail
-// Route::get('/send-mail', [PageController::class, 'sendTestEmail'])->name('send-mail');
 Route::view('admin.mails.temp', 'admin.mails.temp');
 
 Route::get('/beginnertobillionaire', [PageController::class, 'beginnertobillionaire'])->name('beginnertobillionaire');
-// Route::get('/', [PageController::class, 'sales'])->name('sales');
 Route::get('/beginnerobillionaire', [PageController::class, 'billionaire'])->name('billionaire');
 
 Route::get('/', function () {
     return redirect('/beginnerobillionaire');
 });
 
-Route::post('/whatsapp/webhook', [WhatsappController::class, 'webhook'])->name('whatsapp.webhook');
-
 // update profile
 Route::post('/whatsapp/update-profile', [WhatsappController::class, 'updateProfile'])->name('whatsapp.update-profile');
 
-// get profile
 Route::get('/whatsapp/get-profile', [WhatsappController::class, 'getProfile'])->name('whatsapp.get-profile');
 
-Route::get('/whatsapp/setting', [WhatsappController::class, 'create'])->name('whatsapp.setting');
-
-Route::get('/whatsapp/get-profile-picture', [WhatsappController::class, 'getProfilePicture'])->name('whatsapp.get-profile-picture');
-
-Route::get('/whatsapp/get-profile-information', [WhatsappController::class, 'getProfileInformation'])->name('whatsapp.get-profile-information');
-
-Route::get('/whatsapp/handleWebhook', [WhatsappController::class, 'handleWebhook'])->name('whatsapp.handleWebhook');
-
 Route::get('/whatsapp/setupWebhook', [WhatsappController::class, 'setupWebhook'])->name('whatsapp.setupWebhook');
+
+Route::get('/whatsapp/getSubscribedApps', [WhatsappController::class, 'getSubscribedApps'])->name('whatsapp.getSubscribedApps');
+
+Route::get('/whatsapp/test', [WhatsappController::class, 'test'])->name('whatsapp.test');
