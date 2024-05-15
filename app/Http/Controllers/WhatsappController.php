@@ -38,12 +38,11 @@ class WhatsappController extends Controller
                 return response()->json(['error' => 'VerifyToken doesn\'t match'], 403);
             }
 
-            Log::info('WebHook with GET executed.');
-            Log::info("Parameters: hub_mode=$hubMode  hub_challenge=$hubChallenge  hub_verify_token=$hubVerifyToken");
+            // Log::info('WebHook with GET executed.');
+            // Log::info("Parameters: hub_mode=$hubMode  hub_challenge=$hubChallenge  hub_verify_token=$hubVerifyToken");
 
             return response($hubChallenge);
         } elseif ($request->isMethod('post')) {
-           LOg::info( $request->all());
             $accessToken = $request->header('Authorization');
 
             // if ($accessToken !== 'Bearer ' . env('WEBHOOK_ACCESS_TOKEN')) {
