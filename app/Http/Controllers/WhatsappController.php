@@ -21,13 +21,12 @@ class WhatsappController extends Controller
         return view('admin.whatsapp.create', compact('data'));
     }
 
-
     //======================================= Webhook =================================
     const VERIFY_TOKEN = 'LaravelToken';
 
     public function setupWebhook(Request $request)
     {
-        // Log::info($request->all());
+        Log::info($request->all());
 
         if ($request->isMethod('get')) {
             $hubMode = $request->query('hub_mode');
@@ -52,7 +51,7 @@ class WhatsappController extends Controller
             $data = $request->json()->all();
 
             // Log the inbound message data for debugging purposes
-            Log::info('Inbound message:', $data);
+            // Log::info('Inbound message:', $data);
 
             // Respond with 200 OK to acknowledge receipt of the message
             return response()->json(['status' => 'Message received'], 200);

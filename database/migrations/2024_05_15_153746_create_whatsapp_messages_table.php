@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('template_name')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('status')->nullable();
+            $table->string('from')->nullable();
+            $table->string('recipient_id')->nullable();
             $table->timestamps();
         });
     }
