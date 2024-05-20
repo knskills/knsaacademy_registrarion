@@ -59,6 +59,11 @@
                                                 <div class="tab-content"
                                                     id="myTabContent">
 
+                                                    {{-- <button
+                                                        class="btn btn-secondary w-100 mb-2"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#newContact">New</button> --}}
+
                                                     @foreach ($chatList as $key => $customer)
                                                         <div class="tab-pane fade show active"
                                                             id="Open"
@@ -72,8 +77,9 @@
                                                                     readonly>
                                                                     <div
                                                                         class="flex-shrink-0">
-                                                                        <img class="img-fluid" style="max-width:30px;"
-                                                                            src="{{asset('nice/assets/img/chatUser.png')}}"
+                                                                        <img class="img-fluid"
+                                                                            style="max-width:30px;"
+                                                                            src="{{ asset('nice/assets/img/chatUser.png') }}"
                                                                             alt="user img">
                                                                         {{-- <span class="active"></span> --}}
                                                                     </div>
@@ -149,8 +155,9 @@
                                                                 alt="image title"></span>
                                                         <div
                                                             class="flex-shrink-0">
-                                                            <img class="img-fluid" style="max-width:30px;"
-                                                                src="{{asset('nice/assets/img/chatUser.png')}}"
+                                                            <img class="img-fluid"
+                                                                style="max-width:30px;"
+                                                                src="{{ asset('nice/assets/img/chatUser.png') }}"
                                                                 alt="user img">
                                                         </div>
                                                         <div
@@ -322,6 +329,56 @@
             </div>
         </section>
         <!-- char-area -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="newContact" tabindex="-1"
+            aria-labelledby="newContactLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            New Contact</h5>
+                        <button type="button" class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <form action="{{ route('whatsapp.text-message') }}"
+                        method="POST">
+                        @csrf
+                        <div class="modal-body">
+
+                            <!--<div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Recipient Name:</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                                </div>-->
+                            <div class="mb-3">
+                                <label for="recipient-name"
+                                    class="col-form-label">Recipient
+                                    Number:</label>
+                                <input type="text" class="form-control"
+                                    id="recipient-number"
+                                    value="{{ old('recipient_id') }}"
+                                    required minlength="10" maxlength="10"
+                                    name="recipient_id"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text"
+                                    class="col-form-label">Message:</label>
+                                <textarea class="form-control" id="message-text" name="message"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit"
+                                class="btn btn-primary">Send</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
 
     </main><!-- End #main -->
 @endsection

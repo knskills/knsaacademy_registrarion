@@ -373,6 +373,13 @@
                         <i class="bi bi-circle"></i><span>Profile Setting</span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{ route('chat.index') }}"
+                        class="{{ Route::currentRouteNamed('chat.index') ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Chat</span>
+                    </a>
+                </li>
             </ul>
         </li>
     </ul>
