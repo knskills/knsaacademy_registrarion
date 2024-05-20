@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('whatsapp_message_replies', function (Blueprint $table) {
             $table->id();
             $table->string('message_id')->nullable();
+            $table->foreignId('template_id')->nullable()->constrained('message_templates');
             $table->json('reply')->nullable();
             $table->string('profile_name')->nullable();
             $table->string('type')->nullable();

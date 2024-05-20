@@ -156,7 +156,8 @@ class PageController extends Controller
             'messaging_product' => 'whatsapp',
             "recipient_type" => "individual",
             'to' => '+919770019148',
-            'type' => 'template',
+            // 'type' => 'template',
+            'type' => 'text',
 
             // 'template' => [
             //     'name' => 'hello_world',
@@ -165,17 +166,21 @@ class PageController extends Controller
             //     ]
             // ]
 
-            'template' => [
-                'name' => 'welcome',
-                'language' => [
-                    'code' => 'en'
-                ]
+            // 'template' => [
+            //     'name' => 'welcome',
+            //     'language' => [
+            //         'code' => 'en'
+            //     ]
+            // ]
+
+            'text' => [
+                'preview_url' => false,
+                'body' => 'Hello rohit'
             ]
         ]);
 
         return $response->body();
     }
-
 
     public function sendTempMessage(Request $request)
     {

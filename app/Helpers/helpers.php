@@ -1,6 +1,5 @@
 <?php
 
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
@@ -305,4 +304,58 @@ function sendFBMessage($phone = null)
     Log::info($response->body());
 
     // return $response->body();
+}
+
+
+function getMessageTemplate($templateName = null)
+{
+    // Ref - https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates
+
+    // Log::info($templateName);
+
+
+    $version = 'v19.0'; // Replace with desired API version
+    $wabaId = getenv("FB_ACCOUNT_ID"); // Replace with WhatsApp Business Account ID
+    $token = getenv("FB_METADATA_TOKEN"); // Replace with authorization token
+
+    // Define the URL
+    $url = 'https://graph.facebook.com/' . $version . '/' . $wabaId . '/message_templates?name=' . $templateName;
+
+    // Make the HTTP request
+    $response = Http::withToken($token)->get($url);
+
+    // Log::info($response);
+
+    // Check the response status
+    if ($response->successful()) {
+
+        // Get the response body
+        $data = $response->json();
+
+        $response_data = [];
+
+        foreach ($data['data'] as &$item) {
+            if ($item['name'] == $templateName && isset($item['components'])) {
+                // Log::info($item['name']);
+                // array_push($response_data, $item['components']);
+
+                foreach ($item['components'] as &$component) {
+                    if (isset($component['text'])) {
+                        $component['text'] = html_entity_decode($component['text'], ENT_QUOTES, 'UTF-8');
+                        // Log::info($component);
+
+                        // push component data into response_data array
+                        array_push($response_data, $component);
+                    }
+                }
+            } else {
+                return null;
+            }
+        }
+
+        return $response_data;
+    } else {
+        // Handle the error
+        return response()->json(['error' => 'Failed to fetch message templates'], $response->status());
+    }
 }

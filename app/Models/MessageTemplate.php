@@ -14,6 +14,7 @@ class MessageTemplate extends Model
         'name',
         'subject',
         'message',
+        'whtsp_msg',
         'media_file',
         'type',
         'status',
@@ -25,6 +26,7 @@ class MessageTemplate extends Model
     protected $casts = [
         'cc' => 'array',
         'bcc' => 'array',
+        'whtsp_msg' => 'array',
     ];
 
     // decode cc and bcc

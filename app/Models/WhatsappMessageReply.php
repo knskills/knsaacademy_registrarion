@@ -19,7 +19,6 @@ class WhatsappMessageReply extends Model
         'type',
         'reply_at',
         'status',
-        'message_id',
         'phone_number',
         'recipient_id',
         'from',
