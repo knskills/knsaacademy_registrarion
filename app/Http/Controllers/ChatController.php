@@ -13,7 +13,7 @@ class ChatController extends Controller
      */
     public function index(Request $request)
     {
-        Log::info($request->all());
+        // Log::info($request->all());
         try {
             // Fetch the chat list grouped by recipient_id with the latest message time
             $chatList = WhatsappMessage::select(
@@ -53,7 +53,7 @@ class ChatController extends Controller
             // Fetch messages for the determined user_id
             $messages = WhatsappMessage::where('recipient_id', $user_id)->get();
 
-            // Log::info($messages);
+            Log::info($messages);
 
             return view('admin.chat.index', compact('chatList', 'messages', 'user'));
         } catch (\Exception $e) {
