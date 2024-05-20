@@ -43,39 +43,15 @@
                                                     placeholder="Search"
                                                     aria-label="search">
                                                 <a class="add"
-                                                    href="#"><img
-                                                        class="img-fluid"
+                                                    href="#">
+                                                    <img class="img-fluid"
                                                         src="https://mehedihtml.com/chatbox/assets/img/add.svg"
-                                                        alt="add"></a>
+                                                        alt="add">
+                                                </a>
                                             </div>
-
-                                            <ul class="nav nav-tabs"
-                                                id="myTab" role="tablist">
-                                                <li class="nav-item"
-                                                    role="presentation">
-                                                    <button
-                                                        class="nav-link active"
-                                                        id="Open-tab"
-                                                        data-bs-toggle="tab"
-                                                        data-bs-target="#Open"
-                                                        type="button"
-                                                        role="tab"
-                                                        aria-controls="Open"
-                                                        aria-selected="true">Open</button>
-                                                </li>
-                                                <li class="nav-item"
-                                                    role="presentation">
-                                                    <button class="nav-link"
-                                                        id="Closed-tab"
-                                                        data-bs-toggle="tab"
-                                                        data-bs-target="#Closed"
-                                                        type="button"
-                                                        role="tab"
-                                                        aria-controls="Closed"
-                                                        aria-selected="false">Closed</button>
-                                                </li>
-                                            </ul>
                                         </div>
+
+                                        <hr>
 
                                         <div class="modal-body">
                                             <!-- chat-list -->
@@ -84,19 +60,6 @@
                                                     id="myTabContent">
 
                                                     @foreach ($chatList as $key => $customer)
-                                                        {{-- @php
-                                                        if ($key == 0) {
-                                                            $id = 'Open';
-                                                            $open = 'show active';
-                                                            $ariaLabelledby = 'Open-tab';
-                                                        } else {
-                                                            $id = 'Closed';
-                                                            $open = '';
-                                                            $ariaLabelledby = 'Closed-tab';
-                                                        }
-
-                                                        @endphp --}}
-
                                                         <div class="tab-pane fade show active"
                                                             id="Open"
                                                             role="tabpanel"
@@ -105,7 +68,8 @@
                                                             <div
                                                                 class="chat-list">
                                                                 <a href="{{ route('chat.index', ['recipient_id' => $customer->recipient_id]) }}"
-                                                                    class="d-flex align-items-center">
+                                                                    class="d-flex align-items-center"
+                                                                    readonly>
                                                                     <div
                                                                         class="flex-shrink-0">
                                                                         <img class="img-fluid"
@@ -115,9 +79,11 @@
                                                                     </div>
                                                                     <div
                                                                         class="flex-grow-1 ms-3">
-                                                                        <h3>{{ $customer->profile_name ?? '' }}
+                                                                        <h3>
+                                                                            {{ $customer->profile_name ?? '' }}
                                                                         </h3>
-                                                                        <p>+{{ $customer->recipient_id ?? '' }}
+                                                                        <p>
+                                                                            +{{ $customer->recipient_id ?? '' }}
                                                                         </p>
                                                                     </div>
                                                                 </a>
@@ -126,7 +92,7 @@
                                                             <!-- chat-list -->
                                                         </div>
 
-                                                        <div class="tab-pane fade"
+                                                        {{-- <div class="tab-pane fade"
                                                             id="Closed"
                                                             role="tabpanel"
                                                             aria-labelledby="Closed-tab">
@@ -154,7 +120,7 @@
                                                                 </a>
                                                             </div>
                                                             <!-- chat-list -->
-                                                        </div>
+                                                        </div> --}}
                                                     @endforeach
 
                                                 </div>
@@ -265,21 +231,6 @@
                                                         @endforeach
                                                     @endif
 
-                                                    @php
-                                                        $text = '';
-                                                        // $formattedString = nl2br(e($text));
-                                                        // echo $formattedString;
-                                                    @endphp
-
-                                                    {{-- {{htmlspecialchars(nl2br($text), ENT_QUOTES, 'UTF-8', false)}} --}}
-
-                                                    {{-- {{ Str::of($text)->trim() }} --}}
-                                                    {{-- {!! mb_convert_encoding($text, 'UTF-8', 'HTML-ENTITIES') !!} --}}
-
-                                                    {{-- {!! $text !!} --}}
-
-                                                    {{-- {{htmlentities($text, ENT_QUOTES, "UTF-8");}} --}}
-
                                                 </ul>
                                             </div>
                                         </div>
@@ -291,23 +242,9 @@
                                                 method="POST">
                                                 @csrf
 
-                                                {{-- @php
-                                                                    $recipient_id = substr(
-                                                                        $customer->recipient_id,
-                                                                        2,
-                                                                    );
-                                                                @endphp --}}
-
                                                 <input type="hidden"
                                                     name="recipient_id"
                                                     value="{{ substr($user->recipient_id, 2) }}">
-
-                                                {{-- <input type="text"
-                                                    class="form-control"
-                                                    name="message"
-                                                    aria-label="message…"
-                                                    value="{{ old('message') }}"
-                                                    placeholder="Write message…"> --}}
 
                                                 <textarea class="form-control" name="message" aria-label="message…"
                                                     value="{{ old('message') }}" placeholder="Write message…"
@@ -380,10 +317,8 @@
                         </div>
                         <!-- chatbox -->
 
-
                     </div>
                 </div>
-            </div>
             </div>
         </section>
         <!-- char-area -->
