@@ -26,7 +26,7 @@ class ChatController extends Controller
                 ->orderBy('latest_message_time', 'desc')
                 ->get();
 
-            Log::info($chatList);
+            // Log::info($chatList);
 
             // Determine the user to fetch messages for
             if ($request->has('recipient_id')) {
@@ -53,7 +53,7 @@ class ChatController extends Controller
             // Fetch messages for the determined user_id
             $messages = WhatsappMessage::where('recipient_id', $user_id)->get();
 
-            Log::info($messages);
+            // Log::info($messages);
 
             return view('admin.chat.index', compact('chatList', 'messages', 'user'));
         } catch (\Exception $e) {

@@ -72,8 +72,8 @@
                                                                     readonly>
                                                                     <div
                                                                         class="flex-shrink-0">
-                                                                        <img class="img-fluid"
-                                                                            src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                                                        <img class="img-fluid" style="max-width:30px;"
+                                                                            src="{{asset('nice/assets/img/chatUser.png')}}"
                                                                             alt="user img">
                                                                         {{-- <span class="active"></span> --}}
                                                                     </div>
@@ -105,7 +105,7 @@
                                                                     <div
                                                                         class="flex-shrink-0">
                                                                         <img class="img-fluid"
-                                                                            src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                                                            src="{{asset('nice/assets/img/chatUser.png')}}"
                                                                             alt="user img">
                                                                         <span
                                                                             class="active"></span>
@@ -149,8 +149,8 @@
                                                                 alt="image title"></span>
                                                         <div
                                                             class="flex-shrink-0">
-                                                            <img class="img-fluid"
-                                                                src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                                            <img class="img-fluid" style="max-width:30px;"
+                                                                src="{{asset('nice/assets/img/chatUser.png')}}"
                                                                 alt="user img">
                                                         </div>
                                                         <div

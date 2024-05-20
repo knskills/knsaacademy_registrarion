@@ -320,7 +320,7 @@ class WhatsappController extends Controller
     //============================= Messages ============================
     public function sendTextMessage(Request $request)
     {
-        Log::info($request->all());
+        // Log::info($request->all());
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
             'Content-Type' => 'application/json',
