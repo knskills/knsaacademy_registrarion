@@ -26,7 +26,7 @@ class ChatController extends Controller
                 ->orderBy('latest_message_time', 'desc')
                 ->get();
 
-            // Log::info($chatList);
+            Log::info($chatList);
 
             // Determine the user to fetch messages for
             if ($request->has('recipient_id')) {
