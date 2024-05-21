@@ -87,14 +87,19 @@ class TemplateController extends Controller
 
             $whtsp_msg = [];
             $msg = $request->message;
+            $lang = '';
 
             if($request->type == 'whatsapp'){
-                $whtsp_msg = getMessageTemplate($request->name);
-                $msg = $whtsp_msg[0]['text'];
+                $res = getMessageTemplate($request->name);
+                $lang = $res['lang_code'];
+                $msg = $res['response_data'][0]['text'];
+                $whtsp_msg = $res['response_data'];
 
-                // Log::info($whtsp_msg[0]['text']);
+                // Log::info($lang );
+                // Log::info($msg);
+                // Log::info($whtsp_msg);
 
-                if($whtsp_msg == null){
+                if($res == null){
                     return redirect()->back()->with('error', 'Template not found!');
                 }
             }
@@ -106,6 +111,7 @@ class TemplateController extends Controller
                 'message' => $msg,
                 // 'whtsp_msg' => json_encode($whtsp_msg),
                 'whtsp_msg' => $whtsp_msg,
+                'lang_code' => $lang,
                 'media_file' => $path ?? '',
                 'type' => $request->input('type', ''),
                 'status' => $request->input('status', ''),

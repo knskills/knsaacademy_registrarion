@@ -375,8 +375,8 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('chat.index') }}"
-                        class="{{ Route::currentRouteNamed('chat.index') ? 'active' : '' }}">
+                    <a href="{{ route('whatsapp.chat.index') }}"
+                        class="{{ Route::currentRouteNamed('whatsapp.chat.index') ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Chat</span>
                     </a>
                 </li>

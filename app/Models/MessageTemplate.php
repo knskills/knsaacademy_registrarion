@@ -15,6 +15,7 @@ class MessageTemplate extends Model
         'subject',
         'message',
         'whtsp_msg',
+        'lang_code',
         'media_file',
         'type',
         'status',

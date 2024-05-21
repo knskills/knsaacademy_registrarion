@@ -106,7 +106,12 @@ class ChatController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {
-        //
+    {        // delete all messages where recipient_id = $id
+        WhatsappMessage::where('recipient_id', $id)->delete();
+
+        // return redirect()->back()->with('success', 'Chat deleted successfully');
+
+        return redirect()->route('whatsapp.chat.index')->with('success', 'Chat deleted successfully!');
+
     }
 }

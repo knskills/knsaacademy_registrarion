@@ -202,7 +202,8 @@
             $('#type').on('change', function() {
                 var type = $(this).val();
                 if (type == 'whatsapp') {
-                    $('#md_file').show();
+                    // $('#md_file').show();
+                    $('#md_file').hide();
                     $('#temp_id').hide();
                     $('#if_mail').hide();
                 } else if (type == 'email') {

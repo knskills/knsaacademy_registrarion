@@ -310,9 +310,7 @@ function sendFBMessage($phone = null)
 function getMessageTemplate($templateName = null)
 {
     // Ref - https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates
-
     // Log::info($templateName);
-
 
     $version = 'v19.0'; // Replace with desired API version
     $wabaId = getenv("FB_ACCOUNT_ID"); // Replace with WhatsApp Business Account ID
@@ -328,11 +326,11 @@ function getMessageTemplate($templateName = null)
 
     // Check the response status
     if ($response->successful()) {
-
         // Get the response body
         $data = $response->json();
 
         $response_data = [];
+        $lang_code = '';
 
         foreach ($data['data'] as &$item) {
             if ($item['name'] == $templateName && isset($item['components'])) {
@@ -351,11 +349,19 @@ function getMessageTemplate($templateName = null)
             } else {
                 return null;
             }
+
+            if ($item['name'] == $templateName && isset($item['language'])) {
+                $lang_code = $item['language'];
+            }
         }
 
-        return $response_data;
+        return [
+            'response_data' => $response_data,
+            'lang_code' => $lang_code,
+        ];
     } else {
-        // Handle the error
-        return response()->json(['error' => 'Failed to fetch message templates'], $response->status());
+        // // Handle the error
+        // return response()->json(['error' => 'Failed to fetch message templates'], $response->status());
+        return null;
     }
 }

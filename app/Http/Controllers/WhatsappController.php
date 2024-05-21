@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\WhatsappApi;
 use App\Models\WhatsappMessage;
+use App\Models\MessageTemplate;
 // use App\Models\WhatsappMessageReply;
 
 use Illuminate\Http\Request;
@@ -103,11 +104,10 @@ class WhatsappController extends Controller
                 $recipient_id = $message['from'];
             }
 
-
             // // Respond with 200 OK to acknowledge receipt of the message
             // return response()->json(['status' => 'Message received'], 200);
 
-            return redirect()->route('chat.index', ['recipient_id' => $recipient_id]);
+            return redirect()->route('whatsapp.chat.index', ['recipient_id' => $recipient_id]);
         } else {
             return response()->json(['error' => 'Invalid request method'], 405);
         }
@@ -290,9 +290,10 @@ class WhatsappController extends Controller
 
             // Get the response body
             $data = $response->json();
-            Log::info($data);
+            // Log::info($data);
 
-            // $response_data = [];
+            $response_data = [];
+            $lag = '';
 
             foreach ($data['data'] as &$item) {
                 if ($item['name'] == $templateName && isset($item['components'])) {
@@ -300,14 +301,22 @@ class WhatsappController extends Controller
                     foreach ($item['components'] as &$component) {
                         if (isset($component['text'])) {
                             $component['text'] = html_entity_decode($component['text'], ENT_QUOTES, 'UTF-8');
-                            Log::info($component);
+                            // Log::info($component);
 
                             // push component data into response_data array
                             array_push($response_data, $component);
                         }
                     }
                 }
+
+                if ($item['name'] == $templateName && isset($item['language'])) {
+                    // push in the template
+                    $lag =  $item['language'];
+                }
             }
+
+            // Log::info($response_data);
+            // Log::info($lag);
 
             // Return or process the data as needed
             return response()->json($data);
@@ -362,6 +371,61 @@ class WhatsappController extends Controller
 
         // return $response;
 
-        return redirect()->route('chat.index', ['recipient_id' => $request->recipient_id]);
+        // Log::info($response);
+
+        return redirect()->route('whatsapp.chat.index', ['recipient_id' => $request->recipient_id]);
+    }
+
+    public function sendTmpMessage(Request $request)
+    {
+        $template = MessageTemplate::find($request->template_id);
+
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
+            'Content-Type' => 'application/json',
+        ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
+            'messaging_product' => 'whatsapp',
+            "recipient_type" => "individual",
+            'to' => '+91' . $request->phone,
+            'type' => 'template',
+
+            'template' => [
+                'name' => $template->name,
+                'language' => [
+                    'code' => 'en'
+                ]
+            ]
+        ]);
+
+        $data = json_decode($response, true);  // Assuming $response is a JSON string, decode it into an associative array
+
+        if (isset($data['messages'])) {
+            $messages = $data['messages'];
+
+            foreach ($messages as $message) {
+                // Check if the wa_id exists, then update, otherwise create a new record
+                WhatsappMessage::updateOrCreate(
+                    ['message_id' => $message['id']],
+                    [
+                        'whatsapp_message' => $request->message,
+                        'template_name' => null,
+                        'template_type' => null,
+                        'type' => 'send',
+                        'status' => null,
+                        'phone_number' => $data['contacts'][0]['wa_id'],
+                        'from' => null,
+                        'recipient_id' => $data['contacts'][0]['wa_id'],
+                        'send_at' => null,
+                    ]
+                );
+            }
+        }
+
+
+        // return $response;
+
+        // Log::info($response);
+
+        return redirect()->route('whatsapp.chat.index', ['recipient_id' => $request->recipient_id]);
     }
 }

@@ -6,12 +6,13 @@ use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\AudienceController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\LangController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\WhatsappController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\WebhookController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,10 +53,27 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('templates', TemplateController::class);
     Route::get('/get-templates', [TemplateController::class, 'getTemplates'])->name('get-templates');
     Route::get('/get-message', [TemplateController::class, 'getTemplateMessage'])->name('get-message');
-    Route::resource('chat', ChatController::class);
+    // Route::resource('chat', ChatController::class);
+
+    Route::group(['prefix' => 'whatsapp', 'as' => 'whatsapp.'], function () {
+        Route::resource('chat', ChatController::class);
+    });
+
 
     // Whatsapp Cloud Api
+
+    //================================== Whatsapp Api ====================
+    // profile
+    Route::post('/whatsapp/update-profile', [WhatsappController::class, 'updateProfile'])->name('whatsapp.update-profile');
     Route::get('/whatsapp/setting', [WhatsappController::class, 'create'])->name('whatsapp.setting');
+    Route::get('/whatsapp/get-profile', [WhatsappController::class, 'getProfile'])->name('whatsapp.get-profile');
+    Route::get('/whatsapp/getSubscribedApps', [WhatsappController::class, 'getSubscribedApps'])->name('whatsapp.getSubscribedApps');
+    Route::get('/whatsapp/getMessageTemplate/{templateName}', [WhatsappController::class, 'getMessageTemplate'])->name('whatsapp.getMessageTemplates');
+    // Message
+    Route::post('/whatsapp/text-message', [WhatsappController::class, 'sendTextMessage'])->name('whatsapp.text-message');
+
+    //testing msg
+    Route::get('/send-message', [PageController::class, 'sendFBMessage'])->name('sendMessage');
 });
 
 
@@ -72,7 +90,6 @@ Route::get('/terms', [PageController::class, 'terms'])->name('terms');
 Route::get('/privacy', [PageController::class, 'privacy'])->name('privacy');
 Route::get('/whatsapp', [PageController::class, 'whatsapp'])->name('whatsapp');
 // Route::get('/send-message', [PageController::class, 'sendMessage'])->name('sendMessage');
-Route::get('/send-message', [PageController::class, 'sendFBMessage'])->name('sendMessage');
 
 // send mail
 Route::view('admin.mails.temp', 'admin.mails.temp');
@@ -84,20 +101,5 @@ Route::get('/', function () {
     return redirect('/beginnerobillionaire');
 });
 
-// profile
-Route::post('/whatsapp/update-profile', [WhatsappController::class, 'updateProfile'])->name('whatsapp.update-profile');
-
-Route::get('/whatsapp/get-profile', [WhatsappController::class, 'getProfile'])->name('whatsapp.get-profile');
-
-// Route::get('/whatsapp/setupWebhook', [WhatsappController::class, 'setupWebhook'])->name('whatsapp.setupWebhook');
-
-Route::get('/whatsapp/getSubscribedApps', [WhatsappController::class, 'getSubscribedApps'])->name('whatsapp.getSubscribedApps');
-
-// Route::get('/whatsapp/test', [WhatsappController::class, 'test'])->name('whatsapp.test');
-Route::get('/whatsapp/getMessageTemplate/{templateName}', [WhatsappController::class, 'getMessageTemplate'])->name('whatsapp.getMessageTemplates');
-
-// Message
-Route::post('/whatsapp/text-message', [WhatsappController::class, 'sendTextMessage'])->name('whatsapp.text-message');
-
 // webhook routes
-Route::match(['get', 'post'], '/webhook', [WhatsappController::class, 'setupWebhook']);
+Route::match(['get', 'post'], '/webhook', [WebhookController::class, 'setupWebhook']);

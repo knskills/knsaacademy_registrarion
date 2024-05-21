@@ -25,6 +25,12 @@
             </nav>
         </div> --}}
 
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <!-- char-area -->
         <section class="message-area">
             <div class="container">
@@ -72,7 +78,7 @@
                                                             <!-- chat-list -->
                                                             <div
                                                                 class="chat-list">
-                                                                <a href="{{ route('chat.index', ['recipient_id' => $customer->recipient_id]) }}"
+                                                                <a href="{{ route('whatsapp.chat.index', ['recipient_id' => $customer->recipient_id]) }}"
                                                                     class="d-flex align-items-center"
                                                                     readonly>
                                                                     <div
@@ -106,7 +112,7 @@
                                                             <!-- chat-list -->
                                                             <div
                                                                 class="chat-list">
-                                                                <a href="{{ route('chat.index', ['recipient_id' => $customer->recipient_id]) }}"
+                                                                <a href="{{ route('whatsapp.chat.index', ['recipient_id' => $customer->recipient_id]) }}"
                                                                     class="d-flex align-items-center">
                                                                     <div
                                                                         class="flex-shrink-0">
@@ -185,8 +191,27 @@
                                                                     aria-hidden="true"></i></a>
                                                             <ul
                                                                 class="dropdown-menu">
-                                                                <li><a class="dropdown-item"
-                                                                        href="#">Action</a>
+                                                                <li>
+                                                                    {{-- <a class="dropdown-item"
+                                                                        href="{{ route('whatsapp.chat.destroy', ['chat' => $user->recipient_id]) }}"
+                                                                        onclick="return confirm('Are you sure you want to delete this chat?');">
+                                                                        Delete
+                                                                    </a> --}}
+
+                                                                    <form
+                                                                        action="{{ route('whatsapp.chat.destroy', $user->recipient_id) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button
+                                                                            type="submit"
+                                                                            class="btn btn-danger btn-xs"
+                                                                            onclick="return confirm('Are you sure you want to delete this chat?');">
+                                                                            Delete
+                                                                        </button>
+                                                                    </form>
+
+
                                                                 </li>
                                                                 <li><a class="dropdown-item"
                                                                         href="#">Another
@@ -348,9 +373,9 @@
                         <div class="modal-body">
 
                             <!--<div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Recipient Name:</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                                </div>-->
+                                                    <label for="recipient-name" class="col-form-label">Recipient Name:</label>
+                                                    <input type="text" class="form-control" id="recipient-name">
+                                                    </div>-->
                             <div class="mb-3">
                                 <label for="recipient-name"
                                     class="col-form-label">Recipient
@@ -385,5 +410,13 @@
 
 @section('scripts')
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="{{ asset('admin/chat/chat.js') }}"></script>
+    <script src="{{ asset('admin/chat/whatsapp.chat.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            // close alert automatically after 3 seconds
+            setTimeout(function() {
+                $(".alert").alert('close');
+            }, 3000);
+        });
+    </script>
 @endsection
