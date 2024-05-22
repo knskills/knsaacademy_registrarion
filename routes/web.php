@@ -103,3 +103,4 @@ Route::get('/', function () {
 
 // webhook routes
 Route::match(['get', 'post'], '/webhook', [WebhookController::class, 'setupWebhook']);
+// Route::match(['get', 'post'], '/webhook', [WhatsappController::class, 'setupWebhook']);

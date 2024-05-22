@@ -10,9 +10,9 @@ use App\Models\MessageTemplate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
-use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 use Netflie\WhatsAppCloudApi\WebHook;
+use GuzzleHttp\Client;
 
 class WhatsappController extends Controller
 {
@@ -205,16 +205,6 @@ class WhatsappController extends Controller
             return redirect()->back()->with('error', 'Something went wrong!');
             // return response()->json(['error' => $e->getMessage()], 500);
         }
-    }
-
-    public function receiveNotification(Request $request)
-    {
-        $data = $request->getContent();
-
-        Log::info('WebHook with Post executed.');
-        Log::info($data);
-
-        return response()->json();
     }
 
     public function getSubscribedApps(Request $request)

@@ -21,7 +21,7 @@ class ChatController extends Controller
                 \DB::raw('MAX(created_at) as latest_message_time'),
                 \DB::raw('SUBSTRING_INDEX(GROUP_CONCAT(profile_name ORDER BY created_at DESC), ",", 1) as profile_name')
             )
-                ->where('type', 'reply')
+                // ->where('type', 'reply')
                 ->groupBy('recipient_id')
                 ->orderBy('latest_message_time', 'desc')
                 ->get();

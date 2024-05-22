@@ -65,10 +65,10 @@
                                                 <div class="tab-content"
                                                     id="myTabContent">
 
-                                                    {{-- <button
+                                                    <button
                                                         class="btn btn-secondary w-100 mb-2"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#newContact">New</button> --}}
+                                                        data-bs-target="#newContact">New</button>
 
                                                     @foreach ($chatList as $key => $customer)
                                                         <div class="tab-pane fade show active"
@@ -134,9 +134,7 @@
                                                             <!-- chat-list -->
                                                         </div> --}}
                                                     @endforeach
-
                                                 </div>
-
                                             </div>
                                             <!-- chat-list -->
                                         </div>
@@ -192,11 +190,11 @@
                                                             <ul
                                                                 class="dropdown-menu">
                                                                 <li>
-                                                                    {{-- <a class="dropdown-item"
+                                                                    <a class="dropdown-item"
                                                                         href="{{ route('whatsapp.chat.destroy', ['chat' => $user->recipient_id]) }}"
                                                                         onclick="return confirm('Are you sure you want to delete this chat?');">
                                                                         Delete
-                                                                    </a> --}}
+                                                                    </a>
 
                                                                     <form
                                                                         action="{{ route('whatsapp.chat.destroy', $user->recipient_id) }}"
@@ -348,14 +346,13 @@
                             </div>
                         </div>
                         <!-- chatbox -->
-
                     </div>
                 </div>
             </div>
         </section>
         <!-- char-area -->
 
-        <!-- Modal -->
+        <!-- New Chat -->
         <div class="modal fade" id="newContact" tabindex="-1"
             aria-labelledby="newContactLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -404,6 +401,7 @@
                 </div>
             </div>
         </div>
+        <!--End New Chat -->
 
     </main><!-- End #main -->
 @endsection

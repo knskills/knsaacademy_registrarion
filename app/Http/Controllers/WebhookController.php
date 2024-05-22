@@ -28,7 +28,7 @@ class WebhookController extends Controller
         $hubVerifyToken = $request->query('hub_verify_token');
 
         if ($hubVerifyToken !== self::VERIFY_TOKEN) {
-            return response()->json(['error' => 'VerifyToken doesn\'t match'], 403);
+            return response()->json(['error' => 'VerifyToken doesnt match'], 403);
         }
 
         return response($request->query('hub_challenge'));
@@ -39,7 +39,7 @@ class WebhookController extends Controller
         $data = $request->all();
         $recipient_id = $this->processWebhookData($data);
 
-        Log::info('Recipient ID: ' . $recipient_id);
+        // Log::info('Recipient ID: ' . $recipient_id);
 
         if ($recipient_id) {
             return redirect()->route('whatsapp.chat.index', ['recipient_id' => $recipient_id]);
