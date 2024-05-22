@@ -207,11 +207,11 @@
                                                             <ul
                                                                 class="dropdown-menu">
                                                                 <li>
-                                                                    <a class="dropdown-item"
+                                                                    {{-- <a class="dropdown-item"
                                                                         href="{{ route('whatsapp.chat.destroy', ['chat' => $user->recipient_id]) }}"
                                                                         onclick="return confirm('Are you sure you want to delete this chat?');">
                                                                         Delete
-                                                                    </a>
+                                                                    </a> --}}
 
                                                                     <form
                                                                         action="{{ route('whatsapp.chat.destroy', $user->recipient_id) }}"
@@ -220,7 +220,7 @@
                                                                         @method('DELETE')
                                                                         <button
                                                                             type="submit"
-                                                                            class="btn btn-danger btn-xs"
+                                                                            class="dropdown-item"
                                                                             onclick="return confirm('Are you sure you want to delete this chat?');">
                                                                             Delete
                                                                         </button>
