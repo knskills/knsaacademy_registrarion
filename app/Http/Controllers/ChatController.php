@@ -31,7 +31,7 @@ class ChatController extends Controller
             // Determine the user to fetch messages for
             if ($request->has('recipient_id')) {
                 $recipient = WhatsappMessage::where('recipient_id', $request->recipient_id)->first();
-                $user = $recipient;
+                $user = WhatsappMessage::where('recipient_id', $request->recipient_id)->latest()->first();
 
                 // Check if recipient exists
                 if ($recipient) {
