@@ -21,41 +21,32 @@ class ChatController extends Controller
                 \DB::raw('MAX(created_at) as latest_message_time'),
                 \DB::raw('SUBSTRING_INDEX(GROUP_CONCAT(profile_name ORDER BY created_at DESC), ",", 1) as profile_name')
             )
-                // ->where('type', 'reply')
                 ->groupBy('recipient_id')
                 ->orderBy('latest_message_time', 'desc')
                 ->get();
 
-            // Log::info($chatList);
-
             // Determine the user to fetch messages for
             if ($request->has('recipient_id')) {
-                $recipient = WhatsappMessage::where('recipient_id', $request->recipient_id)->first();
-
-                // $user = $recipient;
                 $user = WhatsappMessage::where('recipient_id', $request->recipient_id)->latest()->first();
 
                 // Check if recipient exists
-                if ($recipient) {
-                    $user_id = $recipient->recipient_id;
+                if ($user) {
+                    $user_id = $user->recipient_id;
                 } else {
                     // If recipient_id is provided but not found, handle accordingly
                     return redirect()->back()->withErrors('Recipient not found');
                 }
             } else {
-                // If no recipient_id is provided, use the latest recipient from the chat list
                 if ($chatList->isEmpty()) {
-                    // Handle the case where chat list is empty
                     return redirect()->back()->withErrors('No chat messages found');
                 }
-                $user_id = $chatList->first()->recipient_id;
+
                 $user = $chatList->first();
+                $user_id = $user->recipient_id;
             }
 
             // Fetch messages for the determined user_id
             $messages = WhatsappMessage::where('recipient_id', $user_id)->get();
-
-            // Log::info($messages);
 
             return view('admin.chat.index', compact('chatList', 'messages', 'user'));
         } catch (\Exception $e) {
@@ -114,6 +105,5 @@ class ChatController extends Controller
         // return redirect()->back()->with('success', 'Chat deleted successfully');
 
         return redirect()->route('whatsapp.chat.index')->with('success', 'Chat deleted successfully!');
-
     }
 }

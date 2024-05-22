@@ -339,23 +339,54 @@ class WhatsappController extends Controller
         if (isset($data['messages'])) {
             $messages = $data['messages'];
 
+            // foreach ($messages as $message) {
+            //     // Check if the wa_id exists, then update, otherwise create a new record
+            //     WhatsappMessage::updateOrCreate(
+            //         ['message_id' => $message['id']],
+            //         [
+            //             'whatsapp_message' => $request->message,
+            //             'template_name' => null,
+            //             'template_type' => null,
+            //             'type' => 'send',
+            //             'status' => null,
+            //             'phone_number' => $data['contacts'][0]['wa_id'],
+            //             'from' => null,
+            //             'recipient_id' => $data['contacts'][0]['wa_id'],
+            //             'send_at' => null,
+            //         ]
+            //     );
+            // }
+
             foreach ($messages as $message) {
-                // Check if the wa_id exists, then update, otherwise create a new record
+                // Fetch the existing message if it exists
+                $existingMessage = WhatsappMessage::where('recipient_id', $data['contacts'][0]['wa_id'])->whereNotNull('profile_name')->first();
+
+
+                // Prepare the attributes for update or create
+                $attributes = [
+                    'whatsapp_message' => $request->message,
+                    'template_name' => null,
+                    'template_type' => null,
+                    'type' => 'send',
+                    'status' => null,
+                    'phone_number' => $data['contacts'][0]['wa_id'],
+                    'from' => null,
+                    'recipient_id' => $data['contacts'][0]['wa_id'],
+                    'send_at' => null,
+                ];
+
+                // If the message exists, add the profile name
+                if ($existingMessage) {
+                    $attributes['profile_name'] = $existingMessage->profile_name;
+                }
+
+                // Update or create the record
                 WhatsappMessage::updateOrCreate(
                     ['message_id' => $message['id']],
-                    [
-                        'whatsapp_message' => $request->message,
-                        'template_name' => null,
-                        'template_type' => null,
-                        'type' => 'send',
-                        'status' => null,
-                        'phone_number' => $data['contacts'][0]['wa_id'],
-                        'from' => null,
-                        'recipient_id' => $data['contacts'][0]['wa_id'],
-                        'send_at' => null,
-                    ]
+                    $attributes
                 );
             }
+
         }
 
 
@@ -363,7 +394,10 @@ class WhatsappController extends Controller
 
         // Log::info($response);
 
-        return redirect()->route('whatsapp.chat.index', ['recipient_id' => $request->recipient_id]);
+        // return redirect()->route('whatsapp.chat.index', ['recipient_id' => $request->recipient_id]);
+
+        return redirect()->route('whatsapp.chat.index');
+
     }
 
     public function sendTmpMessage(Request $request)
