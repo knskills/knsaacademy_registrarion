@@ -240,7 +240,46 @@
                                                         <p>No chat messages
                                                             found.</p>
                                                     @else
+                                                        @php
+                                                            $currentDate = null;
+                                                        @endphp
+
                                                         @foreach ($messages as $message)
+                                                            @php
+                                                                $messageDate = Carbon\Carbon::parse(
+                                                                    $message->created_at,
+                                                                )->format(
+                                                                    'Y-m-d',
+                                                                );
+                                                                $today = Carbon\Carbon::now()->format(
+                                                                    'Y-m-d',
+                                                                );
+                                                                $yesterday = Carbon\Carbon::now()
+                                                                    ->subDay()
+                                                                    ->format(
+                                                                        'Y-m-d',
+                                                                    );
+                                                            @endphp
+
+                                                            @if ($currentDate !== $messageDate)
+                                                                @php $currentDate = $messageDate; @endphp
+                                                                <li>
+                                                                    <div
+                                                                        class="divider">
+                                                                        @if ($currentDate === $today)
+                                                                            <h6>Today
+                                                                            </h6>
+                                                                        @elseif($currentDate === $yesterday)
+                                                                            <h6>Yesterday
+                                                                            </h6>
+                                                                        @else
+                                                                            <h6>{{ Carbon\Carbon::parse($currentDate)->format('M d, Y') }}
+                                                                            </h6>
+                                                                        @endif
+                                                                    </div>
+                                                                </li>
+                                                            @endif
+
                                                             @if ($message->type == 'send')
                                                                 <li
                                                                     class="sender">
@@ -251,7 +290,7 @@
                                                                 </li>
                                                             @else
                                                                 <li
-                                                                    class="repaly">
+                                                                    class="reply">
                                                                     <p>{{ $message->whatsapp_message }}
                                                                     </p>
                                                                     <span
@@ -370,9 +409,9 @@
                         <div class="modal-body">
 
                             <!--<div class="mb-3">
-                                                    <label for="recipient-name" class="col-form-label">Recipient Name:</label>
-                                                    <input type="text" class="form-control" id="recipient-name">
-                                                    </div>-->
+                                                            <label for="recipient-name" class="col-form-label">Recipient Name:</label>
+                                                            <input type="text" class="form-control" id="recipient-name">
+                                                            </div>-->
                             <div class="mb-3">
                                 <label for="recipient-name"
                                     class="col-form-label">Recipient
