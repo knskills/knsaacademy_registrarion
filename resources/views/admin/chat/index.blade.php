@@ -225,8 +225,6 @@
                                                                             Delete
                                                                         </button>
                                                                     </form>
-
-
                                                                 </li>
                                                                 <li><a class="dropdown-item"
                                                                         href="#">Another
@@ -261,7 +259,7 @@
                                                             $currentDate = null;
                                                         @endphp
 
-                                                        @foreach ($messages as $message)
+                                                        @foreach ($messages as $key => $message)
                                                             @php
                                                                 $messageDate = Carbon\Carbon::parse(
                                                                     $message->created_at,
@@ -276,6 +274,21 @@
                                                                     ->format(
                                                                         'Y-m-d',
                                                                     );
+
+                                                                $last = '';
+
+                                                                // if $key eqal to the count of messages the $last is returned last
+                                                                if (
+                                                                    $key +
+                                                                        1 ==
+                                                                    count(
+                                                                        $messages,
+                                                                    )
+                                                                ) {
+                                                                    $last =
+                                                                        'last';
+                                                                }
+
                                                             @endphp
 
                                                             @if ($currentDate !== $messageDate)
@@ -298,16 +311,16 @@
                                                             @endif
 
                                                             @if ($message->type == 'send')
-                                                                <li
-                                                                    class="sender">
+                                                                <li class="sender"
+                                                                    id="{{ $last }}">
                                                                     <p>{{ $message->whatsapp_message }}
                                                                     </p>
                                                                     <span
                                                                         class="time">{{ Carbon\Carbon::parse($message->created_at)->format('h:i a') }}</span>
                                                                 </li>
                                                             @else
-                                                                <li
-                                                                    class="repaly">
+                                                                <li class="repaly"
+                                                                    id="{{ $last }}">
                                                                     <p>{{ $message->whatsapp_message }}
                                                                     </p>
                                                                     <span
@@ -426,9 +439,9 @@
                         <div class="modal-body">
 
                             <!--<div class="mb-3">
-                                                                <label for="recipient-name" class="col-form-label">Recipient Name:</label>
-                                                                <input type="text" class="form-control" id="recipient-name">
-                                                                </div>-->
+                                                                    <label for="recipient-name" class="col-form-label">Recipient Name:</label>
+                                                                    <input type="text" class="form-control" id="recipient-name">
+                                                                    </div>-->
                             <div class="mb-3">
                                 <label for="recipient-name"
                                     class="col-form-label">Recipient
@@ -471,6 +484,11 @@
             setTimeout(function() {
                 $(".alert").alert('close');
             }, 3000);
+
+            // Select the last li element by its ID
+            var lastElement = $('#last');
+            // Scroll the container to the top position of the last element
+            $('.modal-body').scrollTop(lastElement.position().top);
         });
     </script>
 @endsection
