@@ -60,17 +60,41 @@
                                     <div class="modal-content">
                                         <div class="chat-header">
                                             <div class="msg-search">
-                                                <input type="text"
+                                                {{-- <input type="text"
                                                     class="form-control"
                                                     id="inlineFormInputGroup"
                                                     placeholder="Search"
-                                                    aria-label="search">
+                                                    aria-label="search"> --}}
+
+                                                <form id="c-serch"
+                                                    action="{{ route('whatsapp.chat.index') }}"
+                                                    method="GET"
+                                                    class="w-100">
+                                                    @csrf
+                                                    <input type="text"
+                                                        name="recipient_id"
+                                                        class="form-control"
+                                                        id="inlineFormInputGroup"
+                                                        placeholder="Search"
+                                                        aria-label="search">
+                                                </form>
                                                 <a class="add"
-                                                    href="#">
+                                                    href="#"
+                                                    title="Search">
                                                     <img class="img-fluid"
                                                         src="https://mehedihtml.com/chatbox/assets/img/add.svg"
-                                                        alt="add">
+                                                        alt="search"  onclick="event.preventDefault();
+                                                        document.getElementById('c-serch').submit();">
                                                 </a>
+
+                                                {{-- <a class="dropdown-item"
+                                                    href="{{ route('whatsapp.chat.index') }}"
+                                                    onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                                    {{ __('Logout') }}
+                                                </a> --}}
+
+
                                             </div>
                                         </div>
 
@@ -313,7 +337,20 @@
                                                             @if ($message->type == 'send')
                                                                 <li class="sender"
                                                                     id="{{ $last }}">
-                                                                    <p>{!! $message->whatsapp_message !!}
+                                                                    <p>
+                                                                        {{-- @if (!empty($message->template))
+                                                                        {!!$message->template->whtsp_msg[0]['text']!!}
+
+                                                                        <textarea name="" id="" cols="30" rows="10">{{$message->template->whtsp_msg[0]['text']}}</textarea>
+                                                                        @else
+                                                                        {{ $message->whatsapp_message }}
+                                                                        @endif --}}
+
+                                                                        {{-- <textarea name="" id="" cols="30" rows="10">{{ $message->whatsapp_message }}</textarea> --}}
+
+                                                                        {{-- {{ $message->whatsapp_message }} --}}
+
+                                                                        {!! nl2br(e($message->whatsapp_message)) !!}
                                                                     </p>
                                                                     <span
                                                                         class="time">{{ Carbon\Carbon::parse($message->created_at)->format('h:i a') }}</span>
@@ -321,7 +358,7 @@
                                                             @else
                                                                 <li class="repaly"
                                                                     id="{{ $last }}">
-                                                                    <p>{!! $message->whatsapp_message !!}
+                                                                    <p>{{ $message->whatsapp_message }}
                                                                     </p>
                                                                     <span
                                                                         class="time">{{ Carbon\Carbon::parse($message->created_at)->format('h:i a') }}</span>
@@ -439,9 +476,10 @@
                         <div class="modal-body">
 
                             <!--<div class="mb-3">
-                                                                    <label for="recipient-name" class="col-form-label">Recipient Name:</label>
-                                                                    <input type="text" class="form-control" id="recipient-name">
-                                                                    </div>-->
+                            <label for="recipient-name" class="col-form-label">Recipient Name:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                            </div>-->
+
                             <div class="mb-3">
                                 <label for="recipient-name"
                                     class="col-form-label">Recipient
@@ -477,7 +515,7 @@
 
 @section('scripts')
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="{{ asset('admin/chat/whatsapp.chat.js') }}"></script>
+    <script src="{{ asset('admin/chat/chat.js') }}"></script>
     <script>
         $(document).ready(function() {
             // close alert automatically after 3 seconds

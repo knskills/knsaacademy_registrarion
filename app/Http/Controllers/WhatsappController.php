@@ -334,6 +334,8 @@ class WhatsappController extends Controller
             ]
         ]);
 
+        Log::info($response);
+
         $data = json_decode($response, true);  // Assuming $response is a JSON string, decode it into an associative array
 
         if (isset($data['messages'])) {
