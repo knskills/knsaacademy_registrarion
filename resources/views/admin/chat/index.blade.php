@@ -313,7 +313,7 @@
                                                             @if ($message->type == 'send')
                                                                 <li class="sender"
                                                                     id="{{ $last }}">
-                                                                    <p>{{ $message->whatsapp_message }}
+                                                                    <p>{!! $message->whatsapp_message !!}
                                                                     </p>
                                                                     <span
                                                                         class="time">{{ Carbon\Carbon::parse($message->created_at)->format('h:i a') }}</span>
@@ -321,7 +321,7 @@
                                                             @else
                                                                 <li class="repaly"
                                                                     id="{{ $last }}">
-                                                                    <p>{{ $message->whatsapp_message }}
+                                                                    <p>{!! $message->whatsapp_message !!}
                                                                     </p>
                                                                     <span
                                                                         class="time">{{ Carbon\Carbon::parse($message->created_at)->format('h:i a') }}</span>

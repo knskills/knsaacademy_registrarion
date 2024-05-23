@@ -10,10 +10,12 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Http;
 
 use App\Models\Message;
 use App\Models\MessageTemplate;
 use App\Models\audience as Audience;
+use App\Models\WhatsappMessage;
 // use App\Models\Event;
 use App\Mail\TempMail;
 use Log;
@@ -36,104 +38,184 @@ class SendScheduledMessages implements ShouldQueue
      */
     public function handle(): void
     {
-        $messages = Message::where('schedule_date', Carbon::now()->format('Y-m-d'))
-            ->where('schedule_time', Carbon::now()->format('H:i'))
-            ->get();
+        $messages = $this->getScheduledMessages();
 
         foreach ($messages as $message) {
-            $audiences = ($message->type == 'whatsapp' || $message->type == 'sms') ? $message->audience_numbers : $message->emails;
-            Log::info('Messages scheduled for today: ' . count($audiences));
+            $audiences = $this->getAudiences($message);
+            // Log::info('Messages scheduled for today: ' . count($audiences));
 
-            foreach ($audiences as $key => $audience_identifier) {
-                $audience = Audience::where($message->type == 'email' ? 'email' : 'phone', $audience_identifier)->first();
-                $messageTemp = MessageTemplate::find($message->message_template_id);
+            foreach ($audiences as $audienceIdentifier) {
+                $audience = $this->getAudience($message->type, $audienceIdentifier);
+                $messageTemplate = $this->getMessageTemplate($message->message_template_id);
 
-                if (!$messageTemp) {
-                    continue; // Skip iteration if message template not found
+                if (!$messageTemplate) {
+                    continue;
                 }
 
-                $originalMessage = $messageTemp->message;
-                $message_type = $messageTemp->type;
-                $cc = $messageTemp->cc;
-                $bcc = $messageTemp->bcc;
+                $modifiedMessage = $this->getModifiedMessage($messageTemplate, $audience, $audienceIdentifier);
 
-                // if($message->type == 'whatsapp' && $message->type == 'whatsapp') {
-                //     $originalMessage = str_replace(["\r\n", "\r", "\n"], '%0a', $originalMessage);
-                // }
-
-                if ($audience) {
-                    // replace variables in message
-                    $modifiedMessage = str_replace(["{name}", "{email}", "{phone}"], [$audience->name, $audience->email, $audience->phone], $originalMessage);
-                } else {
-                    $modifiedMessage = str_replace(["{name}", "{email}", "{phone}"], ["sir/mam", $audience_identifier, $audience_identifier], $originalMessage);
-                }
-
-                // send message
-                if ($message_type == 'whatsapp' && $message->type == 'whatsapp') {
-                    // $result = sendWhatsAppMessage($audience_identifier, $modifiedMessage);
-
-                    // // update message status
-                    // $message->status = $result;
-                    // $message->save();
-                    // Log::info($result);
-
-                    sendFBMessage($audience_identifier);
-                } elseif ($message_type == 'sms' && $message->type == 'sms') {
-                    $result = sendSms($audience_identifier, $modifiedMessage);
-
-                    // update message status
-                    $message->status = $result;
-                    $message->save();
-                    Log::info($result);
-                } elseif ($message_type == 'email' && $message->type == 'email') {
-
-                    $to = $audience_identifier;
-                    $subject = $messageTemp->subject;
-                    $temp_message = $modifiedMessage;
-                    $cc = array_filter($messageTemp->cc) ?? [];
-                    $bcc = array_filter($messageTemp->bcc) ?? [];
-                    $attachmentPath = $messageTemp->media_file;
-
-                    // Use try-catch for error handling during email sending
-                    try {
-                        $data = [
-                            "email" => $audience_identifier,
-                            "subject" => $subject,
-                            "body" => $temp_message,
-                            "cc" => $cc,
-                            "bcc" => $bcc,
-                            "attachmentPath" => $attachmentPath,
-                        ];
-
-                        $mail = Mail::to($to);
-
-                        // Add CC if available
-                        if (!empty($cc)) {
-                            $mail->cc($cc);
-                        }
-
-                        // Add BCC if available
-                        if (!empty($bcc)) {
-                            $mail->bcc($bcc);
-                        }
-
-                        // Send email
-                        $mail->send(new TempMail($data));
-
-                        // update message status
-                        $message->status = 'sent';
-                        $message->save();
-
-                        Log::info('Email sent successfully.');
-                    } catch (\Exception $e) {
-                        // update message status
-                        $message->status = 'failed';
-                        $message->save();
-                        Log::error('Error sending email: ' . $e->getMessage());
-                    }
-                }
-
+                $this->sendMessage($message, $messageTemplate, $audienceIdentifier, $modifiedMessage);
             }
+        }
+    }
+
+    private function getScheduledMessages()
+    {
+        return Message::where('schedule_date', Carbon::now()->format('Y-m-d'))
+            ->where('schedule_time', Carbon::now()->format('H:i'))
+            ->get();
+    }
+
+    private function getAudiences($message)
+    {
+        return ($message->type == 'whatsapp' || $message->type == 'sms') ? $message->audience_numbers : $message->emails;
+    }
+
+    private function getAudience($type, $identifier)
+    {
+        return Audience::where($type == 'email' ? 'email' : 'phone', $identifier)->first();
+    }
+
+    private function getMessageTemplate($templateId)
+    {
+        return MessageTemplate::find($templateId);
+    }
+
+    private function getModifiedMessage($template, $audience, $identifier)
+    {
+        $placeholders = ['{name}', '{email}', '{phone}'];
+        $replacements = $audience ? [$audience->name, $audience->email, $audience->phone] : ['sir/mam', $identifier, $identifier];
+
+        return str_replace($placeholders, $replacements, $template->message);
+    }
+
+    private function sendMessage($message, $template, $identifier, $modifiedMessage)
+    {
+        switch ($message->type) {
+            case 'whatsapp':
+                if ($template->type == 'whatsapp') {
+                    $this->sendWhatsAppMessage($template, $identifier);
+                }
+                break;
+            case 'sms':
+                if ($template->type == 'sms') {
+                    $this->sendSmsMessage($message, $identifier, $modifiedMessage);
+                }
+                break;
+            case 'email':
+                if ($template->type == 'email') {
+                    $this->sendEmailMessage($message, $template, $identifier, $modifiedMessage);
+                }
+                break;
+        }
+    }
+
+    private function sendWhatsAppMessage($template, $phone)
+    {
+        $this->sendTmpMessage($template->id, $phone);
+    }
+
+    private function sendSmsMessage($message, $phone, $modifiedMessage)
+    {
+        $result = sendSms($phone, $modifiedMessage);
+
+        $this->updateMessageStatus($message, $result);
+        // Log::info($result);
+    }
+
+    private function sendEmailMessage($message, $template, $to, $body)
+    {
+        // $toEmail = 'rohit@example.com';
+        // $subject = 'Test Email';
+        // $body = 'This is a test email sent from Laravel using the Mail class.';
+
+        // Mail::raw($body, function ($message) use ($toEmail, $subject) {
+        //     $message->to($toEmail)
+        //             ->subject($subject);
+        // });
+
+        $subject = $template->subject;
+        $cc = array_filter($template->cc) ?? [];
+        $bcc = array_filter($template->bcc) ?? [];
+        $attachmentPath = $template->media_file;
+
+        $data = [
+            "email" => $to,
+            "subject" => $subject,
+            "body" => $body,
+            "cc" => $cc,
+            "bcc" => $bcc,
+            "attachmentPath" => $attachmentPath,
+        ];
+
+        try {
+            $mail = Mail::to($to);
+            if (!empty($cc)) $mail->cc($cc);
+            if (!empty($bcc)) $mail->bcc($bcc);
+            $mail->send(new TempMail($data));
+
+            $this->updateMessageStatus($message, 'sent');
+            // Log::info('Email sent successfully.');
+        } catch (\Exception $e) {
+            $this->updateMessageStatus($message, 'failed');
+            Log::error('Error sending email: ' . $e->getMessage());
+        }
+    }
+
+    private function updateMessageStatus($message, $status)
+    {
+        $message->status = $status;
+        $message->save();
+    }
+
+    function sendTmpMessage($templateId = null, $phone = null)
+    {
+        $template = MessageTemplate::find($templateId);
+
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
+            'Content-Type' => 'application/json',
+        ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
+            'messaging_product' => 'whatsapp',
+            "recipient_type" => "individual",
+            'to' => '+91' . $phone,
+            'type' => 'template',
+            'template' => [
+                'name' => $template->name,
+                'language' => ['code' => $template->lang_code]
+            ]
+        ]);
+
+        $data = json_decode($response, true);
+
+        if (isset($data['messages'])) {
+            $this->updateOrCreateWhatsAppMessages($data, $template);
+        }
+    }
+
+    private function updateOrCreateWhatsAppMessages($data, $template)
+    {
+        foreach ($data['messages'] as $message) {
+            $recipientId = $data['contacts'][0]['wa_id'];
+            $existingMessage = WhatsappMessage::where('recipient_id', $recipientId)->whereNotNull('profile_name')->first();
+
+            $attributes = [
+                'whatsapp_message' => $template->message,
+                'template_id' => $template->id,
+                'type' => 'send',
+                'status' => null,
+                'phone_number' => $recipientId,
+                'recipient_id' => $recipientId,
+            ];
+
+            if ($existingMessage) {
+                $attributes['profile_name'] = $existingMessage->profile_name;
+            }
+
+            WhatsappMessage::updateOrCreate(
+                ['message_id' => $message['id']],
+                $attributes
+            );
         }
     }
 }
