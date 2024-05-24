@@ -72,6 +72,9 @@ Route::middleware(['auth'])->group(function () {
     // Message
     Route::post('/whatsapp/text-message', [WhatsappController::class, 'sendTextMessage'])->name('whatsapp.text-message');
 
+    // Mark as a read
+    Route::get('/whatsapp/mark-as-read/{messageid}', [WhatsappController::class, 'markAsRead'])->name('whatsapp.mark-as-read');
+
     //testing msg
     Route::get('/send-message', [PageController::class, 'sendFBMessage'])->name('sendMessage');
 });
