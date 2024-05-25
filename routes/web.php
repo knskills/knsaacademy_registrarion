@@ -69,8 +69,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/whatsapp/get-profile', [WhatsappController::class, 'getProfile'])->name('whatsapp.get-profile');
     Route::get('/whatsapp/getSubscribedApps', [WhatsappController::class, 'getSubscribedApps'])->name('whatsapp.getSubscribedApps');
     Route::get('/whatsapp/getMessageTemplate/{templateName}', [WhatsappController::class, 'getMessageTemplate'])->name('whatsapp.getMessageTemplates');
+
     // Message
     Route::post('/whatsapp/text-message', [WhatsappController::class, 'sendTextMessage'])->name('whatsapp.text-message');
+
+    Route::post('/whatsapp/send-message', [WhatsappController::class, 'sendMessage'])->name('whatsapp.send-message');
 
     // Mark as a read
     Route::get('/whatsapp/mark-as-read/{messageid}', [WhatsappController::class, 'markAsRead'])->name('whatsapp.mark-as-read');

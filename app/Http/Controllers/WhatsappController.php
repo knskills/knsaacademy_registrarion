@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 use Netflie\WhatsAppCloudApi\WebHook;
 use GuzzleHttp\Client;
 
@@ -235,29 +236,29 @@ class WhatsappController extends Controller
 
     //========================== Other ===============================
     // public function markAsRead($messageId)
-        // {
-        //     Log::info($messageId);
-        //     $fromPhoneNumberId = env('FB_ACCOUNT_ID');
-        //     $accessToken = env('FB_METADATA_TOKEN');
-        //     $version = 'v19.0';
-        //     $messageId = 'wamid.HBgMOTE5NzcwMDE5MTQ4FQIAEhggNUU3QTI3MDc5MjJFNDM2MDlGOEZENDVENjRDQzhCQTUA';
+    // {
+    //     Log::info($messageId);
+    //     $fromPhoneNumberId = env('FB_ACCOUNT_ID');
+    //     $accessToken = env('FB_METADATA_TOKEN');
+    //     $version = 'v19.0';
+    //     $messageId = 'wamid.HBgMOTE5NzcwMDE5MTQ4FQIAEhggNUU3QTI3MDc5MjJFNDM2MDlGOEZENDVENjRDQzhCQTUA';
 
-        //     $response = Http::withHeaders([
-        //         'Authorization' => 'Bearer ' . $accessToken,
-        //         'Content-Type' => 'application/json',
-        //     ])->post("https://graph.facebook.com/{$version}/{$fromPhoneNumberId}/messages", [
-        //         'messaging_product' => 'whatsapp',
-        //         'status' => 'read',
-        //         'message_id' => $messageId,
-        //     ]);
+    //     $response = Http::withHeaders([
+    //         'Authorization' => 'Bearer ' . $accessToken,
+    //         'Content-Type' => 'application/json',
+    //     ])->post("https://graph.facebook.com/{$version}/{$fromPhoneNumberId}/messages", [
+    //         'messaging_product' => 'whatsapp',
+    //         'status' => 'read',
+    //         'message_id' => $messageId,
+    //     ]);
 
-        //     Log::info($response);
+    //     Log::info($response);
 
-        //     if ($response->successful()) {
-        //         return response()->json(['status' => 'Message marked as read', 'response' => $response->json()], 200);
-        //     } else {
-        //         return response()->json(['error' => 'Failed to mark message as read', 'response' => $response->body()], $response->status());
-        //     }
+    //     if ($response->successful()) {
+    //         return response()->json(['status' => 'Message marked as read', 'response' => $response->json()], 200);
+    //     } else {
+    //         return response()->json(['error' => 'Failed to mark message as read', 'response' => $response->body()], $response->status());
+    //     }
     // }
 
     //=========================== Templates ============================
@@ -404,6 +405,82 @@ class WhatsappController extends Controller
         return redirect()->route('whatsapp.chat.index');
     }
 
+    public function sendImgMessage(Request $request)
+    {
+        // Validate the request to ensure an image file and recipient ID are provided
+        $request->validate([
+            'media_image' => 'required|image',
+            'recipient_id' => 'required|string',
+        ]);
+
+        // Store the uploaded image
+        if ($request->hasFile('media_image')) {
+            $image = $request->file('media_image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            // Store the image in the 'public/whatsapp/images' directory
+            $path = $image->storeAs('public/whatsapp/images', $imageName);
+
+            // Generate the URL for the stored image
+            $imageUrl = Storage::url($path);
+        }
+
+        // Make the HTTP request to send the image
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . env("FB_METADATA_TOKEN"),
+            'Content-Type' => 'application/json',
+        ])->post('https://graph.facebook.com/v19.0/' . env("FB_PHONE_NUMBER") . '/messages', [
+            'messaging_product' => 'whatsapp',
+            'recipient_type' => 'individual',
+            'to' => $request->recipient_id,
+            'type' => 'image',
+            'image' => [
+                'link' => url($imageUrl),
+                'caption' => 'The best succulent ever?',
+            ],
+        ]);
+
+        Log::info($response);
+
+        $data = json_decode($response->getBody(), true);
+
+        if (isset($data['messages'])) {
+            $messages = $data['messages'];
+
+            foreach ($messages as $message) {
+                // Fetch the existing message if it exists
+                $existingMessage = WhatsappMessage::where('recipient_id', $data['contacts'][0]['wa_id'])->whereNotNull('profile_name')->first();
+
+                // Prepare the attributes for update or create
+                $attributes = [
+                    'whatsapp_message' => $request->message,
+                    'template_name' => null,
+                    'template_type' => null,
+                    'type' => 'send',
+                    'status' => null,
+                    'image' => $path,
+                    'phone_number' => $data['contacts'][0]['wa_id'],
+                    'from' => null,
+                    'recipient_id' => $data['contacts'][0]['wa_id'],
+                    'send_at' => null,
+                ];
+
+                // If the message exists, add the profile name
+                if ($existingMessage) {
+                    $attributes['profile_name'] = $existingMessage->profile_name;
+                }
+
+                // Update or create the record
+                WhatsappMessage::updateOrCreate(
+                    ['message_id' => $message['id']],
+                    $attributes
+                );
+            }
+        }
+
+        return redirect()->route('whatsapp.chat.index');
+    }
+
     public function sendTmpMessage(Request $request)
     {
         $template = MessageTemplate::find($request->template_id);
@@ -459,27 +536,128 @@ class WhatsappController extends Controller
 
     public function markAsRead($messageId)
     {
+        Log::info($messageId);
         $phoneNumberId = env('FB_PHONE_NUMBER');
         $accessToken = env('FB_METADATA_TOKEN');
         $version = 'v19.0';
 
-        $url = "https://graph.facebook.com/{$version}/{$phoneNumberId}/messages";
-
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . $accessToken,
-            'Content-Type' => 'application/json',
-        ])->put($url, [
-            'messaging_product' => 'whatsapp',
-            'status' => 'read',
-            'message_id' => $messageId,
-        ]);
-
-        Log::info('Response from Facebook API: ', $response->json());
+        $response = Http::withToken($accessToken)
+            ->post("https://graph.facebook.com/v19.0/{$phoneNumberId}/messages", [
+                'messaging_product' => 'whatsapp',
+                'status' => 'read',
+                'message_id' => $messageId,
+            ]);
 
         if ($response->successful()) {
-            return response()->json(['status' => 'Message marked as read', 'response' => $response->json()], 200);
-        } else {
-            return response()->json(['error' => 'Failed to mark message as read', 'response' => $response->body()], $response->status());
+            return response()->json(['message' => 'Message marked as read successfully.'], 200);
+        }
+
+        return response()->json(['error' => 'Failed to mark message as read.'], $response->status());
+    }
+
+    public function sendMessage(Request $request)
+    {
+        // Log::info($request->all());
+
+        try {
+            // Validate the request to ensure a recipient ID is provided
+            $request->validate([
+                'recipient_id' => 'required|string',
+                'message' => 'required_without:media_image|string',
+                'media_image' => 'sometimes|image',
+            ]);
+
+            $payload = [
+                'messaging_product' => 'whatsapp',
+                'recipient_type' => 'individual',
+                'to' => $request->recipient_id,
+            ];
+
+            // Check if the request contains an image
+            if ($request->hasFile('media_image')) {
+                // Log::info('image file');
+                // // Handle image upload and URL generation
+                // $image = $request->file('media_image');
+                // $imageName = time() . '_' . $image->getClientOriginalName();
+                // $path = $image->storeAs('public/whatsapp/images', $imageName);
+                // $imageUrl = Storage::url($path);
+
+
+                $image = $request->file('media_image');
+                $imageName = time() . '_' . $image->getClientOriginalName();
+                $image_path = 'whatsapp/images/' . $imageName; // Use public_path
+                $image->move(public_path('whatsapp/images/'), $imageName);
+
+                // Generate URL after moving the file
+                $imageUrl = asset('whatsapp/images/' . $imageName);
+
+                // Log::info($imageUrl);
+                // Log::info(url($imageUrl));
+                // Log::info('path ' .$image_path);
+
+                // Prepare payload for image message
+                $payload['type'] = 'image';
+                $payload['image'] = [
+                    'link' => $imageUrl,
+                    'caption' => $request->message,
+                ];
+            } else {
+                // Prepare payload for text message
+                $payload['type'] = 'text';
+                $payload['text'] = [
+                    'preview_url' => false,
+                    'body' => $request->message,
+                ];
+            }
+
+            // Make the HTTP request to send the message
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . env("FB_METADATA_TOKEN"),
+                'Content-Type' => 'application/json',
+            ])->post('https://graph.facebook.com/v19.0/' . env("FB_PHONE_NUMBER") . '/messages', $payload);
+
+            Log::info($response);
+
+            $data = json_decode($response->getBody(), true);
+
+            if (isset($data['messages'])) {
+                $messages = $data['messages'];
+
+                foreach ($messages as $message) {
+                    // Fetch the existing message if it exists
+                    $existingMessage = WhatsappMessage::where('recipient_id', $data['contacts'][0]['wa_id'])->whereNotNull('profile_name')->first();
+
+                    // Prepare the attributes for update or create
+                    $attributes = [
+                        'whatsapp_message' => $request->message ?? 'Image Message',
+                        'template_name' => null,
+                        'template_type' => null,
+                        'type' => 'send',
+                        'status' => null,
+                        'image' => $request->hasFile('media_image') ? $image_path : null,
+                        'phone_number' => $data['contacts'][0]['wa_id'],
+                        'from' => null,
+                        'recipient_id' => $data['contacts'][0]['wa_id'],
+                        'send_at' => null,
+                    ];
+
+                    // If the message exists, add the profile name
+                    if ($existingMessage) {
+                        $attributes['profile_name'] = $existingMessage->profile_name;
+                    }
+
+                    // Update or create the record
+                    WhatsappMessage::updateOrCreate(
+                        ['message_id' => $message['id']],
+                        $attributes
+                    );
+                }
+            }
+
+            return redirect()->route('whatsapp.chat.index');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->withErrors('An error occurred while fetching chat messages');
         }
     }
 }
