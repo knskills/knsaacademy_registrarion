@@ -83,7 +83,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-
 Auth::routes();
 Route::get('register', function () {
     return redirect('/');

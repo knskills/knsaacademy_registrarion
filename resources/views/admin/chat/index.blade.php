@@ -389,6 +389,8 @@
 
                                                                         {{-- {{ $message->whatsapp_message }} --}}
 
+                                                                        <img src="{{asset($message->image)}}" alt="{{$message->image}}" style="max-width: 250px;">
+                                                                            <br>
                                                                         {!! nl2br(e($message->whatsapp_message)) !!}
                                                                     </p>
                                                                     <span

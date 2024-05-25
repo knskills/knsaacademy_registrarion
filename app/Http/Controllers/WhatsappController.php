@@ -591,10 +591,6 @@ class WhatsappController extends Controller
                 // Generate URL after moving the file
                 $imageUrl = asset('whatsapp/images/' . $imageName);
 
-                // Log::info($imageUrl);
-                // Log::info(url($imageUrl));
-                // Log::info('path ' .$image_path);
-
                 // Prepare payload for image message
                 $payload['type'] = 'image';
                 $payload['image'] = [
