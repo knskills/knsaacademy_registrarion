@@ -103,7 +103,6 @@ class WebhookController extends Controller
             } elseif ($message['type'] === 'image') {
                 $attributes['whatsapp_message'] = null; // Clear text message field for image type
                 // $attributes['image_id'] = $message['image']['id'] ?? null;
-                $attributes['image'] = $message['image']['id'] ?? null;
 
                 // Determine file extension based on MIME type
                 $mime = $message['image']['mime_type'] ?? 'image/jpeg'; // Default to 'image/jpeg' if MIME type is not set
@@ -121,7 +120,7 @@ class WebhookController extends Controller
                 if ($response->successful()) {
                     $imagePath = 'whatsapp/images/' . $message['image']['id'] . '.' . $extension;
                     Storage::put($imagePath, $response->body());
-                    $attributes['image_path'] = Storage::url($imagePath);
+                    $attributes['image'] = Storage::url($imagePath);
                 }
             }
 
