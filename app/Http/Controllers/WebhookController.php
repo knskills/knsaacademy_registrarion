@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Carbon;
+
 use App\Models\WhatsappMessage;
-use App\Events\MessageReceived;
 
 class WebhookController extends Controller
 {
@@ -84,23 +87,67 @@ class WebhookController extends Controller
     private function handleMessages(array $messages, array $data)
     {
         foreach ($messages as $message) {
-            WhatsappMessage::create([
+            $attributes = [
                 'message_id' => $message['id'] ?? null,
-                'whatsapp_message' => $message['text']['body'] ?? null,
-                'reply' => $message,
                 'profile_name' => $data['entry'][0]['changes'][0]['value']['contacts'][0]['profile']['name'] ?? null,
                 'type' => 'reply',
-                'reply_at' => isset($message['timestamp']) ? date('Y-m-d H:i:s', $message['timestamp']) : null,
+                'reply_at' => isset($message['timestamp']) ? Carbon::createFromTimestamp($message['timestamp']) : null,
                 'status' => 'received',
                 'phone_number' => $data['entry'][0]['changes'][0]['value']['metadata']['display_phone_number'] ?? null,
                 'recipient_id' => $message['from'] ?? null,
                 'from' => $message['from'] ?? null,
-            ]);
+            ];
+
+            if ($message['type'] === 'text') {
+                $attributes['whatsapp_message'] = $message['text']['body'] ?? null;
+            } elseif ($message['type'] === 'image') {
+                $attributes['whatsapp_message'] = null; // Clear text message field for image type
+                // $attributes['image_id'] = $message['image']['id'] ?? null;
+                $attributes['image'] = $message['image']['id'] ?? null;
+
+                // Determine file extension based on MIME type
+                $mime = $message['image']['mime_type'] ?? 'image/jpeg'; // Default to 'image/jpeg' if MIME type is not set
+                $extension = $this->getExtensionFromMimeType($mime);
+
+                // Optional: Download and store the image locally
+                $imageUrl = 'https://graph.facebook.com/v19.0/' . $message['image']['id'];
+                $accessToken = env("FB_METADATA_TOKEN");
+                $response = Http::withHeaders([
+                    'Authorization' => 'Bearer ' . $accessToken
+                ])->get($imageUrl, [
+                    'access_token' => $accessToken
+                ]);
+
+                if ($response->successful()) {
+                    $imagePath = 'whatsapp/images/' . $message['image']['id'] . '.' . $extension;
+                    Storage::put($imagePath, $response->body());
+                    $attributes['image_path'] = Storage::url($imagePath);
+                }
+            }
+
+            WhatsappMessage::create($attributes);
         }
 
-        // // Broadcast the event with the new message data
-        // broadcast(new MessageReceived($data));
-
         return end($messages)['from'];
+    }
+
+    /**
+     * Get file extension from MIME type
+     *
+     * @param string $mime
+     * @return string
+     */
+    private function getExtensionFromMimeType(string $mime): string
+    {
+        $mimeTypes = [
+            'image/jpeg' => 'jpg',
+            'image/png' => 'png',
+            'image/gif' => 'gif',
+            'image/bmp' => 'bmp',
+            'image/webp' => 'webp',
+            // Add more MIME types and their extensions as needed
+        ];
+
+        return $mimeTypes[$mime] ?? 'jpg'; // Default to 'jpg' if MIME type is not found
     }
 }
