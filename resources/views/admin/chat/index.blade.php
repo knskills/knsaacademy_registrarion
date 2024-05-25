@@ -399,6 +399,8 @@
                                                             @else
                                                                 <li class="repaly"
                                                                     id="{{ $last }}">
+                                                                    <img src="{{asset($message->image)}}" alt="{{$message->image}}" style="max-width: 250px;">
+                                                                            <br>
                                                                     <p>{{ $message->whatsapp_message }}
                                                                     </p>
                                                                     <span
