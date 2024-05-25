@@ -13,7 +13,7 @@ class WebhookController extends Controller
 
     public function setupWebhook(Request $request)
     {
-        Log::info('call webhook setup');
+        // Log::info('call webhook setup');
 
         if ($request->isMethod('get')) {
             return $this->handleGetRequest($request);
@@ -28,13 +28,9 @@ class WebhookController extends Controller
     {
         $hubVerifyToken = $request->query('hub_verify_token');
 
-        Log::info('Verify token: ' . $hubVerifyToken);
-
         if ($hubVerifyToken !== self::VERIFY_TOKEN) {
             return response()->json(['error' => 'VerifyToken doesnt match'], 403);
         }
-
-        Log::info($request->query('hub_challenge'));
 
         return response($request->query('hub_challenge'));
     }
