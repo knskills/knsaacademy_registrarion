@@ -86,6 +86,7 @@ class WebhookController extends Controller
 
     private function handleMessages(array $messages, array $data)
     {
+
         foreach ($messages as $message) {
             $attributes = [
                 'message_id' => $message['id'] ?? null,
