@@ -109,8 +109,10 @@ class WebhookController extends Controller
                 $mime = $message['image']['mime_type'] ?? 'image/jpeg'; // Default to 'image/jpeg' if MIME type is not set
                 $extension = $this->getExtensionFromMimeType($mime);
 
+                $imageId =  $message['image']['id'];
+
                 // Optional: Download and store the image locally
-                $imageUrl = 'https://graph.facebook.com/v19.0/' . $message['image']['id'];
+                $imageUrl = 'https://graph.facebook.com/v19.0/' . $imageId;
                 $accessToken = env("FB_METADATA_TOKEN");
                 $response = Http::withHeaders([
                     'Authorization' => 'Bearer ' . $accessToken
@@ -119,9 +121,19 @@ class WebhookController extends Controller
                 ]);
 
                 if ($response->successful()) {
-                    $imagePath = 'whatsapp/images/' . $message['image']['id'] . '.' . $extension;
-                    Storage::put($imagePath, $response->body());
-                    $attributes['image'] = Storage::url($imagePath);
+                    // $imagePath = 'whatsapp/images/' . $imageId . '.' . $extension;
+                    // Storage::put($imagePath, $response->body());
+                    // $attributes['image'] = Storage::url($imagePath);
+
+                    $imagePath = 'whatsapp/images/' . $imageId . '.' . $extension;
+                    // Store the image in the public disk
+                    Storage::disk('public')->put($imagePath, $response->body());
+                    // Get the URL to the stored image
+                    $imageUrl = Storage::disk('public')->url($imagePath);
+                    // Save the image URL or path to the database if needed
+                    // $attributes['image'] = $imageUrl;
+                    $attributes['image'] = $imagePath;
+
                 }
             }
 
