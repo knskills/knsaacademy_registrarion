@@ -131,8 +131,11 @@ class WebhookController extends Controller
                     // Get the URL to the stored image
                     $imageUrl = Storage::disk('public')->url($imagePath);
                     // Save the image URL or path to the database if needed
+
+                    $storePath = '/storage/whatsapp/images/' . $imageId . '.' . $extension;
+
                     // $attributes['image'] = $imageUrl;
-                    $attributes['image'] = $imagePath;
+                    $attributes['image'] = $storePath;
 
                 }
             }

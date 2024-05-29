@@ -195,8 +195,6 @@ function sendEmail($to, $subject, $message, $cc = null, $bcc = null)
         // });
     } catch (\Exception $e) {
         Log::error($e->getMessage());
-    } catch (\Exception $e) {
-        Log::error($e->getMessage());
     }
 }
 
