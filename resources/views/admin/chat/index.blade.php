@@ -389,8 +389,10 @@
 
                                                                         {{-- {{ $message->whatsapp_message }} --}}
 
-                                                                        <img src="{{asset($message->image)}}" alt="{{$message->image}}" style="max-width: 250px;">
-                                                                            <br>
+                                                                        <img src="{{ asset($message->image) }}"
+                                                                            alt="{{ $message->image }}"
+                                                                            style="max-width: 250px;">
+                                                                        <br>
                                                                         {!! nl2br(e($message->whatsapp_message)) !!}
                                                                     </p>
                                                                     <span
@@ -399,9 +401,13 @@
                                                             @else
                                                                 <li class="repaly"
                                                                     id="{{ $last }}">
-                                                                    <img src="{{asset($message->image)}}" alt="{{$message->image}}" style="max-width: 250px;">
-                                                                            <br>
-                                                                    <p>{{ $message->whatsapp_message }}
+                                                                    <p>
+                                                                        <img src="{{ asset($message->image) }}"
+                                                                            alt="{{ $message->image }}"
+                                                                            style="max-width: 250px;">
+
+                                                                        <br>
+                                                                        {{ $message->whatsapp_message }}
                                                                     </p>
                                                                     <span
                                                                         class="time">{{ Carbon\Carbon::parse($message->created_at)->format('h:i a') }}</span>
@@ -418,7 +424,8 @@
                                         <div class="send-box">
                                             <form
                                                 action="{{ route('whatsapp.send-message') }}"
-                                                method="POST" enctype="multipart/form-data">
+                                                method="POST"
+                                                enctype="multipart/form-data">
                                                 @csrf
 
                                                 <input type="hidden"
@@ -522,9 +529,9 @@
                         <div class="modal-body">
 
                             <!--<div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Recipient Name:</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                                </div>-->
+                                    <label for="recipient-name" class="col-form-label">Recipient Name:</label>
+                                    <input type="text" class="form-control" id="recipient-name">
+                                    </div>-->
 
                             <div class="mb-3">
                                 <label for="recipient-name"

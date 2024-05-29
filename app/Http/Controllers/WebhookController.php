@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Carbon;
+use Netflie\WhatsAppCloudApi\WhatsAppCloudApi;
 
 use App\Models\WhatsappMessage;
 
@@ -85,70 +86,63 @@ class WebhookController extends Controller
     }
 
     private function handleMessages(array $messages, array $data)
-    {
-        foreach ($messages as $message) {
-            $attributes = [
-                'message_id' => $message['id'] ?? null,
-                'profile_name' => $data['entry'][0]['changes'][0]['value']['contacts'][0]['profile']['name'] ?? null,
-                'type' => 'reply',
-                'reply_at' => isset($message['timestamp']) ? Carbon::createFromTimestamp($message['timestamp']) : null,
-                'status' => 'received',
-                'phone_number' => $data['entry'][0]['changes'][0]['value']['metadata']['display_phone_number'] ?? null,
-                'recipient_id' => $message['from'] ?? null,
-                'from' => $message['from'] ?? null,
-            ];
+{
+    foreach ($messages as $message) {
+        $attributes = [
+            'message_id' => $message['id'] ?? null,
+            'profile_name' => $data['entry'][0]['changes'][0]['value']['contacts'][0]['profile']['name'] ?? null,
+            'type' => 'reply',
+            'reply_at' => isset($message['timestamp']) ? Carbon::createFromTimestamp($message['timestamp']) : null,
+            'status' => 'received',
+            'phone_number' => $data['entry'][0]['changes'][0]['value']['metadata']['display_phone_number'] ?? null,
+            'recipient_id' => $message['from'] ?? null,
+            'from' => $message['from'] ?? null,
+        ];
 
-            if ($message['type'] === 'text') {
-                $attributes['whatsapp_message'] = $message['text']['body'] ?? null;
-            } elseif ($message['type'] === 'image') {
-                $attributes['whatsapp_message'] = null; // Clear text message field for image type
+        if ($message['type'] === 'text') {
+            $attributes['whatsapp_message'] = $message['text']['body'] ?? null;
+        } elseif ($message['type'] === 'image') {
+            $attributes['whatsapp_message'] = null; // Clear text message field for image type
 
-                // Determine file extension based on MIME type
-                $mime = $message['image']['mime_type'] ?? 'image/jpeg'; // Default to 'image/jpeg' if MIME type is not set
-                $extension = $this->getExtensionFromMimeType($mime);
+            // Determine file extension based on MIME type
+            $mime = $message['image']['mime_type'] ?? 'image/jpeg'; // Default to 'image/jpeg' if MIME type is not set
+            $extension = $this->getExtensionFromMimeType($mime);
 
-                $imageId = $message['image']['id'];
-                $accessToken = env("FB_METADATA_TOKEN");
+            $imageId = $message['image']['id'];
 
-                // Step 1: Get image metadata to obtain the actual image URL
-                $metaUrl = 'https://graph.facebook.com/v19.0/' . $imageId;
-                $metaResponse = Http::withToken($accessToken)->get($metaUrl);
+            // Use netflie/whatsapp-cloud-api to download the image
+            $whatsappCloudApi = new WhatsAppCloudApi([
+                'from_phone_number_id' => env('WHATSAPP_FROM_PHONE_NUMBER_ID'),
+                'access_token' => env('FB_METADATA_TOKEN'),
+            ]);
 
-                Log::info($metaResponse);
+            try {
+                $mediaResponse = $whatsappCloudApi->downloadMedia($imageId);
+                $imageContent = $mediaResponse->body(); // Access the response object correctly
 
-                if ($metaResponse->successful()) {
-                    $metaData = $metaResponse->json();
-                    $imageUrl = $metaData['url'];
+                // Define the path to save the image
+                $imagePath = 'whatsapp/images/' . $imageId . '.' . $extension;
 
-                    // Step 2: Download the image content using the obtained URL
-                    $imageResponse = Http::get($imageUrl);
-                    Log::info($imageResponse);
+                // Store the image in the public disk
+                Storage::disk('public')->put($imagePath, $imageContent);
 
-                    if ($imageResponse->successful()) {
-                        $imageContent = $imageResponse->body();
-                        Log::info($imageContent);
+                // Get the URL to the stored image
+                $storedImageUrl = Storage::disk('public')->url($imagePath);
 
-                        // Define the path to save the image
-                        $imagePath = '/storage/whatsapp/images/' . $imageId . '.' . $extension;
+                $imageName = '/storage/whatsapp/images/' . $imageId . '.' . $extension;
 
-                        // Store the image in the public disk
-                        Storage::disk('public')->put($imagePath, $imageContent);
-
-                        // Get the URL to the stored image
-                        $storedImageUrl = Storage::disk('public')->url($imagePath);
-
-                        // Save the image URL or path to the database if needed
-                        $attributes['image'] = $imagePath;
-                    }
-                }
+                // Save the image URL or path to the database if needed
+                $attributes['image'] = $imageName;
+            } catch (\Exception $e) {
+                Log::error("Failed to download or store image: " . $e->getMessage());
             }
-
-            WhatsappMessage::create($attributes);
         }
 
-        return end($messages)['from'];
+        WhatsappMessage::create($attributes);
     }
 
+    return end($messages)['from'];
+}
 
     /**
      * Get file extension from MIME type
