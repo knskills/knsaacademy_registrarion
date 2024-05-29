@@ -86,7 +86,6 @@ class WebhookController extends Controller
 
     private function handleMessages(array $messages, array $data)
     {
-
         foreach ($messages as $message) {
             $attributes = [
                 'message_id' => $message['id'] ?? null,
@@ -103,40 +102,44 @@ class WebhookController extends Controller
                 $attributes['whatsapp_message'] = $message['text']['body'] ?? null;
             } elseif ($message['type'] === 'image') {
                 $attributes['whatsapp_message'] = null; // Clear text message field for image type
-                // $attributes['image_id'] = $message['image']['id'] ?? null;
 
                 // Determine file extension based on MIME type
                 $mime = $message['image']['mime_type'] ?? 'image/jpeg'; // Default to 'image/jpeg' if MIME type is not set
                 $extension = $this->getExtensionFromMimeType($mime);
 
-                $imageId =  $message['image']['id'];
-
-                // Optional: Download and store the image locally
-                $imageUrl = 'https://graph.facebook.com/v19.0/' . $imageId;
+                $imageId = $message['image']['id'];
                 $accessToken = env("FB_METADATA_TOKEN");
-                $response = Http::withHeaders([
-                    'Authorization' => 'Bearer ' . $accessToken
-                ])->get($imageUrl, [
-                    'access_token' => $accessToken
-                ]);
 
-                if ($response->successful()) {
-                    // $imagePath = 'whatsapp/images/' . $imageId . '.' . $extension;
-                    // Storage::put($imagePath, $response->body());
-                    // $attributes['image'] = Storage::url($imagePath);
+                // Step 1: Get image metadata to obtain the actual image URL
+                $metaUrl = 'https://graph.facebook.com/v19.0/' . $imageId;
+                $metaResponse = Http::withToken($accessToken)->get($metaUrl);
 
-                    $imagePath = 'whatsapp/images/' . $imageId . '.' . $extension;
-                    // Store the image in the public disk
-                    Storage::disk('public')->put($imagePath, $response->body());
-                    // Get the URL to the stored image
-                    $imageUrl = Storage::disk('public')->url($imagePath);
-                    // Save the image URL or path to the database if needed
+                Log::info($metaResponse);
 
-                    $storePath = '/storage/whatsapp/images/' . $imageId . '.' . $extension;
+                if ($metaResponse->successful()) {
+                    $metaData = $metaResponse->json();
+                    $imageUrl = $metaData['url'];
 
-                    // $attributes['image'] = $imageUrl;
-                    $attributes['image'] = $storePath;
+                    // Step 2: Download the image content using the obtained URL
+                    $imageResponse = Http::get($imageUrl);
+                    Log::info($imageResponse);
 
+                    if ($imageResponse->successful()) {
+                        $imageContent = $imageResponse->body();
+                        Log::info($imageContent);
+
+                        // Define the path to save the image
+                        $imagePath = '/storage/whatsapp/images/' . $imageId . '.' . $extension;
+
+                        // Store the image in the public disk
+                        Storage::disk('public')->put($imagePath, $imageContent);
+
+                        // Get the URL to the stored image
+                        $storedImageUrl = Storage::disk('public')->url($imagePath);
+
+                        // Save the image URL or path to the database if needed
+                        $attributes['image'] = $imagePath;
+                    }
                 }
             }
 
@@ -145,6 +148,7 @@ class WebhookController extends Controller
 
         return end($messages)['from'];
     }
+
 
     /**
      * Get file extension from MIME type
