@@ -484,18 +484,18 @@
                 <h2 class="text-white" style="font-family: 'Noto Sans Devanagari', sans-serif;">
                     {{-- How to Grow Exponentially and get Guaranteed success on <span class="text-warning font-weight-bold">Network Marketing Business</span> --}}
 
-                    <span class="text-warning font-weight-bold">BEGINNER TO BILLIONAIRE</span>
+                    <span class="text-warning font-weight-bold">अपने नेटवर्क मार्केटिंग बिजनेस को क्रांतिकारी बनाए</span>
                 </h2>
 
             </div>
             <div class="heading_container heading_center">
                 <h2 class="mt-3" id="m1">
-                    How to Grow Exponentially and get Guaranteed success on Network Marketing Business
+                    सीखिए नेटवर्क मार्केटिंग क्या, क्यों और कैसे?
                 </h2>
 
-                <h3 id="m11" class="hindi">
+                {{-- <h3 id="m11" class="hindi">
                     Secret Foundations of A <span class="text-warning">Network Marketer</span>
-                </h3>
+                </h3> --}}
             </div>
             <div class="row mt-4">
                 <div class="col-md-6 mb-4">
