@@ -86,63 +86,78 @@ class WebhookController extends Controller
     }
 
     private function handleMessages(array $messages, array $data)
-{
-    foreach ($messages as $message) {
-        $attributes = [
-            'message_id' => $message['id'] ?? null,
-            'profile_name' => $data['entry'][0]['changes'][0]['value']['contacts'][0]['profile']['name'] ?? null,
-            'type' => 'reply',
-            'reply_at' => isset($message['timestamp']) ? Carbon::createFromTimestamp($message['timestamp']) : null,
-            'status' => 'received',
-            'phone_number' => $data['entry'][0]['changes'][0]['value']['metadata']['display_phone_number'] ?? null,
-            'recipient_id' => $message['from'] ?? null,
-            'from' => $message['from'] ?? null,
-        ];
+    {
+        foreach ($messages as $message) {
+            $attributes = [
+                'message_id' => $message['id'] ?? null,
+                'profile_name' => $data['entry'][0]['changes'][0]['value']['contacts'][0]['profile']['name'] ?? null,
+                'type' => 'reply',
+                'reply_at' => isset($message['timestamp']) ? Carbon::createFromTimestamp($message['timestamp']) : null,
+                'status' => 'received',
+                'phone_number' => $data['entry'][0]['changes'][0]['value']['metadata']['display_phone_number'] ?? null,
+                'recipient_id' => $message['from'] ?? null,
+                'from' => $message['from'] ?? null,
+            ];
 
-        if ($message['type'] === 'text') {
-            $attributes['whatsapp_message'] = $message['text']['body'] ?? null;
-        } elseif ($message['type'] === 'image') {
-            $attributes['whatsapp_message'] = null; // Clear text message field for image type
+            if ($message['type'] === 'text') {
+                $attributes['whatsapp_message'] = $message['text']['body'] ?? null;
+            } elseif ($message['type'] === 'image') {
 
-            // Determine file extension based on MIME type
-            $mime = $message['image']['mime_type'] ?? 'image/jpeg'; // Default to 'image/jpeg' if MIME type is not set
-            $extension = $this->getExtensionFromMimeType($mime);
+                $img_attributes = $this->getImage($message);
 
-            $imageId = $message['image']['id'];
-
-            // Use netflie/whatsapp-cloud-api to download the image
-            $whatsappCloudApi = new WhatsAppCloudApi([
-                'from_phone_number_id' => env('WHATSAPP_FROM_PHONE_NUMBER_ID'),
-                'access_token' => env('FB_METADATA_TOKEN'),
-            ]);
-
-            try {
-                $mediaResponse = $whatsappCloudApi->downloadMedia($imageId);
-                $imageContent = $mediaResponse->body(); // Access the response object correctly
-
-                // Define the path to save the image
-                $imagePath = 'whatsapp/images/' . $imageId . '.' . $extension;
-
-                // Store the image in the public disk
-                Storage::disk('public')->put($imagePath, $imageContent);
-
-                // Get the URL to the stored image
-                $storedImageUrl = Storage::disk('public')->url($imagePath);
-
-                $imageName = '/storage/whatsapp/images/' . $imageId . '.' . $extension;
-
-                // Save the image URL or path to the database if needed
-                $attributes['image'] = $imageName;
-            } catch (\Exception $e) {
-                Log::error("Failed to download or store image: " . $e->getMessage());
+                $attributes = array_merge($img_attributes, $attributes);
             }
+
+            WhatsappMessage::create($attributes);
         }
 
-        WhatsappMessage::create($attributes);
+        return end($messages)['from'];
     }
 
-    return end($messages)['from'];
-}
+    /**
+     * Get image from URL and save it to the public disk
+     */
+    private function getImage($message = null)
+    {
+        Log::info('Getting image from URL');
+        Log::info($message);
+        $attributes['whatsapp_message'] = $message['image']['caption'] ?? null; // Clear text message field for image type
+
+        // Determine file extension based on MIME type
+        $mime = $message['image']['mime_type'] ?? 'image/jpeg'; // Default to 'image/jpeg' if MIME type is not set
+        $extension = $this->getExtensionFromMimeType($mime);
+
+        $imageId = $message['image']['id'];
+
+        // Use netflie/whatsapp-cloud-api to download the image
+        $whatsappCloudApi = new WhatsAppCloudApi([
+            'from_phone_number_id' => env('WHATSAPP_FROM_PHONE_NUMBER_ID'),
+            'access_token' => env('FB_METADATA_TOKEN'),
+        ]);
+
+        try {
+            $mediaResponse = $whatsappCloudApi->downloadMedia($imageId);
+            $imageContent = $mediaResponse->body(); // Access the response object correctly
+
+            // Define the path to save the image
+            $imagePath = 'whatsapp/images/' . $imageId . '.' . $extension;
+
+            // Store the image in the public disk
+            Storage::disk('public')->put($imagePath, $imageContent);
+
+            // Get the URL to the stored image
+            $storedImageUrl = Storage::disk('public')->url($imagePath);
+
+            $imageName = '/storage/whatsapp/images/' . $imageId . '.' . $extension;
+
+            // Save the image URL or path to the database if needed
+            $attributes['image'] = $imageName;
+
+            return $attributes;
+        } catch (\Exception $e) {
+            Log::error("Failed to download or store image: " . $e->getMessage());
+        }
+    }
 
     /**
      * Get file extension from MIME type
