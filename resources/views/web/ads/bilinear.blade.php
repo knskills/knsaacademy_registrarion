@@ -579,7 +579,7 @@
                         <div class="col-12 text-center mt-3">
 
                             <button type="button" class="save-my-seat-now-button payment">
-                                Book Now Your Seat for Just ₹199! <span style="color: red; text-decoration: line-through;">₹5000</span>
+                                Book Now Your Seat for Just <span style="font-size: 26px; color: green;">₹199!</span> <span style="color: red; text-decoration: line-through;">₹5000</span>
                             </button>
 
                             {{-- <p class="text-white mt-3" id="rp">
@@ -924,7 +924,7 @@
                     <div class="row mt-2">
                         <div class="col-12 text-center mt-3">
                             <button type="button" class="save-my-seat-now-button payment">
-                                Book Now Your Seat for Just ₹199! <span style="color: red; text-decoration: line-through;">₹5000</span>
+                                Book Now Your Seat for Just <span style="font-size: 26px; color: green;">₹199!</span> <span style="color: red; text-decoration: line-through;">₹5000</span>
                             </button>
 
                             {{-- <p class="text-white mt-3" id="rp">
@@ -1113,7 +1113,7 @@
                 <div class="row mt-5 m-auto">
                     <div class="col-12 text-center mt-5">
                         <button type="button" class="save-my-seat-now-button payment">
-                            Book Now Your Seat for Just ₹199! <span style="color: red; text-decoration: line-through;">₹5000</span>
+                            Book Now Your Seat for Just <span style="font-size: 26px; color: green;">₹199!</span> <span style="color: red; text-decoration: line-through;">₹5000</span>
                         </button>
 
                         <p class="text-white mt-3" id="rp">
@@ -1685,10 +1685,10 @@
             var nextTuesday = new Date(lastTuesday);
             nextTuesday.setDate(nextTuesday.getDate() + 7); // Add 7 days to get the next Tuesday
 
-            // var formattedNextTuesday = nextTuesday.getDate() + ' ' + monthNames[nextTuesday.getMonth()] + ' ' +
-            //     nextTuesday.getFullYear();
+           var formattedNextTuesday = nextTuesday.getDate() + ' ' + monthNames[nextTuesday.getMonth()] + ' ' +
+                nextTuesday.getFullYear();
 
-            var formattedNextTuesday = "11 Jun 2024";
+            // var formattedNextTuesday = "11 Jun 2024";
             $('#next-tuesday').html(formattedNextTuesday);
             $('#next-tuesday2').html(formattedNextTuesday);
         });
