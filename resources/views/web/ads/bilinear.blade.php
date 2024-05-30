@@ -938,12 +938,6 @@
 
                 </div>
             </div>
-
-            {{-- <div class="row">
-                <div class="col-md-8 m-auto">
-                    <img src="{{ asset('assets/img/kns2.jpg') }}" alt="knsa" class="img-fluid">
-                </div>
-            </div> --}}
         </div>
     </section>
     <!-- end client section -->
@@ -980,16 +974,6 @@
                             allowfullscreen></iframe>
                     </div>
                 </div>
-
-                {{-- <div class="col-md-6 m-auto">
-                    <div class="video-container mt-3">
-                        <iframe id="yframe"
-                            src="https://www.youtube.com/embed/nLxiVgG22tE?si=eJ4aNuazEjuBi26I?rel=0?version=3&autoplay=0&controls=0&&showinfo=0&loop=1"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </section>
@@ -1104,64 +1088,6 @@
                 </h2>
             </div>
             <div class="row">
-                {{-- <div class="col-md-4 m-auto coupon">
-                    <div class="coupon-content text-white">
-                        <div class="mid text-danger">
-                            <h4 style="color: rgba(0, 0, 139, 0.877);"><b>Sales E-book 15000</b></h4>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 m-auto ">
-                    <div class="coupon"></div>
-                    <div class="coupon-content text-white">
-                        <div class="">
-                            <h4 style="color: rgba(0, 0, 139, 0.877);"><b>Communication skill development free pass
-                                    10,000</b></h4>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-md-4 m-auto coupon">
-                    <div class="coupon-content text-white">
-                        <div class="mid text-danger">
-                            <h4 style="color: rgba(0, 0, 139, 0.877);"><b>One to one session with mentors 25000</b></h4>
-                        </div>
-                    </div>
-                </div> --}}
-
-                {{-- <div class="col-md-4 p-2">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <h4>Get Free Access of Recorded <b>HD videos <i class="fa-solid fa-video text-primary"></b></i>
-                                of Full training Beginner to Billionaire worth ₹<b>10,000</b>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 p-2">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h4 style="mx-5">3
-                                mistake of networker recorded session ₹<b>10,000</b></h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                            <div class="mt-2"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 p-2">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <h4>Get FULL Presentation <i class="fa-solid fa-file-pdf text-danger"></i> <b>PDF</b> of
-                                Beginner To Billionaire workshop
-                                absolutely free worth ₹<b>10,000</b>
-                            </h4>
-                        </div>
-                    </div>
-                </div> --}}
 
                 <div class="col-md-4">
                     <div class="card">
@@ -1391,108 +1317,6 @@
     </section>
     <!-- end about section -->
 
-    <!-- Review section -->
-    {{-- <section class="client_section layout_padding">
-        <div class="container ">
-            <div class="heading_container heading_center">
-                <h2>
-                    What Are People Saying About Training Event?
-                </h2>
-            </div>
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="box">
-                            <div class="img-box">
-                                <img src="{{ asset('assets/img/team/dharmendra.jpeg') }}" class="img-fluid"
-                                    alt="knsa">
-                            </div>
-                            <div class="detail-box">
-                                <h4>
-                                    Dharmendra Yadav
-                                </h4>
-                                <p>
-                                    I recently had the opportunity to attend a training session at Skill Academy on network
-                                    marketing and I must say, it was a game changer for me. The session was conducted by
-                                    experienced and knowledgeable trainers who were able to break down the complex concepts
-                                    of network marketing into simple and easy to understand terms.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item ">
-                        <div class="box">
-                            <div class="img-box">
-                                <img src="{{ asset('assets/img/team/WhatsApp Image 2023-09-09 at 11.55.46 AM (1).jpeg') }}"
-                                    class="img-fluid" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h4>
-                                    Manteshwar
-                                </h4>
-                                <p>
-                                    The first thing that struck me about Skill Academy was their dedication to providing
-                                    quality education and training. The trainers were not just there to sell their products
-                                    or services, but genuinely wanted to help us improve our skills and succeed in the
-                                    network marketing industry. They were patient, approachable, and always willing to
-                                    answer any questions we had.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item ">
-                        <div class="box">
-                            <div class="img-box">
-                                <img src="{{ asset('assets/img/team/ramprasad.jpeg') }}" class="img-fluid"
-                                    alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h4>
-                                    Dayanand Prasad
-                                </h4>
-                                <p>
-                                    The training itself was well-structured and covered all aspects of network marketing,
-                                    from understanding the concept and benefits to practical tips on how to succeed. The
-                                    trainers used real-life examples and case studies to illustrate their points, making it
-                                    easier for us to relate and apply the knowledge in our own business.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item ">
-                        <div class="box">
-                            <div class="img-box">
-                                <img src="{{ asset('assets/img/team/WhatsApp Image 2023-09-09 at 11.54.57 AM.jpeg') }}"
-                                    class="img-fluid" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h4>
-                                    Panku Sharma
-                                </h4>
-                                <p>
-                                    Apart from the training, Skill Academy also provided us with resources and tools to help
-                                    us implement what we learned. They have a comprehensive online platform where we can
-                                    access training materials, connect with other network marketers, and stay updated with
-                                    the latest trends and strategies.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel_btn-box">
-                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                        <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
     <section>
         <div class="heading_container heading_center mt-3">
             <h2>
@@ -1598,36 +1422,6 @@
                     </li>
                 </ul>
             </div>
-            {{-- <div class="col-md-4 mb-0">
-                <div class="d-flex justify-content-center mb-4">
-                    <img src="{{ asset('assets/img/team/ramprasad.jpeg') }}"
-                        class="rounded-circle shadow-1-strong" width="150" height="150" />
-                </div>
-                <h5 class="mb-3">Dayanand Prasad</h5>
-                <p class="px-xl-3">
-                    <i class="fas fa-quote-left pe-2"></i>The training itself was well-structured and covered all aspects of network marketing,
-                    from understanding the concept and benefits to practical tips on how to succeed. The
-                    trainers used real-life examples and case studies to illustrate their points, making it
-                    easier for us to relate and apply the knowledge in our own business.
-                </p>
-                <ul class="list-unstyled d-flex justify-content-center mb-0">
-                    <li>
-                        <i class="fas fa-star fa-sm text-warning"></i>
-                    </li>
-                    <li>
-                        <i class="fas fa-star fa-sm text-warning"></i>
-                    </li>
-                    <li>
-                        <i class="fas fa-star fa-sm text-warning"></i>
-                    </li>
-                    <li>
-                        <i class="fas fa-star fa-sm text-warning"></i>
-                    </li>
-                    <li>
-                        <i class="far fa-star fa-sm text-warning"></i>
-                    </li>
-                </ul>
-            </div> --}}
         </div>
     </section>
     <!-- end client section -->
@@ -1690,11 +1484,6 @@
     </section>
     <!-- end Who should attend this session? section -->
 
-    <!-- Register Modal -->
-    {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reg_model_t">
-        Launch demo modal
-    </button> --}}
-
     <div class="modal fade" id="reg_model_t" tabindex="-1" aria-labelledby="reg_model" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -1743,10 +1532,6 @@
 
                     </div>
                 </div>
-                {{-- <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div> --}}
             </div>
         </div>
     </div>
@@ -1817,17 +1602,6 @@
         // JavaScript to show/hide "Go to Top" button on scroll
         const goTopBtn = document.getElementById("registerButton");
 
-        // window.addEventListener('scroll', function() {
-        //     if (window.scrollY > 250) {
-        //         // Show button when scrolling down more than 300px
-        //         goTopBtn.style.display = "block";
-        //     }
-        //     else {
-        //         // Hide button when at the top or not scrolled enough
-        //         goTopBtn.style.display = "none";
-        //     }
-        // });
-
         window.addEventListener('scroll', function() {
             var windowHeight = window.innerHeight; // Height of the browser window
             var fullHeight = document.body.clientHeight; // Height of the entire page
@@ -1896,110 +1670,7 @@
         });
     </script>
 
-    {{-- <script>
-        $(document).ready(function() {
-            $('#submit').click(function() {
-                var name = $('#name').val();
-                var email = $('#email').val();
-                var phone = $('#phone').val();
-
-                $.ajax({
-                    url: "{{ route('audience.store') }}",
-                    type: "POST",
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        name: name,
-                        email: email,
-                        phone: phone,
-                        event_name: 'beginner_to_billionaire',
-                    },
-                    success: function(response) {
-                        $('#registration')[0].reset();
-                        $('#submit').attr('disabled', false);
-                        $('#submit').html('Submit');
-                        $('#success').show();
-                        $('#success').html(response.message);
-                        if (response.message) {
-                            // $('#confirm_msg').modal('show');
-
-                            let whatsapp_route = '{{ route('whatsapp') }}'
-
-                            // go to whatsapp page
-                            // window.location.href = whatsapp_route + "?name=" + name + "&email=" + email + "&phone=" + phone + "&event_name=beginner_to_billionaire";
-                            window.location.href = whatsapp_route;
-
-                        } else if (response.errors) {
-                            let errors = response.errors;
-
-                            $('#success').hide();
-                            $('#err_div').show();
-                            $('#errors').html('');
-                            $('#errors').parent().hide();
-                            $.each(errors, function(key, value) {
-                                $('#errors').parent().show();
-                                $('#errors').append('<li>' + value + '</li>');
-                            });
-                            $('#err_div').show();
-
-                        }
-                        setTimeout(function() {
-                            $('.alert').hide();
-                        }, 5000);
-                    },
-                    error: function(response) {
-                        $('#errors').html('');
-                        $('#errors').parent().hide();
-                        $('#submit').attr('disabled', false);
-                        $('#submit').html('Submit');
-                        $.each(response.responseJSON.errors, function(key, value) {
-                            $('#errors').parent().show();
-                            $('#errors').append('<li>' + value + '</li>');
-                        });
-
-                        $('.alert').removeClass('alert-success');
-                        $('.alert').addClass('alert-danger');
-                        setTimeout(function() {
-                            $('.alert').hide();
-                        }, 3000);
-
-                    }
-                });
-            });
-        });
-    </script> --}}
-
     <script>
-        // $(document).ready(function() {
-        //     var currentDate = new Date();
-        //     var lastTuesday = new Date(currentDate);
-
-        //     // If today is not Tuesday, find the last Tuesday
-        //     if (currentDate.getDay() !== 2) { // 2 represents Tuesday
-        //         lastTuesday.setDate(lastTuesday.getDate() - (currentDate.getDay() + 5) % 7);
-        //     }
-
-        //     // // Display next tuesday date
-        //     // var formattedDate = lastTuesday.getDate() + ' ' + monthNames[lastTuesday.getMonth()] + ' ' +
-        //     //     lastTuesday.getFullYear();
-        //     // $('#next-tuesday').html(formattedDate);
-
-
-        //     // Display seminar dates
-        //     for (var i = 0; i < 5; i++) { // Display for 5 consecutive Tuesdays
-        //         var formattedDate = lastTuesday.getDate() + ' ' + monthNames[lastTuesday.getMonth()] + ' ' +
-        //             lastTuesday.getFullYear();
-
-        //         $('#seminar-dates').append(
-        //             '<div class="ml-3"><span class="small-text">Date</span><br><span class="big-bold-text seminar-date" style="font-size: 20px;">' +
-        //             formattedDate + '</span></div>');
-        //         lastTuesday.setDate(lastTuesday.getDate() + 7); // Move to next Tuesday
-        //     }
-        // });
-
-        // // Array of month names
-        // var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-        //     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-        // ];
 
         $(document).ready(function() {
             var currentDate = new Date();

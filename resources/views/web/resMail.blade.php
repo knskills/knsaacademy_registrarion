@@ -56,14 +56,16 @@
                                         <p style="font-size:15px; color:#455056; margin:8px 0 0; line-height:24px;">
                                             We are delighted to confirm your registration for the seminar. Your seat has
                                             been successfully reserved, and we are excited to have you join us for this
-                                            enlightening event. <br><strong>Please confirm your seat by clicking on the
-                                                link below</strong>.</p>
+                                            enlightening event. <br>
+                                            {{-- <strong>Please confirm your seat by clicking on the
+                                                link below</strong>. --}}
+                                            </p>
 
 
-                                        <a href="https://chat.whatsapp.com/EtYrruY9dsp5EY1QWbegzQ"
+                                        {{-- <a href="https://chat.whatsapp.com/EtYrruY9dsp5EY1QWbegzQ"
                                             style="background:#20e277;text-decoration:none !important; display:inline-block; font-weight:500; margin-top:24px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">
                                             Join Group
-                                        </a>
+                                        </a> --}}
                                     </td>
                                 </tr>
                                 <tr>
