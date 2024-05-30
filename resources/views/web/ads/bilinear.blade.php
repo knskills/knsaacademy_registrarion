@@ -484,13 +484,14 @@
                 <h2 class="text-white" style="font-family: 'Noto Sans Devanagari', sans-serif;">
                     {{-- How to Grow Exponentially and get Guaranteed success on <span class="text-warning font-weight-bold">Network Marketing Business</span> --}}
 
-                    <span class="text-warning font-weight-bold">अपने नेटवर्क मार्केटिंग बिजनेस को क्रांतिकारी बनाए</span>
+                    <span class="text-warning font-weight-bold">100% Money Back Guraantee</span>
                 </h2>
 
             </div>
             <div class="heading_container heading_center">
                 <h2 class="mt-3" id="m1">
-                    सीखिए नेटवर्क मार्केटिंग क्या, क्यों और कैसे?
+                    सीखिए नेटवर्क मार्केटिंग <br>
+                    क्या, क्यों और कैसे?
                 </h2>
 
                 {{-- <h3 id="m11" class="hindi">
@@ -501,7 +502,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="video-container">
                         <iframe id="yframe"
-                            src="https://www.youtube.com/embed/nLxiVgG22tE?si=eJ4aNuazEjuBi26I?rel=0?version=3&autoplay=0&controls=0&&showinfo=0&loop=1&modestbranding=0"
+                            src="https://www.youtube.com/embed/H7foqKPFtIM?si=xVL4Y1KwIXWG3KqK?rel=0?version=3&autoplay=0&controls=0&&showinfo=0&loop=1&modestbranding=0"
                             frameborder="0"
                             allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
@@ -952,7 +953,7 @@
         <div class="container">
             <div class="heading_container heading_center mb-3">
                 <h2>
-                    The story of the leaders in their own words
+                    The story of the leader in their own words
                 </h2>
 
                 {{-- <h2>
@@ -973,14 +974,14 @@
                 <div class="col-md-6 m-auto">
                     <div class="video-container mt-3">
                         <iframe id="yframe"
-                            src="https://www.youtube.com/embed/nLxiVgG22tE?si=eJ4aNuazEjuBi26I?rel=0?version=3&autoplay=0&controls=0&&showinfo=0&loop=1"
+                            src="https://www.youtube.com/embed/H7foqKPFtIM?si=xVL4Y1KwIXWG3KqK?rel=0?version=3&autoplay=0&controls=0&&showinfo=0&loop=1"
                             frameborder="0"
                             allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                     </div>
                 </div>
 
-                <div class="col-md-6 m-auto">
+                {{-- <div class="col-md-6 m-auto">
                     <div class="video-container mt-3">
                         <iframe id="yframe"
                             src="https://www.youtube.com/embed/nLxiVgG22tE?si=eJ4aNuazEjuBi26I?rel=0?version=3&autoplay=0&controls=0&&showinfo=0&loop=1"
@@ -988,7 +989,7 @@
                             allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
