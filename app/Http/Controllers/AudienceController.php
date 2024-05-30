@@ -60,7 +60,7 @@ class AudienceController extends Controller
      */
     public function store(Request $request)
     {
-        Log::info($request->all());
+        // Log::info($request->all());
 
         try {
             $valitor = Validator::make($request->all(), [
@@ -93,7 +93,7 @@ class AudienceController extends Controller
                 $audience->registration_date = Carbon::now();
                 $audience->save();
 
-                sendFBMessage($request->phone);
+                sendTempMessage($request->phone);
 
                 // $audience = Audience::where('id', $audience->id)->first();
                 // $messageTemp = MessageTemplate::where('name', 'Welcome whatsapp')->first();
@@ -121,20 +121,24 @@ class AudienceController extends Controller
                 $audience->registration_date = Carbon::now();
                 $audience->save();
 
-                sendFBMessage($request->phone);
+                sendTempMessage($request->phone);
 
             }
 
-            // // Mail using template file
-            // if ($request->email) {
-            //     Mail::send('web.resMail', ['name' => $request->name], function ($message) use ($request) {
-            //         $message->to($request->email)
-            //             ->subject('Audience Registration');
-            //     });
-            // }
+            // Mail using template file
+            if ($request->email) {
+                Mail::send('web.resMail', ['name' => $request->name], function ($message) use ($request) {
+                    $message->to($request->email)
+                        ->subject('Audience Registration');
+                });
+            }
+
+            return redirect()->away('https://rzp.io/i/1thYxtdzp');
 
 
-            return redirect()->route('whatsapp');
+            // return redirect()->route('whatsapp');
+
+            // return redirect()->url('https://rzp.io/i/1thYxtdzp');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');

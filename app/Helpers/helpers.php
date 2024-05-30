@@ -304,6 +304,30 @@ function sendFBMessage($phone = null)
     // return $response->body();
 }
 
+function sendTempMessage($phone = null)
+{
+    // Log::info($phone);
+    $response = Http::withHeaders([
+        'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
+        'Content-Type' => 'application/json',
+    ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
+        'messaging_product' => 'whatsapp',
+        "recipient_type" => "individual",
+        'to' => '+91' . $phone,
+        'type' => 'template',
+        'template' => [
+            'name' => 'welcome',
+            'language' => [
+                'code' => 'en'
+            ]
+        ]
+    ]);
+
+    Log::info($response->body());
+
+    // return $response->body();
+}
+
 
 function getMessageTemplate($templateName = null)
 {

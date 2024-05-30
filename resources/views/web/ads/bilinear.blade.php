@@ -1720,7 +1720,7 @@
                         <form method="post" id="registration" action="{{ route('audience.store') }}">
                             @csrf
                             <div class="mb-3">
-                                <input type="hidden" name="event_name" id="event_name" value="beginner_to_billionaire">
+                                <input type="hidden" name="event_name" id="event_name" value="Learn Marketing">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="name" name="name"
                                     placeholder="Enter your name" required>
@@ -2014,8 +2014,10 @@
             var nextTuesday = new Date(lastTuesday);
             nextTuesday.setDate(nextTuesday.getDate() + 7); // Add 7 days to get the next Tuesday
 
-            var formattedNextTuesday = nextTuesday.getDate() + ' ' + monthNames[nextTuesday.getMonth()] + ' ' +
-                nextTuesday.getFullYear();
+            // var formattedNextTuesday = nextTuesday.getDate() + ' ' + monthNames[nextTuesday.getMonth()] + ' ' +
+            //     nextTuesday.getFullYear();
+
+            var formattedNextTuesday = "11 Jun 2024";
             $('#next-tuesday').html(formattedNextTuesday);
             $('#next-tuesday2').html(formattedNextTuesday);
         });
