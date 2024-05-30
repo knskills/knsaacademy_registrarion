@@ -58,7 +58,7 @@
                                         </ul>
                                     </div> --}}
 
-                                    <!-- Example single warning button -->
+                                    {{-- <!-- Example single warning button -->
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-warning dropdown-toggle"
                                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -83,7 +83,7 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
 
@@ -104,7 +104,7 @@
                                             <th>Event</th>
                                             <th class="text-center">Register Date</th>
                                             <th class="text-center">Register Time</th>
-                                            <th>Action</th>
+                                            {{-- <th>Action</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -120,7 +120,7 @@
                                                 </td>
                                                 <td class="text-center">
                                                     {{ \Carbon\Carbon::parse($item->registration_date)->format('h:i A') }}
-                                                <td>
+                                                {{-- <td> --}}
                                                     {{-- <a href="{{ route('admin.audiance.show', $item->id) }}"
                                                     class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
                                                     <a href="{{ route('admin.audiance.edit', $item->id) }}"
@@ -135,7 +135,7 @@
                                                             <i class="bi bi-trash "></i>
                                                         </button>
                                                     </form> --}}
-                                                </td>
+                                                {{-- </td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>

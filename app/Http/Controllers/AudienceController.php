@@ -25,15 +25,17 @@ class AudienceController extends Controller
             $audianceQuery = Audience::query();
             $events = Event::all();
 
-            if ($request->has('search')) {
-                $searchTerm = $request->search;
-                $audianceQuery->where('name', 'like', '%' . $searchTerm . '%');
-            } elseif ($request->has('event')) {
-                $event = $request->event;
-                $audianceQuery->where('event_name', $event);
-            } else {
-                $audianceQuery->orderBy('id', 'desc');
-            }
+            // if ($request->has('search')) {
+            //     $searchTerm = $request->search;
+            //     $audianceQuery->where('name', 'like', '%' . $searchTerm . '%');
+            // } elseif ($request->has('event')) {
+            //     $event = $request->event;
+            //     $audianceQuery->where('event_name', $event);
+            // } else {
+            //     $audianceQuery->orderBy('id', 'desc');
+            // }
+
+            $audianceQuery->where('event_name', 'Learn Marketing');
 
             $audiences = $audianceQuery->paginate(10);
 
