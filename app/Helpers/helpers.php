@@ -323,7 +323,7 @@ function sendTempMessage($phone = null)
         ]
     ]);
 
-    Log::info($response->body());
+    // Log::info($response->body());
 
     // return $response->body();
 }
