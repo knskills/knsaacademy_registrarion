@@ -519,7 +519,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Duration</span><br>
-                                        <span class="big-bold-text">1 Hour</span>
+                                        <span class="big-bold-text">3 Hour</span>
                                     </div>
                                 </div>
                             </div>
@@ -576,8 +576,9 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-12 text-center mt-3">
+
                             <button type="button" class="save-my-seat-now-button payment">
-                                Book Now Your Free Seat
+                                Book Now Your Seat for Just ₹199! <span style="color: red; text-decoration: line-through;">₹5000</span>
                             </button>
 
                             {{-- <p class="text-white mt-3" id="rp">
@@ -864,7 +865,7 @@
                                     </div>
                                     <div class="ml-3">
                                         <span class="small-text">Duration</span><br>
-                                        <span class="big-bold-text">1 Hour</span>
+                                        <span class="big-bold-text">3 Hour</span>
                                     </div>
                                 </div>
                             </div>
@@ -922,7 +923,7 @@
                     <div class="row mt-2">
                         <div class="col-12 text-center mt-3">
                             <button type="button" class="save-my-seat-now-button payment">
-                                Book Now Your Free Seat
+                                Book Now Your Seat for Just ₹199! <span style="color: red; text-decoration: line-through;">₹5000</span>
                             </button>
 
                             {{-- <p class="text-white mt-3" id="rp">
@@ -1185,7 +1186,7 @@
                 <div class="row mt-5 m-auto">
                     <div class="col-12 text-center mt-5">
                         <button type="button" class="save-my-seat-now-button payment">
-                            Book Now Your Free Seat
+                            Book Now Your Seat for Just ₹199! <span style="color: red; text-decoration: line-through;">₹5000</span>
                         </button>
 
                         <p class="text-white mt-3" id="rp">
@@ -1251,7 +1252,7 @@
             <div class="row m-auto">
                 <div class="col-12 text-center">
                     <button type="button" class="save-my-seat-now-button text-center payment">
-                        <span class="mx-5 text-center">Book Now Your Free Seat</span> <br>
+                        <span class="mx-5 text-center">Book Now Your Seat</span> <br>
                         <small class="mx-5 text-center">Registration is limited</small>
                     </button>
                 </div>
@@ -1679,7 +1680,7 @@
             <div class="row m-auto">
                 <div class="col-12 text-center">
                     <button type="button" class="save-my-seat-now-button text-center payment">
-                        <span class="mx-5 text-center">Book Now Your Free Seat</span> <br>
+                        <span class="mx-5 text-center">Book Now Your Seat</span> <br>
                         <small class="mx-5 text-center">Registration is limited</small>
                     </button>
                 </div>
@@ -1697,24 +1698,22 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="reg_model"></h5>
+                    <h5 class="modal-title text-center" id="reg_model">Registration Form</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
-                        <div class="text-center">
+                        {{-- <div class="text-center">
                             <h5 class="card-title mb-3">Registration Form</h5>
-                        </div>
+                        </div> --}}
 
                         <div class="alert alert-success" id="success" style="display: none">
                         </div>
 
                         <div class="alert alert-danger" style="display: none" id="err_div">
-                            <ul id="errors">
-
-                            </ul>
+                            <ul id="errors"></ul>
                         </div>
 
                         <form method="post" id="registration" action="{{ route('audience.store') }}">
@@ -1757,13 +1756,13 @@
         <div class="row">
             <div class="col-md-6 text-center" id="gh">
                 <div class="hindi" id="cs1">
-                    {{-- <span class="" style="" id="mprice">
+                    <span class="" style="" id="mprice">
                         ₹199
-                    </span> --}}
-                    <img src="{{ asset('assets/img/free3.png') }}" alt="knsa" class="img-fluid" id="price-img">
+                    </span>
+                    {{-- <img src="{{ asset('assets/img/free3.png') }}" alt="knsa" class="img-fluid" id="price-img"> --}}
                     <sub>
                         <span class="twt" style="">
-                            <del>₹1999</del>
+                            <del>₹5000</del>
                         </span>
                     </sub>
                 </div>
@@ -1842,7 +1841,6 @@
                 goTopBtn.style.display = "none";
             }
         });
-
 
         // Get the timer element
         const timerElement = document.getElementById('timer');
