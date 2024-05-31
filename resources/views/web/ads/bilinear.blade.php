@@ -1086,12 +1086,12 @@
         <div class="container">
             <div class="heading_container heading_center mb-3">
                 <h2>
-                    Get Access to <span id="b_price" class="hindi">₹30,000/</span>- Bonus
+                    Get Access to <span id="b_price" class="hindi">₹10,000/</span>- Bonus
                 </h2>
             </div>
             <div class="row">
 
-                <div class="col-md-4">
+                {{-- <div class="col-md-4">
                     <div class="card">
                         <img src="{{ asset('assets/gaurd/offer/first_offer.jpeg') }}" alt="knsa"
                             class="img-fluid p-1">
@@ -1103,9 +1103,9 @@
                         <img src="{{ asset('assets/gaurd/offer/second_offer.jpeg') }}" alt="knsa"
                             class="img-fluid p-1">
                     </div>
-                </div>
+                </div> --}}
 
-                <div class="col-md-4">
+                <div class="col-md-4 m-auto">
                     <div class="card">
                         <img src="{{ asset('assets/gaurd/offer/third_offer.jpeg') }}" alt="knsa"
                             class="img-fluid p-1">
@@ -1119,7 +1119,7 @@
                         </button>
 
                         <p class="text-white mt-3" id="rp">
-                            Register today to get a bonus of ₹30,000/-
+                            Register today to get a bonus of ₹10,000/-
                         </p>
 
                         {{-- <p class="mt-3 text-white">Offer Ends in <span id="timer2"
