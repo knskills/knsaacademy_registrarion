@@ -62,7 +62,7 @@ class AudienceController extends Controller
      */
     public function store(Request $request)
     {
-        Log::info($request->all());
+        // Log::info($request->all());
 
         try {
             $valitor = Validator::make($request->all(), [
@@ -129,7 +129,6 @@ class AudienceController extends Controller
                 $audience->save();
 
                 sendTempMessage($request->phone);
-
             }
 
             // Mail using template file
