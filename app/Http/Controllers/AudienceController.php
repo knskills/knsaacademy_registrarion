@@ -139,8 +139,6 @@ class AudienceController extends Controller
 
 
             // return redirect()->route('whatsapp');
-
-            // return redirect()->url('https://rzp.io/i/1thYxtdzp');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');

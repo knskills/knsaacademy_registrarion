@@ -12,7 +12,7 @@
 @endsection
 
 @section('title')
-    <title>BEGINNER TO BILLIONAIRE</title>
+    <title>Learn Network Marketing</title>
 @endsection
 
 @section('style')
@@ -500,13 +500,15 @@
             </div>
             <div class="row mt-4">
                 <div class="col-md-6 mb-4">
-                    <div class="video-container">
+                    {{-- <div class="video-container">
                         <iframe id="yframe"
                             src="https://www.youtube.com/embed/H7foqKPFtIM?si=xVL4Y1KwIXWG3KqK?rel=0?version=3&autoplay=0&controls=0&&showinfo=0&loop=1&modestbranding=0"
                             frameborder="0"
                             allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
-                    </div>
+                    </div> --}}
+
+                    <img src="{{asset('assets/img/learning/5.jpeg')}}" alt="Learn Marketing" class="img-fluid">
                 </div>
                 <div class="col-md-6 m-auto">
                     <div class="row">
@@ -575,8 +577,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-12 text-center mt-3">
+                    <div class="row text-center mt-5">
+                        <div class="col-12 text-center mt-3 p-4">
 
                             <button type="button" class="save-my-seat-now-button payment">
                                 Book Now Your Seat for Just <span style="font-size: 26px; color: green;">₹199!</span> <span style="color: red; text-decoration: line-through;">₹5000</span>
@@ -1113,7 +1115,7 @@
                 <div class="row mt-5 m-auto">
                     <div class="col-12 text-center mt-5">
                         <button type="button" class="save-my-seat-now-button payment">
-                            Book Now Your Seat for Just <span style="font-size: 26px; color: green;">₹199!</span> <span style="color: red; text-decoration: line-through;">₹5000</span>
+                            Book Now Your Seat for Just <span style="font-size: 26px; color: green;">₹199!</span> <span style="color: rgb(196, 9, 9); text-decoration: line-through;">₹5000</span>
                         </button>
 
                         <p class="text-white mt-3" id="rp">
@@ -1271,7 +1273,7 @@
                         </div>
                         <div class="member-info">
                             <h4 class="hindi m-2">Jitendra Dhever</h4>
-                            Income - <span class="text-warning font-weight-bold">₹6 crore</span><br>
+                            Income - <span class="text-warning font-weight-bold">₹7 crore</span><br>
                         </div>
                     </div>
                 </div>
@@ -1284,7 +1286,7 @@
                         </div>
                         <div class="member-info">
                             <h4 class="hindi m-2">Mukesh Sharma</h4>
-                            Income - <span class="text-warning font-weight-bold">₹2.5 crore</span><br>
+                            Income - <span class="text-warning font-weight-bold">₹3 crore</span><br>
                         </div>
                     </div>
                 </div>
@@ -1296,7 +1298,7 @@
                         </div>
                         <div class="member-info">
                             <h4 class="hindi m-2">Devbrat Mourya</h4>
-                            Income - <span class="text-warning font-weight-bold">₹4.5 crore</span><br>
+                            Income - <span class="text-warning font-weight-bold">₹7 crore</span><br>
                         </div>
                     </div>
                 </div>
@@ -1308,7 +1310,7 @@
                         </div>
                         <div class="member-info">
                             <h4 class="hindi m-2">Munib Nishad</h4>
-                            Income - <span class="text-warning font-weight-bold">₹2.5 crore</span><br>
+                            Income - <span class="text-warning font-weight-bold">₹3 crore</span><br>
                         </div>
                     </div>
                 </div>
@@ -1666,7 +1668,6 @@
 
             // open reg_model_t modal
             $('#reg_model_t').modal('show');
-
         });
     </script>
 
