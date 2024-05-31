@@ -1119,7 +1119,7 @@
                 <div class="col-md-6 p-4"><img
                         src="{{ asset('assets/img/learning/2.jpeg') }}"
                         alt="" class="img-fluid"></div>
-                <div class="col-md-6 p-4"><img
+                <div class="col-md-6 p-4 payment"><img
                         src="{{ asset('assets/img/learning/1.jpeg') }}"
                         alt="" class="img-fluid"></div>
             </div>
