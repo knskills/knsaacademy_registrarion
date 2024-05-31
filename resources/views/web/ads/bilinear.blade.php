@@ -1512,6 +1512,7 @@
                             @csrf
                             <div class="mb-3">
                                 <input type="hidden" name="event_name" id="event_name" value="Learn Marketing">
+                                <input type="hidden" name="event_type" id="event_type" value="paid">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="name" name="name"
                                     placeholder="Enter your name" required>
@@ -1539,7 +1540,7 @@
     </div>
     <!-- end Register Modal -->
 
-    <!-- Register Now button -->
+    <!-- Fixed Footer -->
     <div class="register-btn" id="registerButton">
         <div class="row">
             <div class="col-md-6 text-center" id="gh">
@@ -1566,7 +1567,7 @@
             </div>
         </div>
     </div>
-    <!-- end Register -->
+    <!-- Fixed Footer -->
 @endsection
 
 @section('script')
