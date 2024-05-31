@@ -7,7 +7,8 @@
         content="Embark on a transformative journey from novice to billionaire within the realm of network marketing guided by Kamal Narayan Sahu. Learn proven strategies for exponential growth and assured success in the network marketing industry." />
     <meta name="author" content="" />
 
-    <meta name="google-site-verification" content="JUFL02GuiTUG5SPtb7_7opD5z5TVjYeQL0hdKBda38o" />
+    <meta name="google-site-verification"
+        content="JUFL02GuiTUG5SPtb7_7opD5z5TVjYeQL0hdKBda38o" />
     <meta name="msvalidate.01" content="4B0B39016B338C3058F48C0FCA42DF57" />
 @endsection
 
@@ -22,14 +23,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap"
+        rel="stylesheet">
 
     {{-- <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@1&display=swap" rel="stylesheet"> --}}
     <link
         href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Tiro+Devanagari+Sanskrit&display=swap"
         rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.1/css/all.min.css"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.1/css/all.min.css"
         integrity="sha512-ioRJH7yXnyX+7fXTQEKPULWkMn3CqMcapK0NNtCN8q//sW7ZeVFcbMJ9RvX99TwDg6P8rAH2IqUSt2TLab4Xmw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
@@ -449,7 +455,7 @@
 
         #price-img {
             /* width: 100%;
-                                                            height: 100%; */
+                                                                height: 100%; */
 
             max-width: 20%;
             max-height: 20%;
@@ -474,6 +480,33 @@
             /* Optionally, add border-radius for rounded corners */
         }
     </style>
+    <style>
+        .col-md-6.p-4 {
+            background-color: #333;
+            position: relative;
+        }
+
+        .col-md-6.p-4::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* background-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 70%); */
+            transform: translateZ(0);
+        }
+
+        .col-md-6.p-4 img {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            transition: 0.3s ease-in-out;
+        }
+
+        .col-md-6.p-4 img:hover {
+            transform: scale(1.05);
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -481,10 +514,12 @@
     <section class="service_section">
         <div class="container" id="top1" style="padding: 20px 0px 70px;">
             <div class="text-center">
-                <h2 class="text-white" style="font-family: 'Noto Sans Devanagari', sans-serif;">
+                <h2 class="text-white"
+                    style="font-family: 'Noto Sans Devanagari', sans-serif;">
                     {{-- How to Grow Exponentially and get Guaranteed success on <span class="text-warning font-weight-bold">Network Marketing Business</span> --}}
 
-                    <span class="text-warning font-weight-bold">100% Money Back Guraantee</span>
+                    <span class="text-warning font-weight-bold">100% Money Back
+                        Guraantee</span>
                 </h2>
 
             </div>
@@ -508,7 +543,8 @@
                             allowfullscreen></iframe>
                     </div> --}}
 
-                    <img src="{{asset('assets/img/learning/5.jpeg')}}" alt="Learn Marketing" class="img-fluid">
+                    <img src="{{ asset('assets/img/learning/5.jpeg') }}"
+                        alt="Learn Marketing" class="img-fluid">
                 </div>
                 <div class="col-md-6 m-auto">
                     <div class="row">
@@ -516,13 +552,17 @@
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
-                                        <button class="btn btn-lg text-white f2-btn">
-                                            <i class="fas fa-video icon-lg"></i>
+                                        <button
+                                            class="btn btn-lg text-white f2-btn">
+                                            <i
+                                                class="fas fa-video icon-lg"></i>
                                         </button>
                                     </div>
                                     <div class="ml-3">
-                                        <span class="small-text">Duration</span><br>
-                                        <span class="big-bold-text">3 Hour</span>
+                                        <span
+                                            class="small-text">Duration</span><br>
+                                        <span class="big-bold-text">3
+                                            Hour</span>
                                     </div>
                                 </div>
                             </div>
@@ -533,13 +573,17 @@
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
-                                        <button class="btn btn-lg text-white f2-btn">
-                                            <i class="fas fa-language icon-lg"></i>
+                                        <button
+                                            class="btn btn-lg text-white f2-btn">
+                                            <i
+                                                class="fas fa-language icon-lg"></i>
                                         </button>
                                     </div>
                                     <div class="ml-3">
-                                        <span class="small-text">Language</span><br>
-                                        <span class="big-bold-text">Hindi</span>
+                                        <span
+                                            class="small-text">Language</span><br>
+                                        <span
+                                            class="big-bold-text">Hindi</span>
                                     </div>
                                 </div>
                             </div>
@@ -548,13 +592,19 @@
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
-                                        <button class="btn btn-lg text-white f2-btn">
-                                            <i class="far fa-calendar-alt icon-lg"></i>
+                                        <button
+                                            class="btn btn-lg text-white f2-btn">
+                                            <i
+                                                class="far fa-calendar-alt icon-lg"></i>
                                         </button>
                                     </div>
                                     <div class="ml-3" id="seminar-dates">
-                                        <span class="small-text">Date</span><br>
-                                        <span class="big-bold-text seminar-date" id="next-tuesday">29 Feb 2024</span>
+                                        <span
+                                            class="small-text">Date</span><br>
+                                        <span
+                                            class="big-bold-text seminar-date"
+                                            id="next-tuesday">29 Feb
+                                            2024</span>
 
                                         {{-- <span class="big2-bold-text" style="font-size: 20px;">2,3 & 4 Feb 2024</span> --}}
                                     </div>
@@ -565,13 +615,17 @@
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
-                                        <button class="btn btn-lg text-white f2-btn">
-                                            <i class="far fa-clock icon-lg"></i>
+                                        <button
+                                            class="btn btn-lg text-white f2-btn">
+                                            <i
+                                                class="far fa-clock icon-lg"></i>
                                         </button>
                                     </div>
                                     <div class="ml-3">
-                                        <span class="small-text">Time</span><br>
-                                        <span class="big-bold-text">7PM to 8PM</span>
+                                        <span
+                                            class="small-text">Time</span><br>
+                                        <span class="big-bold-text">7PM to
+                                            8PM</span>
                                     </div>
                                 </div>
                             </div>
@@ -580,16 +634,22 @@
                     <div class="row text-center mt-5">
                         <div class="col-12 text-center mt-3 p-4">
 
-                            <button type="button" class="save-my-seat-now-button payment">
-                                Book Now Your Seat for Just <span style="font-size: 26px; color: green;">₹199!</span> <span style="color: red; text-decoration: line-through;">₹5000</span>
+                            <button type="button"
+                                class="save-my-seat-now-button payment">
+                                Book Now Your Seat for Just <span
+                                    style="font-size: 26px; color: green;">₹199!</span>
+                                <span
+                                    style="color: red; text-decoration: line-through;">₹5000</span>
                             </button>
 
                             {{-- <p class="text-white mt-3" id="rp">
                                 Register today to get a bonus of ₹30,000/-
                             </p> --}}
 
-                            <p class="mt-3 text-white">Offer Ends in <span id="timer2"
-                                    class="text-warning font-weight-bold"></span> Mins </p>
+                            <p class="mt-3 text-white">Offer Ends in <span
+                                    id="timer2"
+                                    class="text-warning font-weight-bold"></span>
+                                Mins </p>
                         </div>
                     </div>
 
@@ -609,7 +669,9 @@
                                 <div class="heading_container">
                                     <h2 class=""
                                         style="font-family: 'Noto Sans Devanagari', sans-serif; text-align: center; padding: 20px 0; color: #333; background-color: #fff;">
-                                        Have Delivered Training in all over <span style="color: #ff4500;">India</span>
+                                        Have Delivered Training in all over
+                                        <span
+                                            style="color: #ff4500;">India</span>
                                     </h2>
                                 </div>
                             </div>
@@ -696,37 +758,53 @@
                         <div class="row mt-3">
                             <div class="col-md-10 m-auto">
                                 <p class="hindi">
-                                    <b>नेटवर्क मार्केटिंग</b> में सफल होने के लिए सबसे ज्यादा काम अपने ऊपर करना होता है,
-                                    जबकि लोग दूसरों में कमियां निकाल रहे होते हैं, "यह सुनता नहीं है" "वह सुनता नहीं है" अरे
-                                    वह सुनेगा, उसका खानदान भी सुनेगा, पहले अपने आप को <b>"सुनाने"</b> लायक तो बनाइए।
+                                    <b>नेटवर्क मार्केटिंग</b> में सफल होने के
+                                    लिए सबसे ज्यादा काम अपने ऊपर करना होता है,
+                                    जबकि लोग दूसरों में कमियां निकाल रहे होते
+                                    हैं, "यह सुनता नहीं है" "वह सुनता नहीं है"
+                                    अरे
+                                    वह सुनेगा, उसका खानदान भी सुनेगा, पहले अपने
+                                    आप को <b>"सुनाने"</b> लायक तो बनाइए।
 
                                 <ul class="mb-4">
                                     <li>
-                                        👉 BEGINNER TO BILLIONAIRE कोर्स नेटवर्क मार्केटर्स के लिए ब्रह्मास्त्र है।
+                                        👉 BEGINNER TO BILLIONAIRE कोर्स
+                                        नेटवर्क मार्केटर्स के लिए ब्रह्मास्त्र
+                                        है।
                                     </li>
                                     <li>
-                                        👉 दुनिया के हर एक नेटवर्क मार्केटर्स को एक बार Beginner to billionaire कोर्स अवश्य
+                                        👉 दुनिया के हर एक नेटवर्क मार्केटर्स
+                                        को एक बार Beginner to billionaire कोर्स
+                                        अवश्य
                                         करना चाहिए।
                                     </li>
                                     <li>
-                                        👉 BEGINNER TO BILLIONAIRE कोर्स श्री कमल नारायण साहू सर के 16 साल के टीम वर्क और
-                                        लीडरशिप के अनुभव का निचोड़ हैं जो कोच ने बतौर नेटवर्क मार्केटिंग बिजनेस में
-                                        प्रैक्टिकल रहते हुवे सीखा हैं और लोगो को करोड़पति बनाया हैं वही सारी सफलता का
+                                        👉 BEGINNER TO BILLIONAIRE कोर्स श्री
+                                        कमल नारायण साहू सर के 16 साल के टीम
+                                        वर्क और
+                                        लीडरशिप के अनुभव का निचोड़ हैं जो कोच
+                                        ने बतौर नेटवर्क मार्केटिंग बिजनेस में
+                                        प्रैक्टिकल रहते हुवे सीखा हैं और लोगो
+                                        को करोड़पति बनाया हैं वही सारी सफलता का
                                         महामंत्र हैं।
                                     </li>
                                     <li>
-                                        👉 21ST CENTURY की सबसे बड़ी Free Lancing बिजनेस नेटवर्क मार्केटिंग में नई ऊंचाइयों
+                                        👉 21ST CENTURY की सबसे बड़ी Free
+                                        Lancing बिजनेस नेटवर्क मार्केटिंग में
+                                        नई ऊंचाइयों
                                         तक पहुंचने के लिए अभी ज्वाइन करे।
                                     </li>
                                 </ul>
 
                                 <span class="hindi">
-                                    To Make yourself Network Marketing PRO get Trained By The Master Trainer <b>Kamal
+                                    To Make yourself Network Marketing PRO get
+                                    Trained By The Master Trainer <b>Kamal
                                         Narayan Sahu</b>.
                                 </span>
                                 </p>
 
-                                <p class="text-left">BEGINNER TO BILLIONAIRE Network marketing success blueprint</p>
+                                <p class="text-left">BEGINNER TO BILLIONAIRE
+                                    Network marketing success blueprint</p>
 
                                 by<b> Kamal Narayan Sahu</b> <br>
                                 Passionate Networker, <br>
@@ -758,9 +836,11 @@
                 <div class="col-md-6 p-2">
                     <div class="card s_bg">
                         <div class="card-body text-white">
-                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
+                            <i aria-hidden="true"
+                                class="fas fa-check-circle text-success larger-icon"></i>
                             <span class="f18">
-                                <b>Expert Guidance</b>: Gain insights from seasoned professionals who have navigated the
+                                <b>Expert Guidance</b>: Gain insights from
+                                seasoned professionals who have navigated the
                                 challenges of Network Marketing successfully.
                             </span>
                         </div>
@@ -769,10 +849,13 @@
                 <div class="col-md-6 p-2">
                     <div class="card s_bg">
                         <div class="card-body text-white">
-                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
+                            <i aria-hidden="true"
+                                class="fas fa-check-circle text-success larger-icon"></i>
                             <span class="f18">
-                                <b>Strategic Approach</b>: Acquire a systematic roadmap and strategies tailored to help you
-                                grow exponentially in the Network Marketing industry.
+                                <b>Strategic Approach</b>: Acquire a systematic
+                                roadmap and strategies tailored to help you
+                                grow exponentially in the Network Marketing
+                                industry.
                             </span>
                         </div>
                     </div>
@@ -780,10 +863,14 @@
                 <div class="col-md-6 p-2">
                     <div class="card s_bg">
                         <div class="card-body text-white">
-                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
+                            <i aria-hidden="true"
+                                class="fas fa-check-circle text-success larger-icon"></i>
                             <span class="f18">
-                                <b>Proven Success Stories</b>: Access real-life success stories that demonstrate how
-                                individuals, much like yourself, achieved remarkable success in Network Marketing, providing
+                                <b>Proven Success Stories</b>: Access real-life
+                                success stories that demonstrate how
+                                individuals, much like yourself, achieved
+                                remarkable success in Network Marketing,
+                                providing
                                 you with inspiration and motivation.
                             </span>
                         </div>
@@ -792,10 +879,14 @@
                 <div class="col-md-6 p-2">
                     <div class="card s_bg">
                         <div class="card-body text-white">
-                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
+                            <i aria-hidden="true"
+                                class="fas fa-check-circle text-success larger-icon"></i>
                             <span class="f18">
-                                <b>Effective Networking Techniques</b>: Discover the art of networking effectively. Learn
-                                how to build and expand your network, nurture relationships, and leverage connections to
+                                <b>Effective Networking Techniques</b>:
+                                Discover the art of networking effectively.
+                                Learn
+                                how to build and expand your network, nurture
+                                relationships, and leverage connections to
                                 accelerate your business growth.
                             </span>
                         </div>
@@ -804,10 +895,14 @@
                 <div class="col-md-6 p-2">
                     <div class="card s_bg">
                         <div class="card-body text-white">
-                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
+                            <i aria-hidden="true"
+                                class="fas fa-check-circle text-success larger-icon"></i>
                             <span class="f18">
-                                <b>Guaranteed Results</b>: This training promises a results-driven approach. Understand the
-                                proven methodologies and techniques that guarantee success when applied diligently and
+                                <b>Guaranteed Results</b>: This training
+                                promises a results-driven approach. Understand
+                                the
+                                proven methodologies and techniques that
+                                guarantee success when applied diligently and
                                 consistently.
                             </span>
                         </div>
@@ -816,11 +911,15 @@
                 <div class="col-md-6 p-2">
                     <div class="card s_bg">
                         <div class="card-body text-white">
-                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
+                            <i aria-hidden="true"
+                                class="fas fa-check-circle text-success larger-icon"></i>
                             <span class="f18">
-                                <b>Ongoing Support and Resources</b>: Beyond the training, access ongoing support,
-                                resources, and tools essential for your continuous growth and development in Network
-                                Marketing. Stay updated with the latest trends and strategies.
+                                <b>Ongoing Support and Resources</b>: Beyond
+                                the training, access ongoing support,
+                                resources, and tools essential for your
+                                continuous growth and development in Network
+                                Marketing. Stay updated with the latest trends
+                                and strategies.
                             </span>
                         </div>
                     </div>
@@ -844,16 +943,24 @@
                     {{-- <h3><span>Contact Us</span></h3> --}}
                     <p>Explore our courses on <a
                             href="https://www.youtube.com/channel/UCzRxWktCEzHvHNRUAmcWJzA?embeds_referring_euri=http%3A%2F%2F127.0.0.1%3A8001%2F&source_ve_path=MzY5MjU&feature=emb_ch_name_ex"
-                            target="_blank">YouTube <img src="{{ asset('assets/img/social/youtube.png') }}"
-                                alt="kns" class="img-fluid" width="40px;" height="30px;"></a> and stay updated on
+                            target="_blank">YouTube <img
+                                src="{{ asset('assets/img/social/youtube.png') }}"
+                                alt="kns" class="img-fluid"
+                                width="40px;" height="30px;"></a> and stay
+                        updated on
                         our latest offerings, success stories, and
                         expert insights.</p>
                     <p>
-                        Join our community on <a href="https://www.facebook.com/profile.php?id=61551921226266"
-                            target="_blank">Facebook <img src="{{ asset('assets/img/social/facebook.png') }}"
-                                alt="kns" class="img-fluid" width="40px;" height="10px;"></a> Marketplace to
+                        Join our community on <a
+                            href="https://www.facebook.com/profile.php?id=61551921226266"
+                            target="_blank">Facebook <img
+                                src="{{ asset('assets/img/social/facebook.png') }}"
+                                alt="kns" class="img-fluid"
+                                width="40px;" height="10px;"></a>
+                        Marketplace to
                         discover more about our courses, connect with
-                        like-minded individuals, and access exclusive resources.
+                        like-minded individuals, and access exclusive
+                        resources.
                     </p>
                 </div>
                 <div class="col-md-6 m-auto">
@@ -862,13 +969,17 @@
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
-                                        <button class="btn btn-lg text-white f2-btn">
-                                            <i class="fas fa-video icon-lg"></i>
+                                        <button
+                                            class="btn btn-lg text-white f2-btn">
+                                            <i
+                                                class="fas fa-video icon-lg"></i>
                                         </button>
                                     </div>
                                     <div class="ml-3">
-                                        <span class="small-text">Duration</span><br>
-                                        <span class="big-bold-text">3 Hour</span>
+                                        <span
+                                            class="small-text">Duration</span><br>
+                                        <span class="big-bold-text">3
+                                            Hour</span>
                                     </div>
                                 </div>
                             </div>
@@ -878,13 +989,17 @@
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
-                                        <button class="btn btn-lg text-white f2-btn">
-                                            <i class="fas fa-language icon-lg"></i>
+                                        <button
+                                            class="btn btn-lg text-white f2-btn">
+                                            <i
+                                                class="fas fa-language icon-lg"></i>
                                         </button>
                                     </div>
                                     <div class="ml-3">
-                                        <span class="small-text">Language</span><br>
-                                        <span class="big-bold-text">Hindi</span>
+                                        <span
+                                            class="small-text">Language</span><br>
+                                        <span
+                                            class="big-bold-text">Hindi</span>
                                     </div>
                                 </div>
                             </div>
@@ -894,13 +1009,19 @@
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
-                                        <button class="btn btn-lg text-white f2-btn">
-                                            <i class="far fa-calendar-alt icon-lg"></i>
+                                        <button
+                                            class="btn btn-lg text-white f2-btn">
+                                            <i
+                                                class="far fa-calendar-alt icon-lg"></i>
                                         </button>
                                     </div>
                                     <div class="ml-3" id="seminar-dates">
-                                        <span class="small-text">Date</span><br>
-                                        <span class="big-bold-text text-center seminar-date" id="next-tuesday2">29 Feb 2024</span>
+                                        <span
+                                            class="small-text">Date</span><br>
+                                        <span
+                                            class="big-bold-text text-center seminar-date"
+                                            id="next-tuesday2">29 Feb
+                                            2024</span>
                                     </div>
                                 </div>
                             </div>
@@ -910,13 +1031,17 @@
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
                                     <div class="text-left">
-                                        <button class="btn btn-lg text-white f2-btn">
-                                            <i class="far fa-clock icon-lg"></i>
+                                        <button
+                                            class="btn btn-lg text-white f2-btn">
+                                            <i
+                                                class="far fa-clock icon-lg"></i>
                                         </button>
                                     </div>
                                     <div class="ml-3">
-                                        <span class="small-text">Time</span><br>
-                                        <span class="big-bold-text">7PM to 8PM</span>
+                                        <span
+                                            class="small-text">Time</span><br>
+                                        <span class="big-bold-text">7PM to
+                                            8PM</span>
                                     </div>
                                 </div>
                             </div>
@@ -925,16 +1050,22 @@
 
                     <div class="row mt-2">
                         <div class="col-12 text-center mt-3">
-                            <button type="button" class="save-my-seat-now-button payment">
-                                Book Now Your Seat for Just <span style="font-size: 26px; color: green;">₹199!</span> <span style="color: red; text-decoration: line-through;">₹5000</span>
+                            <button type="button"
+                                class="save-my-seat-now-button payment">
+                                Book Now Your Seat for Just <span
+                                    style="font-size: 26px; color: green;">₹199!</span>
+                                <span
+                                    style="color: red; text-decoration: line-through;">₹5000</span>
                             </button>
 
                             {{-- <p class="text-white mt-3" id="rp">
                                 Register today to get a bonus of ₹30,000/-
                             </p> --}}
 
-                            <p class="mt-3 text-white">Offer Ends in <span id="timer2"
-                                    class="text-warning font-weight-bold"></span> Mins </p>
+                            <p class="mt-3 text-white">Offer Ends in <span
+                                    id="timer2"
+                                    class="text-warning font-weight-bold"></span>
+                                Mins </p>
                         </div>
                     </div>
 
@@ -948,16 +1079,18 @@
     <section class="service_section m-layout">
         <div class="container">
             <div class="heading_container heading_center mb-3">
-                <h2>
+                {{-- <h2>
                     The story of the leader in their own words
-                </h2>
+                </h2> --}}
 
                 {{-- <h2>
                     Training Event के बारे में लोग क्या कहते हैं?
                 </h2> --}}
+
+                <h2>सपनों के सच होने की कहानी </h2>
             </div>
             <div class="row">
-                <div class="col-md-6 m-auto">
+                {{-- <div class="col-md-6 m-auto">
                     <div class="video-container mt-3">
                         <iframe id="yframe"
                             src="https://www.youtube.com/embed/se2_3oghGpA?si=IqaQt4BXKYpZzO8n?rel=0?version=3&autoplay=0&controls=0&&showinfo=0&loop=1"
@@ -975,7 +1108,20 @@
                             allow="accelerometer; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                     </div>
-                </div>
+                </div> --}}
+
+                <div class="col-md-6 p-4"><img
+                        src="{{ asset('assets/img/learning/4.jpeg') }}"
+                        alt="" class="img-fluid"></div>
+                <div class="col-md-6 p-4"><img
+                        src="{{ asset('assets/img/learning/3.jpeg') }}"
+                        alt="" class="img-fluid"></div>
+                <div class="col-md-6 p-4"><img
+                        src="{{ asset('assets/img/learning/2.jpeg') }}"
+                        alt="" class="img-fluid"></div>
+                <div class="col-md-6 p-4"><img
+                        src="{{ asset('assets/img/learning/1.jpeg') }}"
+                        alt="" class="img-fluid"></div>
             </div>
         </div>
     </section>
@@ -994,27 +1140,35 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-8 d-flex flex-column justify-content-center text-white text-center" data-aos="fade-up"
-                    data-aos-delay="200">
+                <div class="col-lg-8 d-flex flex-column justify-content-center text-white text-center"
+                    data-aos="fade-up" data-aos-delay="200">
                     <div class="section-title">
                         <h3><span>Who Is</span> Kamal Narayan Sahu</h3>
                     </div>
                     <ul class="text-left">
-                        <li class="mt-2">1) His name is Kamal Narayan Sahu and he is famous as the youngest CMD of
+                        <li class="mt-2">1) His name is Kamal Narayan Sahu
+                            and he is famous as the youngest CMD of
                             network marketing industry.</li>
-                        <li class="mt-2">2) He is 31 years young, and always ready to teach and educate people about the
+                        <li class="mt-2">2) He is 31 years young, and always
+                            ready to teach and educate people about the
                             top 3 skills of success.</li>
-                        <li class="mt-2">3) They have been helping people look smarter, stay healthy and achieve
+                        <li class="mt-2">3) They have been helping people
+                            look smarter, stay healthy and achieve
                             financial freedom for the last 8 years</li>
-                        <li class="mt-2">4) His Achievements – He is the founder of YTM India (a direct selling company).
-                            At the young age of 23, he achieved a turnover of Rs 100 crore in the financial year 2022-2023.
+                        <li class="mt-2">4) His Achievements – He is the
+                            founder of YTM India (a direct selling company).
+                            At the young age of 23, he achieved a turnover of
+                            Rs 100 crore in the financial year 2022-2023.
                         </li>
                     </ul>
                 </div>
 
-                <div class="col-lg-4 m-auto" data-aos="fade-up" data-aos-delay="100">
-                    <img src="{{ asset('assets/img/sirji2.png') }}" alt="sirji" class="img-fluid"
-                        style="filter:drop-shadow(1px 2px 12px white)" id="sirimg">
+                <div class="col-lg-4 m-auto" data-aos="fade-up"
+                    data-aos-delay="100">
+                    <img src="{{ asset('assets/img/sirji2.png') }}"
+                        alt="sirji" class="img-fluid"
+                        style="filter:drop-shadow(1px 2px 12px white)"
+                        id="sirimg">
                 </div>
 
                 <div class="row m-auto">
@@ -1022,11 +1176,13 @@
                         <div class="text-center mt-5 text-white">
                             👇 Secure your spot at no cost👇
                         </div>
-                        <button type="button" class="save-my-seat-now-button text-center mt-2 payment">
+                        <button type="button"
+                            class="save-my-seat-now-button text-center mt-2 payment">
                             <span class="mx-5 text-center">Claim your seat
                                 today!</span> <br>
                         </button>
-                        <div class="d-flex justify-content-center mt-3 text-white">
+                        <div
+                            class="d-flex justify-content-center mt-3 text-white">
                             <h4>Limited Seats, Filling Fast...</h4>
                         </div>
                     </div>
@@ -1050,28 +1206,33 @@
                 <div class="col-md-6 m-auto text-white">
                     <div class="card card-cs mt-3">
                         <div class="card-body">
-                            <h3 class="card-title">Get ebook of sales and marketing techniques</h3>
+                            <h3 class="card-title">Get ebook of sales and
+                                marketing techniques</h3>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 m-auto text-white">
                     <div class="card card-cs mt-3">
                         <div class="card-body">
-                            <h3 class="card-title">Unlock bonus of worth ₹30,000</h3>
+                            <h3 class="card-title">Unlock bonus of worth
+                                ₹30,000</h3>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 m-auto text-white">
                     <div class="card card-cs mt-3">
                         <div class="card-body">
-                            <h3 class="card-title">Gate chance to interact 121 with our mentors</h3>
+                            <h3 class="card-title">Gate chance to interact 121
+                                with our mentors</h3>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 m-auto text-white">
                     <div class="card card-cs mt-3">
                         <div class="card-body">
-                            <h4 class="card-title">Get free pass offer personal communication skill development training
+                            <h4 class="card-title">Get free pass offer
+                                personal communication skill development
+                                training
                             </h4>
                         </div>
                     </div>
@@ -1086,7 +1247,8 @@
         <div class="container">
             <div class="heading_container heading_center mb-3">
                 <h2>
-                    Get Access to <span id="b_price" class="hindi">₹10,000/</span>- Bonus
+                    Get Access to <span id="b_price"
+                        class="hindi">₹10,000/</span>- Bonus
                 </h2>
             </div>
             <div class="row">
@@ -1107,15 +1269,19 @@
 
                 <div class="col-md-4 m-auto">
                     <div class="card">
-                        <img src="{{ asset('assets/gaurd/offer/third_offer.jpeg') }}" alt="knsa"
-                            class="img-fluid p-1">
+                        <img src="{{ asset('assets/gaurd/offer/third_offer.jpeg') }}"
+                            alt="knsa" class="img-fluid p-1">
                     </div>
                 </div>
 
                 <div class="row mt-5 m-auto">
                     <div class="col-12 text-center mt-5">
-                        <button type="button" class="save-my-seat-now-button payment">
-                            Book Now Your Seat for Just <span style="font-size: 26px; color: green;">₹199!</span> <span style="color: rgb(196, 9, 9); text-decoration: line-through;">₹5000</span>
+                        <button type="button"
+                            class="save-my-seat-now-button payment">
+                            Book Now Your Seat for Just <span
+                                style="font-size: 26px; color: green;">₹199!</span>
+                            <span
+                                style="color: rgb(196, 9, 9); text-decoration: line-through;">₹5000</span>
                         </button>
 
                         <p class="text-white mt-3" id="rp">
@@ -1125,7 +1291,8 @@
                         {{-- <p class="mt-3 text-white">Offer Ends in <span id="timer2"
                                 class="text-warning font-weight-bold"></span> Mins </p> --}}
 
-                        <p class="mt-4 text-white">एक ऐसे जीवन की कल्पना कीजिए जहां आप अपने दिन और समय के मालिक हैं। यह
+                        <p class="mt-4 text-white">एक ऐसे जीवन की कल्पना कीजिए
+                            जहां आप अपने दिन और समय के मालिक हैं। यह
                             कोर्स आपकी इस कल्पना को हकीकत में बदल देगा।</p>
                     </div>
                 </div>
@@ -1146,32 +1313,40 @@
                 <div class="col-md-6 p-2">
                     <div class="card s_bg">
                         <div class="card-body text-white">
-                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">ग्राहकों को पहचानना है और उनसे जुड़ने के महत्‍वपूर्ण तरीके सीखे</span>
+                            <i aria-hidden="true"
+                                class="fas fa-check-circle text-success larger-icon"></i>
+                            <span class="f18">ग्राहकों को पहचानना है और
+                                उनसे जुड़ने के महत्‍वपूर्ण तरीके सीखे</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 p-2">
                     <div class="card s_bg">
                         <div class="card-body text-white">
-                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">strong relationship and supportive network बनाना सीखे.</span>
+                            <i aria-hidden="true"
+                                class="fas fa-check-circle text-success larger-icon"></i>
+                            <span class="f18">strong relationship and
+                                supportive network बनाना सीखे.</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 p-2">
                     <div class="card s_bg">
                         <div class="card-body text-white">
-                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">सोशल मीडिया और डिजिटल मार्केटिंग से नेटवर्क कैसे बनाएं सीखें.</span>
+                            <i aria-hidden="true"
+                                class="fas fa-check-circle text-success larger-icon"></i>
+                            <span class="f18">सोशल मीडिया और डिजिटल
+                                मार्केटिंग से नेटवर्क कैसे बनाएं सीखें.</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 p-2">
                     <div class="card s_bg">
                         <div class="card-body text-white">
-                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">आप नेटवर्क मार्केटिंग की सफलता में trust and communication के महत्व को
+                            <i aria-hidden="true"
+                                class="fas fa-check-circle text-success larger-icon"></i>
+                            <span class="f18">आप नेटवर्क मार्केटिंग की
+                                सफलता में trust and communication के महत्व को
                                 सीखेंगे.</span>
                         </div>
                     </div>
@@ -1180,9 +1355,12 @@
 
             <div class="row m-auto">
                 <div class="col-12 text-center">
-                    <button type="button" class="save-my-seat-now-button text-center payment">
-                        <span class="mx-5 text-center">Book Now Your Seat</span> <br>
-                        <small class="mx-5 text-center">Registration is limited</small>
+                    <button type="button"
+                        class="save-my-seat-now-button text-center payment">
+                        <span class="mx-5 text-center">Book Now Your
+                            Seat</span> <br>
+                        <small class="mx-5 text-center">Registration is
+                            limited</small>
                     </button>
                 </div>
             </div>
@@ -1203,30 +1381,42 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <img src="{{ asset('assets/img/11.png') }}" alt="sirji" class="img-fluid">
+                <div class="col-lg-4" data-aos="fade-up"
+                    data-aos-delay="100">
+                    <img src="{{ asset('assets/img/11.png') }}"
+                        alt="sirji" class="img-fluid">
                 </div>
 
-                <div class="col-lg-8 d-flex flex-column justify-content-center text-white text-center" data-aos="fade-up"
-                    data-aos-delay="200">
+                <div class="col-lg-8 d-flex flex-column justify-content-center text-white text-center"
+                    data-aos="fade-up" data-aos-delay="200">
                     <div class="section-title">
-                        <h3><span>Welcome to</span> K Narayan Skill Academy!</h3>
+                        <h3><span>Welcome to</span> K Narayan Skill Academy!
+                        </h3>
                     </div>
                     <p>
-                        At K Narayan Skill Academy, we are dedicated to empowering individuals through diverse skill
-                        development programs tailored to meet the demands of today's dynamic world. Our mission is to equip
-                        you with the knowledge and expertise needed to succeed in various domains.
+                        At K Narayan Skill Academy, we are dedicated to
+                        empowering individuals through diverse skill
+                        development programs tailored to meet the demands of
+                        today's dynamic world. Our mission is to equip
+                        you with the knowledge and expertise needed to succeed
+                        in various domains.
                     </p>
 
-                    <h5 class="mt-2">Why Choose K Narayan Skill Academy?</h5>
+                    <h5 class="mt-2">Why Choose K Narayan Skill Academy?
+                    </h5>
 
                     <ul class="text-left">
-                        <li><b>Expert Guidance:</b> Benefit from the mentorship of experienced professionals and
-                            industry leaders passionate about your success.</li>
-                        <li><b>Hands-On Learning:</b> Engage in practical, real-world projects and exercises that
+                        <li><b>Expert Guidance:</b> Benefit from the mentorship
+                            of experienced professionals and
+                            industry leaders passionate about your success.
+                        </li>
+                        <li><b>Hands-On Learning:</b> Engage in practical,
+                            real-world projects and exercises that
                             sharpen your skills and build your portfolio.</li>
-                        <li><b>Flexible Learning:</b> Enjoy flexible schedules and a variety of learning formats,
-                            including online courses and workshops, enabling you to learn at your own pace.</li>
+                        <li><b>Flexible Learning:</b> Enjoy flexible schedules
+                            and a variety of learning formats,
+                            including online courses and workshops, enabling
+                            you to learn at your own pace.</li>
                     </ul>
 
                 </div>
@@ -1236,11 +1426,13 @@
                         <div class="text-center mt-5 text-white">
                             👇 Secure your spot at no cost👇
                         </div>
-                        <button type="button" class="save-my-seat-now-button text-center mt-2 payment">
+                        <button type="button"
+                            class="save-my-seat-now-button text-center mt-2 payment">
                             <span class="mx-5 text-center">Claim your seat
                                 today!</span> <br>
                         </button>
-                        <div class="d-flex justify-content-center mt-3 text-white">
+                        <div
+                            class="d-flex justify-content-center mt-3 text-white">
                             <h4>Limited Seats, Filling Fast...</h4>
                         </div>
                     </div>
@@ -1260,25 +1452,33 @@
                 <h2>
                     Achievers
                 </h2>
-                <h3 class="hindi">People earned after learning from our<span class="text-warning">
+                <h3 class="hindi">People earned after learning from our<span
+                        class="text-warning">
                         Techniques</span></h3>
-                <p class="hindi">Some of Our Multimillionaires Network Marketing leaders
-                    Who transforms their Life & achived Big success in Network Marketing industry...</p>
+                <p class="hindi">Some of Our Multimillionaires Network
+                    Marketing leaders
+                    Who transforms their Life & achived Big success in Network
+                    Marketing industry...</p>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="400">
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3"
+                    data-aos="fade-up" data-aos-delay="400">
                     <div class="member">
                         <div class="member-img">
-                            <img src="{{ asset('assets/img/team/jitendra.jpeg') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/team/jitendra.jpeg') }}"
+                                class="img-fluid" alt="">
                         </div>
                         <div class="member-info">
                             <h4 class="hindi m-2">Jitendra Dhever</h4>
-                            Income - <span class="text-warning font-weight-bold">₹7 crore</span><br>
+                            Income - <span
+                                class="text-warning font-weight-bold">₹7
+                                crore</span><br>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3"
+                    data-aos="fade-up" data-aos-delay="300">
                     <div class="member">
                         <div class="member-img">
                             <img src="{{ asset('assets/img/team/WhatsApp Image 2023-09-09 at 11.56.10 AM.jpeg') }}"
@@ -1286,31 +1486,41 @@
                         </div>
                         <div class="member-info">
                             <h4 class="hindi m-2">Mukesh Sharma</h4>
-                            Income - <span class="text-warning font-weight-bold">₹3 crore</span><br>
+                            Income - <span
+                                class="text-warning font-weight-bold">₹3
+                                crore</span><br>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="400">
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3"
+                    data-aos="fade-up" data-aos-delay="400">
                     <div class="member">
                         <div class="member-img">
-                            <img src="{{ asset('assets/img/team/jst.jpeg') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/team/jst.jpeg') }}"
+                                class="img-fluid" alt="">
                         </div>
                         <div class="member-info">
                             <h4 class="hindi m-2">Devbrat Mourya</h4>
-                            Income - <span class="text-warning font-weight-bold">₹7 crore</span><br>
+                            Income - <span
+                                class="text-warning font-weight-bold">₹7
+                                crore</span><br>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="400">
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-3"
+                    data-aos="fade-up" data-aos-delay="400">
                     <div class="member">
                         <div class="member-img">
-                            <img src="{{ asset('assets/img/team/munib.jpeg') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/team/munib.jpeg') }}"
+                                class="img-fluid" alt="">
                         </div>
                         <div class="member-info">
                             <h4 class="hindi m-2">Munib Nishad</h4>
-                            Income - <span class="text-warning font-weight-bold">₹3 crore</span><br>
+                            Income - <span
+                                class="text-warning font-weight-bold">₹3
+                                crore</span><br>
                         </div>
                     </div>
                 </div>
@@ -1329,17 +1539,22 @@
         <div class="row text-center m-3">
             <div class="col-md-4 mb-5 mb-md-0">
                 <div class="d-flex justify-content-center mb-4">
-                    <img src="{{ asset('assets/img/team/dharmendra.jpeg') }}" class="rounded-circle shadow-1-strong"
-                        width="150" height="150" />
+                    <img src="{{ asset('assets/img/team/dharmendra.jpeg') }}"
+                        class="rounded-circle shadow-1-strong" width="150"
+                        height="150" />
                 </div>
                 <h5 class="mb-3">Dharmendra Yadav</h5>
                 {{-- <h6 class="text-primary mb-3">Web Developer</h6> --}}
                 <p class="px-xl-3">
-                    <i class="fas fa-quote-left pe-2"></i>I recently had the opportunity to attend a training session at
+                    <i class="fas fa-quote-left pe-2"></i>I recently had the
+                    opportunity to attend a training session at
                     Skill Academy on network
-                    marketing and I must say, it was a game changer for me. The session was conducted by
-                    experienced and knowledgeable trainers who were able to break down the complex concepts
-                    of network marketing into simple and easy to understand terms.
+                    marketing and I must say, it was a game changer for me. The
+                    session was conducted by
+                    experienced and knowledgeable trainers who were able to
+                    break down the complex concepts
+                    of network marketing into simple and easy to understand
+                    terms.
                 </p>
                 <ul class="list-unstyled d-flex justify-content-center mb-0">
                     <li>
@@ -1355,23 +1570,29 @@
                         <i class="fas fa-star fa-sm text-warning"></i>
                     </li>
                     <li>
-                        <i class="fas fa-star-half-alt fa-sm text-warning"></i>
+                        <i
+                            class="fas fa-star-half-alt fa-sm text-warning"></i>
                     </li>
                 </ul>
             </div>
             <div class="col-md-4 mb-5 mb-md-0">
                 <div class="d-flex justify-content-center mb-4">
                     <img src="{{ asset('assets/img/team/WhatsApp Image 2023-09-09 at 11.55.46 AM (1).jpeg') }}"
-                        class="rounded-circle shadow-1-strong" width="150" height="150" />
+                        class="rounded-circle shadow-1-strong" width="150"
+                        height="150" />
                 </div>
                 <h5 class="mb-3">Manteshwar</h5>
                 {{-- <h6 class="text-primary mb-3">Graphic Designer</h6> --}}
                 <p class="px-xl-3">
-                    <i class="fas fa-quote-left pe-2"></i>The first thing that struck me about Skill Academy was their
+                    <i class="fas fa-quote-left pe-2"></i>The first thing that
+                    struck me about Skill Academy was their
                     dedication to providing
-                    quality education and training. The trainers were not just there to sell their products
-                    or services, but genuinely wanted to help us improve our skills and succeed in the
-                    network marketing industry. They were patient, approachable, and always willing to
+                    quality education and training. The trainers were not just
+                    there to sell their products
+                    or services, but genuinely wanted to help us improve our
+                    skills and succeed in the
+                    network marketing industry. They were patient,
+                    approachable, and always willing to
                     answer any questions we had.
                 </p>
                 <ul class="list-unstyled d-flex justify-content-center mb-0">
@@ -1395,16 +1616,21 @@
             <div class="col-md-4 mb-5 mb-md-0">
                 <div class="d-flex justify-content-center mb-4">
                     <img src="{{ asset('assets/img/team/WhatsApp Image 2023-09-09 at 11.54.57 AM.jpeg') }}"
-                        class="rounded-circle shadow-1-strong" width="150" height="150" />
+                        class="rounded-circle shadow-1-strong" width="150"
+                        height="150" />
                 </div>
                 <h5 class="mb-3">Panku Sharma</h5>
                 {{-- <h6 class="text-primary mb-3">Graphic Designer</h6> --}}
                 <p class="px-xl-3">
-                    <i class="fas fa-quote-left pe-2"></i>The training itself was well-structured and covered all aspects
+                    <i class="fas fa-quote-left pe-2"></i>The training itself
+                    was well-structured and covered all aspects
                     of network marketing,
-                    from understanding the concept and benefits to practical tips on how to succeed. The
-                    trainers used real-life examples and case studies to illustrate their points, making it
-                    easier for us to relate and apply the knowledge in our own business.
+                    from understanding the concept and benefits to practical
+                    tips on how to succeed. The
+                    trainers used real-life examples and case studies to
+                    illustrate their points, making it
+                    easier for us to relate and apply the knowledge in our own
+                    business.
                 </p>
                 <ul class="list-unstyled d-flex justify-content-center mb-0">
                     <li>
@@ -1440,33 +1666,39 @@
                 <div class="card-body text-white text-center">
                     <div class="row">
                         <div class="col-md-3" id="repre">
-                            <img src="{{ asset('assets/img/ponting.png') }}" alt="kns" class="img-fluid">
+                            <img src="{{ asset('assets/img/ponting.png') }}"
+                                alt="kns" class="img-fluid">
                         </div>
                         <div class="col-md-9">
                             <div class="row">
                                 <div class="col-md-4 mt-3 text-center s_bg">
-                                    <img src="{{ asset('assets/img/whos/Sales professionals.jpg') }}" alt="Knsa"
-                                        width="200px" height="250px">
-                                </div>
-
-                                <div class="col-md-4 mt-3 text-center s_bg">
-                                    <img src="{{ asset('assets/img/whos/entrp.jpg') }}" alt="Knsa" width="200px"
+                                    <img src="{{ asset('assets/img/whos/Sales professionals.jpg') }}"
+                                        alt="Knsa" width="200px"
                                         height="250px">
                                 </div>
 
                                 <div class="col-md-4 mt-3 text-center s_bg">
-                                    <img src="{{ asset('assets/img/whos/leader.jpg') }}" alt="Knsa" width="200px"
+                                    <img src="{{ asset('assets/img/whos/entrp.jpg') }}"
+                                        alt="Knsa" width="200px"
                                         height="250px">
                                 </div>
 
                                 <div class="col-md-4 mt-3 text-center s_bg">
-                                    <img src="{{ asset('assets/img/whos/smallb.jpg') }}" alt="Knsa" width="200px"
+                                    <img src="{{ asset('assets/img/whos/leader.jpg') }}"
+                                        alt="Knsa" width="200px"
+                                        height="250px">
+                                </div>
+
+                                <div class="col-md-4 mt-3 text-center s_bg">
+                                    <img src="{{ asset('assets/img/whos/smallb.jpg') }}"
+                                        alt="Knsa" width="200px"
                                         height="250x">
                                 </div>
 
                                 <div class="col-md-4 mt-3 text-center s_bg">
                                     <img src="{{ asset('assets/img/whos/Network marketing professionals.jpg') }}"
-                                        alt="Knsa" width="200px" height="250px">
+                                        alt="Knsa" width="200px"
+                                        height="250px">
                                 </div>
                             </div>
                         </div>
@@ -1476,9 +1708,12 @@
 
             <div class="row m-auto">
                 <div class="col-12 text-center">
-                    <button type="button" class="save-my-seat-now-button text-center payment">
-                        <span class="mx-5 text-center">Book Now Your Seat</span> <br>
-                        <small class="mx-5 text-center">Registration is limited</small>
+                    <button type="button"
+                        class="save-my-seat-now-button text-center payment">
+                        <span class="mx-5 text-center">Book Now Your
+                            Seat</span> <br>
+                        <small class="mx-5 text-center">Registration is
+                            limited</small>
                     </button>
                 </div>
             </div>
@@ -1486,12 +1721,15 @@
     </section>
     <!-- end Who should attend this session? section -->
 
-    <div class="modal fade" id="reg_model_t" tabindex="-1" aria-labelledby="reg_model" aria-hidden="true">
+    <div class="modal fade" id="reg_model_t" tabindex="-1"
+        aria-labelledby="reg_model" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-center" id="reg_model">Registration Form</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title text-center" id="reg_model">
+                        Registration Form</h5>
+                    <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -1501,34 +1739,50 @@
                             <h5 class="card-title mb-3">Registration Form</h5>
                         </div> --}}
 
-                        <div class="alert alert-success" id="success" style="display: none">
+                        <div class="alert alert-success" id="success"
+                            style="display: none">
                         </div>
 
-                        <div class="alert alert-danger" style="display: none" id="err_div">
+                        <div class="alert alert-danger" style="display: none"
+                            id="err_div">
                             <ul id="errors"></ul>
                         </div>
 
-                        <form method="post" id="registration" action="{{ route('audience.store') }}">
+                        <form method="post" id="registration"
+                            action="{{ route('audience.store') }}">
                             @csrf
                             <div class="mb-3">
-                                <input type="hidden" name="event_name" id="event_name" value="Learn Marketing">
-                                <input type="hidden" name="event_type" id="event_type" value="paid">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" name="name"
+                                <input type="hidden" name="event_name"
+                                    id="event_name" value="Learn Marketing">
+                                <input type="hidden" name="event_type"
+                                    id="event_type" value="paid">
+                                <label for="name"
+                                    class="form-label">Name</label>
+                                <input type="text" class="form-control"
+                                    id="name" name="name"
                                     placeholder="Enter your name" required>
                             </div>
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email"
+                                <label for="email"
+                                    class="form-label">Email</label>
+                                <input type="email" class="form-control"
+                                    id="email" name="email"
                                     placeholder="Enter your email" required>
                             </div>
                             <div class="mb-3">
-                                <label for="phone" class="form-label">Contact Number (WhatsApp)</label>
-                                <input type="text" class="form-control" id="phone"
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')" minlength="10"
-                                    name="phone" maxlength="10" placeholder="Enter your WhatsApp number" required>
+                                <label for="phone"
+                                    class="form-label">Contact Number
+                                    (WhatsApp)</label>
+                                <input type="text" class="form-control"
+                                    id="phone"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                    minlength="10" name="phone"
+                                    maxlength="10"
+                                    placeholder="Enter your WhatsApp number"
+                                    required>
                             </div>
-                            <button class="btn btn-primary float-right" type="submit" id="submit">
+                            <button class="btn btn-primary float-right"
+                                type="submit" id="submit">
                                 Submit
                             </button>
                         </form>
@@ -1557,7 +1811,8 @@
                 </div>
 
                 <div class="twt" style="">
-                    Offer Ends in <span id="timer" class="text-warning font-weight-bold"></span> Mins
+                    Offer Ends in <span id="timer"
+                        class="text-warning font-weight-bold"></span> Mins
                 </div>
             </div>
             <div class="col-md-6 text-center m-auto">
@@ -1579,7 +1834,8 @@
             if (f.fbq) return;
             n = f.fbq = function() {
                 n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                    n.callMethod.apply(n, arguments) : n.queue.push(
+                        arguments)
             };
             if (!f._fbq) f._fbq = n;
             n.push = n;
@@ -1606,12 +1862,16 @@
         const goTopBtn = document.getElementById("registerButton");
 
         window.addEventListener('scroll', function() {
-            var windowHeight = window.innerHeight; // Height of the browser window
-            var fullHeight = document.body.clientHeight; // Height of the entire page
-            var scrollPosition = window.scrollY || window.pageYOffset || document.documentElement
+            var windowHeight = window
+            .innerHeight; // Height of the browser window
+            var fullHeight = document.body
+            .clientHeight; // Height of the entire page
+            var scrollPosition = window.scrollY || window
+                .pageYOffset || document.documentElement
                 .scrollTop; // Current scroll position
 
-            if (scrollPosition > 250 && (fullHeight - (scrollPosition + windowHeight)) > 250) {
+            if (scrollPosition > 250 && (fullHeight - (scrollPosition +
+                    windowHeight)) > 250) {
                 // Show the registration button when scrolled after the top 250px and before the bottom 250px
                 goTopBtn.style.display = "block";
             } else {
@@ -1647,12 +1907,15 @@
             }
 
             // Calculate minutes and seconds
-            const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+            const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (
+                1000 * 60));
             const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
 
             // Display the remaining time
-            timerElement.textContent = `${formatTime(minutes)}:${formatTime(seconds)}`;
-            timerElement2.textContent = `${formatTime(minutes)}:${formatTime(seconds)}`;
+            timerElement.textContent =
+                `${formatTime(minutes)}:${formatTime(seconds)}`;
+            timerElement2.textContent =
+                `${formatTime(minutes)}:${formatTime(seconds)}`;
         }
 
         // Function to format time (add leading zero if less than 10)
@@ -1673,21 +1936,23 @@
     </script>
 
     <script>
-
         $(document).ready(function() {
             var currentDate = new Date();
             var lastTuesday = new Date(currentDate);
 
             // If today is not Tuesday, find the last Tuesday
             if (currentDate.getDay() !== 2) { // 2 represents Tuesday
-                lastTuesday.setDate(lastTuesday.getDate() - (currentDate.getDay() + 5) % 7);
+                lastTuesday.setDate(lastTuesday.getDate() - (
+                    currentDate.getDay() + 5) % 7);
             }
 
             // Display next Tuesday's date
             var nextTuesday = new Date(lastTuesday);
-            nextTuesday.setDate(nextTuesday.getDate() + 7); // Add 7 days to get the next Tuesday
+            nextTuesday.setDate(nextTuesday.getDate() +
+            7); // Add 7 days to get the next Tuesday
 
-           var formattedNextTuesday = nextTuesday.getDate() + ' ' + monthNames[nextTuesday.getMonth()] + ' ' +
+            var formattedNextTuesday = nextTuesday.getDate() + ' ' +
+                monthNames[nextTuesday.getMonth()] + ' ' +
                 nextTuesday.getFullYear();
 
             // var formattedNextTuesday = "11 Jun 2024";
