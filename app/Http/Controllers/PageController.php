@@ -44,6 +44,11 @@ class PageController extends Controller
         return view('web.privacy');
     }
 
+    public function registration()
+    {
+        return view('web.ads.registration');
+    }
+
     /**
      * Whatsapp page
      */

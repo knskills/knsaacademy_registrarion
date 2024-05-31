@@ -37,6 +37,7 @@ Route::get('clear', function () {
 
 Route::view('/mailtest', 'web.resMail');
 Route::post('/audience', [AudienceController::class, 'store'])->name('audience.store');
+Route::post('/payment/response', [AudienceController::class, 'handlePaymentResponse'])->name('payment.response');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
@@ -94,6 +95,7 @@ Route::get('lang/change', [LangController::class, 'change'])->name('changeLang')
 Route::get('/terms', [PageController::class, 'terms'])->name('terms');
 Route::get('/privacy', [PageController::class, 'privacy'])->name('privacy');
 Route::get('/whatsapp', [PageController::class, 'whatsapp'])->name('whatsapp');
+Route::get('/registration', [PageController::class, 'registration'])->name('registration');
 // Route::get('/send-message', [PageController::class, 'sendMessage'])->name('sendMessage');
 
 // send mail

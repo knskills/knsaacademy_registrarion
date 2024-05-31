@@ -455,7 +455,7 @@
 
         #price-img {
             /* width: 100%;
-                                                                height: 100%; */
+                                                                    height: 100%; */
 
             max-width: 20%;
             max-height: 20%;
@@ -657,6 +657,13 @@
             </div>
         </div>
     </section>
+
+    {{-- <form action="{{ route('payment.response') }}" method="POST" style="width: 4px">
+        @csrf
+        <script src="https://checkout.razorpay.com/v1/payment-button.js"
+            data-payment_button_id="pl_OH3wRiZanNgVGR"
+            data-button_click="handlePaymentButtonClick" async></script>
+    </form> --}}
 
     <!-- Have Delivered Training -->
     <section class="about_section">
@@ -1721,6 +1728,7 @@
     </section>
     <!-- end Who should attend this session? section -->
 
+    <!-- Registration form -->
     <div class="modal fade" id="reg_model_t" tabindex="-1"
         aria-labelledby="reg_model" aria-hidden="true">
         <div class="modal-dialog">
@@ -1792,7 +1800,7 @@
             </div>
         </div>
     </div>
-    <!-- end Register Modal -->
+    <!-- end Registration form -->
 
     <!-- Fixed Footer -->
     <div class="register-btn" id="registerButton">
@@ -1863,9 +1871,9 @@
 
         window.addEventListener('scroll', function() {
             var windowHeight = window
-            .innerHeight; // Height of the browser window
+                .innerHeight; // Height of the browser window
             var fullHeight = document.body
-            .clientHeight; // Height of the entire page
+                .clientHeight; // Height of the entire page
             var scrollPosition = window.scrollY || window
                 .pageYOffset || document.documentElement
                 .scrollTop; // Current scroll position
@@ -1928,10 +1936,10 @@
 
         $('.payment').click(function() {
             // window.location.href = "{{ route('audience.store') }}";
-            // window.location.href = "https://rzp.io/l/o2gu6qrn";
+            window.location.href = "https://rzp.io/i/1thYxtdzp";
 
-            // open reg_model_t modal
-            $('#reg_model_t').modal('show');
+            // // open reg_model_t modal
+            // $('#reg_model_t').modal('show');
         });
     </script>
 
@@ -1949,7 +1957,7 @@
             // Display next Tuesday's date
             var nextTuesday = new Date(lastTuesday);
             nextTuesday.setDate(nextTuesday.getDate() +
-            7); // Add 7 days to get the next Tuesday
+                7); // Add 7 days to get the next Tuesday
 
             var formattedNextTuesday = nextTuesday.getDate() + ' ' +
                 monthNames[nextTuesday.getMonth()] + ' ' +
@@ -1964,5 +1972,12 @@
         var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
             "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
         ];
+    </script>
+
+    <script>
+        function handlePaymentButtonClick(response) {
+            // You can handle the response before form submission if needed
+            document.forms[0].submit();
+        }
     </script>
 @endsection
