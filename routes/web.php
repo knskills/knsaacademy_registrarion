@@ -94,7 +94,7 @@ Route::get('register', function () {
 Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
 Route::get('/terms', [PageController::class, 'terms'])->name('terms');
 Route::get('/privacy', [PageController::class, 'privacy'])->name('privacy');
-Route::get('/whatsapp', [PageController::class, 'whatsapp'])->name('whatsapp');
+Route::get('/join-whatsapp', [PageController::class, 'whatsapp'])->name('join-whatsapp');
 Route::get('/registration', [PageController::class, 'registration'])->name('registration');
 // Route::get('/send-message', [PageController::class, 'sendMessage'])->name('sendMessage');
 
