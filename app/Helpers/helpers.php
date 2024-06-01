@@ -306,7 +306,7 @@ function sendFBMessage($phone = null)
 
 function sendTempMessage($phone = null)
 {
-    // Log::info($phone);
+    Log::info($phone);
     $response = Http::withHeaders([
         'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
         'Content-Type' => 'application/json',
@@ -316,14 +316,14 @@ function sendTempMessage($phone = null)
         'to' => '+91' . $phone,
         'type' => 'template',
         'template' => [
-            'name' => 'welcome',
+            'name' => 'knsa_learn_nm',
             'language' => [
                 'code' => 'en'
             ]
         ]
     ]);
 
-    // Log::info($response->body());
+    Log::info($response->body());
 
     // return $response->body();
 }

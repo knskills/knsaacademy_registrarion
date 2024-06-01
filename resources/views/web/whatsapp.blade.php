@@ -14,14 +14,20 @@
         name="keywords">
 
     <!-- Favicons -->
-    <link href="{{ asset('assets/img/favicon_io/site.webmanifest') }}" rel="icon">
-    <link href="{{ asset('assets/img/favicon_io/apple-touch-icon.png') }}" rel="apple-touch-icon">
-    <link href="{{ asset('assets/img/favicon_io/favicon-32x32.png') }}" rel="icon" type="image/png" sizes="32x32">
-    <link href="{{ asset('assets/img/favicon_io/favicon-16x16.png') }}" rel="icon" type="image/png" sizes="16x16">
-    <link href="{{ asset('assets/img/favicon_io/android-chrome-512x512.png') }}" rel="icon" type="image/png"
-        sizes="512x512">
-    <link href="{{ asset('assets/img/favicon_io/android-chrome-192x192.png') }}" rel="icon" type="image/png"
-        sizes="192x192">
+    <link href="{{ asset('assets/img/favicon_io/site.webmanifest') }}"
+        rel="icon">
+    <link href="{{ asset('assets/img/favicon_io/apple-touch-icon.png') }}"
+        rel="apple-touch-icon">
+    <link href="{{ asset('assets/img/favicon_io/favicon-32x32.png') }}"
+        rel="icon" type="image/png" sizes="32x32">
+    <link href="{{ asset('assets/img/favicon_io/favicon-16x16.png') }}"
+        rel="icon" type="image/png" sizes="16x16">
+    <link
+        href="{{ asset('assets/img/favicon_io/android-chrome-512x512.png') }}"
+        rel="icon" type="image/png" sizes="512x512">
+    <link
+        href="{{ asset('assets/img/favicon_io/android-chrome-192x192.png') }}"
+        rel="icon" type="image/png" sizes="192x192">
 
     <!-- Google Fonts -->
     {{-- <link
@@ -29,15 +35,25 @@
         rel="stylesheet"> --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap"
+        rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+    <link
+        href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}"
+        rel="stylesheet">
+    <link
+        href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}"
+        rel="stylesheet">
+    <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}"
+        rel="stylesheet">
+    <link
+        href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}"
+        rel="stylesheet">
+    <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}"
+        rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
@@ -61,7 +77,8 @@
 <body>
     <!-- ======= Top Bar ======= -->
     <section id="topbar" class="d-flex align-items-center">
-        <div class="container d-flex justify-content-center justify-content-md-between">
+        <div
+            class="container d-flex justify-content-center justify-content-md-between">
             <div class="contact-info d-flex align-items-center">
                 <i class="bi bi-envelope d-flex align-items-center"><a
                         href="mailto:knsaacdemy@gmail.com">knsaacdemy@gmail.com</a></i>
@@ -95,13 +112,16 @@
                             <div class="card-body">
                                 <p>Dear Sir/Madam,</p>
                                 <p>
-                                    We are delighted to confirm your registration for the seminar. Your
-                                    seat has been successfully reserved, and we are excited to have you
+                                    We are delighted to confirm your
+                                    registration for the seminar. Your
+                                    seat has been successfully reserved,
+                                    and we are excited to have you
                                     join us for this enlightening event.
                                 </p>
                                 <p>
                                     <strong>
-                                        Please confirm your seat by clicking on the link below
+                                        Please confirm your seat by
+                                        clicking on the link below
                                     </strong>.
                                 </p>
 
@@ -115,7 +135,8 @@
                                     <div class="col-md-6">
                                         {{-- <a href="{{ url('/') }}" class="btn btn-primary float-end">Back</a> --}}
 
-                                        <a href="{{ route('billionaire') }}" class="btn btn-primary float-end">Back</a>
+                                        <a href="{{ route('billionaire') }}"
+                                            class="btn btn-primary float-end">Back</a>
                                     </div>
                                 </div>
                             </div>
@@ -137,8 +158,10 @@
                     </div> --}}
 
                     <div class="float-end">
-                        <a href="{{ route('terms') }}" class="ml-3">Term & Conditions</a>,
-                        <a href="{{ route('privacy') }}" class="ml-3">Privacy Policy</a>
+                        <a href="{{ route('terms') }}" class="ml-3">Term
+                            & Conditions</a>,
+                        <a href="{{ route('privacy') }}"
+                            class="ml-3">Privacy Policy</a>
                     </div>
                 </div>
             </div>
@@ -146,22 +169,43 @@
     </footer><!-- End Footer -->
 
     <div id="preloader"></div>
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+    <a href="#"
+        class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+    <script
+        src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}">
+    </script>
     <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
-    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/waypoints/noframework.waypoints.js') }}"></script>
-    <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
+    <script
+        src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}">
+    </script>
+    <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}">
+    </script>
+    <script
+        src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}">
+    </script>
+    <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}">
+    </script>
+    <script
+        src="{{ asset('assets/vendor/waypoints/noframework.waypoints.js') }}">
+    </script>
+    <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}">
+    </script>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            history.pushState(null, null, location.href);
+        });
+        window.onpopstate = function() {
+            history.pushState(null, null, location.href);
+        };
+    </script>
 
 </body>
 
