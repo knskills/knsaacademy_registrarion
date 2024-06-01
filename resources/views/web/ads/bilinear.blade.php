@@ -455,7 +455,7 @@
 
         #price-img {
             /* width: 100%;
-                                                                    height: 100%; */
+                                                                        height: 100%; */
 
             max-width: 20%;
             max-height: 20%;
@@ -563,41 +563,41 @@
         }
     </style>
 
-<style>
-    .award-img {
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
-        transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .award-img:hover {
-        transform: scale(1.05);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 12px 40px rgba(0, 0, 0, 0.19);
-    }
-
-    .service_section {
-        padding: 60px 0;
-    }
-
-    .heading_container h2 {
-        /* color: #FFD700; */
-        font-family: 'Noto Sans Devanagari', sans-serif;
-        text-align: center;
-        margin-bottom: 40px;
-    }
-
-    @media (max-width: 576px) {
+    <style>
         .award-img {
-            margin-bottom: 20px;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .mt-5 {
-            margin-top: 20px !important;
+        .award-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 12px 40px rgba(0, 0, 0, 0.19);
         }
-    }
-</style>
+
+        .service_section {
+            padding: 60px 0;
+        }
+
+        .heading_container h2 {
+            /* color: #FFD700; */
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 576px) {
+            .award-img {
+                margin-bottom: 20px;
+            }
+
+            .mt-5 {
+                margin-top: 20px !important;
+            }
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -801,13 +801,16 @@
             </div>
             <div class="row">
                 <div class="col-md-6 m-auto">
-                    <img src="{{ asset('assets/img/learning/awards/1.png') }}" alt="" class="img-fluid award-img">
+                    <img src="{{ asset('assets/img/learning/awards/1.png') }}"
+                        alt="" class="img-fluid award-img">
                 </div>
                 <div class="col-md-6 m-auto">
-                    <img src="{{ asset('assets/img/learning/awards/2.png') }}" alt="" class="img-fluid award-img">
+                    <img src="{{ asset('assets/img/learning/awards/2.png') }}"
+                        alt="" class="img-fluid award-img">
                 </div>
                 <div class="col-md-6 m-auto">
-                    <img src="{{ asset('assets/img/learning/awards/3.png') }}" alt="" class="img-fluid award-img mt-5">
+                    <img src="{{ asset('assets/img/learning/awards/3.png') }}"
+                        alt="" class="img-fluid award-img mt-5">
                 </div>
             </div>
         </div>
