@@ -455,7 +455,7 @@
 
         #price-img {
             /* width: 100%;
-                                                                    height: 100%; */
+                                                                        height: 100%; */
 
             max-width: 20%;
             max-height: 20%;
@@ -506,6 +506,18 @@
         .col-md-6.p-4 img:hover {
             transform: scale(1.05);
         }
+
+        .image-effect {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 10px;
+            /* Optional: adds rounded corners */
+        }
+
+        .image-effect:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 12px 40px rgba(0, 0, 0, 0.19);
+        }
     </style>
 @endsection
 
@@ -544,7 +556,7 @@
                     </div> --}}
 
                     <img src="{{ asset('assets/img/learning/5.jpeg') }}"
-                        alt="Learn Marketing" class="img-fluid">
+                        alt="Learn Marketing" class="img-fluid image-effect">
                 </div>
                 <div class="col-md-6 m-auto">
                     <div class="row">
