@@ -276,8 +276,83 @@
             font-weight: bold;
         }
 
+        /* Styles for the fixed button */
+        .register-btn {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #0c0b0b;
+            color: white;
+            padding: 15px 0;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        /* Styles for the registration button */
+        .reg_btn {
+            background-color: #f2b200;
+            color: white;
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(168, 168, 168, 0.336);
+            transition: all 0.3s ease;
+        }
+
+        .reg_btn:hover {
+            background-color: #e0a100;
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.473);
+        }
+
+        #end {
+            padding-top: 40px;
+            padding-bottom: 30px;
+        }
+
+        .m-layout {
+            padding-top: 40px;
+            padding-bottom: 50px;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .enst {
+            font-family: 'Merriweather', serif;
+        }
+
+        #price-img {
+            /* width: 100%;
+                                                                            height: 100%; */
+
+            max-width: 20%;
+            max-height: 20%;
+        }
+
+        /* CSS for styling b_price on a dark background */
+        #b_price {
+            color: #ffffff;
+            /* Set text color to white or any contrasting color */
+            background-color: #333333;
+            /* Set a dark background color */
+            padding: 4px 8px;
+            /* Add padding for better visibility */
+            border-radius: 4px;
+            /* Optionally, add border-radius for rounded corners */
+        }
+
         /* Media query for smaller screens */
         @media (max-width: 768px) {
+            #repre {
+                display: none;
+            }
+
             .small-text {
                 font-size: 12px;
             }
@@ -326,10 +401,6 @@
             #cs1 {
                 margin-top: -14px;
                 margin-bottom: -2px;
-            }
-
-            .register-btn {
-                height: 22%;
             }
 
             #end {
@@ -390,9 +461,9 @@
                 margin-bottom: -2px;
             }
 
-            .register-btn {
+            /* .register-btn {
                 height: 22%;
-            }
+            } */
 
 
             #end {
@@ -400,86 +471,9 @@
                 padding-bottom: 40%
             }
         }
-
-
-        /* Styles for the fixed button */
-        .register-btn {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #0c0b0b;
-            color: white;
-            padding: 15px 0;
-            border: none;
-            border-radius: 0;
-            cursor: pointer;
-            z-index: 999;
-        }
-
-        /* Styles for the registration button */
-        .reg_btn {
-            background-color: #f2b200;
-            color: white;
-            padding: 15px 30px;
-            font-size: 20px;
-            border: none;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(168, 168, 168, 0.336);
-            transition: all 0.3s ease;
-        }
-
-        .reg_btn:hover {
-            background-color: #e0a100;
-            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.473);
-        }
-
-        #end {
-            padding-top: 40px;
-            padding-bottom: 30px;
-        }
-
-        .m-layout {
-            padding-top: 40px;
-            padding-bottom: 50px;
-        }
-
-        li {
-            list-style: none;
-        }
-
-        .enst {
-            font-family: 'Merriweather', serif;
-        }
-
-        #price-img {
-            /* width: 100%;
-                                                                        height: 100%; */
-
-            max-width: 20%;
-            max-height: 20%;
-        }
-
-        /* hide if small size screen  id repre  */
-        @media (max-width: 768px) {
-            #repre {
-                display: none;
-            }
-        }
-
-        /* CSS for styling b_price on a dark background */
-        #b_price {
-            color: #ffffff;
-            /* Set text color to white or any contrasting color */
-            background-color: #333333;
-            /* Set a dark background color */
-            padding: 4px 8px;
-            /* Add padding for better visibility */
-            border-radius: 4px;
-            /* Optionally, add border-radius for rounded corners */
-        }
     </style>
+
+
     <style>
         .col-md-6.p-4 {
             background-color: #333;
@@ -558,6 +552,7 @@
                     <img src="{{ asset('assets/img/learning/5.jpeg') }}"
                         alt="Learn Marketing" class="img-fluid image-effect">
                 </div>
+
                 <div class="col-md-6 m-auto">
                     <div class="row">
                         <div class="col-6">
@@ -580,7 +575,6 @@
                             </div>
                         </div>
 
-                        <!-- Repeat the structure for the next columns -->
                         <div class="col-6">
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
@@ -600,6 +594,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-6">
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
@@ -623,6 +618,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-6">
                             <div class="h-black m-1">
                                 <div class="d-flex align-items-center">
@@ -636,14 +632,15 @@
                                     <div class="ml-3">
                                         <span
                                             class="small-text">Time</span><br>
-                                        <span class="big-bold-text">11Am to 02PM</span>
+                                        <span class="big-bold-text">11Am to
+                                            02PM</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row text-center mt-5">
-                        <div class="col-12 text-center mt-3 p-4">
+                    <div class="row text-center mt-3">
+                        <div class="col-12 text-center p-4">
 
                             <button type="button"
                                 class="save-my-seat-now-button payment">
@@ -1058,7 +1055,8 @@
                                     <div class="ml-3">
                                         <span
                                             class="small-text">Time</span><br>
-                                        <span class="big-bold-text">11Am to 02PM</span>
+                                        <span class="big-bold-text">11Am to
+                                            02PM</span>
                                     </div>
                                 </div>
                             </div>
@@ -1946,7 +1944,9 @@
 
         $('.payment').click(function() {
             // window.location.href = "{{ route('audience.store') }}";
-            window.location.href = "https://rzp.io/l/knsaacademy";
+            // window.location.href = "https://rzp.io/l/knsaacademy";
+            window.location.href = "https://payments.cashfree.com/forms/knsaacademy";
+
 
             // // open reg_model_t modal
             // $('#reg_model_t').modal('show');

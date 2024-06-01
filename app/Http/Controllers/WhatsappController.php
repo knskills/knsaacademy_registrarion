@@ -575,18 +575,13 @@ class WhatsappController extends Controller
 
             // Check if the request contains an image
             if ($request->hasFile('media_image')) {
-                // Log::info('image file');
-                // // Handle image upload and URL generation
-                // $image = $request->file('media_image');
-                // $imageName = time() . '_' . $image->getClientOriginalName();
-                // $path = $image->storeAs('public/whatsapp/images', $imageName);
-                // $imageUrl = Storage::url($path);
-
-
                 $image = $request->file('media_image');
+                $extension = $image->getClientOriginalExtension();
                 $imageName = time() . '_' . $image->getClientOriginalName();
                 $image_path = 'whatsapp/images/' . $imageName; // Use public_path
                 $image->move(public_path('whatsapp/images/'), $imageName);
+
+                // Log::info($extension);
 
                 // Generate URL after moving the file
                 $imageUrl = asset('whatsapp/images/' . $imageName);

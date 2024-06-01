@@ -443,7 +443,7 @@
                                                     class="upload-box"
                                                     placeholder="Upload File"
                                                     aria-label="Upload File"
-                                                    accept="image/png, image/jpeg, image/jpg, image/gif"
+                                                    {{-- accept="image/png, image/jpeg, image/jpg, image/gif" --}}
                                                     style="display: none;">
 
                                                 <button type="submit">
@@ -464,7 +464,7 @@
                                                         </span>
                                                     </div>
 
-                                                    {{-- <select
+                                                    <select
                                                         class="form-control"
                                                         id="exampleFormControlSelect1">
                                                         <option>Select
@@ -496,7 +496,7 @@
                                                                     fill="#7D7D7D" />
                                                             </svg>
                                                             Appoinment</a>
-                                                    </div> --}}
+                                                    </div>
                                                 </div>
                                             </div>
 
