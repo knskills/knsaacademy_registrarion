@@ -389,9 +389,10 @@
 
                                                                         {{-- {{ $message->whatsapp_message }} --}}
 
-                                                                        <img src="{{ asset($message->image) }}"
-                                                                            alt="{{ $message->image }}"
-                                                                            style="max-width: 250px;">
+                                                                        <a href="{{ asset($message->image) }}" download>
+                                                                            <img src="{{ asset($message->image) }}" alt="{{ $message->image }}" style="max-width: 250px;">
+                                                                        </a>
+
                                                                         <br>
                                                                         {!! nl2br(e($message->whatsapp_message)) !!}
                                                                     </p>
@@ -402,9 +403,10 @@
                                                                 <li class="repaly"
                                                                     id="{{ $last }}">
                                                                     <p>
-                                                                        <img src="{{ asset($message->image) }}"
-                                                                            alt="{{ $message->image }}"
-                                                                            style="max-width: 250px;">
+                                                                        <a href="{{ asset($message->image) }}" download>
+                                                                            <img src="{{ asset($message->image) }}" alt="{{ $message->image }}" style="max-width: 250px;">
+                                                                        </a>
+
 
                                                                         <br>
                                                                         {{ $message->whatsapp_message }}
