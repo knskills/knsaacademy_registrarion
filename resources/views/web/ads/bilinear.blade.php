@@ -707,7 +707,7 @@
                                     <div class="ml-3">
                                         <span
                                             class="small-text">Time</span><br>
-                                        <span class="big-bold-text">11Am to
+                                        <span class="big-bold-text">11AM to
                                             02PM</span>
                                     </div>
                                 </div>
@@ -797,7 +797,7 @@
     <section class="service_section m-layout">
         <div class="container py-5 text-white">
             <div class="heading_container heading_center mb-3">
-                <h2>गौरवपूर्ण स्मरणीय पल</h2>
+                <h2>Our Achievements</h2>
             </div>
             <div class="row">
                 <div class="col-md-6 m-auto">
@@ -1157,7 +1157,7 @@
                                     <div class="ml-3">
                                         <span
                                             class="small-text">Time</span><br>
-                                        <span class="big-bold-text">11Am to
+                                        <span class="big-bold-text">11AM to
                                             02PM</span>
                                     </div>
                                 </div>
