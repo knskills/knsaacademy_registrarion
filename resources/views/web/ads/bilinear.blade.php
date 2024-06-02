@@ -749,9 +749,8 @@
                         <div class="heading_container">
                             <h2 class="text-white"
                                 style="font-family: 'Noto Sans Devanagari', sans-serif; text-align: center; padding: 20px 0;">
-                                <span style="color: #FFD700;">16+ YEARS</span>
-                                EXPERIENCE OUR ACHIEVEMENT & 16 YEARS OF
-                                JOURNEY
+                                <span style="color: #FFD700;">16 Years</span>
+                                 of Journey & Achievements
                             </h2>
                         </div>
                     </div>
@@ -797,7 +796,7 @@
     <section class="service_section m-layout">
         <div class="container py-5 text-white">
             <div class="heading_container heading_center mb-3">
-                <h2>Our Achievements</h2>
+                <h2>Proud Moments</h2>
             </div>
             <div class="row">
                 <div class="col-md-6 m-auto">
@@ -1260,22 +1259,19 @@
                 <div class="col-lg-8 d-flex flex-column justify-content-center text-white text-center"
                     data-aos="fade-up" data-aos-delay="200">
                     <div class="section-title">
-                        <h3><span>Who Is</span> Kamal Narayan Sahu</h3>
+                        <h3> Who Is Kamal Narayan Sahu</h3>
                     </div>
                     <ul class="text-left">
-                        <li class="mt-2">1) His name is Kamal Narayan Sahu
-                            and he is famous as the youngest CMD of
-                            network marketing industry.</li>
-                        <li class="mt-2">2) He is 31 years young, and always
-                            ready to teach and educate people about the
-                            top 3 skills of success.</li>
-                        <li class="mt-2">3) They have been helping people
-                            look smarter, stay healthy and achieve
-                            financial freedom for the last 8 years</li>
-                        <li class="mt-2">4) His Achievements – He is the
-                            founder of YTM India (a direct selling company).
-                            At the young age of 23, he achieved a turnover of
-                            Rs 100 crore in the financial year 2022-2023.
+                        <li class="mt-2">1) Youngest CMD in the network marketing industry at 32 years old.</li>
+                        <li class="mt-2">2) 16 years of practical experience.</li>
+                        <li class="mt-2">3) Successfully led a network company to a 100 crore turnover.</li>
+                        <li class="mt-2">4) Author of "Beginner to Billionaire in Network Marketing.
+                        </li>
+                        <li class="mt-2">5) Turned 14 leaders into crorepatis in just 3 years.
+                        </li>
+                        <li class="mt-2">6) Recipient of the Visionary Leader of the Year award.
+                        </li>
+                        <li class="mt-2">7) Featured in a chat with Surender Vats.
                         </li>
                     </ul>
                 </div>
