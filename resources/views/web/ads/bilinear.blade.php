@@ -2043,8 +2043,7 @@
         $('.payment').click(function() {
             // window.location.href = "{{ route('audience.store') }}";
             // window.location.href = "https://rzp.io/l/knsaacademy";
-            window.location.href =
-                "https://payments.cashfree.com/forms/knsacademy";
+            window.location.href = "https://rzp.io/l/knsaacademy";
 
 
             // // open reg_model_t modal
