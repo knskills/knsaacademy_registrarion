@@ -100,7 +100,7 @@ class TemplateController extends Controller
                         'header' => $res['response'][0]['components'][0] ?? null,
                         'body' => $res['response'][0]['components'][1] ?? null,
                         'buttons' => $res['response'][0]['components'][3] ?? null,
-                        'language' => $lang?? null,
+                        'language' => $lang ?? null,
                         'status' => $res['response'][0]['status'] ?? null,
                         'category' => $res['response'][0]['category'] ?? null,
                         'temp_id' => $res['response'][0]['id'] ?? null,
@@ -215,6 +215,13 @@ class TemplateController extends Controller
     {
         try {
             $template = MessageTemplate::findOrFail($id);
+
+            Log::info($template->type);
+
+            if ($template->type == 'whatsapp') {
+                $temp = WhtasappTemplate::where('name', $template->name)->first();
+                if ($temp) $temp->delete();
+            }
 
             // check if media_file is not empty then delete it from storage
             if (!empty($template->media_file)) {

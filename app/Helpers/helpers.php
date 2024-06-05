@@ -443,7 +443,7 @@ function getMessageTemplate($templateName = null)
             }
         }
 
-        // Log::info(json_encode($components));
+        Log::info(json_encode($components));
         // Log::info(json_encode($body_params));
         // Log::info(json_encode($header_img));
 

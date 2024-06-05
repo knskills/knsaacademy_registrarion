@@ -172,21 +172,64 @@ class SendScheduledMessages implements ShouldQueue
     {
         $template = MessageTemplate::find($templateId);
 
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
-            'Content-Type' => 'application/json',
-        ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
-            'messaging_product' => 'whatsapp',
-            "recipient_type" => "individual",
-            'to' => '+91' . $phone,
-            'type' => 'template',
-            'template' => [
-                'name' => $template->name,
-                'language' => ['code' => $template->lang_code]
-            ]
-        ]);
+        // $response = Http::withHeaders([
+        //     'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
+        //     'Content-Type' => 'application/json',
+        // ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
+        //     'messaging_product' => 'whatsapp',
+        //     "recipient_type" => "individual",
+        //     'to' => '+91' . $phone,
+        //     'type' => 'template',
+        //     'template' => [
+        //         'name' => $template->name,
+        //         'language' => ['code' => $template->lang_code]
+        //     ]
+        // ]);
+
+        $url = 'https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages';
+        $accessToken = getenv("FB_METADATA_TOKEN");
+        $phoneNumber = '+91' . $phone;
+        $templateName = 'purchase_receipt_1';
+        $languageCode = 'en_US';
+        $imageUrl = 'https://registration.knsacademy.in/assets/img/learning/5.jpeg';
+        // $textString = MessageTemplate::where('name', $templateName)->first()->message;
+        $textString = "rohit";
+        $currencyValue = 'VALUE';
+        $currencyCode = 'USD';
+        $amount = 200;
+        $fallbackDate = 'MONTH DAY, YEAR';
+
+        // Log::info($textString);
+
+        $response = Http::withToken($accessToken)
+            ->post($url, [
+                'messaging_product' => 'whatsapp',
+                'recipient_type' => 'individual',
+                'to' => $phoneNumber,
+                'type' => 'template',
+                'template' => [
+                    'name' => $templateName,
+                    'language' => [
+                        'code' => $languageCode,
+                    ],
+                    'components' => [
+                        [
+                            'type' => 'header',
+                            'parameters' => [
+                                [
+                                    'type' => 'image',
+                                    'image' => [
+                                        'link' => $imageUrl,
+                                    ],
+                                ],
+                            ],
+                        ]
+                    ],
+                ],
+            ]);
 
         $data = json_decode($response, true);
+        Log::info($data);
 
         if (isset($data['messages'])) {
             $this->updateOrCreateWhatsAppMessages($data, $template);
