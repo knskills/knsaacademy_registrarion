@@ -35,7 +35,7 @@ class AudienceController extends Controller
             //     $audianceQuery->orderBy('id', 'desc');
             // }
 
-            $audianceQuery->where('event_name', 'Learn Marketing');
+            $audianceQuery->where('event_name', 'knsa-11June');
 
             $audiences = $audianceQuery->paginate(10);
 
