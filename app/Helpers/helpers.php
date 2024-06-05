@@ -306,110 +306,159 @@ function sendFBMessage($phone = null)
 
 function sendTempMessage($phone = null)
 {
-    // Log::info($phone);
-    $response = Http::withHeaders([
-        'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
-        'Content-Type' => 'application/json',
-    ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
-        'messaging_product' => 'whatsapp',
-        "recipient_type" => "individual",
-        'to' => '+91' . $phone,
-        'type' => 'template',
-        'template' => [
-            'name' => 'learn_nt_m',
-            'language' => [
-                'code' => 'en'
-            ]
-        ]
-    ]);
+    // // Log::info($phone);
+    // $response = Http::withHeaders([
+    //     'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
+    //     'Content-Type' => 'application/json',
+    // ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
+    //     'messaging_product' => 'whatsapp',
+    //     "recipient_type" => "individual",
+    //     'to' => '+91' . $phone,
+    //     'type' => 'template',
+    //     'template' => [
+    //         'name' => 'learn_nt_m',
+    //         'language' => [
+    //             'code' => 'en'
+    //         ]
+    //     ]
+    // ]);
 
-    // Log::info($response->body());
+    // // Log::info($response->body());
 
-    // return $response->body();
+    // // return $response->body();
+
+
+    $url = 'https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages';
+    $accessToken = getenv("FB_METADATA_TOKEN");
+    $phoneNumber = '+91' . $phone;
+    $templateName = 'purchase_receipt_1';
+    $languageCode = 'en_US';
+    $imageUrl = 'https://registration.knsacademy.in/assets/img/learning/5.jpeg';
+    // $textString = MessageTemplate::where('name', $templateName)->first()->message;
+    $textString = "rohit";
+    $currencyValue = 'VALUE';
+    $currencyCode = 'USD';
+    $amount = 200;
+    $fallbackDate = 'MONTH DAY, YEAR';
+
+    // Log::info($textString);
+
+    $response = Http::withToken($accessToken)
+        ->post($url, [
+            'messaging_product' => 'whatsapp',
+            'recipient_type' => 'individual',
+            'to' => $phoneNumber,
+            'type' => 'template',
+            'template' => [
+                'name' => $templateName,
+                'language' => [
+                    'code' => $languageCode,
+                ],
+                'components' => [
+                    [
+                        'type' => 'header',
+                        'parameters' => [
+                            [
+                                'type' => 'image',
+                                'image' => [
+                                    'link' => $imageUrl,
+                                ],
+                            ],
+                        ],
+                    ]
+                ],
+            ],
+        ]);
+    Log::info($response->body());
+
+    if ($response->successful()) {
+        return response()->json(['message' => 'Message sent successfully'], 200);
+    } else {
+        return response()->json(['error' => 'Failed to send message', 'details' => $response->json()], $response->status());
+    }
 }
 
 
- function getMessageTemplate($templateName = null)
-    {
-        // Reference: https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates
+function getMessageTemplate($templateName = null)
+{
+    // Reference: https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates
 
-        $version = getenv("FB_API_VERSION");
-        $wabaId = getenv("FB_ACCOUNT_ID");
-        $token = getenv("FB_METADATA_TOKEN");
+    $version = getenv("FB_API_VERSION");
+    $wabaId = getenv("FB_ACCOUNT_ID");
+    $token = getenv("FB_METADATA_TOKEN");
 
-        $url = "https://graph.facebook.com/$version/$wabaId/message_templates?name=$templateName";
+    $url = "https://graph.facebook.com/$version/$wabaId/message_templates?name=$templateName";
 
-        $response = Http::withToken($token)->get($url);
+    $response = Http::withToken($token)->get($url);
 
-        if ($response->successful()) {
-            $data = $response->json();
+    if ($response->successful()) {
+        $data = $response->json();
 
-            // Log::info($data['data']);
+        // Log::info($data['data']);
 
 
-            $components = [];
-            $body_params = [];
-            $header_img = null;
-            $language = null;
-            $body_text = null;
-            $response = $data['data'] ?? null;
+        $components = [];
+        $body_params = [];
+        $header_img = null;
+        $language = null;
+        $body_text = null;
+        $response = $data['data'] ?? null;
 
-            foreach ($data['data'] as $item) {
-                if ($item['name'] == $templateName && isset($item['components'])) {
-                    foreach ($item['components'] as $component) {
-                        $type = strtolower($component['type']);
+        foreach ($data['data'] as $item) {
+            if ($item['name'] == $templateName && isset($item['components'])) {
+                foreach ($item['components'] as $component) {
+                    $type = strtolower($component['type']);
 
-                        if ($type === "header") {
-                            $header = [
-                                'type' => $type,
-                                'parameters' => [
-                                    'type' => strtolower($component['format']),
-                                    strtolower($component['format']) => [
-                                        'link' => $component['example']['header_handle'][0]
-                                    ]
+                    if ($type === "header") {
+                        $header = [
+                            'type' => $type,
+                            'parameters' => [
+                                'type' => strtolower($component['format']),
+                                strtolower($component['format']) => [
+                                    'link' => $component['example']['header_handle'][0]
                                 ]
+                            ]
+                        ];
+                        $components[] = $header;
+                        $header_img = $component['example']['header_handle'][0] ?? null;
+                    } else if ($type === "body") {
+                        if (isset($component['text'])) {
+                            // $component['text'] = html_entity_decode($component['text'], ENT_QUOTES, 'UTF-8');
+                            $body = [
+                                'type' => $type,
+                                'parameters' => array_map(function ($param) {
+                                    return ['type' => 'text', 'text' => $param];
+                                }, $component['example']['body_text'][0] ?? [])
                             ];
-                            $components[] = $header;
-                            $header_img = $component['example']['header_handle'][0] ?? null;
-                        } else if ($type === "body") {
-                            if (isset($component['text'])) {
-                                // $component['text'] = html_entity_decode($component['text'], ENT_QUOTES, 'UTF-8');
-                                $body = [
-                                    'type' => $type,
-                                    'parameters' => array_map(function ($param) {
-                                        return ['type' => 'text', 'text' => $param];
-                                    }, $component['example']['body_text'][0] ?? [])
-                                ];
-                                $components = !empty($body['parameters']) ? $body : null;
-                                $body_params = $component['example']['body_text'][0] ?? null;
-                                $body_text = $component['text'] ?? null;
-
-                            }
+                            $components = !empty($body['parameters']) ? $body : null;
+                            $body_params = $component['example']['body_text'][0] ?? null;
+                            $body_text = $component['text'] ?? null;
                         }
                     }
                 }
-
-                if ($item['name'] == $templateName && isset($item['language'])) {
-                    $language = $item['language'];
-                }
             }
 
-            // Log::info(json_encode($components));
-            // Log::info(json_encode($body_params));
-            // Log::info(json_encode($header_img));
-
-            return [
-                'components' => $components,
-                'language' => $language ?? null,
-                'body_params' => $body_params,
-                'header_img' => $header_img,
-                'response' => $response,
-                'body_text' => $body_text,
-            ];
-        } else {
-            return response()->json(['error' => 'Failed to fetch message templates'], $response->status());
+            if ($item['name'] == $templateName && isset($item['language'])) {
+                $language = $item['language'];
+            }
         }
+
+        // Log::info(json_encode($components));
+        // Log::info(json_encode($body_params));
+        // Log::info(json_encode($header_img));
+
+        return [
+            'components' => $components,
+            'language' => $language ?? null,
+            'body_params' => $body_params,
+            'header_img' => $header_img,
+            'response' => $response,
+            'body_text' => $body_text,
+        ];
+    } else {
+        return response()->json(['error' => 'Failed to fetch message templates'], $response->status());
     }
+}
 
 
 
