@@ -216,14 +216,15 @@ class TemplateController extends Controller
         try {
             $template = MessageTemplate::findOrFail($id);
 
-            Log::info($template->type);
-
             if ($template->type == 'whatsapp') {
                 $temp = WhtasappTemplate::where('name', $template->name)->first();
                 if ($temp) $temp->delete();
             }
 
-            // check if media_file is not empty then delete it from storage
+            // Delete dependent rows in whatsapp_messages table
+            \DB::table('whatsapp_messages')->where('template_id', $template->id)->delete();
+
+            // Check if media_file is not empty then delete it from storage
             if (!empty($template->media_file)) {
                 // Storage::delete($template->media_file);
 
@@ -237,6 +238,7 @@ class TemplateController extends Controller
             return redirect()->back()->with('error', 'Something went wrong!');
         }
     }
+
 
     //=========================================================================================//
     //=========================================Custom Methods==================================//
