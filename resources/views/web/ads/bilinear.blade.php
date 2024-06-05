@@ -1361,7 +1361,7 @@
             <div class="heading_container heading_center mb-3">
                 <h2>
                     Get Access to <span id="b_price"
-                        class="hindi">₹10,000/</span>- Bonus
+                        class="hindi">₹1999/</span>- Bonus
                 </h2>
             </div>
             <div class="row">
@@ -1398,7 +1398,7 @@
                         </button>
 
                         <p class="text-white mt-3" id="rp">
-                            Register today to get a bonus of ₹10,000/-
+                            Register today to get a bonus of ₹1999/-
                         </p>
 
                         {{-- <p class="mt-3 text-white">Offer Ends in <span id="timer2"
