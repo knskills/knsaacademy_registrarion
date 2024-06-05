@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\MessageTemplate;
 use Illuminate\Support\Facades\Storage;
 
+use App\Models\WhtasappTemplate;
+
 class TemplateController extends Controller
 {
     /**
@@ -62,56 +64,58 @@ class TemplateController extends Controller
                 $path = 'template/img/' . $imageName;
                 $image_path = public_path('template/img/' . $imageName);
                 $image->move(public_path('template/img/'), $imageName);
-
-
-
-                // $imageBase64 = base64_encode(file_get_contents($image_path));
-
-                // Log::info($imageBase64);
-                // $imageBase64 = "data:image/png;base64," . base64_encode(file_get_contents($image_path));
-
-                // // $imagePath = public_path("images/20220405140258.jpg");
-                // // $image = "data:image/png;base64," . base64_encode(file_get_contents($imagePath));
-
-                // //dd($imageBase64);
-                // echo '<img src="' . $imageBase64 . '" alt="Base64 Image">';
-
-                // // dd imageBase64 an image format
-
-
-                // // store base64 image to storage
-                // // $file_name = storeBase64Image($imageBase64, $request->file('media_file')->getClientOriginalName());
-                // // $finle_image = $file_name;
-
             }
 
             $whtsp_msg = [];
             $msg = $request->message;
             $lang = '';
 
-            if($request->type == 'whatsapp'){
+            if ($request->type == 'whatsapp') {
                 $res = getMessageTemplate($request->name);
-                $lang = $res['lang_code'];
-                $msg = $res['response_data'][0]['text'];
-                $whtsp_msg = $res['response_data'];
+                $lang = $res['language'];
+                $msg = $res['body_text'];
+                $whtsp_msg = $res['body_text'];
 
-                // Log::info($lang );
+                // Log::info($res);
                 // Log::info($msg);
                 // Log::info($whtsp_msg);
 
-                if($res == null){
+                $temp_name = $res['response'][0]['name'];
+                $temp_id = $res['response'][0]['id'];
+                $temp_name = $res['response'][0]['name'];
+                $components = $res['components'];
+                $body_params = $res['body_params'];
+                $header_img = $res['header_img'];
+                $response = $res['response'];
+
+                if ($res == null) {
                     return redirect()->back()->with('error', 'Template not found!');
                 }
+
+                WhtasappTemplate::updateOrCreate(
+                    ['name' => $temp_name],
+                    [
+                        'response' => $response ?? null,
+                        'get_response' => $components ?? null,
+                        'header' => $res['response'][0]['components'][0] ?? null,
+                        'body' => $res['response'][0]['components'][1] ?? null,
+                        'buttons' => $res['response'][0]['components'][3] ?? null,
+                        'language' => $lang?? null,
+                        'status' => $res['response'][0]['status'] ?? null,
+                        'category' => $res['response'][0]['category'] ?? null,
+                        'temp_id' => $res['response'][0]['id'] ?? null,
+                    ]
+                );
             }
 
             $template = MessageTemplate::create([
                 'template_id' => $request->input('template_id', ''),
                 'name' => $request->input('name', ''),
                 'subject' => $request->input('subject', ''),
-                'message' => $msg,
+                'message' => $msg ?? null,
                 // 'whtsp_msg' => json_encode($whtsp_msg),
-                'whtsp_msg' => $whtsp_msg,
-                'lang_code' => $lang,
+                'whtsp_msg' => $whtsp_msg ?? null,
+                'lang_code' => $lang ?? null,
                 'media_file' => $path ?? '',
                 'type' => $request->input('type', ''),
                 'status' => $request->input('status', ''),

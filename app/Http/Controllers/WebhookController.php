@@ -119,8 +119,9 @@ class WebhookController extends Controller
      */
     private function getImage($message = null)
     {
-        Log::info('Getting image from URL');
-        Log::info($message);
+        // Log::info('Getting image from URL');
+        // Log::info(env($message));
+
         $attributes['whatsapp_message'] = $message['image']['caption'] ?? null; // Clear text message field for image type
 
         // Determine file extension based on MIME type
@@ -131,7 +132,7 @@ class WebhookController extends Controller
 
         // Use netflie/whatsapp-cloud-api to download the image
         $whatsappCloudApi = new WhatsAppCloudApi([
-            'from_phone_number_id' => env('WHATSAPP_FROM_PHONE_NUMBER_ID'),
+            'from_phone_number_id' => env('FB_PHONE_NUMBER'),
             'access_token' => env('FB_METADATA_TOKEN'),
         ]);
 

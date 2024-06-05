@@ -111,3 +111,6 @@ Route::get('/', function () {
 // webhook routes
 Route::match(['get', 'post'], '/webhook', [WebhookController::class, 'setupWebhook']);
 // Route::match(['get', 'post'], '/webhook', [WhatsappController::class, 'setupWebhook']);
+
+// Mark as a read
+Route::get('/whatsapp/send-temp-msg', [WhatsappController::class, 'sendMetaMessage'])->name('whatsapp.send-temp-msg');

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\WhatsappApi;
 use App\Models\WhatsappMessage;
 use App\Models\MessageTemplate;
-// use App\Models\WhatsappMessageReply;
+use App\Models\WhtasappTemplate;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -15,9 +15,13 @@ use Illuminate\Support\Facades\Storage;
 use Netflie\WhatsAppCloudApi\WebHook;
 use GuzzleHttp\Client;
 
+use Netflie\WhatsAppCloudApi\WhatsAppCloudApi;
+use Netflie\WhatsAppCloudApi\Message\Template\Component;
+// use Netflie\WhatsAppCloudApi\Message\Component;
+// use Netflie\WhatsAppCloudApi\Message\Template;
+
 class WhatsappController extends Controller
 {
-
     // create whatsapp api
     public function create(Request $request)
     {
@@ -264,62 +268,82 @@ class WhatsappController extends Controller
     //=========================== Templates ============================
     public function getMessageTemplate($templateName = null)
     {
-        // Ref - https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates
+        // Reference: https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates
 
-        // Log::info('Fetching message templates...');
-        Log::info('Template name: ' . $templateName);
-        $version = 'v19.0'; // Replace with your desired API version
-        $wabaId = getenv("FB_ACCOUNT_ID"); // Replace with your WhatsApp Business Account ID
-        $token = getenv("FB_METADATA_TOKEN"); // Replace with your authorization token
+        $version = getenv("FB_API_VERSION");
+        $wabaId = getenv("FB_ACCOUNT_ID");
+        $token = getenv("FB_METADATA_TOKEN");
 
-        // Define the URL
-        $url = 'https://graph.facebook.com/' . $version . '/' . $wabaId . '/message_templates?name=' . $templateName;
+        $url = "https://graph.facebook.com/$version/$wabaId/message_templates?name=$templateName";
 
-        // Make the HTTP request
         $response = Http::withToken($token)->get($url);
 
-        // Log::info($response);
-
-        // Check the response status
         if ($response->successful()) {
-
-            // Get the response body
             $data = $response->json();
-            // Log::info($data);
 
-            $response_data = [];
-            $lag = '';
+            Log::info($data['data']);
 
-            foreach ($data['data'] as &$item) {
+
+            $components = [];
+            $body_params = [];
+            $header_img = null;
+            $language = null;
+            $response = $data['data'] ?? null;
+
+            foreach ($data['data'] as $item) {
                 if ($item['name'] == $templateName && isset($item['components'])) {
-                    // Log::info($item['name']);
-                    foreach ($item['components'] as &$component) {
-                        if (isset($component['text'])) {
-                            $component['text'] = html_entity_decode($component['text'], ENT_QUOTES, 'UTF-8');
-                            // Log::info($component);
+                    foreach ($item['components'] as $component) {
+                        $type = strtolower($component['type']);
 
-                            // push component data into response_data array
-                            array_push($response_data, $component);
+                        if ($type === "header") {
+                            $header = [
+                                'type' => $type,
+                                'parameters' => [
+                                    'type' => strtolower($component['format']),
+                                    strtolower($component['format']) => [
+                                        'link' => $component['example']['header_handle'][0]
+                                    ]
+                                ]
+                            ];
+                            $components[] = $header;
+                            $header_img = $component['example']['header_handle'][0] ?? null;
+                        } else if ($type === "body") {
+                            if (isset($component['text'])) {
+                                $component['text'] = html_entity_decode($component['text'], ENT_QUOTES, 'UTF-8');
+                                $body = [
+                                    'type' => $type,
+                                    'parameters' => array_map(function ($param) {
+                                        return ['type' => 'text', 'text' => $param];
+                                    }, $component['example']['body_text'][0] ?? [])
+                                ];
+                                $components[] = !empty($body['parameters']) ? $body : null;
+                                $body_params = $component['example']['body_text'][0] ?? null;
+                            }
                         }
                     }
                 }
 
                 if ($item['name'] == $templateName && isset($item['language'])) {
-                    // push in the template
-                    $lag =  $item['language'];
+                    $language = $item['language'];
                 }
             }
 
-            // Log::info($response_data);
-            // Log::info($lag);
+            Log::info(json_encode($components));
+            // Log::info(json_encode($body_params));
+            // Log::info(json_encode($header_img));
 
-            // Return or process the data as needed
-            return response()->json($data);
+            return response()->json([
+                'components' => $components,
+                'language' => $language ?? null,
+                'body_params' => $body_params,
+                'header_img' => $header_img,
+                'response' => $response
+            ]);
         } else {
-            // Handle the error
-            return response()->json(['error' => 'Failed to fetch message templates'], $response->status());
+            return null;
         }
     }
+
 
     //============================= Messages ============================
     public function sendTextMessage(Request $request)
@@ -649,6 +673,91 @@ class WhatsappController extends Controller
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->withErrors('An error occurred while fetching chat messages');
+        }
+    }
+
+    //========================= Testings ===========================================
+
+    public function sendMetaMessage($phoneNumber = null, $templateName = null)
+    {
+        $url = 'https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages';
+        $accessToken = getenv("FB_METADATA_TOKEN");
+        $phoneNumber = '+919770019148';
+        $templateName = 'knsa_test_temp';
+        $languageCode = 'en';
+        $imageUrl = 'https://registration.knsacademy.in/assets/img/learning/5.jpeg';
+        // $textString = MessageTemplate::where('name', $templateName)->first()->message;
+        $textString = "rohit";
+        $currencyValue = 'VALUE';
+        $currencyCode = 'USD';
+        $amount = 200;
+        $fallbackDate = 'MONTH DAY, YEAR';
+
+        Log::info($textString);
+
+        $response = Http::withToken($accessToken)
+            ->post($url, [
+                'messaging_product' => 'whatsapp',
+                'recipient_type' => 'individual',
+                'to' => $phoneNumber,
+                'type' => 'template',
+                'template' => [
+                    'name' => $templateName,
+                    'language' => [
+                        'code' => $languageCode,
+                    ],
+                    'components' => [
+                        [
+                            'type' => 'header',
+                            'parameters' => [
+                                [
+                                    'type' => 'image',
+                                    'image' => [
+                                        'link' => $imageUrl,
+                                    ],
+                                ],
+                            ],
+                        ],
+                        [
+                            'type' => 'body',
+                            'parameters' => [
+                                [
+                                    'type' => 'text',
+                                    'text' => 'rohit kumar',
+                                ],
+                                [
+                                    'type' => 'text',
+                                    'text' => '24-06-2024',
+                                ],
+                                [
+                                    'type' => 'text',
+                                    'text' => 'https://registration.knsacademy.in/',
+                                ],
+                                // [
+                                //     'type' => 'currency',
+                                //     'currency' => [
+                                //         'fallback_value' => $currencyValue,
+                                //         'code' => $currencyCode,
+                                //         'amount_1000' => $amount,
+                                //     ],
+                                // ],
+                                // [
+                                //     'type' => 'date_time',
+                                //     'date_time' => [
+                                //         'fallback_value' => $fallbackDate,
+                                //     ],
+                                // ],
+                            ],
+                        ]
+                    ],
+                ],
+            ]);
+        Log::info($response->body());
+
+        if ($response->successful()) {
+            return response()->json(['message' => 'Message sent successfully'], 200);
+        } else {
+            return response()->json(['error' => 'Failed to send message', 'details' => $response->json()], $response->status());
         }
     }
 }
