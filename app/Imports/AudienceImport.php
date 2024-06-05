@@ -38,22 +38,24 @@ class AudienceImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         try {
+            // Log::info($row);
 
-            // Convert Excel serial date to Unix timestamp
-            $unixTimestamp = ($row['created_time'] - 25569) * 86400; // Convert to seconds since Unix epoch
+            // // Convert Excel serial date to Unix timestamp
+            // $unixTimestamp = ($row['created_time'] - 25569) * 86400; // Convert to seconds since Unix epoch
 
-            // Create a Carbon instance from the Unix timestamp
-            $date = Carbon::createFromTimestamp($unixTimestamp);
+            // // Create a Carbon instance from the Unix timestamp
+            // $date = Carbon::createFromTimestamp($unixTimestamp);
 
-            // Format the date as per your requirement (e.g., 'Y-m-d H:i:s')
-            $registration_date = $date->format('Y-m-d H:i:s');
+            // // Format the date as per your requirement (e.g., 'Y-m-d H:i:s')
+            // $registration_date = $date->format('Y-m-d H:i:s');
 
+            $registration_date = Carbon::now()->format('Y-m-d H:i:s');
             return new audience([
                 // 'event_id' => $row['event_id']  ,
                 'name'     => $row['full_name'] ? $row['full_name'] : null,
-                // 'email'    => $row['email'] ? $row['email'] : null,
+                'email'    => $row['email'] ? $row['email'] : null,
                 'phone'    => $row['phone_number'] ? $row['phone_number'] : null,
-                // 'event_name' => $row['event_name'],
+                'event_name' => $row['event_name'] ?? null,
                 'registration_date' => $registration_date,
             ]);
         } catch (\Exception $e) {
