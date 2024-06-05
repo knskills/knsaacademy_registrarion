@@ -15,9 +15,11 @@ class WhtasappTemplate extends Model
     protected $fillable = [
         "name",
         "response",
+        "template_content",
         "get_response",
         "header",
         "body",
+        "body_params",
         "buttons",
         "language",
         "status",
@@ -30,9 +32,11 @@ class WhtasappTemplate extends Model
      */
     protected $casts = [
         'response' => 'array',
+        'template_content' => 'array',
         'get_response' => 'array',
         'header' => 'array',
         'body' => 'array',
+        'body_params' => 'array',
         'buttons' => 'array',
     ];
 }

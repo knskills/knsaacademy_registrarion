@@ -10,7 +10,8 @@
             <h1>Template</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('audiences.index') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a
+                            href="{{ route('audiences.index') }}">Home</a></li>
                     <li class="breadcrumb-item">Template List</li>
                 </ol>
             </nav>
@@ -25,6 +26,12 @@
                             <div class="row">
                                 <div class="col-6">
                                     <h5 class="card-title">Templates</h5>
+                                </div>
+                                <div class="col-6 text-end mt-3">
+                                    <a href="{{ route('templates.create') }}"
+                                        class="btn btn-primary">
+                                        New <i class="bi bi-plus"></i>
+                                    </a>
                                 </div>
                             </div>
 
@@ -50,8 +57,10 @@
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $item->name }}</td>
-                                                <td>{{ ucfirst($item->type) }}</td>
-                                                <td style="width: 60%">{{ $item->message }}</td>
+                                                <td>{{ ucfirst($item->type) }}
+                                                </td>
+                                                <td style="width: 60%">
+                                                    {{ $item->message }}</td>
                                                 <td nowrap class="text-center">
                                                     {{-- <a href="{{ route('templates.show', $item->id) }}"
                                                         class="btn btn-primary btn-xs">
@@ -59,15 +68,20 @@
                                                     </a> --}}
                                                     <a href="{{ route('templates.edit', $item->id) }}"
                                                         class="btn btn-warning btn-xs">
-                                                        <i class="bi bi-pencil"></i>
+                                                        <i
+                                                            class="bi bi-pencil"></i>
                                                     </a>
-                                                    <form action="{{ route('templates.destroy', $item->id) }}"
-                                                        method="POST" style="display: inline">
+                                                    <form
+                                                        action="{{ route('templates.destroy', $item->id) }}"
+                                                        method="POST"
+                                                        style="display: inline">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-xs"
+                                                        <button type="submit"
+                                                            class="btn btn-danger btn-xs"
                                                             onclick="return confirm('Are you sure delete this item? ')">
-                                                            <i class="bi bi-trash "></i>
+                                                            <i
+                                                                class="bi bi-trash "></i>
                                                         </button>
                                                     </form>
                                                 </td>
@@ -78,7 +92,8 @@
                             </div>
 
                             <!-- Place the pagination links outside the table -->
-                            <div class="d-flex justify-content-center text-center mt-3">
+                            <div
+                                class="d-flex justify-content-center text-center mt-3">
                                 {!! $templates->links() !!}
                             </div>
 

@@ -281,14 +281,12 @@ class WhatsappController extends Controller
         if ($response->successful()) {
             $data = $response->json();
 
-            Log::info($data['data']);
-
-
             $components = [];
             $body_params = [];
             $header_img = null;
             $language = null;
             $response = $data['data'] ?? null;
+            $template = [];
 
             foreach ($data['data'] as $item) {
                 if ($item['name'] == $templateName && isset($item['components'])) {
@@ -310,14 +308,28 @@ class WhatsappController extends Controller
                         } else if ($type === "body") {
                             if (isset($component['text'])) {
                                 $component['text'] = html_entity_decode($component['text'], ENT_QUOTES, 'UTF-8');
-                                $body = [
-                                    'type' => $type,
-                                    'parameters' => array_map(function ($param) {
+
+                                // Extract body parameters if available, otherwise set to an empty array
+                                $body_params = $component['example']['body_text'][0] ?? [];
+
+                                // Initialize body array
+                                $body = [];
+
+                                // Only add type and parameters if body_params is not empty
+                                if (!empty($body_params)) {
+                                    $body['type'] = $type;
+                                    $body['parameters'] = array_map(function ($param) {
                                         return ['type' => 'text', 'text' => $param];
-                                    }, $component['example']['body_text'][0] ?? [])
-                                ];
-                                $components[] = !empty($body['parameters']) ? $body : null;
+                                    }, $body_params);
+                                }
+
+                                // Add to components if body is not empty
+                                if (!empty($body)) {
+                                    $components[] = $body;
+                                }
+
                                 $body_params = $component['example']['body_text'][0] ?? null;
+                                $body_text = $component['text'] ?? null;
                             }
                         }
                     }
@@ -328,9 +340,16 @@ class WhatsappController extends Controller
                 }
             }
 
-            Log::info(json_encode($components));
+            // Log::info(json_encode($components));
             // Log::info(json_encode($body_params));
             // Log::info(json_encode($header_img));
+
+            $template['name'] = $templateName;
+            $template['language']['code'] = $language;
+            $template['components'] = $components;
+            // Log::info(json_encode($template));
+            Log::info($template);
+
 
             return response()->json([
                 'components' => $components,

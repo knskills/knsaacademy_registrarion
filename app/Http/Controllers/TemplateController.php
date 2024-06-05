@@ -50,79 +50,73 @@ class TemplateController extends Controller
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'message' => 'required',
-                'media_file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Add appropriate validation for media_file
+                'media_file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput();
             }
 
+            $path = null;
             if ($request->hasFile('media_file')) {
                 $image = $request->file('media_file');
                 $imageName = time() . '_' . $image->getClientOriginalName();
-
                 $path = 'template/img/' . $imageName;
-                $image_path = public_path('template/img/' . $imageName);
                 $image->move(public_path('template/img/'), $imageName);
             }
 
-            $whtsp_msg = [];
             $msg = $request->message;
             $lang = '';
+            $whtsp_msg = [];
 
             if ($request->type == 'whatsapp') {
                 $res = getMessageTemplate($request->name);
+                if (!$res) {
+                    return redirect()->back()->with('error', 'Template not found!');
+                }
+
                 $lang = $res['language'];
                 $msg = $res['body_text'];
                 $whtsp_msg = $res['body_text'];
 
-                // Log::info($res);
-                // Log::info($msg);
-                // Log::info($whtsp_msg);
-
-                $temp_name = $res['response'][0]['name'];
-                $temp_id = $res['response'][0]['id'];
-                $temp_name = $res['response'][0]['name'];
-                $components = $res['components'];
-                $body_params = $res['body_params'];
-                $header_img = $res['header_img'];
-                $response = $res['response'];
-
-                if ($res == null) {
-                    return redirect()->back()->with('error', 'Template not found!');
-                }
-
-                WhtasappTemplate::updateOrCreate(
-                    ['name' => $temp_name],
+                $whts_temp = WhtasappTemplate::updateOrCreate(
+                    ['name' => $res['template']['name']],
                     [
-                        'response' => $response ?? null,
-                        'get_response' => $components ?? null,
+                        'response' => $res['response'],
+                        'get_response' => $res['components'],
                         'header' => $res['response'][0]['components'][0] ?? null,
                         'body' => $res['response'][0]['components'][1] ?? null,
                         'buttons' => $res['response'][0]['components'][3] ?? null,
-                        'language' => $lang ?? null,
+                        'language' => $lang,
                         'status' => $res['response'][0]['status'] ?? null,
                         'category' => $res['response'][0]['category'] ?? null,
                         'temp_id' => $res['response'][0]['id'] ?? null,
+                        'body_params' => $res['body_params'],
+                        'template_content' => $res['template'],
                     ]
                 );
             }
 
-            $template = MessageTemplate::create([
-                'template_id' => $request->input('template_id', ''),
-                'name' => $request->input('name', ''),
-                'subject' => $request->input('subject', ''),
-                'message' => $msg ?? null,
-                // 'whtsp_msg' => json_encode($whtsp_msg),
-                'whtsp_msg' => $whtsp_msg ?? null,
-                'lang_code' => $lang ?? null,
-                'media_file' => $path ?? '',
-                'type' => $request->input('type', ''),
-                'status' => $request->input('status', ''),
-                'event_name' => $request->input('event_name', ''),
-                'cc' => $request->input('cc', ''),
-                'bcc' => $request->input('bcc', ''),
-            ]);
+            MessageTemplate::updateOrCreate(
+                [
+                    'name' => $request->input('name'),
+                    'type' => $request->input('type')
+                ],
+                [
+                    'template_id' => $request->input('template_id', '') ?? $whts_temp->id,
+                    'name' => $request->input('name', ''),
+                    'subject' => $request->input('subject', ''),
+                    'message' => $msg,
+                    'whtsp_msg' => $whtsp_msg,
+                    'lang_code' => $lang,
+                    'media_file' => $path,
+                    'type' => $request->input('type', ''),
+                    'status' => $request->input('status', ''),
+                    'event_name' => $request->input('event_name', ''),
+                    'cc' => $request->input('cc', ''),
+                    'bcc' => $request->input('bcc', ''),
+                ]
+            );
 
             return redirect()->route('templates.index')->with('success', 'Template created successfully!');
         } catch (\Throwable $th) {
@@ -130,6 +124,7 @@ class TemplateController extends Controller
             return redirect()->back()->with('error', 'Something went wrong!');
         }
     }
+
 
     /**
      * Display the specified resource.

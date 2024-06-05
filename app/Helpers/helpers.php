@@ -391,75 +391,65 @@ function getMessageTemplate($templateName = null)
 
     $response = Http::withToken($token)->get($url);
 
-    if ($response->successful()) {
-        $data = $response->json();
+    $data = $response->json()['data'] ?? [];
 
-        // Log::info($data['data']);
+    if (empty($data) || !$response->successful()) {
+        return null;
+    }
 
+    $components = [];
+    $header_img = null;
+    $language = null;
+    $body_text = null;
 
-        $components = [];
-        $body_params = [];
-        $header_img = null;
-        $language = null;
-        $body_text = null;
-        $response = $data['data'] ?? null;
-
-        foreach ($data['data'] as $item) {
-            if ($item['name'] == $templateName && isset($item['components'])) {
-                foreach ($item['components'] as $component) {
-                    $type = strtolower($component['type']);
-
-                    if ($type === "header") {
-                        $header = [
-                            'type' => $type,
-                            'parameters' => [
-                                'type' => strtolower($component['format']),
-                                strtolower($component['format']) => [
-                                    'link' => $component['example']['header_handle'][0]
-                                ]
-                            ]
-                        ];
-                        $components[] = $header;
-                        $header_img = $component['example']['header_handle'][0] ?? null;
-                    } else if ($type === "body") {
-                        if (isset($component['text'])) {
-                            // $component['text'] = html_entity_decode($component['text'], ENT_QUOTES, 'UTF-8');
-                            $body = [
-                                'type' => $type,
-                                'parameters' => array_map(function ($param) {
-                                    return ['type' => 'text', 'text' => $param];
-                                }, $component['example']['body_text'][0] ?? [])
-                            ];
-                            $components = !empty($body['parameters']) ? $body : null;
-                            $body_params = $component['example']['body_text'][0] ?? null;
-                            $body_text = $component['text'] ?? null;
-                        }
-                    }
-                }
-            }
-
-            if ($item['name'] == $templateName && isset($item['language'])) {
-                $language = $item['language'];
-            }
+    foreach ($data as $item) {
+        if ($item['name'] !== $templateName) {
+            continue;
         }
 
-        Log::info(json_encode($components));
-        // Log::info(json_encode($body_params));
-        // Log::info(json_encode($header_img));
+        $language = $item['language'] ?? $language;
 
-        return [
-            'components' => $components,
-            'language' => $language ?? null,
-            'body_params' => $body_params,
-            'header_img' => $header_img,
-            'response' => $response,
-            'body_text' => $body_text,
-        ];
-    } else {
-        return response()->json(['error' => 'Failed to fetch message templates'], $response->status());
+        foreach ($item['components'] as $component) {
+            $type = strtolower($component['type']);
+
+            if ($type === "header" && isset($component['example']['header_handle'][0])) {
+                $header_img = $component['example']['header_handle'][0];
+                $components[] = [
+                    'type' => $type,
+                    'parameters' => [
+                        'type' => strtolower($component['format']),
+                        strtolower($component['format']) => ['link' => $header_img]
+                    ]
+                ];
+            } elseif ($type === "body" && isset($component['text'])) {
+                $component['text'] = html_entity_decode($component['text'], ENT_QUOTES, 'UTF-8');
+                $body_params = $component['example']['body_text'][0] ?? [];
+
+                if (!empty($body_params)) {
+                    $components[] = [
+                        'type' => $type,
+                        'parameters' => array_map(fn ($param) => ['type' => 'text', 'text' => $param], $body_params)
+                    ];
+                }
+                $body_text = $component['text'];
+            }
+        }
     }
-}
 
+    return [
+        'components' => $components,
+        'language' => $language,
+        'body_params' => $body_params ?? [],
+        'header_img' => $header_img,
+        'response' => $data,
+        'body_text' => $body_text,
+        'template' => [
+            'name' => $templateName,
+            'language' => ['code' => $language],
+            'components' => $components
+        ]
+    ];
+}
 
 
 function sendTempMediaMessage($phone = null, $message = null)
