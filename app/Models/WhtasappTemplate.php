@@ -39,4 +39,17 @@ class WhtasappTemplate extends Model
         'body_params' => 'array',
         'buttons' => 'array',
     ];
+
+    // //get convert template_content array to json
+    // public function getTemplateContentAttribute($value)
+    // {
+    //     return json_encode($value);
+    // }
+
+    // // get header array to json
+    // public function getHeaderAttribute($value)
+    // {
+    //     return json_encode($value);
+    // }
+
 }

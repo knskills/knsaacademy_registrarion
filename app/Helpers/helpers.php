@@ -304,78 +304,29 @@ function sendFBMessage($phone = null)
     // return $response->body();
 }
 
-function sendTempMessage($phone = null)
+function sendTempMessage($phone = null, $temp_id = null)
 {
-    // // Log::info($phone);
-    // $response = Http::withHeaders([
-    //     'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
-    //     'Content-Type' => 'application/json',
-    // ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
-    //     'messaging_product' => 'whatsapp',
-    //     "recipient_type" => "individual",
-    //     'to' => '+91' . $phone,
-    //     'type' => 'template',
-    //     'template' => [
-    //         'name' => 'learn_nt_m',
-    //         'language' => [
-    //             'code' => 'en'
-    //         ]
-    //     ]
-    // ]);
+    // Log::info($phone);
+    $response = Http::withHeaders([
+        'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
+        'Content-Type' => 'application/json',
+    ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
+        'messaging_product' => 'whatsapp',
+        "recipient_type" => "individual",
+        'to' => '+91' . $phone,
+        'type' => 'template',
+        'template' => [
+            'name' => 'learn_nt_m',
+            'language' => [
+                'code' => 'en'
+            ]
+        ]
+    ]);
 
-    // // Log::info($response->body());
+    // Log::info($response->body());
 
-    // // return $response->body();
+    // return $response->body();
 
-
-    $url = 'https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages';
-    $accessToken = getenv("FB_METADATA_TOKEN");
-    $phoneNumber = '+91' . $phone;
-    $templateName = 'purchase_receipt_1';
-    $languageCode = 'en_US';
-    $imageUrl = 'https://registration.knsacademy.in/assets/img/learning/5.jpeg';
-    // $textString = MessageTemplate::where('name', $templateName)->first()->message;
-    $textString = "rohit";
-    $currencyValue = 'VALUE';
-    $currencyCode = 'USD';
-    $amount = 200;
-    $fallbackDate = 'MONTH DAY, YEAR';
-
-    // Log::info($textString);
-
-    $response = Http::withToken($accessToken)
-        ->post($url, [
-            'messaging_product' => 'whatsapp',
-            'recipient_type' => 'individual',
-            'to' => $phoneNumber,
-            'type' => 'template',
-            'template' => [
-                'name' => $templateName,
-                'language' => [
-                    'code' => $languageCode,
-                ],
-                'components' => [
-                    [
-                        'type' => 'header',
-                        'parameters' => [
-                            [
-                                'type' => 'image',
-                                'image' => [
-                                    'link' => $imageUrl,
-                                ],
-                            ],
-                        ],
-                    ]
-                ],
-            ],
-        ]);
-    Log::info($response->body());
-
-    if ($response->successful()) {
-        return response()->json(['message' => 'Message sent successfully'], 200);
-    } else {
-        return response()->json(['error' => 'Failed to send message', 'details' => $response->json()], $response->status());
-    }
 }
 
 
@@ -417,8 +368,10 @@ function getMessageTemplate($templateName = null)
                 $components[] = [
                     'type' => $type,
                     'parameters' => [
-                        'type' => strtolower($component['format']),
-                        strtolower($component['format']) => ['link' => $header_img]
+                        [
+                            'type' => strtolower($component['format']),
+                            strtolower($component['format']) => ['link' => $header_img]
+                        ]
                     ]
                 ];
             } elseif ($type === "body" && isset($component['text'])) {
@@ -496,4 +449,39 @@ function sendTempMediaMessage($phone = null, $message = null)
     Log::info($response->body());
 
     // return $response->body();
+}
+
+
+function templateReplaceParameters($template_content, $replacements)
+{
+    foreach ($template_content['components'] as &$component) {
+        if ($component['type'] === 'body') {
+            foreach ($component['parameters'] as $index => &$parameter) {
+                if ($parameter['type'] === 'text') {
+                    $parameter['text'] = $replacements[$index] ?? $parameter['text'];
+                }
+            }
+        }
+    }
+    return $template_content;
+}
+
+
+function uploadMedia($fileUrl, $filetype = null)
+{
+    $response = Http::withHeaders([
+        'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
+        'Content-Type' => 'application/json',
+    ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/media', [
+        'messaging_product' => 'whatsapp',
+        'type' => $filetype,
+        'url' => $fileUrl
+    ]);
+
+    if ($response->successful()) {
+        return $response->json()['id'];
+    } else {
+        Log::error('Media upload failed: ' . $response->body());
+        return null;
+    }
 }
