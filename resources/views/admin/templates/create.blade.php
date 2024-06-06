@@ -10,7 +10,8 @@
             <h1>Templates</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a
+                            href="{{ route('dashboard') }}">Home</a></li>
                     <li class="breadcrumb-item">New Template</li>
                 </ol>
             </nav>
@@ -27,11 +28,15 @@
                                 @if ($errors->any())
                                     <div class="alert alert-danger alert-dismissible fade show mt-5 error-message"
                                         role="alert">
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+                                        <button type="button"
+                                            class="btn-close"
+                                            data-bs-dismiss="alert"
+                                            aria-label="Close"
                                             aria-label="Close">
                                         </button>
 
-                                        <strong>Error!</strong> Please fix the following issues:
+                                        <strong>Error!</strong> Please fix the
+                                        following issues:
                                         <ul>
                                             @foreach ($errors->all() as $error)
                                                 <li>{{ $error }}</li>
@@ -41,7 +46,8 @@
                                 @endif
 
                                 @if (session('success'))
-                                    <div class="alert alert-success sent-message">
+                                    <div
+                                        class="alert alert-success sent-message">
                                         {{ session('success') }}
                                     </div>
                                 @endif
@@ -53,91 +59,112 @@
                                 @endif
                             </div>
 
-                            <form action="{{ route('templates.store') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('templates.store') }}"
+                                id="templateForm" method="post"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="row mb-3">
-                                    <label class="col-sm-3 col-form-label">Template Name</label>
+                                    <label
+                                        class="col-sm-3 col-form-label">Template
+                                        Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="name" value="" required
+                                        <input type="text"
+                                            class="form-control" name="name"
+                                            value="" required
+                                            id="temp_name"
                                             placeholder="Please type your template name">
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label class="col-sm-3 col-form-label">Template Type</label>
+                                    <label
+                                        class="col-sm-3 col-form-label">Template
+                                        Type</label>
                                     <div class="col-sm-9">
-                                        <select name="type" id="type" class="form-control" required>
-                                            <option value="">Select Template Type</option>
+                                        <select name="type" id="temp_type"
+                                            class="form-control" required>
+                                            <option value="">Select
+                                                Template Type</option>
                                             <option value="sms">SMS</option>
-                                            <option value="whatsapp">Whatsapp</option>
-                                            <option value="email">Email</option>
+                                            <option value="whatsapp">Whatsapp
+                                            </option>
+                                            <option value="email">Email
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
 
-                                <div class="row mb-3" style="display:none" id="temp_id">
-                                    <label class="col-sm-3 col-form-label">Template Id</label>
+                                <div class="row mb-3" style="display:none"
+                                    id="temp_id">
+                                    <label
+                                        class="col-sm-3 col-form-label">Template
+                                        Id</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="template_id"
+                                        <input type="text"
+                                            class="form-control"
+                                            name="template_id"
                                             placeholder="Please enter your template id">
                                     </div>
                                 </div>
 
-                                <div class="row mb-3" id="if_mail" style="display:none">
-                                    <label class="col-sm-3 col-form-label">CC</label>
+                                <div class="row mb-3" id="if_mail"
+                                    style="display:none">
+                                    <label
+                                        class="col-sm-3 col-form-label">CC</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="cc[]"
+                                        <input type="text"
+                                            class="form-control" name="cc[]"
                                             placeholder="test@test.com,">
-
-                                        <!-- notice line if multiple numbers -->
                                         <h6 class="text-primary mt-1">
-                                            <small>
-                                                Please enter multiple emails separated by comma(,).
-                                            </small>
+                                            <small>Please enter multiple emails
+                                                separated by comma(,).</small>
                                         </h6>
                                     </div>
 
-                                    <label class="col-sm-3 col-form-label">BCC</label>
+                                    <label
+                                        class="col-sm-3 col-form-label">BCC</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="bcc[]"
+                                        <input type="text"
+                                            class="form-control" name="bcc[]"
                                             placeholder="test@test.com,">
-
-                                        <!-- notice line if multiple numbers -->
                                         <h6 class="text-primary mt-1">
-                                            <small>
-                                                Please enter multiple emails separated by comma(,).
-                                            </small>
+                                            <small>Please enter multiple emails
+                                                separated by comma(,).</small>
                                         </h6>
                                     </div>
 
-                                    <label class="col-sm-3 col-form-label">Subject</label>
+                                    <label
+                                        class="col-sm-3 col-form-label">Subject</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="subject"
+                                        <input type="text"
+                                            class="form-control" name="subject"
                                             placeholder="Please enter subject">
                                     </div>
                                 </div>
 
-                                <div class="row mb-3" style="display:none" id="md_file">
-                                    <label class="col-sm-3 col-form-label">Media File</label>
+                                <div class="row mb-3" style="display:none"
+                                    id="md_file">
+                                    <label
+                                        class="col-sm-3 col-form-label">Media
+                                        File</label>
                                     <div class="col-sm-9">
-                                        <input type="file" class="form-control" name="media_file">
+                                        <input type="file"
+                                            class="form-control"
+                                            name="media_file" id="media_file">
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <label for="inputText" class="col-md-3 col-form-label">
-                                        Message
-                                        {{-- <span class="text-danger">*</span> --}}
-                                    </label>
+                                    <label for="inputText"
+                                        class="col-md-3 col-form-label">Message</label>
                                     <div class="col-md-9">
                                         <textarea id="message" name="message" class="form-control" rows="10"
                                             placeholder="Please type or paste your message" required></textarea>
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary float-end mt-3">
-                                    Save
-                                </button>
+                                <button type="submit"
+                                    class="btn btn-primary float-end mt-3">Save</button>
                             </form>
                         </div>
                     </div>
@@ -150,30 +177,39 @@
                         <div class="card-body">
                             <h5 class="card-title">Variables</h5>
                             <p>
-                                Variables are used to replace the values of the variables in the template.
+                                Variables are used to replace the values of the
+                                variables in the template.
                             </p>
                             <div>
-                                <ul style="list-style: none" data-name="name" class="text-center">
+                                <ul style="list-style: none" data-name="name"
+                                    class="text-center">
                                     <li id="name">
-                                        <span class="badge bg-primary">Name</span>
+                                        <span
+                                            class="badge bg-primary">Name</span>
                                     </li>
                                     <li id="phone">
-                                        <span class="badge bg-primary">Mobile</span>
+                                        <span
+                                            class="badge bg-primary">Mobile</span>
                                     </li>
                                     <li id="email">
-                                        <span class="badge bg-primary">Email</span>
+                                        <span
+                                            class="badge bg-primary">Email</span>
                                     </li>
                                     <li id="event">
-                                        <span class="badge bg-primary">Event</span>
+                                        <span
+                                            class="badge bg-primary">Event</span>
                                     </li>
                                     <li id="date">
-                                        <span class="badge bg-primary">Date</span>
+                                        <span
+                                            class="badge bg-primary">Date</span>
                                     </li>
                                     <li id="time">
-                                        <span class="badge bg-primary">Time</span>
+                                        <span
+                                            class="badge bg-primary">Time</span>
                                     </li>
                                     <li id="link">
-                                        <span class="badge bg-primary">Link</span>
+                                        <span
+                                            class="badge bg-primary">Link</span>
                                     </li>
                                 </ul>
                             </div>
@@ -197,25 +233,6 @@
             $(".alert").fadeTo(2000, 500).slideUp(500, function() {
                 $(".alert").slideUp(500);
             });
-
-            // if type is whatsapp then show media file and type is sms then show template id
-            $('#type').on('change', function() {
-                var type = $(this).val();
-                if (type == 'whatsapp') {
-                    // $('#md_file').show();
-                    $('#md_file').hide();
-                    $('#temp_id').hide();
-                    $('#if_mail').hide();
-                } else if (type == 'email') {
-                    $('#if_mail').show();
-                    $('#md_file').show();
-                    $('#temp_id').hide();
-                } else if (type == 'sms') {
-                    $('#temp_id').show();
-                    $('#md_file').hide();
-                    $('#if_mail').hide();
-                }
-            });
         });
 
         // if select or click on variable then add it to the editor at the cursor position
@@ -226,7 +243,87 @@
             var v = $('#message').val();
             var textBefore = v.substring(0, cursorPos);
             var textAfter = v.substring(cursorPos, v.length);
-            $('#message').val(textBefore + '{' + name + '}' + textAfter);
+            $('#message').val(textBefore + '{' + name + '}' +
+                textAfter);
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            function handleTemplateTypeChange() {
+                var temp_name = $('#temp_name').val();
+                var temp_type = $('#temp_type').val();
+
+                if (temp_type === 'whatsapp' && !temp_name) {
+                    alert('Please fill in the template name first.');
+                } else if (temp_type === 'whatsapp' && temp_name) {
+                    getTemp(temp_name, temp_type);
+                } else if (temp_type === 'email') {
+                    $('#if_mail').show();
+                    $('#md_file').show();
+                    $('#temp_id').hide();
+                } else if (temp_type === 'sms') {
+                    $('#temp_id').show();
+                    $('#md_file').hide();
+                    $('#if_mail').hide();
+                } else {
+                    $('#if_mail').hide();
+                    $('#md_file').hide();
+                    $('#temp_id').hide();
+                }
+            }
+
+            $('#temp_type').change(handleTemplateTypeChange);
+
+            $('#temp_name').change(function() {
+                handleTemplateTypeChange();
+            });
+
+            $('#templateForm').submit(function(e) {
+                var temp_name = $('#temp_name').val();
+                var temp_type = $('#temp_type').val();
+
+                if (temp_type === 'whatsapp' && !temp_name) {
+                    alert('Please fill in the template name first.');
+                    e.preventDefault(); // Prevent form submission
+                }
+            });
+
+            function getTemp(name, type) {
+                var url = '{{ route('fetch-template', ':name') }}';
+                var newUrl = url.replace(':name', name);
+                var token = '{{ csrf_token() }}';
+
+                $.ajax({
+                    url: newUrl,
+                    method: 'GET',
+                    data: {
+                        name: name,
+                        _token: token
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        if (data.header) {
+                            $('#temp_id').hide();
+                            $('#md_file').show();
+                            $('#if_mail').hide();
+
+                            // Add required attribute to media_file if header is available
+                            $('#media_file').attr('required', 'required');
+                        } else {
+                            $('#temp_id').hide();
+                            $('#md_file').hide();
+                            $('#if_mail').hide();
+
+                            // Remove required attribute from media_file if header is not available
+                            $('#media_file').removeAttr('required');
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
         });
     </script>
 @endsection

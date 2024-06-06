@@ -329,11 +329,12 @@ function sendTempMessage($phone = null, $temp_id = null)
 
 }
 
-
+/**
+ * Get whatsapp cloud api template
+ * Reference: https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates
+ */
 function getMessageTemplate($templateName = null)
 {
-    // Reference: https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates
-
     $version = getenv("FB_API_VERSION");
     $wabaId = getenv("FB_ACCOUNT_ID");
     $token = getenv("FB_METADATA_TOKEN");
@@ -364,7 +365,8 @@ function getMessageTemplate($templateName = null)
             $type = strtolower($component['type']);
 
             if ($type === "header" && isset($component['example']['header_handle'][0])) {
-                $header_img = $component['example']['header_handle'][0];
+                // $header_img = $component['example']['header_handle'][0];
+                $header_img = 'https://registration.knsacademy.in/assets/img/learning/5.jpeg';
                 $components[] = [
                     'type' => $type,
                     'parameters' => [
@@ -389,6 +391,15 @@ function getMessageTemplate($templateName = null)
         }
     }
 
+    $template = [
+        'name' => $templateName,
+        'language' => ['code' => $language],
+    ];
+
+    if (!empty($components)) {
+        $template['components'] = $components;
+    }
+
     return [
         'components' => $components,
         'language' => $language,
@@ -396,60 +407,10 @@ function getMessageTemplate($templateName = null)
         'header_img' => $header_img,
         'response' => $data,
         'body_text' => $body_text,
-        'template' => [
-            'name' => $templateName,
-            'language' => ['code' => $language],
-            'components' => $components
-        ]
+        'template' => $template
     ];
 }
 
-
-function sendTempMediaMessage($phone = null, $message = null)
-{
-    Log::info($phone);
-    $response = Http::withHeaders([
-        'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
-        'Content-Type' => 'application/json',
-    ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
-        'messaging_product' => 'whatsapp',
-        "recipient_type" => "individual",
-        'to' => '91' . $phone,
-        'type' => 'template',
-        'template' => [
-            'name' => 'knsa_learn_nm',
-            'language' => [
-                'code' => 'en'
-            ],
-            "components" => [
-                [
-                    "type" => "header",
-                    "parameters" => [
-                        [
-                            "type" => "image",
-                            "image" => [
-                                "link" => "https://scontent.whatsapp.net/v/t61.29466-34/432393993_428331700033331_4488180639606958974_n.png?ccb=1-7&_nc_sid=8b1bef&_nc_ohc=2eq3e5WHo0wQ7kNvgF4n3m8&_nc_ht=scontent.whatsapp.net&edm=AH51TzQEAAAA&oh=01_Q5AaIAzQC7TuUA6BTRnPsPBRuRIq1-s_Pn1lm37XQAAZlqAE&oe=6682C12C"
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    "type" => "body",
-                    "parameters" => [
-                        [
-                            "type" => "text",
-                            "text" => "Congratulations! Your registration for our 3-hour workshop \"\u0938\u0940\u0916\u093f\u090f \u0928\u0947\u091f\u0935\u0930\u094d\u0915 \u092e\u093e\u0930\u094d\u0915\u0947\u091f\u093f\u0902\u0917 - \u0915\u094d\u092f\u093e, \u0915\u094d\u092f\u094b\u0902 \u0914\u0930 \u0915\u0948\u0938\u0947?\" on 11th June 2024 from 11 AM to 02 PM is completed."
-                        ]
-                    ]
-                ]
-            ]
-        ]
-    ]);
-
-    Log::info($response->body());
-
-    // return $response->body();
-}
 
 
 function templateReplaceParameters($template_content, $replacements)

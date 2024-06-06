@@ -55,6 +55,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/get-templates', [TemplateController::class, 'getTemplates'])->name('get-templates');
     Route::get('/get-message', [TemplateController::class, 'getTemplateMessage'])->name('get-message');
     // Route::resource('chat', ChatController::class);
+    Route::get('/fetch-template/{name}', [TemplateController::class, 'fetchTemplateByName'])->name('fetch-template');
+
 
     Route::group(['prefix' => 'whatsapp', 'as' => 'whatsapp.'], function () {
         Route::resource('chat', ChatController::class);

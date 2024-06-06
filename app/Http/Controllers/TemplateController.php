@@ -290,4 +290,29 @@ class TemplateController extends Controller
             ]);
         }
     }
+
+    /**
+     * fetch meta template by name
+     */
+    public function fetchTemplateByName($name)
+    {
+        try {
+            $res = getMessageTemplate($name);
+            if (!empty($res['response'][0]['components'])) {
+                $header = $res['response'][0]['components'][0]['type'] == 'HEADER' ? true : false;
+            } else {
+                $header = false;
+            }
+            return response()->json([
+                'success' => true,
+                'header' => $header,
+            ]);
+        } catch (\Throwable $th) {
+            Log::error($th);
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong!',
+            ]);
+        }
+    }
 }

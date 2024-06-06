@@ -782,37 +782,47 @@ class WhatsappController extends Controller
 
     public function sendTempMessage()
     {
-        $template = WhtasappTemplate::find(20);
+        $template = WhtasappTemplate::find(22);
         $template_content = $template->template_content;
 
-        $replacements = ["rohit", "05/06/2024", "my Link"];
-        $template_content = templateReplaceParameters($template_content, $replacements);
+        // Log::info($template->template_content['components'][1]['parameters']);
+
+
+        if (!empty($template->template_content['components'])) {
+            $components = $template->template_content['components'];
+            if ($components[1]['type'] === 'body' && !empty($components[1]['parameters'])) {
+
+                $replacements = ["rohit", "05/06/2024", "my Link"];
+                $template_content = templateReplaceParameters($template_content, $replacements);
+
+            }
+        }
 
         Log::info('Template Content: ' . json_encode($template_content, JSON_PRETTY_PRINT));
 
-        // $phoneNumber = '+919770019148';
-        // $response = Http::withHeaders([
-        //     'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
-        //     'Content-Type' => 'application/json',
-        // ])->post(
-        //     'https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages',
-        //     [
-        //         'messaging_product' => 'whatsapp',
-        //         'recipient_type' => 'individual',
-        //         'to' => $phoneNumber,
-        //         'type' => 'template',
-        //         'template' => $template_content,
-        //     ]
-        // );
+        $phoneNumber = '+919770019148';
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
+            'Content-Type' => 'application/json',
+        ])->post(
+            'https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages',
+            [
+                'messaging_product' => 'whatsapp',
+                'recipient_type' => 'individual',
+                'to' => $phoneNumber,
+                'type' => 'template',
+                'template' => $template_content,
+            ]
+        );
 
-        // Log::info('API Response: ' . $response->body());
+        Log::info('API Response: ' . $response->body());
 
-        // if ($response->successful()) {
-        //     Log::info('Message Status: ' . json_encode($response->json()));
-        //     return response()->json(['message' => 'Message sent successfully'], 200);
-        // } else {
-        //     Log::error('Failed to send message: ' . json_encode($response->json()));
-        //     return response()->json(['error' => 'Failed to send message', 'details' => $response->json()], $response->status());
-        // }
+        if ($response->successful()) {
+            Log::info('Message Status: ' . json_encode($response->json()));
+            return response()->json(['message' => 'Message sent successfully'], 200);
+        } else {
+            Log::error('Failed to send message: ' . json_encode($response->json()));
+            return response()->json(['error' => 'Failed to send message', 'details' => $response->json()], $response->status());
+        }
     }
 }
