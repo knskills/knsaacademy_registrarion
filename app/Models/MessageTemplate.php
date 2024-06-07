@@ -41,5 +41,13 @@ class MessageTemplate extends Model
         return json_decode($value);
     }
 
+    /**
+     * Get whatsapp template
+     */
+    public function getWhatsappTemplate()
+    {
+        return $this->hasOne(WhtasappTemplate::class, 'id', 'template_id');
+    }
+
 
 }

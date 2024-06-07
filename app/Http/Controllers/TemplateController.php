@@ -61,8 +61,8 @@ class TemplateController extends Controller
             if ($request->hasFile('media_file')) {
                 $image = $request->file('media_file');
                 $imageName = time() . '_' . $image->getClientOriginalName();
-                $path = 'template/img/' . $imageName;
-                $image->move(public_path('template/img/'), $imageName);
+                $path = 'template/files/' . $imageName;
+                $image->move(public_path('template/files/'), $imageName);
             }
 
             $msg = $request->message;
@@ -70,7 +70,7 @@ class TemplateController extends Controller
             $whtsp_msg = [];
 
             if ($request->type == 'whatsapp') {
-                $res = getMessageTemplate($request->name);
+                $res = getMessageTemplate($request->name, $imageName);
                 if (!$res) {
                     return redirect()->back()->with('error', 'Template not found!');
                 }
@@ -176,9 +176,9 @@ class TemplateController extends Controller
                 $image = $request->file('media_file');
                 $imageName = time() . '_' . $image->getClientOriginalName();
 
-                $path = 'template/img/' . $imageName;
-                $image_path = public_path('template/img/' . $imageName);
-                $image->move(public_path('template/img/'), $imageName);
+                $path = 'template/files/' . $imageName;
+                $image_path = public_path('template/files/' . $imageName);
+                $image->move(public_path('template/files/'), $imageName);
             } else {
                 $path = $template->media_file;
             }

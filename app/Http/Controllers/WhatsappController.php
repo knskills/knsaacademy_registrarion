@@ -238,33 +238,6 @@ class WhatsappController extends Controller
         }
     }
 
-    //========================== Other ===============================
-    // public function markAsRead($messageId)
-    // {
-    //     Log::info($messageId);
-    //     $fromPhoneNumberId = env('FB_ACCOUNT_ID');
-    //     $accessToken = env('FB_METADATA_TOKEN');
-    //     $version = 'v19.0';
-    //     $messageId = 'wamid.HBgMOTE5NzcwMDE5MTQ4FQIAEhggNUU3QTI3MDc5MjJFNDM2MDlGOEZENDVENjRDQzhCQTUA';
-
-    //     $response = Http::withHeaders([
-    //         'Authorization' => 'Bearer ' . $accessToken,
-    //         'Content-Type' => 'application/json',
-    //     ])->post("https://graph.facebook.com/{$version}/{$fromPhoneNumberId}/messages", [
-    //         'messaging_product' => 'whatsapp',
-    //         'status' => 'read',
-    //         'message_id' => $messageId,
-    //     ]);
-
-    //     Log::info($response);
-
-    //     if ($response->successful()) {
-    //         return response()->json(['status' => 'Message marked as read', 'response' => $response->json()], 200);
-    //     } else {
-    //         return response()->json(['error' => 'Failed to mark message as read', 'response' => $response->body()], $response->status());
-    //     }
-    // }
-
     //=========================== Templates ============================
     public function getMessageTemplate($templateName = null)
     {
@@ -306,6 +279,7 @@ class WhatsappController extends Controller
                             $components[] = $header;
                             $header_img = $component['example']['header_handle'][0] ?? null;
                         } else if ($type === "body") {
+
                             if (isset($component['text'])) {
                                 $component['text'] = html_entity_decode($component['text'], ENT_QUOTES, 'UTF-8');
 
@@ -321,6 +295,10 @@ class WhatsappController extends Controller
                                     $body['parameters'] = array_map(function ($param) {
                                         return ['type' => 'text', 'text' => $param];
                                     }, $body_params);
+
+                                    Log::info($component['text']);
+                                    Log::info($body['parameters']);
+
                                 }
 
                                 // Add to components if body is not empty
@@ -348,7 +326,7 @@ class WhatsappController extends Controller
             $template['language']['code'] = $language;
             $template['components'] = $components;
             // Log::info(json_encode($template));
-            Log::info($template);
+            // Log::info($component['text']);
 
 
             return response()->json([
@@ -362,7 +340,6 @@ class WhatsappController extends Controller
             return null;
         }
     }
-
 
     //============================= Messages ============================
     public function sendTextMessage(Request $request)
@@ -782,7 +759,7 @@ class WhatsappController extends Controller
 
     public function sendTempMessage()
     {
-        $template = WhtasappTemplate::find(22);
+        $template = WhtasappTemplate::find(23);
         $template_content = $template->template_content;
 
         // Log::info($template->template_content['components'][1]['parameters']);

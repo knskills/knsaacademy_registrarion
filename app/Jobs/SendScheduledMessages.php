@@ -20,6 +20,7 @@ use App\Models\WhatsappMessage;
 use App\Mail\TempMail;
 use Log;
 // use PgSql\Lob;
+use App\Models\WhtasappTemplate;
 
 class SendScheduledMessages implements ShouldQueue
 {
@@ -54,7 +55,7 @@ class SendScheduledMessages implements ShouldQueue
 
                 $modifiedMessage = $this->getModifiedMessage($messageTemplate, $audience, $audienceIdentifier);
 
-                $this->sendMessage($message, $messageTemplate, $audienceIdentifier, $modifiedMessage);
+                $this->sendMessage($message, $messageTemplate, $audience, $audienceIdentifier, $modifiedMessage);
             }
         }
     }
@@ -89,12 +90,12 @@ class SendScheduledMessages implements ShouldQueue
         return str_replace($placeholders, $replacements, $template->message);
     }
 
-    private function sendMessage($message, $template, $identifier, $modifiedMessage)
+    private function sendMessage($message, $template, $identifier, $modifiedMessage, $audience)
     {
         switch ($message->type) {
             case 'whatsapp':
                 if ($template->type == 'whatsapp') {
-                    $this->sendWhatsAppMessage($template, $identifier);
+                    $this->sendWhatsAppMessage($message, $template, $identifier, $modifiedMessage, $audience);
                 }
                 break;
             case 'sms':
@@ -110,9 +111,12 @@ class SendScheduledMessages implements ShouldQueue
         }
     }
 
-    private function sendWhatsAppMessage($template, $phone)
+    private function sendWhatsAppMessage($shedule, $template, $audience, $phone, $modifiedMessage)
     {
-        $this->sendTmpMessage($template->id, $phone);
+        // $this->sendTmpMessage($template->id, $phone);
+        $template = WhtasappTemplate::find($template->template_id);
+        $replacements = [$audience->name, $audience->email, $audience->phone];
+        $result = sendTempMessage($template, $phone, $replacements);
     }
 
     private function sendSmsMessage($message, $phone, $modifiedMessage)
@@ -171,69 +175,6 @@ class SendScheduledMessages implements ShouldQueue
     function sendTmpMessage($templateId = null, $phone = null)
     {
         $template = MessageTemplate::find($templateId);
-
-        // $response = Http::withHeaders([
-        //     'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
-        //     'Content-Type' => 'application/json',
-        // ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
-        //     'messaging_product' => 'whatsapp',
-        //     "recipient_type" => "individual",
-        //     'to' => '+91' . $phone,
-        //     'type' => 'template',
-        //     'template' => [
-        //         'name' => $template->name,
-        //         'language' => ['code' => $template->lang_code]
-        //     ]
-        // ]);
-
-        $url = 'https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages';
-        $accessToken = getenv("FB_METADATA_TOKEN");
-        $phoneNumber = '+91' . $phone;
-        $templateName = 'purchase_receipt_1';
-        $languageCode = 'en_US';
-        $imageUrl = 'https://registration.knsacademy.in/assets/img/learning/5.jpeg';
-        // $textString = MessageTemplate::where('name', $templateName)->first()->message;
-        $textString = "rohit";
-        $currencyValue = 'VALUE';
-        $currencyCode = 'USD';
-        $amount = 200;
-        $fallbackDate = 'MONTH DAY, YEAR';
-
-        // Log::info($textString);
-
-        $response = Http::withToken($accessToken)
-            ->post($url, [
-                'messaging_product' => 'whatsapp',
-                'recipient_type' => 'individual',
-                'to' => $phoneNumber,
-                'type' => 'template',
-                'template' => [
-                    'name' => $templateName,
-                    'language' => [
-                        'code' => $languageCode,
-                    ],
-                    'components' => [
-                        [
-                            'type' => 'header',
-                            'parameters' => [
-                                [
-                                    'type' => 'image',
-                                    'image' => [
-                                        'link' => $imageUrl,
-                                    ],
-                                ],
-                            ],
-                        ]
-                    ],
-                ],
-            ]);
-
-        $data = json_decode($response, true);
-        Log::info($data);
-
-        if (isset($data['messages'])) {
-            $this->updateOrCreateWhatsAppMessages($data, $template);
-        }
     }
 
     private function updateOrCreateWhatsAppMessages($data, $template)

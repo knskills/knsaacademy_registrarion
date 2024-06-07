@@ -304,40 +304,40 @@ function sendFBMessage($phone = null)
     // return $response->body();
 }
 
-function sendTempMessage($phone = null, $temp_id = null)
-{
-    // Log::info($phone);
-    $response = Http::withHeaders([
-        'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
-        'Content-Type' => 'application/json',
-    ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
-        'messaging_product' => 'whatsapp',
-        "recipient_type" => "individual",
-        'to' => '+91' . $phone,
-        'type' => 'template',
-        'template' => [
-            'name' => 'learn_nt_m',
-            'language' => [
-                'code' => 'en'
-            ]
-        ]
-    ]);
+// function sendTempMessage($phone = null, $temp_id = null)
+// {
+//     // Log::info($phone);
+//     $response = Http::withHeaders([
+//         'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
+//         'Content-Type' => 'application/json',
+//     ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
+//         'messaging_product' => 'whatsapp',
+//         "recipient_type" => "individual",
+//         'to' => '+91' . $phone,
+//         'type' => 'template',
+//         'template' => [
+//             'name' => 'learn_nt_m',
+//             'language' => [
+//                 'code' => 'en'
+//             ]
+//         ]
+//     ]);
 
-    // Log::info($response->body());
+//     // Log::info($response->body());
 
-    // return $response->body();
+//     // return $response->body();
 
-}
+// }
 
 /**
  * Get whatsapp cloud api template
  * Reference: https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates
  */
-function getMessageTemplate($templateName = null)
+function getMessageTemplate($templateName = null, $header_img_loc = null)
 {
-    $version = getenv("FB_API_VERSION");
-    $wabaId = getenv("FB_ACCOUNT_ID");
-    $token = getenv("FB_METADATA_TOKEN");
+    $version = env("FB_API_VERSION");
+    $wabaId = env("FB_ACCOUNT_ID");
+    $token = env("FB_METADATA_TOKEN");
 
     $url = "https://graph.facebook.com/$version/$wabaId/message_templates?name=$templateName";
 
@@ -365,14 +365,14 @@ function getMessageTemplate($templateName = null)
             $type = strtolower($component['type']);
 
             if ($type === "header" && isset($component['example']['header_handle'][0])) {
-                // $header_img = $component['example']['header_handle'][0];
-                $header_img = 'https://registration.knsacademy.in/assets/img/learning/5.jpeg';
+                $header_file_url = asset($header_img_loc);
+
                 $components[] = [
                     'type' => $type,
                     'parameters' => [
                         [
                             'type' => strtolower($component['format']),
-                            strtolower($component['format']) => ['link' => $header_img]
+                            strtolower($component['format']) => ['link' => $header_file_url]
                         ]
                     ]
                 ];
@@ -385,6 +385,8 @@ function getMessageTemplate($templateName = null)
                         'type' => $type,
                         'parameters' => array_map(fn ($param) => ['type' => 'text', 'text' => $param], $body_params)
                     ];
+
+                    $component['text'] = replacePlaceholders($component['text'], $components[count($components) - 1]['parameters']);
                 }
                 $body_text = $component['text'];
             }
@@ -411,8 +413,9 @@ function getMessageTemplate($templateName = null)
     ];
 }
 
-
-
+/**
+ * Replace template parameter values
+ */
 function templateReplaceParameters($template_content, $replacements)
 {
     foreach ($template_content['components'] as &$component) {
@@ -427,22 +430,58 @@ function templateReplaceParameters($template_content, $replacements)
     return $template_content;
 }
 
-
-function uploadMedia($fileUrl, $filetype = null)
+/**
+ * Replcae template parameters
+ */
+function replacePlaceholders($text, $parameters)
 {
+    foreach ($parameters as $index => $param) {
+        $placeholder = '{{' . ($index + 1) . '}}';
+        $text = str_replace($placeholder, '{' . $param['text'] . '}', $text);
+    }
+    return $text;
+}
+
+
+function sendTempMessage($template, $phone, $replacements)
+{
+    // Get the template content
+    $template_content = $template->template_content;
+
+    if (!empty($template->template_content['components'])) {
+        $components = $template->template_content['components'];
+        if ($components[1]['type'] === 'body' && !empty($components[1]['parameters'])) {
+            // Replace placeholders with actual values
+            // $replacements = ["rohit", "05/06/2024", "my Link"];
+            $template_content = templateReplaceParameters($template_content, $replacements);
+        }
+    }
+
+    // Log::info('Template Content: ' . json_encode($template_content, JSON_PRETTY_PRINT));
+
     $response = Http::withHeaders([
         'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
         'Content-Type' => 'application/json',
-    ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/media', [
-        'messaging_product' => 'whatsapp',
-        'type' => $filetype,
-        'url' => $fileUrl
-    ]);
+    ])->post(
+        'https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages',
+        [
+            'messaging_product' => 'whatsapp',
+            'recipient_type' => 'individual',
+            'to' => '+91' . $phone,
+            'type' => 'template',
+            'template' => $template_content,
+        ]
+    );
+
+    // Log::info('API Response: ' . $response->body());
 
     if ($response->successful()) {
-        return $response->json()['id'];
+        // Log::info('Message Status: ' . json_encode($response->json()));
+        // return response()->json(['message' => 'Message sent successfully'], 200);
+        return 'send';
     } else {
-        Log::error('Media upload failed: ' . $response->body());
-        return null;
+        Log::error('Failed to send message: ' . json_encode($response->json()));
+        // return response()->json(['error' => 'Failed to send message', 'details' => $response->json()], $response->status());
+        return 'failed';
     }
 }
