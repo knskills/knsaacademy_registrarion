@@ -70,7 +70,7 @@ class TemplateController extends Controller
             $whtsp_msg = [];
 
             if ($request->type == 'whatsapp') {
-                $res = getMessageTemplate($request->name, $imageName = null);
+                $res = getMessageTemplate($request->name, $$path = null);
                 if (!$res) {
                     return redirect()->back()->with('error', 'Template not found!');
                 }
