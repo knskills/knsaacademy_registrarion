@@ -7,6 +7,7 @@ use App\Exports\AudienceExport;
 use App\Imports\AudienceImport;
 use App\Models\Event;
 use App\Models\MessageTemplate;
+use App\Models\WhtasappTemplate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -96,7 +97,11 @@ class AudienceController extends Controller
                 $audience->registration_date = Carbon::now();
                 $audience->save();
 
-                sendTempMessage($request->phone);
+                $template = WhtasappTemplate::where('name', 'learn_nt_m')->first();
+                Log::info($template);
+                if ($template) {
+                    sendTempMessage($template, $request->phone, $para = null);
+                }
 
                 // $audience = Audience::where('id', $audience->id)->first();
                 // $messageTemp = MessageTemplate::where('name', 'Welcome whatsapp')->first();
@@ -117,7 +122,7 @@ class AudienceController extends Controller
                 // // } else {
                 // //     sendSms($audience->phone, $message);
                 // // }
-            }else{
+            } else {
                 // Log::info('Audience already exists');
                 // update event name and registration date
                 $audience->name = $request->name;
@@ -128,7 +133,11 @@ class AudienceController extends Controller
                 $audience->registration_date = Carbon::now();
                 $audience->save();
 
-                sendTempMessage($request->phone);
+                $template = WhtasappTemplate::where('name', 'learn_nt_m')->first();
+                Log::info($template);
+                if ($template) {
+                    sendTempMessage($template, $request->phone, $para = null);
+                }
             }
 
             // Mail using template file
