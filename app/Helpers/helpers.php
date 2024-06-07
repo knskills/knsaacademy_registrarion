@@ -442,11 +442,14 @@ function replacePlaceholders($text, $parameters)
     return $text;
 }
 
-
+/**
+ * Send template message
+ */
 function sendTempMessage($template, $phone, $replacements)
 {
     // Get the template content
     $template_content = $template->template_content;
+    Log::info($template_content);
 
     if (!empty($template->template_content['components'])) {
         $components = $template->template_content['components'];

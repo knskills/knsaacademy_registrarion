@@ -251,6 +251,7 @@ class WhatsappController extends Controller
 
         $response = Http::withToken($token)->get($url);
 
+        Log::info($response->json());
         if ($response->successful()) {
             $data = $response->json();
 
