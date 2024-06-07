@@ -431,8 +431,6 @@ function sendTempMessage($template, $phone, $replacements = null)
     // Get the template content
     $template_content = $template->template_content;
 
-    Log::info($template_content);
-
     if (!empty($template->template_content['components'])) {
         $components = $template->template_content['components'];
         if (isset($components[1]) && $components[1]['type'] === 'body' && !empty($components[1]['parameters'])) {
@@ -463,9 +461,9 @@ function sendTempMessage($template, $phone, $replacements = null)
     if ($response->successful()) {
         // Log::info('Message Status: ' . json_encode($response->json()));
         // return response()->json(['message' => 'Message sent successfully'], 200);
-        // $data = json_decode($response->getBody(), true);
+        return $data = json_decode($response->getBody(), true);
 
-        return 'send';
+        // return 'send';
     } else {
         Log::error('Failed to send message: ' . json_encode($response->json()));
         // return response()->json(['error' => 'Failed to send message', 'details' => $response->json()], $response->status());
