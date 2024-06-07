@@ -117,6 +117,41 @@ class SendScheduledMessages implements ShouldQueue
         $template = WhtasappTemplate::find($template->template_id);
         $replacements = [$audience->name ?? null, $audience->email ?? null, $audience->phone ?? null];
         $result = sendTempMessage($template, $phone, $replacements);
+        Log::info($result);
+
+        // if (isset($result['messages'])) {
+        //     $messages = $result['messages'];
+
+        //     foreach ($messages as $message) {
+        //         // Fetch the existing message if it exists
+        //         $existingMessage = WhatsappMessage::where('recipient_id', $result['contacts'][0]['wa_id'])->whereNotNull('profile_name')->first();
+
+        //         // Prepare the attributes for update or create
+        //         $attributes = [
+        //             'whatsapp_message' => $request->message ?? 'Image Message',
+        //             'template_name' => null,
+        //             'template_type' => null,
+        //             'type' => 'send',
+        //             'status' => null,
+        //             'image' => $request->hasFile('media_image') ? $image_path : null,
+        //             'phone_number' => $result['contacts'][0]['wa_id'],
+        //             'from' => null,
+        //             'recipient_id' => $result['contacts'][0]['wa_id'],
+        //             'send_at' => null,
+        //         ];
+
+        //         // If the message exists, add the profile name
+        //         if ($existingMessage) {
+        //             $attributes['profile_name'] = $existingMessage->profile_name;
+        //         }
+
+        //         // Update or create the record
+        //         WhatsappMessage::updateOrCreate(
+        //             ['message_id' => $message['id']],
+        //             $attributes
+        //         );
+        //     }
+        // }
     }
 
     private function sendSmsMessage($message, $phone, $modifiedMessage)

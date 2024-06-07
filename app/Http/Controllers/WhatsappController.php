@@ -297,8 +297,8 @@ class WhatsappController extends Controller
                                         return ['type' => 'text', 'text' => $param];
                                     }, $body_params);
 
-                                    Log::info($component['text']);
-                                    Log::info($body['parameters']);
+                                    // Log::info($component['text']);
+                                    // Log::info($body['parameters']);
 
                                 }
 
