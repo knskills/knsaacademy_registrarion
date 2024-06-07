@@ -343,217 +343,6 @@ class WhatsappController extends Controller
     }
 
     //============================= Messages ============================
-    public function sendTextMessage(Request $request)
-    {
-        // Log::info($request->all());
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
-            'Content-Type' => 'application/json',
-        ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
-            'messaging_product' => 'whatsapp',
-            "recipient_type" => "individual",
-            'to' => $request->recipient_id,
-            'type' => 'text',
-            'text' => [
-                'preview_url' => false,
-                'body' => $request->message,
-            ]
-        ]);
-
-        Log::info($response);
-
-        $data = json_decode($response, true);  // Assuming $response is a JSON string, decode it into an associative array
-
-        if (isset($data['messages'])) {
-            $messages = $data['messages'];
-
-            // foreach ($messages as $message) {
-            //     // Check if the wa_id exists, then update, otherwise create a new record
-            //     WhatsappMessage::updateOrCreate(
-            //         ['message_id' => $message['id']],
-            //         [
-            //             'whatsapp_message' => $request->message,
-            //             'template_name' => null,
-            //             'template_type' => null,
-            //             'type' => 'send',
-            //             'status' => null,
-            //             'phone_number' => $data['contacts'][0]['wa_id'],
-            //             'from' => null,
-            //             'recipient_id' => $data['contacts'][0]['wa_id'],
-            //             'send_at' => null,
-            //         ]
-            //     );
-            // }
-
-            foreach ($messages as $message) {
-                // Fetch the existing message if it exists
-                $existingMessage = WhatsappMessage::where('recipient_id', $data['contacts'][0]['wa_id'])->whereNotNull('profile_name')->first();
-
-
-                // Prepare the attributes for update or create
-                $attributes = [
-                    'whatsapp_message' => $request->message,
-                    'template_name' => null,
-                    'template_type' => null,
-                    'type' => 'send',
-                    'status' => null,
-                    'phone_number' => $data['contacts'][0]['wa_id'],
-                    'from' => null,
-                    'recipient_id' => $data['contacts'][0]['wa_id'],
-                    'send_at' => null,
-                ];
-
-                // If the message exists, add the profile name
-                if ($existingMessage) {
-                    $attributes['profile_name'] = $existingMessage->profile_name;
-                }
-
-                // Update or create the record
-                WhatsappMessage::updateOrCreate(
-                    ['message_id' => $message['id']],
-                    $attributes
-                );
-            }
-        }
-
-
-        // return $response;
-
-        // Log::info($response);
-
-        // return redirect()->route('whatsapp.chat.index', ['recipient_id' => $request->recipient_id]);
-
-        return redirect()->route('whatsapp.chat.index');
-    }
-
-    public function sendImgMessage(Request $request)
-    {
-        // Validate the request to ensure an image file and recipient ID are provided
-        $request->validate([
-            'media_image' => 'required|image',
-            'recipient_id' => 'required|string',
-        ]);
-
-        // Store the uploaded image
-        if ($request->hasFile('media_image')) {
-            $image = $request->file('media_image');
-            $imageName = time() . '_' . $image->getClientOriginalName();
-
-            // Store the image in the 'public/whatsapp/images' directory
-            $path = $image->storeAs('public/whatsapp/images', $imageName);
-
-            // Generate the URL for the stored image
-            $imageUrl = Storage::url($path);
-        }
-
-        // Make the HTTP request to send the image
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . env("FB_METADATA_TOKEN"),
-            'Content-Type' => 'application/json',
-        ])->post('https://graph.facebook.com/v19.0/' . env("FB_PHONE_NUMBER") . '/messages', [
-            'messaging_product' => 'whatsapp',
-            'recipient_type' => 'individual',
-            'to' => $request->recipient_id,
-            'type' => 'image',
-            'image' => [
-                'link' => url($imageUrl),
-                'caption' => 'The best succulent ever?',
-            ],
-        ]);
-
-        Log::info($response);
-
-        $data = json_decode($response->getBody(), true);
-
-        if (isset($data['messages'])) {
-            $messages = $data['messages'];
-
-            foreach ($messages as $message) {
-                // Fetch the existing message if it exists
-                $existingMessage = WhatsappMessage::where('recipient_id', $data['contacts'][0]['wa_id'])->whereNotNull('profile_name')->first();
-
-                // Prepare the attributes for update or create
-                $attributes = [
-                    'whatsapp_message' => $request->message,
-                    'template_name' => null,
-                    'template_type' => null,
-                    'type' => 'send',
-                    'status' => null,
-                    'image' => $path,
-                    'phone_number' => $data['contacts'][0]['wa_id'],
-                    'from' => null,
-                    'recipient_id' => $data['contacts'][0]['wa_id'],
-                    'send_at' => null,
-                ];
-
-                // If the message exists, add the profile name
-                if ($existingMessage) {
-                    $attributes['profile_name'] = $existingMessage->profile_name;
-                }
-
-                // Update or create the record
-                WhatsappMessage::updateOrCreate(
-                    ['message_id' => $message['id']],
-                    $attributes
-                );
-            }
-        }
-
-        return redirect()->route('whatsapp.chat.index');
-    }
-
-    public function sendTmpMessage(Request $request)
-    {
-        $template = MessageTemplate::find($request->template_id);
-
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
-            'Content-Type' => 'application/json',
-        ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
-            'messaging_product' => 'whatsapp',
-            "recipient_type" => "individual",
-            'to' => '+91' . $request->phone,
-            'type' => 'template',
-
-            'template' => [
-                'name' => $template->name,
-                'language' => [
-                    'code' => 'en'
-                ]
-            ]
-        ]);
-
-        $data = json_decode($response, true);  // Assuming $response is a JSON string, decode it into an associative array
-
-        if (isset($data['messages'])) {
-            $messages = $data['messages'];
-
-            foreach ($messages as $message) {
-                // Check if the wa_id exists, then update, otherwise create a new record
-                WhatsappMessage::updateOrCreate(
-                    ['message_id' => $message['id']],
-                    [
-                        'whatsapp_message' => $request->message,
-                        'template_name' => null,
-                        'template_type' => null,
-                        'type' => 'send',
-                        'status' => null,
-                        'phone_number' => $data['contacts'][0]['wa_id'],
-                        'from' => null,
-                        'recipient_id' => $data['contacts'][0]['wa_id'],
-                        'send_at' => null,
-                    ]
-                );
-            }
-        }
-
-
-        // return $response;
-
-        // Log::info($response);
-
-        return redirect()->route('whatsapp.chat.index', ['recipient_id' => $request->recipient_id]);
-    }
 
     public function markAsRead($messageId)
     {
@@ -802,5 +591,217 @@ class WhatsappController extends Controller
             Log::error('Failed to send message: ' . json_encode($response->json()));
             return response()->json(['error' => 'Failed to send message', 'details' => $response->json()], $response->status());
         }
+    }
+
+    public function sendTmpMessage(Request $request)
+    {
+        $template = MessageTemplate::find($request->template_id);
+
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
+            'Content-Type' => 'application/json',
+        ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
+            'messaging_product' => 'whatsapp',
+            "recipient_type" => "individual",
+            'to' => '+91' . $request->phone,
+            'type' => 'template',
+
+            'template' => [
+                'name' => $template->name,
+                'language' => [
+                    'code' => 'en'
+                ]
+            ]
+        ]);
+
+        $data = json_decode($response, true);  // Assuming $response is a JSON string, decode it into an associative array
+
+        if (isset($data['messages'])) {
+            $messages = $data['messages'];
+
+            foreach ($messages as $message) {
+                // Check if the wa_id exists, then update, otherwise create a new record
+                WhatsappMessage::updateOrCreate(
+                    ['message_id' => $message['id']],
+                    [
+                        'whatsapp_message' => $request->message,
+                        'template_name' => null,
+                        'template_type' => null,
+                        'type' => 'send',
+                        'status' => null,
+                        'phone_number' => $data['contacts'][0]['wa_id'],
+                        'from' => null,
+                        'recipient_id' => $data['contacts'][0]['wa_id'],
+                        'send_at' => null,
+                    ]
+                );
+            }
+        }
+
+
+        // return $response;
+
+        // Log::info($response);
+
+        return redirect()->route('whatsapp.chat.index', ['recipient_id' => $request->recipient_id]);
+    }
+
+    public function sendTextMessage(Request $request)
+    {
+        // Log::info($request->all());
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
+            'Content-Type' => 'application/json',
+        ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
+            'messaging_product' => 'whatsapp',
+            "recipient_type" => "individual",
+            'to' => $request->recipient_id,
+            'type' => 'text',
+            'text' => [
+                'preview_url' => false,
+                'body' => $request->message,
+            ]
+        ]);
+
+        Log::info($response);
+
+        $data = json_decode($response, true);  // Assuming $response is a JSON string, decode it into an associative array
+
+        if (isset($data['messages'])) {
+            $messages = $data['messages'];
+
+            // foreach ($messages as $message) {
+            //     // Check if the wa_id exists, then update, otherwise create a new record
+            //     WhatsappMessage::updateOrCreate(
+            //         ['message_id' => $message['id']],
+            //         [
+            //             'whatsapp_message' => $request->message,
+            //             'template_name' => null,
+            //             'template_type' => null,
+            //             'type' => 'send',
+            //             'status' => null,
+            //             'phone_number' => $data['contacts'][0]['wa_id'],
+            //             'from' => null,
+            //             'recipient_id' => $data['contacts'][0]['wa_id'],
+            //             'send_at' => null,
+            //         ]
+            //     );
+            // }
+
+            foreach ($messages as $message) {
+                // Fetch the existing message if it exists
+                $existingMessage = WhatsappMessage::where('recipient_id', $data['contacts'][0]['wa_id'])->whereNotNull('profile_name')->first();
+
+
+                // Prepare the attributes for update or create
+                $attributes = [
+                    'whatsapp_message' => $request->message,
+                    'template_name' => null,
+                    'template_type' => null,
+                    'type' => 'send',
+                    'status' => null,
+                    'phone_number' => $data['contacts'][0]['wa_id'],
+                    'from' => null,
+                    'recipient_id' => $data['contacts'][0]['wa_id'],
+                    'send_at' => null,
+                ];
+
+                // If the message exists, add the profile name
+                if ($existingMessage) {
+                    $attributes['profile_name'] = $existingMessage->profile_name;
+                }
+
+                // Update or create the record
+                WhatsappMessage::updateOrCreate(
+                    ['message_id' => $message['id']],
+                    $attributes
+                );
+            }
+        }
+
+
+        // return $response;
+
+        // Log::info($response);
+
+        // return redirect()->route('whatsapp.chat.index', ['recipient_id' => $request->recipient_id]);
+
+        return redirect()->route('whatsapp.chat.index');
+    }
+
+    public function sendImgMessage(Request $request)
+    {
+        // Validate the request to ensure an image file and recipient ID are provided
+        $request->validate([
+            'media_image' => 'required|image',
+            'recipient_id' => 'required|string',
+        ]);
+
+        // Store the uploaded image
+        if ($request->hasFile('media_image')) {
+            $image = $request->file('media_image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            // Store the image in the 'public/whatsapp/images' directory
+            $path = $image->storeAs('public/whatsapp/images', $imageName);
+
+            // Generate the URL for the stored image
+            $imageUrl = Storage::url($path);
+        }
+
+        // Make the HTTP request to send the image
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . env("FB_METADATA_TOKEN"),
+            'Content-Type' => 'application/json',
+        ])->post('https://graph.facebook.com/v19.0/' . env("FB_PHONE_NUMBER") . '/messages', [
+            'messaging_product' => 'whatsapp',
+            'recipient_type' => 'individual',
+            'to' => $request->recipient_id,
+            'type' => 'image',
+            'image' => [
+                'link' => url($imageUrl),
+                'caption' => 'The best succulent ever?',
+            ],
+        ]);
+
+        Log::info($response);
+
+        $data = json_decode($response->getBody(), true);
+
+        if (isset($data['messages'])) {
+            $messages = $data['messages'];
+
+            foreach ($messages as $message) {
+                // Fetch the existing message if it exists
+                $existingMessage = WhatsappMessage::where('recipient_id', $data['contacts'][0]['wa_id'])->whereNotNull('profile_name')->first();
+
+                // Prepare the attributes for update or create
+                $attributes = [
+                    'whatsapp_message' => $request->message,
+                    'template_name' => null,
+                    'template_type' => null,
+                    'type' => 'send',
+                    'status' => null,
+                    'image' => $path,
+                    'phone_number' => $data['contacts'][0]['wa_id'],
+                    'from' => null,
+                    'recipient_id' => $data['contacts'][0]['wa_id'],
+                    'send_at' => null,
+                ];
+
+                // If the message exists, add the profile name
+                if ($existingMessage) {
+                    $attributes['profile_name'] = $existingMessage->profile_name;
+                }
+
+                // Update or create the record
+                WhatsappMessage::updateOrCreate(
+                    ['message_id' => $message['id']],
+                    $attributes
+                );
+            }
+        }
+
+        return redirect()->route('whatsapp.chat.index');
     }
 }
