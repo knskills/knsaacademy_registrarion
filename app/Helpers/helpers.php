@@ -304,31 +304,6 @@ function sendFBMessage($phone = null)
     // return $response->body();
 }
 
-// function sendTempMessage($phone = null, $temp_id = null)
-// {
-//     // Log::info($phone);
-//     $response = Http::withHeaders([
-//         'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
-//         'Content-Type' => 'application/json',
-//     ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
-//         'messaging_product' => 'whatsapp',
-//         "recipient_type" => "individual",
-//         'to' => '+91' . $phone,
-//         'type' => 'template',
-//         'template' => [
-//             'name' => 'learn_nt_m',
-//             'language' => [
-//                 'code' => 'en'
-//             ]
-//         ]
-//     ]);
-
-//     // Log::info($response->body());
-
-//     // return $response->body();
-
-// }
-
 /**
  * Get whatsapp cloud api template
  * Reference: https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates
@@ -447,6 +422,12 @@ function replacePlaceholders($text, $parameters)
  */
 function sendTempMessage($template, $phone, $replacements = null)
 {
+    // Remove extra characters from the phone number
+    $phone = preg_replace('/\D/', '', $phone); // Remove any non-digit characters
+    if (strlen($phone) > 10) {
+        $phone = substr($phone, -10); // Keep only the last 10 digits
+    }
+
     // Get the template content
     $template_content = $template->template_content;
 

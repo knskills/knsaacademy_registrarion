@@ -115,7 +115,7 @@ class SendScheduledMessages implements ShouldQueue
     {
         // $this->sendTmpMessage($template->id, $phone);
         $template = WhtasappTemplate::find($template->template_id);
-        $replacements = [$audience->name, $audience->email, $audience->phone];
+        $replacements = [$audience->name ?? null, $audience->email ?? null, $audience->phone ?? null];
         $result = sendTempMessage($template, $phone, $replacements);
     }
 
