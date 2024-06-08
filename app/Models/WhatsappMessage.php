@@ -13,6 +13,7 @@ class WhatsappMessage extends Model
      * Mass assignable attributes.
      */
     protected $fillable = [
+        'contact_id',
         'message_id',
         'template_id',
         'whatsapp_message',
@@ -45,5 +46,13 @@ class WhatsappMessage extends Model
     function template()
     {
         return $this->belongsTo(MessageTemplate::class, 'template_id');
+    }
+
+    /**
+     * get the contacts
+     */
+    function contact()
+    {
+        return $this->belongsTo(WhatsappChatContact::class, 'contact_id');
     }
 }

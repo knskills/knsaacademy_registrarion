@@ -12,6 +12,7 @@ use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\WhatsappController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\WebhookController;
+use App\Http\Controllers\TestingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +84,7 @@ Route::middleware(['auth'])->group(function () {
 
     //testing msg
     Route::get('/send-message', [PageController::class, 'sendFBMessage'])->name('sendMessage');
+    Route::get('/add-conact', [TestingController::class, 'getContacts'])->name('add-conact');
 });
 
 
