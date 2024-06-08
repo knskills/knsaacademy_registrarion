@@ -27,8 +27,8 @@ class ChatController extends Controller
             $user = $contacts->first();
             $messages = $user->messages;
 
-            // Log the request data
-            Log::info($request->all());
+            // // Log the request data
+            // Log::info($request->all());
 
             // If a recipient ID is provided, fetch the corresponding contact and their messages
             if ($request->has('recipient_id')) {

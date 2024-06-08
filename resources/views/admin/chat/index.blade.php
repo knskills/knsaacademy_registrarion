@@ -109,7 +109,6 @@
                                                     action="{{ route('whatsapp.chat.index') }}"
                                                     method="GET"
                                                     class="w-100">
-                                                    @csrf
                                                     <input type="text"
                                                         name="phone_number"
                                                         class="form-control"
