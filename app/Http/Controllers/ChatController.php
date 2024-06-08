@@ -27,12 +27,23 @@ class ChatController extends Controller
             $user = $contacts->first();
             $messages = $user->messages;
 
-            // // Log the request data
-            // Log::info($request->all());
+            // Log the request data
+            Log::info($request->all());
 
             // If a recipient ID is provided, fetch the corresponding contact and their messages
             if ($request->has('recipient_id')) {
                 $user = WhatsappChatContact::with('messages')->find($request->recipient_id);
+                $contacts = WhatsappChatContact::with('messages')->where('id',$request->recipient_id)->get();
+
+                // Check if the recipient exists
+                if ($user) {
+                    $messages = $user->messages;
+                } else {
+                    return redirect()->back()->withErrors('Recipient not found');
+                }
+            } else if ($request->has('phone_number')) {
+                $user = WhatsappChatContact::with('messages')->where('number', 'like', '%' . $request->phone_number . '%')->orWhere('name', 'like', '%' . $request->phone_number . '%')->first();
+                $contacts = WhatsappChatContact::with('messages')->where('number', 'like', '%' . $request->phone_number . '%')->orWhere('name', 'like', '%' . $request->phone_number . '%')->get();
 
                 // Check if the recipient exists
                 if ($user) {
@@ -49,6 +60,7 @@ class ChatController extends Controller
             return redirect()->back()->withErrors('An error occurred while fetching chat messages');
         }
     }
+
 
 
     /**

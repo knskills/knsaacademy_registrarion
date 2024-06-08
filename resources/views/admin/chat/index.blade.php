@@ -111,7 +111,7 @@
                                                     class="w-100">
                                                     @csrf
                                                     <input type="text"
-                                                        name="recipient_id"
+                                                        name="phone_number"
                                                         class="form-control"
                                                         id="inlineFormInputGroup"
                                                         placeholder="Search"
