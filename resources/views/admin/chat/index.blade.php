@@ -412,15 +412,16 @@
                                                                 <li class="repaly"
                                                                     id="{{ $last }}">
                                                                     <p>
-                                                                        <a href="{{ asset($message->image) }}"
-                                                                            download>
-                                                                            <img src="{{ asset($message->image) }}"
-                                                                                alt="{{ $message->image }}"
-                                                                                style="max-width: 250px;">
-                                                                        </a>
+                                                                        @if ($message->image)
+                                                                            <a href="{{ asset($message->image) }}"
+                                                                                download>
+                                                                                <img src="{{ asset($message->image) }}"
+                                                                                    alt="{{ $message->image }}"
+                                                                                    style="max-width: 250px;">
+                                                                            </a>
+                                                                            <br>
+                                                                        @endif
 
-
-                                                                        <br>
                                                                         {{ $message->whatsapp_message }}
                                                                     </p>
                                                                     <span
@@ -545,9 +546,9 @@
                         <div class="modal-body">
 
                             <!--<div class="mb-3">
-                                            <label for="recipient-name" class="col-form-label">Recipient Name:</label>
-                                            <input type="text" class="form-control" id="recipient-name">
-                                            </div>-->
+                                                <label for="recipient-name" class="col-form-label">Recipient Name:</label>
+                                                <input type="text" class="form-control" id="recipient-name">
+                                                </div>-->
 
                             <div class="mb-3">
                                 <label for="recipient-name"
