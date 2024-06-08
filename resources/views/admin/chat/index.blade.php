@@ -50,6 +50,7 @@
 @endsection
 
 @section('content')
+
     <main id="main" class="main">
 
         {{-- <div class="pagetitle">
@@ -150,7 +151,7 @@
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#newContact">New</button>
 
-                                                    @foreach ($chatList as $key => $customer)
+                                                    @foreach ($contacts as $key => $contact)
                                                         <div class="tab-pane fade show active"
                                                             id="Open"
                                                             role="tabpanel"
@@ -158,7 +159,7 @@
                                                             <!-- chat-list -->
                                                             <div
                                                                 class="chat-list">
-                                                                <a href="{{ route('whatsapp.chat.index', ['recipient_id' => $customer->recipient_id]) }}"
+                                                                <a href="{{ route('whatsapp.chat.index', ['recipient_id' => $contact->id]) }}"
                                                                     class="d-flex align-items-center"
                                                                     readonly>
                                                                     <div
@@ -172,10 +173,10 @@
                                                                     <div
                                                                         class="flex-grow-1 ms-3">
                                                                         <h3>
-                                                                            {{ $customer->profile_name ?? '' }}
+                                                                            {{ $contact->name ?? '' }}
                                                                         </h3>
                                                                         <p>
-                                                                            +{{ $customer->recipient_id ?? '' }}
+                                                                            +{{ $contact->number ?? '' }}
                                                                         </p>
                                                                     </div>
                                                                 </a>
@@ -213,7 +214,11 @@
                                                             </div>
                                                             <!-- chat-list -->
                                                         </div> --}}
+
+                                                        {{-- {{count($contact->messages)}} --}}
+
                                                     @endforeach
+
                                                 </div>
                                             </div>
                                             <!-- chat-list -->
@@ -247,10 +252,10 @@
                                                         <div
                                                             class="flex-grow-1 ms-3">
                                                             <h3>
-                                                                {{ $user->profile_name ?? '' }}
+                                                                {{ $user->name ?? '' }}
                                                             </h3>
                                                             <p>
-                                                                +{{ $user->recipient_id ?? '' }}
+                                                                +{{ $user->number ?? '' }}
                                                             </p>
                                                         </div>
                                                     </div>
@@ -277,7 +282,7 @@
                                                                     </a> --}}
 
                                                                     <form
-                                                                        action="{{ route('whatsapp.chat.destroy', $user->recipient_id) }}"
+                                                                        action="{{ route('whatsapp.chat.destroy', $user->id) }}"
                                                                         method="POST">
                                                                         @csrf
                                                                         @method('DELETE')
@@ -389,11 +394,13 @@
 
                                                                         {{-- {{ $message->whatsapp_message }} --}}
 
+                                                                        @if ($message->image)
                                                                         <a href="{{ asset($message->image) }}" download>
                                                                             <img src="{{ asset($message->image) }}" alt="{{ $message->image }}" style="max-width: 250px;">
                                                                         </a>
-
                                                                         <br>
+                                                                        @endif
+
                                                                         {!! nl2br(e($message->whatsapp_message)) !!}
                                                                     </p>
                                                                     <span
