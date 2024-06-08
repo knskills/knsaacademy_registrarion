@@ -23,10 +23,11 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('whatsapp_messages', function (Blueprint $table) {
-            $table->dropForeign(['contact_id']); // Corrected foreign key reference
-            $table->dropColumn(['contact_id']);  // Corrected column name
-
+            // Check if the column exists before dropping the foreign key
+            if (Schema::hasColumn('whatsapp_messages', 'contact_id')) {
+                $table->dropForeign(['contact_id']); // Drop the foreign key constraint
+                $table->dropColumn('contact_id'); // Drop the column
+            }
         });
     }
 };
-
