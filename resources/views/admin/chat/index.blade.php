@@ -120,7 +120,7 @@
                                                     href="#"
                                                     title="Search">
                                                     <img class="img-fluid"
-                                                        src="https://mehedihtml.com/chatbox/assets/img/add.svg"
+                                                        src="{{asset('admin/chat/img/search.png')}}"
                                                         alt="search"
                                                         onclick="event.preventDefault();
                                                         document.getElementById('c-serch').submit();">
