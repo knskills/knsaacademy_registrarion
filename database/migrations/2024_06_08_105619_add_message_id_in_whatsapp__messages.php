@@ -12,10 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('whatsapp_messages', function (Blueprint $table) {
-            $table->unsignedBigInteger('contact_id')->nullable()->after('id');
-            $table->foreign('contact_id')->references('id')->on('whatsapp_chat_contacts')->onDelete('cascade');
+            if (!Schema::hasColumn('whatsapp_messages', 'contact_id')) {
+                $table->unsignedBigInteger('contact_id')->nullable()->after('id');
+                $table->foreign('contact_id')->references('id')->on('whatsapp_chat_contacts')->onDelete('cascade');
+            }
         });
     }
+
 
     /**
      * Reverse the migrations.
