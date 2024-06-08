@@ -1,7 +1,9 @@
 @extends('admin.layouts.niceapp')
 
 @section('styles')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link
+        href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+        rel="stylesheet" />
     <style>
         .select2-selection__choice {
             background-color: var(--bs-gray-200);
@@ -18,7 +20,8 @@
             <h1>Message</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a
+                            href="{{ route('dashboard') }}">Home</a></li>
                     <li class="breadcrumb-item">Send Message</li>
                 </ol>
             </nav>
@@ -33,7 +36,8 @@
                         @if ($errors->any())
                             <ul class="alert">
                                 @foreach ($errors->all() as $error)
-                                    <li class="text-danger">{{ $error }}</li>
+                                    <li class="text-danger">{{ $error }}
+                                    </li>
                                 @endforeach
                             </ul>
                         @endif
@@ -51,7 +55,9 @@
                         @endif
 
                     </div>
-                    <form class="form-horizontal style-form mt-3" action="{{ route('messages.store') }}" method="POST">
+
+                    <form class="form-horizontal style-form mt-3"
+                        action="{{ route('messages.store') }}" method="POST">
                         @csrf
                         <div class="form-group row">
                             <div class="col-md-6 mt-2">
@@ -60,11 +66,15 @@
                                         Template Type
                                     </label>
                                     <div class="col-md-8">
-                                        <select name="type" id="type" class="form-select" required>
-                                            <option value="">Select type</option>
+                                        <select name="type" id="type"
+                                            class="form-select" required>
+                                            <option value="">Select type
+                                            </option>
                                             <option value="sms">SMS</option>
-                                            <option value="whatsapp">Whatsapp</option>
-                                            <option value="email">Email</option>
+                                            <option value="whatsapp">Whatsapp
+                                            </option>
+                                            <option value="email">Email
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -76,8 +86,11 @@
                                         Template
                                     </label>
                                     <div class="col-md-8">
-                                        <select name="message_template_id" id="template_id" class="form-select" required>
-                                            <option value="">Select template</option>
+                                        <select name="message_template_id"
+                                            id="template_id"
+                                            class="form-select" required>
+                                            <option value="">Select
+                                                template</option>
                                         </select>
                                     </div>
                                 </div>
@@ -89,10 +102,14 @@
                                         Schedule Date
                                     </label>
                                     <div class="col-md-8">
-                                        <input type="date" name="schedule_date" id="schedule_date"
-                                            value="{{ old('schedule_date') }}" class="form-control" required>
+                                        <input type="date"
+                                            name="schedule_date"
+                                            id="schedule_date"
+                                            value="{{ old('schedule_date') }}"
+                                            class="form-control" required>
 
-                                        <input type="text" name="status" id="status" value="Schedule"
+                                        <input type="text" name="status"
+                                            id="status" value="Schedule"
                                             class="form-control" hidden>
                                     </div>
                                 </div>
@@ -104,8 +121,11 @@
                                         Schedule Time
                                     </label>
                                     <div class="col-md-8">
-                                        <input type="time" name="schedule_time" id="schedule_time"
-                                            value="{{ old('schedule_time') }}" class="form-control" required>
+                                        <input type="time"
+                                            name="schedule_time"
+                                            id="schedule_time"
+                                            value="{{ old('schedule_time') }}"
+                                            class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -116,11 +136,14 @@
                                         Event
                                     </label>
                                     <div class="col-md-8">
-                                        <select class="form-select" aria-label="Default select" id="event"
-                                            name="event_id">
-                                            <option value="">Select event</option>
+                                        <select class="form-select"
+                                            aria-label="Default select"
+                                            id="event" name="event_id">
+                                            <option value="">Select event
+                                            </option>
                                             @foreach ($events as $event)
-                                                <option value="{{ $event->id }}">
+                                                <option
+                                                    value="{{ $event->id }}">
                                                     {{ ucwords(str_replace('_', ' ', $event->event_name)) }}
                                                 </option>
                                             @endforeach
@@ -129,54 +152,91 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-12 mt-2" id="sms_cont">
+                            <div class="col-md-6 mt-2">
+                                <div class="row">
+                                    <label class="col-md-4 control-label">
+                                        Import file
+                                    </label>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <input id="fileupload"
+                                                class="form-control"
+                                                type="file" name="files[]">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 my-4" id="sms_cont">
                                 <div class="row">
                                     <label class="col-md-2 control-label">
                                         Recipients
                                     </label>
                                     <div class="col-md-7">
-                                        <select class="form-control select2" id="sel2div"
-                                            data-placeholder="Choose anything" multiple name="audience_ids[]">
+                                        <select class="form-control select2"
+                                            id="sel2div"
+                                            data-placeholder="Choose anything"
+                                            multiple name="audience_ids[]">
                                         </select>
                                     </div>
 
                                     <div class="col-md-3">
-                                        <button type="button" class="btn btn-danger btn-sm" id="deselect-all"
-                                            id="adn">
+                                        <button type="button"
+                                            class="btn btn-danger btn-sm"
+                                            id="deselect-all" id="adn">
                                             Deselect all
                                         </button>
 
                                         <!-- add new number -->
-                                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#newnum" type="button">
+                                        <button class="btn btn-primary btn-sm"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#newnum"
+                                            type="button">
                                             Add new
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="newnum" tabindex="-1" aria-labelledby="newnumLabel"
+                                        <div class="modal fade"
+                                            id="newnum" tabindex="-1"
+                                            aria-labelledby="newnumLabel"
                                             aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="newnumLabel">
-                                                            Add numbers or emails
+                                                        <h5 class="modal-title"
+                                                            id="newnumLabel">
+                                                            Add numbers or
+                                                            emails
                                                         </h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        <button type="button"
+                                                            class="btn-close"
+                                                            data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <input type="text" name="phone[]" class="form-control"
-                                                            id="new_phone_no" placeholder="Please enter mobile numbers or emails">
+                                                        <input type="text"
+                                                            name="phone[]"
+                                                            class="form-control"
+                                                            id="new_phone_no"
+                                                            placeholder="Please enter mobile numbers or emails">
 
                                                         <!-- notice line if multiple numbers -->
-                                                        <h6 class="text-primary mt-1">
-                                                            <small>Please enter multiple numbers or emails separated by comma(,).</small>
+                                                        <h6
+                                                            class="text-primary mt-1">
+                                                            <small>Please enter
+                                                                multiple
+                                                                numbers or
+                                                                emails
+                                                                separated by
+                                                                comma(,).</small>
                                                         </h6>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
+                                                        <button type="button"
+                                                            class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Cancel</button>
-                                                        <button type="button" class="btn btn-primary"
+                                                        <button type="button"
+                                                            class="btn btn-primary"
                                                             id="add_number">Add</button>
                                                     </div>
                                                 </div>
@@ -192,8 +252,11 @@
                                         Audience numbers
                                     </label>
                                     <div class="col-md-10">
-                                        <select class="form-control select2" id="audience_numbers"
-                                            data-placeholder="Choose anything" multiple name="audience_numbers[]">
+                                        <select class="form-control select2"
+                                            id="audience_numbers"
+                                            data-placeholder="Choose anything"
+                                            multiple
+                                            name="audience_numbers[]">
                                         </select>
                                     </div>
                                 </div>
@@ -205,14 +268,16 @@
                                         Message
                                     </label>
                                     <div class="col-md-10">
-                                        <textarea name="message" id="message" cols="30" rows="10" class="form-control" disabled></textarea>
+                                        <textarea name="message" id="message" cols="30" rows="10"
+                                            class="form-control" disabled></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div>
                             <div class="col-md-8 m-auto mt-3">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit"
+                                    class="btn btn-primary">Submit</button>
                             </div>
                         </div>
                     </form>
@@ -225,7 +290,12 @@
 
 @section('scripts')
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js">
+    </script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/xlsx@0.18.0/dist/xlsx.full.min.js">
+    </script>
 
     <script>
         $(document).ready(function() {
@@ -242,17 +312,9 @@
                 if (type == 'email') {
                     $('#sel2div').attr('name', 'emails[]');
                 } else {
-                    $('#sel2div').attr('name', 'audience_ids[]');
+                    $('#sel2div').attr('name',
+                        'audience_ids[]');
                 }
-
-                // // if type is email, show the email recipients
-                // if (type == 'email') {
-                //     $('#email_cont').show();
-                //     $('#sms_cont').hide();
-                // } else {
-                //     $('#email_cont').hide();
-                //     $('#sms_cont').show();
-                // }
 
                 $.ajax({
                     url: "{{ route('get-templates') }}",
@@ -263,14 +325,25 @@
                     },
                     success: function(response) {
                         // set the template options
-                        var templateOptions = '<option value="">Select template</option>';
-                        $.each(response.templates, function(index, template) {
-                            templateOptions += '<option value="' + template.id + '">' +
-                                template.name + '</option>';
-                        });
+                        var templateOptions =
+                            '<option value="">Select template</option>';
+                        $.each(response.templates,
+                            function(index,
+                                template) {
+                                templateOptions
+                                    +=
+                                    '<option value="' +
+                                    template
+                                    .id +
+                                    '">' +
+                                    template
+                                    .name +
+                                    '</option>';
+                            });
 
                         // set the template options
-                        $('#template_id').html(templateOptions);
+                        $('#template_id').html(
+                            templateOptions);
                     },
                     error: function(error) {
                         console.log(error);
@@ -290,7 +363,8 @@
                     },
                     success: function(response) {
                         // set the message
-                        $('#message').val(response.message);
+                        $('#message').val(response
+                            .message);
 
                     },
                     error: function(error) {
@@ -311,7 +385,8 @@
 
             $("#deselect-all").click(function() {
                 $('#sel2div').val(null).trigger('change');
-                $('#audience_numbers').val(null).trigger('change');
+                $('#audience_numbers').val(null).trigger(
+                    'change');
 
                 // reset event
                 $('#event').val(null).trigger('change');
@@ -335,65 +410,106 @@
                         var audience_numbers = '';
                         var audience_emails = '';
 
-                        // $.each(response.audiences, function(index, audience) {
-                        //     // audienceOptions += '<option value="' + audience.id + '">' +
-                        //     //     audience.name + '</option>';
-                        //     audienceOptions += '<option value="' + audience.phone +
-                        //         '">' +
-                        //         audience.phone + '</option>';
-                        //     audience_numbers += '<option value="' + audience.phone +
-                        //         '">' +
-                        //         audience.phone + '</option>';
-                        // });
-
                         if (type == 'email') {
-                            $('#sel2div').attr('name', 'emails[]');
+                            $('#sel2div').attr(
+                                'name',
+                                'emails[]');
 
-                            $.each(response.audiences, function(index, audience) {
-                                audienceOptions += '<option value="' + audience.email +
-                                    '">' +
-                                    audience.email + '</option>';
-                                audience_numbers += '<option value="' + audience.phone +
-                                    '">' +
-                                    audience.phone + '</option>';
-                            });
+                            $.each(response
+                                .audiences,
+                                function(index,
+                                    audience) {
+                                    audienceOptions
+                                        +=
+                                        '<option value="' +
+                                        audience
+                                        .email +
+                                        '">' +
+                                        audience
+                                        .email +
+                                        '</option>';
+                                    audience_numbers
+                                        +=
+                                        '<option value="' +
+                                        audience
+                                        .phone +
+                                        '">' +
+                                        audience
+                                        .phone +
+                                        '</option>';
+                                });
                         } else {
-                            $('#sel2div').attr('name', 'audience_ids[]');
-                            $.each(response.audiences, function(index, audience) {
-                                // audienceOptions += '<option value="' + audience.id + '">' +
-                                //     audience.name + '</option>';
-                                audienceOptions += '<option value="' + audience.phone +
-                                    '">' +
-                                    audience.phone + '</option>';
-                                audience_numbers += '<option value="' + audience.phone +
-                                    '">' +
-                                    audience.phone + '</option>';
-                            });
+                            $('#sel2div').attr(
+                                'name',
+                                'audience_ids[]'
+                            );
+                            $.each(response
+                                .audiences,
+                                function(index,
+                                    audience) {
+                                    // audienceOptions += '<option value="' + audience.id + '">' +
+                                    //     audience.name + '</option>';
+                                    audienceOptions
+                                        +=
+                                        '<option value="' +
+                                        audience
+                                        .phone +
+                                        '">' +
+                                        audience
+                                        .phone +
+                                        '</option>';
+                                    audience_numbers
+                                        +=
+                                        '<option value="' +
+                                        audience
+                                        .phone +
+                                        '">' +
+                                        audience
+                                        .phone +
+                                        '</option>';
+                                });
                         }
 
                         // set the audience options
-                        $('#sel2div').html(audienceOptions);
-                        $('#audience_numbers').html(audience_numbers);
-
-                        // default select all audience
-                        // $('#sel2div').val(response.audiences.map(function(audience) {
-                        //     return audience.phone;
-                        // })).trigger('change');
+                        $('#sel2div').html(
+                            audienceOptions);
+                        $('#audience_numbers')
+                            .html(
+                                audience_numbers);
 
                         if (type == 'email') {
-                            $('#sel2div').val(response.audiences.map(function(audience) {
-                                return audience.email;
-                            })).trigger('change');
+                            $('#sel2div').val(
+                                    response
+                                    .audiences.map(
+                                        function(
+                                            audience
+                                        ) {
+                                            return audience
+                                                .email;
+                                        }))
+                                .trigger('change');
                         } else {
-                            $('#sel2div').val(response.audiences.map(function(audience) {
-                                return audience.phone;
-                            })).trigger('change');
+                            $('#sel2div').val(
+                                    response
+                                    .audiences.map(
+                                        function(
+                                            audience
+                                        ) {
+                                            return audience
+                                                .phone;
+                                        }))
+                                .trigger('change');
                         }
 
                         // default select all audience
-                        $('#audience_numbers').val(response.audiences.map(function(audience) {
-                            return audience.phone;
-                        })).trigger('change');
+                        $('#audience_numbers').val(
+                            response.audiences
+                            .map(function(
+                                audience) {
+                                return audience
+                                    .phone;
+                            })).trigger(
+                            'change');
 
                     },
                     error: function(error) {
@@ -408,7 +524,8 @@
         $(document).ready(function() {
             today = new Date();
             var dd = today.getDate();
-            var mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
+            var mm = today.getMonth() +
+                1; //January is 0 so need to add 1 to make it 1!
             var yyyy = today.getFullYear();
 
             if (dd < 10) {
@@ -444,9 +561,6 @@
             var now = hh + ':' + mm;
 
             $('#schedule_time').attr('min', now);
-
-            // // set default time to now
-            // $('#schedule_time').val(now);
         });
     </script>
 
@@ -454,36 +568,35 @@
         $(document).ready(function() {
             $('#add_number').on('click', function() {
                 var new_phone_no = $('#new_phone_no').val();
-                var new_phone_no_array = new_phone_no.split(',');
+                var new_phone_no_array = new_phone_no.split(
+                    ',');
 
                 // Check if sel2div is initialized as a Select2
                 if ($('#sel2div').data('select2')) {
                     // If sel2div is not empty, add new numbers to sel2div
                     if ($('#sel2div').val().length > 0) {
                         var sel2div = $('#sel2div').val();
-                        var sel2div_array = sel2div.concat(new_phone_no_array);
+                        var sel2div_array = sel2div.concat(
+                            new_phone_no_array);
 
                         // Remove duplicates
-                        var unique_array = Array.from(new Set(sel2div_array));
+                        var unique_array = Array.from(new Set(
+                            sel2div_array));
 
                         // call the function to change the select2 data
                         changeSelData(unique_array);
 
-                        // // Set the new array to sel2div
-                        // $('#sel2div').val(unique_array).trigger('change');
                     } else {
                         // call the function to change the select2 data
                         changeSelData(new_phone_no_array);
-
-                        // // If sel2div is empty, set it to the new numbers
-                        // $('#sel2div').val(new_phone_no_array).trigger('change');
                     }
                 } else {
                     // If not initialized, initialize it
                     $('#sel2div').select2();
 
                     // Set it to the new numbers
-                    $('#sel2div').val(new_phone_no_array).trigger('change');
+                    $('#sel2div').val(new_phone_no_array)
+                        .trigger('change');
                 }
 
                 // Close the modal
@@ -498,7 +611,8 @@
             var audience_numbers = '';
 
             $.each(data, function(index, audience) {
-                audienceOptions += '<option value="' + audience + '">' +
+                audienceOptions += '<option value="' + audience +
+                    '">' +
                     audience + '</option>';
                 audience_numbers += '<option value="' + audience +
                     '">' +
@@ -539,20 +653,89 @@
                 var now = hh + ':' + mm;
 
                 if (schedule_time < now) {
-                    alert('Please select time greater than now');
+                    alert(
+                        'Please select time greater than now'
+                    );
                     $('#schedule_time').val(now);
                 }
             });
+        });
+    </script>
 
-            // // if change event and not empty, enable the adn button
-            // $('#event').on('change', function() {
-            //     var event_id = $(this).val();
-            //     if (event_id != '') {
-            //         $('#adn').prop('disabled', false);
-            //     } else {
-            //         $('#adn').prop('disabled', true);
-            //     }
-            // });
+    <script>
+        $(document).ready(function() {
+            var ExcelToJSON = function() {
+                this.parseExcel = function(file) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        var data = e.target.result;
+                        console.log(data);
+                        var workbook = XLSX.read(data, {
+                            type: 'binary'
+                        });
+                        workbook.SheetNames.forEach(
+                            function(sheetName) {
+                                var XL_row_object =
+                                    XLSX.utils
+                                    .sheet_to_row_object_array(
+                                        workbook
+                                        .Sheets[
+                                            sheetName]
+                                        );
+                                var productList = JSON
+                                    .parse(JSON
+                                        .stringify(
+                                            XL_row_object
+                                            ));
+
+                                var
+                            values = []; // Array to store the values for the textarea
+                                var
+                            options = []; // Array to store the options for select2
+                                for (var i = 0; i <
+                                    productList
+                                    .length; i++) {
+                                    var columns =
+                                        Object.values(
+                                            productList[
+                                                i]);
+                                    values.push(
+                                        columns[0]
+                                        ); // Assuming the value you want is in the second column
+
+                                    // Create options for select2
+                                    options.push(
+                                        `<option value="${columns[0]}">${columns[0]}</option>`
+                                        );
+                                }
+
+                                // Update the select2 options
+                                $('#sel2div').html(
+                                    options.join(
+                                        ''));
+                                // Set the values in select2
+                                $('#sel2div').val(
+                                        values)
+                                    .trigger('change');
+                            })
+                    };
+                    reader.onerror = function(ex) {
+                        console.log(ex);
+                    };
+
+                    reader.readAsBinaryString(file);
+                };
+            };
+
+            function handleFileSelect(evt) {
+                var files = evt.target.files; // FileList object
+                var xl2json = new ExcelToJSON();
+                xl2json.parseExcel(files[0]);
+            }
+
+            document.getElementById('fileupload').addEventListener(
+                'change', handleFileSelect, false);
         });
     </script>
 @endsection
