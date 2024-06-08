@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Models\WhatsappMessage;
-use App\Models\WhatsappChatContact;
 
 class ChatController extends Controller
 {
@@ -15,41 +14,45 @@ class ChatController extends Controller
     public function index(Request $request)
     {
         try {
-            // Fetch all contacts with their messages
-            $contacts = WhatsappChatContact::with('messages')->get();
+            // Fetch the chat list grouped by recipient_id with the latest message time
+            $chatList = WhatsappMessage::select(
+                'recipient_id',
+                \DB::raw('MAX(created_at) as latest_message_time'),
+                \DB::raw('SUBSTRING_INDEX(GROUP_CONCAT(profile_name ORDER BY created_at DESC), ",", 1) as profile_name')
+            )
+                ->groupBy('recipient_id')
+                ->orderBy('latest_message_time', 'desc')
+                ->get();
 
-            // Check if there are any contacts
-            if ($contacts->isEmpty()) {
-                return redirect()->back()->withErrors('No contacts found');
-            }
-
-            // Initialize user and messages with the first contact's data
-            $user = $contacts->first();
-            $messages = $user->messages;
-
-            // // Log the request data
-            // Log::info($request->all());
-
-            // If a recipient ID is provided, fetch the corresponding contact and their messages
+            // Determine the user to fetch messages for
             if ($request->has('recipient_id')) {
-                $user = WhatsappChatContact::with('messages')->find($request->recipient_id);
+                $user = WhatsappMessage::where('recipient_id', $request->recipient_id)->latest()->first();
 
-                // Check if the recipient exists
+                // Check if recipient exists
                 if ($user) {
-                    $messages = $user->messages;
+                    $user_id = $user->recipient_id;
                 } else {
+                    // If recipient_id is provided but not found, handle accordingly
                     return redirect()->back()->withErrors('Recipient not found');
                 }
+            } else {
+                if ($chatList->isEmpty()) {
+                    return redirect()->back()->withErrors('No chat messages found');
+                }
+
+                $user = $chatList->first();
+                $user_id = $user->recipient_id;
             }
 
-            return view('admin.chat.index', compact('messages', 'user', 'contacts'));
+            // Fetch messages for the determined user_id
+            $messages = WhatsappMessage::with('template')->where('recipient_id', $user_id)->get();
+
+            return view('admin.chat.index', compact('chatList', 'messages', 'user'));
         } catch (\Exception $e) {
-            // Log the error and return an error response
             Log::error($e->getMessage());
             return redirect()->back()->withErrors('An error occurred while fetching chat messages');
         }
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -96,9 +99,7 @@ class ChatController extends Controller
      */
     public function destroy(string $id)
     {        // delete all messages where recipient_id = $id
-        // WhatsappMessage::where('recipient_id', $id)->delete();
-
-        WhatsappChatContact::find($id)->delete();
+        WhatsappMessage::where('recipient_id', $id)->delete();
 
         // return redirect()->back()->with('success', 'Chat deleted successfully');
 
