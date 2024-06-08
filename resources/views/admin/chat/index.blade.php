@@ -50,6 +50,7 @@
 @endsection
 
 @section('content')
+
     <main id="main" class="main">
 
         {{-- <div class="pagetitle">
@@ -150,7 +151,7 @@
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#newContact">New</button>
 
-                                                    @foreach ($chatList as $key => $customer)
+                                                    @foreach ($contacts as $key => $contact)
                                                         <div class="tab-pane fade show active"
                                                             id="Open"
                                                             role="tabpanel"
@@ -158,7 +159,7 @@
                                                             <!-- chat-list -->
                                                             <div
                                                                 class="chat-list">
-                                                                <a href="{{ route('whatsapp.chat.index', ['recipient_id' => $customer->recipient_id]) }}"
+                                                                <a href="{{ route('whatsapp.chat.index', ['recipient_id' => $contact->id]) }}"
                                                                     class="d-flex align-items-center"
                                                                     readonly>
                                                                     <div
@@ -172,10 +173,10 @@
                                                                     <div
                                                                         class="flex-grow-1 ms-3">
                                                                         <h3>
-                                                                            {{ $customer->profile_name ?? '' }}
+                                                                            {{ $contact->name ?? '' }}
                                                                         </h3>
                                                                         <p>
-                                                                            +{{ $customer->recipient_id ?? '' }}
+                                                                            +{{ $contact->number ?? '' }}
                                                                         </p>
                                                                     </div>
                                                                 </a>
@@ -213,7 +214,10 @@
                                                             </div>
                                                             <!-- chat-list -->
                                                         </div> --}}
+
+                                                        {{-- {{count($contact->messages)}} --}}
                                                     @endforeach
+
                                                 </div>
                                             </div>
                                             <!-- chat-list -->
@@ -247,10 +251,10 @@
                                                         <div
                                                             class="flex-grow-1 ms-3">
                                                             <h3>
-                                                                {{ $user->profile_name ?? '' }}
+                                                                {{ $user->name ?? '' }}
                                                             </h3>
                                                             <p>
-                                                                +{{ $user->recipient_id ?? '' }}
+                                                                +{{ $user->number ?? '' }}
                                                             </p>
                                                         </div>
                                                     </div>
@@ -277,7 +281,7 @@
                                                                     </a> --}}
 
                                                                     <form
-                                                                        action="{{ route('whatsapp.chat.destroy', $user->recipient_id) }}"
+                                                                        action="{{ route('whatsapp.chat.destroy', $user->id) }}"
                                                                         method="POST">
                                                                         @csrf
                                                                         @method('DELETE')
@@ -389,11 +393,16 @@
 
                                                                         {{-- {{ $message->whatsapp_message }} --}}
 
-                                                                        <a href="{{ asset($message->image) }}" download>
-                                                                            <img src="{{ asset($message->image) }}" alt="{{ $message->image }}" style="max-width: 250px;">
-                                                                        </a>
+                                                                        @if ($message->image)
+                                                                            <a href="{{ asset($message->image) }}"
+                                                                                download>
+                                                                                <img src="{{ asset($message->image) }}"
+                                                                                    alt="{{ $message->image }}"
+                                                                                    style="max-width: 250px;">
+                                                                            </a>
+                                                                            <br>
+                                                                        @endif
 
-                                                                        <br>
                                                                         {!! nl2br(e($message->whatsapp_message)) !!}
                                                                     </p>
                                                                     <span
@@ -403,8 +412,11 @@
                                                                 <li class="repaly"
                                                                     id="{{ $last }}">
                                                                     <p>
-                                                                        <a href="{{ asset($message->image) }}" download>
-                                                                            <img src="{{ asset($message->image) }}" alt="{{ $message->image }}" style="max-width: 250px;">
+                                                                        <a href="{{ asset($message->image) }}"
+                                                                            download>
+                                                                            <img src="{{ asset($message->image) }}"
+                                                                                alt="{{ $message->image }}"
+                                                                                style="max-width: 250px;">
                                                                         </a>
 
 
@@ -439,7 +451,7 @@
                                                     cols="1"></textarea>
 
 
-                                                    <input type="file"
+                                                <input type="file"
                                                     name="media_image"
                                                     id="upload"
                                                     class="upload-box"
@@ -458,10 +470,11 @@
                                                 <div class="attach">
                                                     <div
                                                         class="button-wrapper">
-                                                        <span class="label" id="add-image-button">
+                                                        <span class="label"
+                                                            id="add-image-button">
                                                             <img class="img-fluid"
-                                                                 src="https://mehedihtml.com/chatbox/assets/img/upload.svg"
-                                                                 alt="image title">
+                                                                src="https://mehedihtml.com/chatbox/assets/img/upload.svg"
+                                                                alt="image title">
                                                             add image
                                                         </span>
                                                     </div>
@@ -532,9 +545,9 @@
                         <div class="modal-body">
 
                             <!--<div class="mb-3">
-                                        <label for="recipient-name" class="col-form-label">Recipient Name:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                        </div>-->
+                                            <label for="recipient-name" class="col-form-label">Recipient Name:</label>
+                                            <input type="text" class="form-control" id="recipient-name">
+                                            </div>-->
 
                             <div class="mb-3">
                                 <label for="recipient-name"
@@ -585,10 +598,9 @@
             $('.modal-body').scrollTop(lastElement.position().top);
         });
         $(document).ready(function() {
-        $('#add-image-button').on('click', function() {
-            $('#upload').click();
+            $('#add-image-button').on('click', function() {
+                $('#upload').click();
+            });
         });
-    });
     </script>
-
 @endsection

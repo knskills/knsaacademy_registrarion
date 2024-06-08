@@ -15,28 +15,41 @@ class TestingController extends Controller
 {
     public function getContacts()
     {
-        $contacts = WhatsappMessage::all();
+        try {
+            // Fetch all messages
+            $messages = WhatsappMessage::all();
 
-        foreach ($contacts as $contact) {
-            // Check if contact already exists
-            $existing_contact = WhatsappChatContact::where('number', $contact->phone_number)->first();
+            Log::info('Total messages: ' . $messages->count());
 
-            if ($existing_contact) {
-                // If contact exists, assign the existing contact ID to the message
-                $contact->contact_id = $existing_contact->id;
-            } else {
-                // If contact does not exist, create a new contact
-                $new_contact = new WhatsappChatContact();
-                $new_contact->name = $contact->profile_name;
-                $new_contact->number = $contact->phone_number;
-                $new_contact->save();
+            foreach ($messages as $message) {
+                // Check if contact already exists based on phone number
+                $existing_contact = WhatsappChatContact::where('number', $message->recipient_id)->first();
 
-                // Assign the new contact ID to the message
-                $contact->contact_id = $new_contact->id;
+                if ($existing_contact) {
+                    // If contact exists, assign the existing contact ID to the message
+                    $message->contact_id = $existing_contact->id;
+                } else {
+                    // If contact does not exist, create a new contact
+                    $new_contact = WhatsappChatContact::create([
+                        'name' => $message->profile_name,
+                        'number' => $message->recipient_id,
+                    ]);
+
+                    // Assign the new contact ID to the message
+                    $message->contact_id = $new_contact->id;
+                }
+
+                // Save the message with the updated contact_id
+                $message->save();
+
             }
 
-            // Save the message with the updated contact_id
-            $contact->save();
+
+            return 'task completed';
+
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return $e->getMessage();
         }
     }
 }
