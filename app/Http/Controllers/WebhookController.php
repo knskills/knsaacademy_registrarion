@@ -10,6 +10,7 @@ use Illuminate\Support\Carbon;
 use Netflie\WhatsAppCloudApi\WhatsAppCloudApi;
 
 use App\Models\WhatsappMessage;
+use App\Models\WhatsappChatContact;
 
 class WebhookController extends Controller
 {
@@ -67,16 +68,22 @@ class WebhookController extends Controller
     private function handleStatuses(array $statuses, array $data)
     {
         foreach ($statuses as $status) {
+            $recipient_id = $status['recipient_id'];
+            $profile_name = null;
+
+            $conatct_id = $this->createContact($recipient_id, $profile_name);
+
             WhatsappMessage::updateOrCreate(
                 ['message_id' => $status['id']],
                 [
+                    'contact_id' => $conatct_id ?? null,
                     'template_name' => $status['conversation']['origin']['type'] ?? null,
                     'template_type' => $status['conversation']['origin']['type'] ?? null,
                     'type' => 'send',
                     'status' => $status['status'],
                     'phone_number' => $data['entry'][0]['changes'][0]['value']['metadata']['display_phone_number'],
                     'from' => $data['entry'][0]['changes'][0]['value']['metadata']['phone_number_id'],
-                    'recipient_id' => $status['recipient_id'],
+                    'recipient_id' => $recipient_id,
                     'send_at' => isset($status['timestamp']) ? date('Y-m-d H:i:s', $status['timestamp']) : null,
                 ]
             );
@@ -88,9 +95,15 @@ class WebhookController extends Controller
     private function handleMessages(array $messages, array $data)
     {
         foreach ($messages as $message) {
+            $recipient_id = $message['from'];
+            $profile_name = $data['entry'][0]['changes'][0]['value']['contacts'][0]['profile']['name'] ?? null;
+
+            $conatct_id = $this->createContact($recipient_id, $profile_name);
+
             $attributes = [
+                'contact_id' => $conatct_id ?? null,
                 'message_id' => $message['id'] ?? null,
-                'profile_name' => $data['entry'][0]['changes'][0]['value']['contacts'][0]['profile']['name'] ?? null,
+                'profile_name' => $profile_name ?? null,
                 'type' => 'reply',
                 'reply_at' => isset($message['timestamp']) ? Carbon::createFromTimestamp($message['timestamp']) : null,
                 'status' => 'received',
@@ -178,5 +191,23 @@ class WebhookController extends Controller
         ];
 
         return $mimeTypes[$mime] ?? 'jpg'; // Default to 'jpg' if MIME type is not found
+    }
+
+    /**
+     * Create New contact
+     */
+    public function createContact($phone_number, $profile_name)
+    {
+        // $phone_number = $request->input('phone_number');
+        // $profile_name = $request->input('profile_name');
+
+        $contact = WhatsappChatContact::updateOrCreate(
+            ['number' => $phone_number],
+            ['name' => $profile_name]
+        );
+
+        return $contact->id;
+
+        //return response()->json(['status' => 'Contact created successfully'], 200);
     }
 }
