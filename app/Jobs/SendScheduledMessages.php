@@ -16,6 +16,7 @@ use App\Models\Message;
 use App\Models\MessageTemplate;
 use App\Models\audience as Audience;
 use App\Models\WhatsappMessage;
+use App\Models\WhatsappChatContact;
 // use App\Models\Event;
 use App\Mail\TempMail;
 use Log;
@@ -124,11 +125,18 @@ class SendScheduledMessages implements ShouldQueue
             $messages = $result['messages'];
 
             foreach ($messages as $message) {
+
+                $contact = WhatsappChatContact::updateOrCreate(
+                    ['number' => $result['contacts'][0]['wa_id']],
+                    ['name' => null]
+                );
+
                 // Fetch the existing message if it exists
                 $existingMessage = WhatsappMessage::where('recipient_id', $result['contacts'][0]['wa_id'])->whereNotNull('profile_name')->first();
 
                 // Prepare the attributes for update or create
                 $attributes = [
+                    'contact_id' => $contact->id,
                     'whatsapp_message' => $modifiedMessage ?? 'Image Message',
                     'template_name' => null,
                     'template_type' => null,
