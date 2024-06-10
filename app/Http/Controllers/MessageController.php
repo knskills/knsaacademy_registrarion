@@ -44,6 +44,7 @@ class MessageController extends Controller
 
     public function store(Request $request)
     {
+        // Log::info($request->all());
         $message = Message::create($request->all());
         // $audience_ids = $request->audience_ids;
         // $audience = Audience::find($audience_ids);
