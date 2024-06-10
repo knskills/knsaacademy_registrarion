@@ -133,7 +133,7 @@ class AudienceController extends Controller
                 $audience->registration_date = Carbon::now();
                 $audience->save();
 
-                $template = WhtasappTemplate::where('name', 'learn_nt_m')->first();
+                $template = WhtasappTemplate::where('name', 'registartion_confirmation')->first();
                 Log::info($template);
                 if ($template) {
                     sendTempMessage($template, $request->phone, $para = null);
