@@ -685,7 +685,7 @@
                                             class="small-text">Date</span><br>
                                         <span
                                             class="big-bold-text seminar-date"
-                                            id="next-tuesday">11 Jun
+                                            id="next-tuesday">16 Jun
                                             2024</span>
 
                                         {{-- <span class="big2-bold-text" style="font-size: 20px;">2,3 & 4 Feb 2024</span> --}}
@@ -1136,7 +1136,7 @@
                                             class="small-text">Date</span><br>
                                         <span
                                             class="big-bold-text text-center seminar-date"
-                                            id="next-tuesday2">11 Jun
+                                            id="next-tuesday2">16 Jun
                                             2024</span>
                                     </div>
                                 </div>
@@ -2071,7 +2071,7 @@
                 monthNames[nextTuesday.getMonth()] + ' ' +
                 nextTuesday.getFullYear();
 
-            // // var formattedNextTuesday = "11 Jun 2024";
+            // // var formattedNextTuesday = "16 Jun 2024";
             // $('#next-tuesday').html(formattedNextTuesday);
             // $('#next-tuesday2').html(formattedNextTuesday);
         });
