@@ -670,7 +670,7 @@
 
                     reader.onload = function(e) {
                         var data = e.target.result;
-                        console.log(data);
+                        // console.log(data);
                         var workbook = XLSX.read(data, {
                             type: 'binary'
                         });
@@ -682,17 +682,17 @@
                                         workbook
                                         .Sheets[
                                             sheetName]
-                                        );
+                                    );
                                 var productList = JSON
                                     .parse(JSON
                                         .stringify(
                                             XL_row_object
-                                            ));
+                                        ));
 
                                 var
-                            values = []; // Array to store the values for the textarea
+                                    values = []; // Array to store the values for the textarea
                                 var
-                            options = []; // Array to store the options for select2
+                                    options = []; // Array to store the options for select2
                                 for (var i = 0; i <
                                     productList
                                     .length; i++) {
@@ -702,12 +702,26 @@
                                                 i]);
                                     values.push(
                                         columns[0]
-                                        ); // Assuming the value you want is in the second column
+                                    ); // Assuming the value you want is in the second column
 
                                     // Create options for select2
                                     options.push(
                                         `<option value="${columns[0]}">${columns[0]}</option>`
-                                        );
+                                    );
+                                }
+
+                                var type = $('#type')
+                                    .val();
+
+                                if (type == 'email') {
+                                    $('#sel2div').attr(
+                                        'name',
+                                        'emails[]');
+                                } else {
+                                    $('#sel2div').attr(
+                                        'name',
+                                        'audience_numbers[]'
+                                    );
                                 }
 
                                 // Update the select2 options
@@ -718,6 +732,8 @@
                                 $('#sel2div').val(
                                         values)
                                     .trigger('change');
+
+
                             })
                     };
                     reader.onerror = function(ex) {

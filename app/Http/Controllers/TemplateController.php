@@ -67,6 +67,7 @@ class TemplateController extends Controller
 
             $msg = $request->message;
             $lang = '';
+            $whts_temp_id = null;
             $whtsp_msg = [];
 
             if ($request->type == 'whatsapp') {
@@ -95,6 +96,8 @@ class TemplateController extends Controller
                         'template_content' => $res['template'],
                     ]
                 );
+
+                $whts_temp_id = $whts_temp->id;
             }
 
             MessageTemplate::updateOrCreate(
@@ -103,7 +106,7 @@ class TemplateController extends Controller
                     'type' => $request->input('type')
                 ],
                 [
-                    'template_id' => $request->input('template_id', '') ?? $whts_temp->id,
+                    'template_id' => $request->input('template_id', '') ?? $whts_temp_id,
                     'name' => $request->input('name', ''),
                     'subject' => $request->input('subject', ''),
                     'message' => $msg,

@@ -624,7 +624,7 @@
             </div>
             <div class="row mt-4">
                 <div class="col-md-6 mb-4">
-                    <img src="{{ asset('assets/img/learning/5.jpeg') }}"
+                    <img src="{{ asset('assets/img/learning/8.jpeg') }}"
                         alt="Learn Marketing" class="img-fluid image-effect">
                 </div>
 
