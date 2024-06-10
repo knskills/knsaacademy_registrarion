@@ -107,7 +107,7 @@
 
                         <div class="card">
                             <div class="card-header">
-                                Register Here to Join Whatsapp group
+                                Register Here
                             </div>
                             <div class="card-body">
                                 <form method="post" id="registration"
