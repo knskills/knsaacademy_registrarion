@@ -707,8 +707,8 @@
                                     <div class="ml-3">
                                         <span
                                             class="small-text">Time</span><br>
-                                        <span class="big-bold-text">11AM to
-                                            02PM</span>
+                                        <span class="big-bold-text">10AM to
+                                            01PM</span>
                                     </div>
                                 </div>
                             </div>
@@ -1156,8 +1156,8 @@
                                     <div class="ml-3">
                                         <span
                                             class="small-text">Time</span><br>
-                                        <span class="big-bold-text">11AM to
-                                            02PM</span>
+                                        <span class="big-bold-text">10AM to
+                                            01PM</span>
                                     </div>
                                 </div>
                             </div>
