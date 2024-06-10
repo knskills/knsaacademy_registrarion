@@ -33,7 +33,7 @@ class ChatController extends Controller
             // If a recipient ID is provided, fetch the corresponding contact and their messages
             if ($request->has('recipient_id')) {
                 $user = WhatsappChatContact::with('messages')->find($request->recipient_id);
-                $contacts = WhatsappChatContact::with('messages')->where('id',$request->recipient_id)->get();
+                $contact = WhatsappChatContact::with('messages')->where('id',$request->recipient_id)->get();
 
                 // Check if the recipient exists
                 if ($user) {
