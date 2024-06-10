@@ -15,8 +15,10 @@ class ChatController extends Controller
     public function index(Request $request)
     {
         try {
-            // Fetch all contacts with their messages
-            $contacts = WhatsappChatContact::with('messages')->get();
+            // Fetch all contacts with their messages, ordered by latest message timestamp
+            $contacts = WhatsappChatContact::with(['messages' => function ($query) {
+                $query->orderBy('created_at', 'asc');
+            }])->get();
 
             // Check if there are any contacts
             if ($contacts->isEmpty()) {
@@ -27,13 +29,14 @@ class ChatController extends Controller
             $user = $contacts->first();
             $messages = $user->messages;
 
-            // // Log the request data
+            // Log the request data if needed
             // Log::info($request->all());
 
             // If a recipient ID is provided, fetch the corresponding contact and their messages
             if ($request->has('recipient_id')) {
-                $user = WhatsappChatContact::with('messages')->find($request->recipient_id);
-                $contact = WhatsappChatContact::with('messages')->where('id', $request->recipient_id)->get();
+                $user = WhatsappChatContact::with(['messages' => function ($query) {
+                    $query->orderBy('created_at', 'desc');
+                }])->find($request->recipient_id);
 
                 // Check if the recipient exists
                 if ($user) {
@@ -42,8 +45,19 @@ class ChatController extends Controller
                     return redirect()->back()->withErrors('Recipient not found');
                 }
             } else if ($request->has('phone_number')) {
-                $user = WhatsappChatContact::with('messages')->where('number', 'like', '%' . $request->phone_number . '%')->orWhere('name', 'like', '%' . $request->phone_number . '%')->first();
-                $contacts = WhatsappChatContact::with('messages')->where('number', 'like', '%' . $request->phone_number . '%')->orWhere('name', 'like', '%' . $request->phone_number . '%')->get();
+                $user = WhatsappChatContact::with(['messages' => function ($query) {
+                    $query->orderBy('created_at', 'desc');
+                }])
+                    ->where('number', 'like', '%' . $request->phone_number . '%')
+                    ->orWhere('name', 'like', '%' . $request->phone_number . '%')
+                    ->first();
+
+                $contacts = WhatsappChatContact::with(['messages' => function ($query) {
+                    $query->orderBy('created_at', 'desc');
+                }])
+                    ->where('number', 'like', '%' . $request->phone_number . '%')
+                    ->orWhere('name', 'like', '%' . $request->phone_number . '%')
+                    ->get();
 
                 // Check if the recipient exists
                 if ($user) {
@@ -60,6 +74,7 @@ class ChatController extends Controller
             return redirect()->back()->withErrors('An error occurred while fetching chat messages');
         }
     }
+
 
 
 
@@ -113,7 +128,7 @@ class ChatController extends Controller
         $client = WhatsappChatContact::where('id', $id)->first();
         $messages = $client->messages;
 
-        foreach($messages as $message) {
+        foreach ($messages as $message) {
             // delete image if it exists
             if ($message->image) {
                 $filePath = public_path($message->image);

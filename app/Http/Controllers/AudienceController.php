@@ -148,10 +148,10 @@ class AudienceController extends Controller
                 });
             }
 
-            // return redirect()->away('https://rzp.io/i/1thYxtdzp');
+            return redirect()->away('https://pages.razorpay.com/knsaacademy');
 
 
-            return redirect()->route('join-whatsapp');
+            // return redirect()->route('join-whatsapp');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');

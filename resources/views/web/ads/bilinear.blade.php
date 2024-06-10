@@ -2043,11 +2043,11 @@
         $('.payment').click(function() {
             // window.location.href = "{{ route('audience.store') }}";
             // window.location.href = "https://rzp.io/l/knsaacademy";
-            window.location.href = "https://rzp.io/l/knsaacademy";
+            // window.location.href = "https://rzp.io/l/knsaacademy";
 
 
             // // open reg_model_t modal
-            // $('#reg_model_t').modal('show');
+            $('#reg_model_t').modal('show');
         });
     </script>
 

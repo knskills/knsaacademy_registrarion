@@ -4,7 +4,7 @@
     <div class="d-flex align-items-center justify-content-between">
         <a href="#" class="logo d-flex align-items-center">
             <img src="{{asset('assets/img/11.png')}}" alt="knsa">
-            <span class="d-none d-lg-block">Knsa</span>
+            <span class="d-none d-lg-block">KNSA</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -351,7 +351,7 @@
             </a>
         </li> --}}
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link {{ Route::currentRouteNamed('whatsapp.*') ? '' : 'collapsed' }}"
                 data-bs-target="#whatsapp-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-whatsapp"></i>
@@ -361,12 +361,6 @@
             <ul id="whatsapp-nav"
                 class="nav-content collapse {{ Route::currentRouteNamed('whatsapp.*') ? 'show' : '' }} "
                 data-bs-parent="#sidebar-nav">
-                {{-- <li>
-                    <a href="{{ route('whatsapp.index') }}"
-                        class="{{ Route::currentRouteNamed('whatsapp.index') ? 'active' : '' }}">
-                        <i class="bi bi-circle"></i><span>whatsapp</span>
-                    </a>
-                </li> --}}
                 <li>
                     <a href="{{ route('whatsapp.setting') }}"
                         class="{{ Route::currentRouteNamed('whatsapp.setting') ? 'active' : '' }}">
@@ -381,6 +375,14 @@
                     </a>
                 </li>
             </ul>
+        </li> --}}
+
+        <li class="nav-item">
+            <a class="nav-link {{ Route::currentRouteNamed('whatsapp.chat.index') ? '' : 'collapsed' }}"
+                href="{{ route('whatsapp.chat.index') }}" class="{{ Route::currentRouteNamed('whatsapp.chat.index') ? 'active' : '' }}">
+                <i class="bi bi-whatsapp"></i>
+                <span>Whatsapp</span>
+            </a>
         </li>
     </ul>
 
