@@ -33,7 +33,7 @@ class ChatController extends Controller
             // If a recipient ID is provided, fetch the corresponding contact and their messages
             if ($request->has('recipient_id')) {
                 $user = WhatsappChatContact::with('messages')->find($request->recipient_id);
-                $contact = WhatsappChatContact::with('messages')->where('id',$request->recipient_id)->get();
+                $contact = WhatsappChatContact::with('messages')->where('id', $request->recipient_id)->get();
 
                 // Check if the recipient exists
                 if ($user) {
@@ -109,7 +109,23 @@ class ChatController extends Controller
     public function destroy(string $id)
     {   // delete all messages where recipient_id = $id
         // WhatsappMessage::where('recipient_id', $id)->delete();
-        WhatsappChatContact::find($id)->delete();
+
+        $client = WhatsappChatContact::where('id', $id)->first();
+        $messages = $client->messages;
+
+        foreach($messages as $message) {
+            // delete image if it exists
+            if ($message->image) {
+                $filePath = public_path($message->image);
+                if (\File::exists($filePath)) {
+                    \File::delete($filePath);
+                }
+            }
+        }
+
+        $client->delete();
+
+        // WhatsappChatContact::find($id)->delete();
 
         // return redirect()->back()->with('success', 'Chat deleted successfully');
 
