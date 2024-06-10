@@ -17,7 +17,7 @@ class ChatController extends Controller
         try {
             // Fetch all contacts with their messages, ordered by latest message timestamp
             $contacts = WhatsappChatContact::with(['messages' => function ($query) {
-                $query->orderBy('created_at', 'asc');
+                $query->orderBy('created_at', 'desc');
             }])->get();
 
             // Check if there are any contacts
