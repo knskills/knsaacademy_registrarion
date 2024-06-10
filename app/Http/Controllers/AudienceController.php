@@ -148,7 +148,7 @@ class AudienceController extends Controller
                 });
             }
 
-            return redirect()->away('https://pages.razorpay.com/knsaacademy');
+            return redirect()->away('https://rzp.io/l/ZlWoFuR');
 
 
             // return redirect()->route('join-whatsapp');
