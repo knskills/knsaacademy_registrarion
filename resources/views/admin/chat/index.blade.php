@@ -313,7 +313,7 @@
                                         </div>
 
 
-                                        <div class="modal-body">
+                                        <div class="modal-body" id="chat-body">
                                             <div class="msg-body">
                                                 <ul>
 
@@ -573,7 +573,6 @@
                                 class="btn btn-primary">Send</button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
@@ -595,7 +594,7 @@
             // Select the last li element by its ID
             var lastElement = $('#last');
             // Scroll the container to the top position of the last element
-            $('.modal-body').scrollTop(lastElement.position().top);
+            $('#chat-body').scrollTop(lastElement.position().top);
         });
         $(document).ready(function() {
             $('#add-image-button').on('click', function() {
