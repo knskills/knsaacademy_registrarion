@@ -444,7 +444,7 @@
 
                                                 <input type="hidden"
                                                     name="recipient_id"
-                                                    value="{{ substr($user->recipient_id, 2) }}">
+                                                    value="{{ substr($user->number, 2) }}">
 
                                                 <textarea class="form-control" name="message" aria-label="message…"
                                                     value="{{ old('message') }}" placeholder="Write message…"
@@ -539,7 +539,7 @@
                             data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <form action="{{ route('whatsapp.text-message') }}"
+                    <form action="{{ route('whatsapp.send-message') }}"
                         method="POST">
                         @csrf
                         <div class="modal-body">
