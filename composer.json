@@ -16,6 +16,7 @@
         "laravel/ui": "^4.2",
         "maatwebsite/excel": "^3.1",
         "netflie/whatsapp-cloud-api": "^2.2",
+        "pusher/pusher-php-server": "^7.2",
         "twilio/sdk": "^8.0"
     },
     "require-dev": {

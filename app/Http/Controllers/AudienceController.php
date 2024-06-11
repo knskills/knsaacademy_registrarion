@@ -103,8 +103,8 @@ class AudienceController extends Controller
                 $audience->registration_date = Carbon::now();
                 $audience->save();
 
-                $template = WhtasappTemplate::where('name', 'registartion_confirmation')->first();
-                $modifiedMessage = MessageTemplate::where('name', 'registartion_confirmation')->first()->message;
+                $template = WhtasappTemplate::where('name', 'welcome_first_message')->first();
+                $modifiedMessage = MessageTemplate::where('name', 'welcome_first_message')->first()->message;
                 // Log::info($template);
                 if ($template) {
                     $result = sendTempMessage($template, $request->phone, $para = null);
@@ -140,8 +140,8 @@ class AudienceController extends Controller
                 $audience->registration_date = Carbon::now();
                 $audience->save();
 
-                $template = WhtasappTemplate::where('name', 'registartion_confirmation')->first();
-                $modifiedMessage = MessageTemplate::where('name', 'registartion_confirmation')->first()->message;
+                $template = WhtasappTemplate::where('name', 'welcome_first_message')->first();
+                $modifiedMessage = MessageTemplate::where('name', 'welcome_first_message')->first()->message;
                 // Log::info($template);
                 if ($template) {
                     $result = sendTempMessage($template, $request->phone, $para = null);
