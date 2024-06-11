@@ -8,6 +8,9 @@ use App\Imports\AudienceImport;
 use App\Models\Event;
 use App\Models\MessageTemplate;
 use App\Models\WhtasappTemplate;
+use App\Models\WhatsappChatContact;
+use App\Models\WhatsappMessage;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -87,6 +90,8 @@ class AudienceController extends Controller
             // $audience = Audience::where('email', $request->email)->orWhere('phone', $request->phone)->first();
 
             $audience = Audience::where('email', $request->email)->where('phone', $request->phone)->first();
+            $result = null;
+            $modifiedMessage = null;
 
             if (!$audience) {
                 $audience = new audience();
@@ -99,9 +104,10 @@ class AudienceController extends Controller
                 $audience->save();
 
                 $template = WhtasappTemplate::where('name', 'registartion_confirmation')->first();
+                $modifiedMessage = MessageTemplate::where('name', 'registartion_confirmation')->first()->message;
                 // Log::info($template);
                 if ($template) {
-                    sendTempMessage($template, $request->phone, $para = null);
+                    $result = sendTempMessage($template, $request->phone, $para = null);
                 }
 
                 // $audience = Audience::where('id', $audience->id)->first();
@@ -135,9 +141,51 @@ class AudienceController extends Controller
                 $audience->save();
 
                 $template = WhtasappTemplate::where('name', 'registartion_confirmation')->first();
-                Log::info($template);
+                $modifiedMessage = MessageTemplate::where('name', 'registartion_confirmation')->first()->message;
+                // Log::info($template);
                 if ($template) {
-                    sendTempMessage($template, $request->phone, $para = null);
+                    $result = sendTempMessage($template, $request->phone, $para = null);
+                }
+            }
+
+            if (isset($result['messages'])) {
+                $messages = $result['messages'];
+
+                foreach ($messages as $message) {
+
+                    $contact = WhatsappChatContact::updateOrCreate(
+                        ['number' => $result['contacts'][0]['wa_id']],
+                        ['name' => null]
+                    );
+
+                    // Fetch the existing message if it exists
+                    $existingMessage = WhatsappMessage::where('recipient_id', $result['contacts'][0]['wa_id'])->whereNotNull('profile_name')->first();
+
+                    // Prepare the attributes for update or create
+                    $attributes = [
+                        'contact_id' => $contact->id,
+                        'whatsapp_message' => $modifiedMessage ?? 'Image Message',
+                        'template_name' => null,
+                        'template_type' => null,
+                        'type' => 'send',
+                        'status' => null,
+                        'image' => $temp_img ?? null,
+                        'phone_number' => $result['contacts'][0]['wa_id'],
+                        'from' => null,
+                        'recipient_id' => $result['contacts'][0]['wa_id'],
+                        'send_at' => null,
+                    ];
+
+                    // If the message exists, add the profile name
+                    if ($existingMessage) {
+                        $attributes['profile_name'] = $existingMessage->profile_name;
+                    }
+
+                    // Update or create the record
+                    $message = WhatsappMessage::updateOrCreate(
+                        ['message_id' => $message['id']],
+                        $attributes
+                    );
                 }
             }
 
