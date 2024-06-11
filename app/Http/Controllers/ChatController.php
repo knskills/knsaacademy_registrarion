@@ -15,57 +15,49 @@ class ChatController extends Controller
     public function index(Request $request)
     {
         try {
-            // Fetch all contacts with their messages, ordered by latest message timestamp
-            $contacts = WhatsappChatContact::with(['messages' => function ($query) {
-                $query->orderBy('created_at', 'asc');
-            }])->get();
+            // Base query to fetch contacts with their messages, ordered by the latest message timestamp
+            $baseQuery = WhatsappChatContact::with(['messages' => function ($query) {
+                $query->orderBy('created_at', 'desc');
+            }])
+                ->whereHas('messages') // Ensuring we only get contacts with messages
+                ->withCount(['messages' => function ($query) {
+                    $query->select(\DB::raw('MAX(created_at)'));
+                }])
+                ->orderBy('messages_count', 'desc');
 
-            // Check if there are any contacts
-            if ($contacts->isEmpty()) {
-                return redirect()->back()->withErrors('No contacts found');
-            }
-
-            // Initialize user and messages with the first contact's data
-            $user = $contacts->first();
-            $messages = $user->messages;
-
-            // Log the request data if needed
-            // Log::info($request->all());
-
-            // If a recipient ID is provided, fetch the corresponding contact and their messages
+            // Check if there is a recipient_id filter
             if ($request->has('recipient_id')) {
-                $user = WhatsappChatContact::with(['messages' => function ($query) {
-                    $query->orderBy('created_at', 'asc');
-                }])->find($request->recipient_id);
-
-                // Check if the recipient exists
-                if ($user) {
-                    $messages = $user->messages;
-                } else {
+                $user = $baseQuery->find($request->recipient_id);
+                if (!$user) {
                     return redirect()->back()->withErrors('Recipient not found');
                 }
-            } else if ($request->has('phone_number')) {
-                $user = WhatsappChatContact::with(['messages' => function ($query) {
-                    $query->orderBy('created_at', 'asc');
-                }])
-                    ->where('number', 'like', '%' . $request->phone_number . '%')
-                    ->orWhere('name', 'like', '%' . $request->phone_number . '%')
-                    ->first();
-
-                $contacts = WhatsappChatContact::with(['messages' => function ($query) {
-                    $query->orderBy('created_at', 'asc');
-                }])
-                    ->where('number', 'like', '%' . $request->phone_number . '%')
-                    ->orWhere('name', 'like', '%' . $request->phone_number . '%')
+                $contacts = collect([$user]);
+            }
+            // Check if there is a phone_number filter
+            else if ($request->has('phone_number')) {
+                $searchTerm = $request->phone_number;
+                $contacts = $baseQuery
+                    ->where(function ($query) use ($searchTerm) {
+                        $query->where('number', 'like', '%' . $searchTerm . '%')
+                            ->orWhere('name', 'like', '%' . $searchTerm . '%');
+                    })
                     ->get();
-
-                // Check if the recipient exists
-                if ($user) {
-                    $messages = $user->messages;
-                } else {
+                $user = $contacts->first();
+                if (!$user) {
                     return redirect()->back()->withErrors('Recipient not found');
                 }
             }
+            // If no specific filters, fetch all contacts
+            else {
+                $contacts = $baseQuery->get();
+                if ($contacts->isEmpty()) {
+                    return redirect()->back()->withErrors('No contacts found');
+                }
+                $user = $contacts->first();
+            }
+
+            // Get the messages of the found user
+            $messages = $user->messages;
 
             return view('admin.chat.index', compact('messages', 'user', 'contacts'));
         } catch (\Exception $e) {
@@ -74,8 +66,6 @@ class ChatController extends Controller
             return redirect()->back()->withErrors('An error occurred while fetching chat messages');
         }
     }
-
-
 
 
     /**
