@@ -6,6 +6,7 @@ use App\Models\WhatsappApi;
 use App\Models\WhatsappMessage;
 use App\Models\MessageTemplate;
 use App\Models\WhtasappTemplate;
+use App\Models\WhatsappChatContact;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -367,8 +368,6 @@ class WhatsappController extends Controller
 
     public function sendMessage(Request $request)
     {
-        // Log::info($request->all());
-
         try {
             // Validate the request to ensure a recipient ID is provided
             $request->validate([
@@ -390,8 +389,6 @@ class WhatsappController extends Controller
                 $imageName = time() . '_' . $image->getClientOriginalName();
                 $image_path = 'whatsapp/images/' . $imageName; // Use public_path
                 $image->move(public_path('whatsapp/images/'), $imageName);
-
-                // Log::info($extension);
 
                 // Generate URL after moving the file
                 $imageUrl = asset('whatsapp/images/' . $imageName);
@@ -417,28 +414,31 @@ class WhatsappController extends Controller
                 'Content-Type' => 'application/json',
             ])->post('https://graph.facebook.com/v19.0/' . env("FB_PHONE_NUMBER") . '/messages', $payload);
 
-            // Log::info($response);
-
             $data = json_decode($response->getBody(), true);
+
+            $recipient_id = $data['contacts'][0]['wa_id'];
+            $contact_id = $this->createContact($recipient_id, $profile_name = null);
 
             if (isset($data['messages'])) {
                 $messages = $data['messages'];
 
                 foreach ($messages as $message) {
+
                     // Fetch the existing message if it exists
-                    $existingMessage = WhatsappMessage::where('recipient_id', $data['contacts'][0]['wa_id'])->whereNotNull('profile_name')->first();
+                    $existingMessage = WhatsappMessage::where('recipient_id', $recipient_id)->whereNotNull('profile_name')->first();
 
                     // Prepare the attributes for update or create
                     $attributes = [
-                        'whatsapp_message' => $request->message ?? 'Image Message',
+                        'contact_id' => $contact_id,
+                        'whatsapp_message' => $request->message ?? null,
                         'template_name' => null,
                         'template_type' => null,
                         'type' => 'send',
                         'status' => null,
                         'image' => $request->hasFile('media_image') ? $image_path : null,
-                        'phone_number' => $data['contacts'][0]['wa_id'],
+                        'phone_number' => $recipient_id,
                         'from' => null,
-                        'recipient_id' => $data['contacts'][0]['wa_id'],
+                        'recipient_id' => $recipient_id,
                         'send_at' => null,
                     ];
 
@@ -448,7 +448,7 @@ class WhatsappController extends Controller
                     }
 
                     // Update or create the record
-                    WhatsappMessage::updateOrCreate(
+                    $message = WhatsappMessage::updateOrCreate(
                         ['message_id' => $message['id']],
                         $attributes
                     );
@@ -461,6 +461,17 @@ class WhatsappController extends Controller
             return redirect()->back()->withErrors('An error occurred while fetching chat messages');
         }
     }
+
+    public function createContact($phone_number, $profile_name)
+    {
+        $contact = WhatsappChatContact::updateOrCreate(
+            ['number' => $phone_number],
+            ['name' => $profile_name]
+        );
+
+        return $contact->id;
+    }
+
 
     //========================= Testings ===========================================
 
@@ -561,7 +572,6 @@ class WhatsappController extends Controller
 
                 $replacements = ["rohit", "05/06/2024", "my Link"];
                 $template_content = templateReplaceParameters($template_content, $replacements);
-
             }
         }
 
