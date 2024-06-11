@@ -17,7 +17,7 @@ class ChatController extends Controller
         try {
             // Base query to fetch contacts with their messages, ordered by the latest message timestamp
             $baseQuery = WhatsappChatContact::with(['messages' => function ($query) {
-                $query->orderBy('created_at', 'desc');
+                $query->orderBy('created_at', 'asc');
             }])
                 ->whereHas('messages') // Ensuring we only get contacts with messages
                 ->withCount(['messages' => function ($query) {
