@@ -36,5 +36,8 @@ class MessageReceived implements ShouldBroadcast
             //new PrivateChannel('channel-name'),
              new Channel('chat'),
         ];
+
+        // return new Channel('chat');
+
     }
 }

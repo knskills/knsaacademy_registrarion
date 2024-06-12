@@ -22,6 +22,7 @@ class LogMessage
     public function handle(MessageReceived $event): void
     {
         //
-        \Log::info('New message received: ', $event->message);
+        // \Log::info('New message received: ', $event->message);
+        \Log::info('New message received:', ['message' => $event->message]);
     }
 }
