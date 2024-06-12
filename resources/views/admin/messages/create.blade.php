@@ -56,123 +56,85 @@
 
                     </div>
 
-                    <form class="form-horizontal style-form mt-3"
-                        action="{{ route('messages.store') }}" method="POST">
+                    <form action="{{ route('messages.store') }}"
+                        method="POST">
                         @csrf
                         <div class="form-group row">
                             <div class="col-md-6 mt-2">
-                                <div class="row">
-                                    <label class="col-md-4 control-label">
-                                        Template Type
-                                    </label>
-                                    <div class="col-md-8">
-                                        <select name="type" id="type"
-                                            class="form-select" required>
-                                            <option value="">Select type
-                                            </option>
-                                            <option value="sms">SMS</option>
-                                            <option value="whatsapp">Whatsapp
-                                            </option>
-                                            <option value="email">Email
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
+                                <label for="type" class="form-label">
+                                    Template Type</label>
+                                <select name="type" id="type"
+                                    class="form-select" required>
+                                    <option value="">Select Type
+                                    </option>
+                                    <option value="sms">SMS</option>
+                                    <option value="whatsapp">Whatsapp
+                                    </option>
+                                    <option value="email">Email
+                                    </option>
+                                </select>
                             </div>
 
                             <div class="col-md-6 mt-2">
-                                <div class="row">
-                                    <label class="col-md-4 control-label">
-                                        Template
-                                    </label>
-                                    <div class="col-md-8">
-                                        <select name="message_template_id"
-                                            id="template_id"
-                                            class="form-select" required>
-                                            <option value="">Select
-                                                template</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                <label for="template_id" class="form-label">
+                                    Template</label>
+                                <select name="message_template_id"
+                                    id="template_id" class="form-select"
+                                    required>
+                                    <option value="">Select
+                                        Template</option>
+                                </select>
                             </div>
 
                             <div class="col-md-6 mt-2">
-                                <div class="row">
-                                    <label class="col-md-4 control-label">
-                                        Schedule Date
-                                    </label>
-                                    <div class="col-md-8">
-                                        <input type="date"
-                                            name="schedule_date"
-                                            id="schedule_date"
-                                            value="{{ old('schedule_date') }}"
-                                            class="form-control" required>
-
-                                        <input type="text" name="status"
-                                            id="status" value="Schedule"
-                                            class="form-control" hidden>
-                                    </div>
-                                </div>
+                                <label for="event_id" class="form-label">
+                                    Event</label>
+                                <select class="form-select"
+                                    aria-label="Default select" id="event"
+                                    name="event_id">
+                                    <option value="">Select event
+                                    </option>
+                                    @foreach ($events as $event)
+                                        <option value="{{ $event->id }}">
+                                            {{ ucwords(str_replace('_', ' ', $event->event_name)) }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
 
                             <div class="col-md-6 mt-2">
-                                <div class="row">
-                                    <label class="col-md-4 control-label">
-                                        Schedule Time
-                                    </label>
-                                    <div class="col-md-8">
-                                        <input type="time"
-                                            name="schedule_time"
-                                            id="schedule_time"
-                                            value="{{ old('schedule_time') }}"
-                                            class="form-control" required>
-                                    </div>
-                                </div>
+                                <label for="file" class="form-label">
+                                    Import</label>
+                                <input id="fileupload" class="form-control"
+                                    type="file" name="files[]">
                             </div>
 
-                            <div class="col-md-6 mt-2">
-                                <div class="row">
-                                    <label class="col-md-4 control-label">
-                                        Event
-                                    </label>
-                                    <div class="col-md-8">
-                                        <select class="form-select"
-                                            aria-label="Default select"
-                                            id="event" name="event_id">
-                                            <option value="">Select event
-                                            </option>
-                                            @foreach ($events as $event)
-                                                <option
-                                                    value="{{ $event->id }}">
-                                                    {{ ucwords(str_replace('_', ' ', $event->event_name)) }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                            <div class="col-md-12" id="scheduler_div">
+                                <div class="row my-2" id="sedule_timing1">
+                                    <div class="col-md-5">
+                                        <label for="schedule_date1" class="form-label">Schedule Date</label>
+                                        <input type="date" name="schedule_date[]" id="schedule_date1" value="{{ old('schedule_date') }}" class="form-control" required>
+                                        <input type="text" name="status[]" id="status1" value="Schedule" class="form-control" hidden>
                                     </div>
-                                </div>
-                            </div>
 
-                            <div class="col-md-6 mt-2">
-                                <div class="row">
-                                    <label class="col-md-4 control-label">
-                                        Import file
-                                    </label>
-                                    <div class="col-md-8">
-                                        <div class="form-group">
-                                            <input id="fileupload"
-                                                class="form-control"
-                                                type="file" name="files[]">
-                                        </div>
+                                    <div class="col-md-5">
+                                        <label for="schedule_time1" class="form-label">Schedule Time</label>
+                                        <input type="time" name="schedule_time[]" id="schedule_time1" value="{{ old('schedule_time') }}" class="form-control" required>
+                                    </div>
+
+                                    <div class="col-md-2 m-auto">
+                                        <a id="add1" class="btn btn-primary mt-4 add-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/></svg></a>
+                                        <a id="del1" class="btn btn-danger mt-4 del-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-dash-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/><path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/></svg></a>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-md-12 my-4" id="sms_cont">
                                 <div class="row">
-                                    <label class="col-md-2 control-label">
+                                    <label class="col-md-2 mt-2">
                                         Recipients
                                     </label>
-                                    <div class="col-md-7">
+                                    <div class="col-md-7 mt-2">
                                         <select class="form-control select2"
                                             id="sel2div"
                                             data-placeholder="Choose anything"
@@ -182,13 +144,14 @@
 
                                     <div class="col-md-3">
                                         <button type="button"
-                                            class="btn btn-danger btn-sm"
+                                            class="btn btn-danger btn-sm mt-2"
                                             id="deselect-all" id="adn">
                                             Deselect all
                                         </button>
 
                                         <!-- add new number -->
-                                        <button class="btn btn-primary btn-sm"
+                                        <button
+                                            class="btn btn-primary btn-sm mt-2"
                                             data-bs-toggle="modal"
                                             data-bs-target="#newnum"
                                             type="button">
@@ -522,50 +485,6 @@
 
     <script>
         $(document).ready(function() {
-            today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth() +
-                1; //January is 0 so need to add 1 to make it 1!
-            var yyyy = today.getFullYear();
-
-            if (dd < 10) {
-                dd = '0' + dd
-            }
-
-            if (mm < 10) {
-                mm = '0' + mm
-            }
-
-            var today = yyyy + '-' + mm + '-' + dd;
-
-            $('#schedule_date').attr('min', today);
-
-            // set default date to today
-            $('#schedule_date').val(today);
-
-            //===================================================================//
-
-            // set default time to now
-            var current = new Date();
-            var hh = current.getHours();
-            var mm = current.getMinutes();
-
-            if (hh < 10) {
-                hh = '0' + hh;
-            }
-
-            if (mm < 10) {
-                mm = '0' + mm;
-            }
-
-            var now = hh + ':' + mm;
-
-            $('#schedule_time').attr('min', now);
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
             $('#add_number').on('click', function() {
                 var new_phone_no = $('#new_phone_no').val();
                 var new_phone_no_array = new_phone_no.split(
@@ -633,33 +552,6 @@
                 return audience;
             })).trigger('change');
         }
-
-        $(document).ready(function() {
-            // check onchange schedule_time if it is less than now
-            $('#schedule_time').on('change', function() {
-                var schedule_time = $(this).val();
-                var now = new Date();
-                var hh = now.getHours();
-                var mm = now.getMinutes();
-
-                if (hh < 10) {
-                    hh = '0' + hh;
-                }
-
-                if (mm < 10) {
-                    mm = '0' + mm;
-                }
-
-                var now = hh + ':' + mm;
-
-                if (schedule_time < now) {
-                    alert(
-                        'Please select time greater than now'
-                    );
-                    $('#schedule_time').val(now);
-                }
-            });
-        });
     </script>
 
     <script>
@@ -752,6 +644,89 @@
 
             document.getElementById('fileupload').addEventListener(
                 'change', handleFileSelect, false);
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            // Function to set the minimum date to today
+            function setMinDate(selector) {
+                const today = new Date();
+                const yyyy = today.getFullYear();
+                const mm = String(today.getMonth() + 1).padStart(2,
+                    '0');
+                const dd = String(today.getDate()).padStart(2, '0');
+                const formattedToday = `${yyyy}-${mm}-${dd}`;
+                $(selector).attr('min', formattedToday).val(
+                    formattedToday);
+            }
+
+            // Function to set the minimum time to now
+            function setMinTime(selector) {
+                const now = new Date();
+                const hh = String(now.getHours()).padStart(2, '0');
+                const mm = String(now.getMinutes()).padStart(2, '0');
+                const formattedNow = `${hh}:${mm}`;
+                $(selector).attr('min', formattedNow).val(
+                formattedNow);
+            }
+
+            // Initial setting of date and time
+            setMinDate('#schedule_date1');
+            setMinTime('#schedule_time1');
+
+            let counter = 1;
+
+            // Add new schedule
+            $(document).on('click', '.add-btn', function() {
+                counter++;
+                const newRow = `
+            <div class="row my-2" id="sedule_timing${counter}">
+                <div class="col-md-5">
+                    <label for="schedule_date${counter}" class="form-label">Schedule Date</label>
+                    <input type="date" name="schedule_date[]" id="schedule_date${counter}" class="form-control" required>
+                    <input type="text" name="status[]" id="status${counter}" value="Schedule" class="form-control" hidden>
+                </div>
+                <div class="col-md-5">
+                    <label for="schedule_time${counter}" class="form-label">Schedule Time</label>
+                    <input type="time" name="schedule_time[]" id="schedule_time${counter}" class="form-control" required>
+                </div>
+                <div class="col-md-2 m-auto">
+                    <a id="add${counter}" class="btn btn-primary mt-4 add-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/></svg></a>
+                    <a id="del${counter}" class="btn btn-danger mt-4 del-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-dash-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/><path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/></svg></a>
+                </div>
+            </div>`;
+                $('#scheduler_div').append(newRow);
+                setMinDate(`#schedule_date${counter}`);
+                setMinTime(`#schedule_time${counter}`);
+            });
+
+            // Delete a schedule
+            $(document).on('click', '.del-btn', function() {
+                if ($('#scheduler_div .row').length > 1) {
+                    $(this).closest('.row').remove();
+                } else {
+                    alert(
+                    'At least one schedule is required.');
+                }
+            });
+
+            // Check onchange schedule_time if it is less than now
+            $(document).on('change', 'input[type="time"]', function() {
+                const scheduleTime = $(this).val();
+                const now = new Date();
+                const hh = String(now.getHours()).padStart(2,
+                    '0');
+                const mm = String(now.getMinutes()).padStart(2,
+                    '0');
+                const currentTime = `${hh}:${mm}`;
+
+                if (scheduleTime < currentTime) {
+                    alert(
+                        'Please select time greater than now');
+                    $(this).val(currentTime);
+                }
+            });
         });
     </script>
 @endsection

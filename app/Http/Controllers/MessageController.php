@@ -44,7 +44,36 @@ class MessageController extends Controller
 
     public function store(Request $request)
     {
-        $message = Message::create($request->all());
+        Log::info($request->all());
+
+        $shedule_dates = $request->schedule_date;
+        foreach ($shedule_dates as $key => $value) {
+
+            // Check if a message with the same schedule date and time already exists
+            $isNotRepeate = Message::where('schedule_date', $value)
+                                    ->where('schedule_time', $request->schedule_time[$key])
+                                    ->exists();
+
+            if ($isNotRepeate) {
+                // Skip creating a new message if it already exists
+                continue;
+            }
+
+            $message = Message::create([
+                'type' => $request->type,
+                'message_template_id' => $request->message_template_id,
+                'event_id' => $request->event_id,
+                'schedule_date' => $value,
+                'schedule_time' => $request->schedule_time[$key],
+                'audience_ids' => $request->audience_numbers ?? $request->emails,
+                'status' => $request->status[$key],
+                'audience_numbers' => $request->audience_numbers,
+                // 'phone' => $request->phone,
+                'emails' => $request->emails
+            ]);
+        }
+
+        // $message = Message::create($request->all());
         // $audience_ids = $request->audience_ids;
         // $audience = Audience::find($audience_ids);
         // $message->audience()->attach($audience);
