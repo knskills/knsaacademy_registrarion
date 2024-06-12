@@ -26,33 +26,36 @@ class ChatController extends Controller
                 ->orderBy('messages_count', 'desc');
 
             // Check if there is a recipient_id filter
+            $user = null;
             if ($request->has('recipient_id')) {
                 $user = $baseQuery->find($request->recipient_id);
                 if (!$user) {
                     return redirect()->back()->withErrors('Recipient not found');
                 }
-                $contacts = collect([$user]);
             }
+
             // Check if there is a phone_number filter
-            else if ($request->has('phone_number')) {
+            if ($request->has('phone_number')) {
                 $searchTerm = $request->phone_number;
-                $contacts = $baseQuery
-                    ->where(function ($query) use ($searchTerm) {
-                        $query->where('number', 'like', '%' . $searchTerm . '%')
-                            ->orWhere('name', 'like', '%' . $searchTerm . '%');
-                    })
-                    ->get();
-                $user = $contacts->first();
-                if (!$user) {
-                    return redirect()->back()->withErrors('Recipient not found');
-                }
+                $baseQuery->where(function ($query) use ($searchTerm) {
+                    $query->where('number', 'like', '%' . $searchTerm . '%')
+                        ->orWhere('name', 'like', '%' . $searchTerm . '%');
+                });
             }
-            // If no specific filters, fetch all contacts
-            else {
-                $contacts = $baseQuery->get();
-                if ($contacts->isEmpty()) {
-                    return redirect()->back()->withErrors('No contacts found');
-                }
+
+            // Fetch all contacts based on the base query
+            $contacts = $baseQuery->get();
+            if ($contacts->isEmpty()) {
+                return redirect()->back()->withErrors('No contacts found');
+            }
+
+            // If recipient_id was specified, ensure $user is set
+            if ($request->has('recipient_id')) {
+                $user = $contacts->firstWhere('id', $request->recipient_id);
+            }
+
+            // If no user has been found yet, set the first contact as the user
+            if (!$user) {
                 $user = $contacts->first();
             }
 
@@ -66,6 +69,7 @@ class ChatController extends Controller
             return redirect()->back()->withErrors('An error occurred while fetching chat messages');
         }
     }
+
 
 
     /**

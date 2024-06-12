@@ -406,6 +406,47 @@
                                                                     </p>
                                                                     <span
                                                                         class="time">{{ Carbon\Carbon::parse($message->created_at)->format('h:i a') }}</span>
+
+                                                                    @if ($message->status == 'sent')
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                            width="16"
+                                                                            height="16"
+                                                                            fill="rgb(61, 61, 61)"
+                                                                            class="bi bi-check2"
+                                                                            viewBox="0 0 16 16">
+                                                                            <path
+                                                                                d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                                                                        </svg>
+                                                                    @elseif($message->status == 'delivered')
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                            width="16"
+                                                                            height="16"
+                                                                            fill="rgb(61, 61, 61)"
+                                                                            class="bi bi-check2-all"
+                                                                            viewBox="0 0 16 16">
+                                                                            <path
+                                                                                d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0" />
+                                                                            <path
+                                                                                d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708" />
+                                                                        </svg>
+                                                                    @elseif($message->status == 'read')
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                            width="25"
+                                                                            height="25"
+                                                                            fill="rgb(52, 243, 94)"
+                                                                            class="bi bi-check2-all"
+                                                                            viewBox="0 0 25 25">
+                                                                            <path
+                                                                                d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0" />
+                                                                            <path
+                                                                                d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708" />
+                                                                        </svg>
+
+                                                                    @elseif($message->status == 'read')
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(248, 40, 40)" class="bi bi-ban" viewBox="0 0 16 16">
+                                                                            <path d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0"/>
+                                                                        </svg>
+                                                                    @endif
                                                                 </li>
                                                             @else
                                                                 <li class="repaly"
