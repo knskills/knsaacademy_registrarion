@@ -667,8 +667,8 @@
                 const hh = String(now.getHours()).padStart(2, '0');
                 const mm = String(now.getMinutes()).padStart(2, '0');
                 const formattedNow = `${hh}:${mm}`;
-                $(selector).attr('min', formattedNow).val(
-                formattedNow);
+                // $(selector).attr('min', formattedNow).val(
+                // formattedNow);
             }
 
             // Initial setting of date and time
@@ -711,22 +711,22 @@
                 }
             });
 
-            // Check onchange schedule_time if it is less than now
-            $(document).on('change', 'input[type="time"]', function() {
-                const scheduleTime = $(this).val();
-                const now = new Date();
-                const hh = String(now.getHours()).padStart(2,
-                    '0');
-                const mm = String(now.getMinutes()).padStart(2,
-                    '0');
-                const currentTime = `${hh}:${mm}`;
+            // // Check onchange schedule_time if it is less than now
+            // $(document).on('change', 'input[type="time"]', function() {
+            //     const scheduleTime = $(this).val();
+            //     const now = new Date();
+            //     const hh = String(now.getHours()).padStart(2,
+            //         '0');
+            //     const mm = String(now.getMinutes()).padStart(2,
+            //         '0');
+            //     const currentTime = `${hh}:${mm}`;
 
-                if (scheduleTime < currentTime) {
-                    alert(
-                        'Please select time greater than now');
-                    $(this).val(currentTime);
-                }
-            });
+            //     if (scheduleTime < currentTime) {
+            //         alert(
+            //             'Please select time greater than now');
+            //         $(this).val(currentTime);
+            //     }
+            // });
         });
     </script>
 @endsection
