@@ -445,9 +445,9 @@ class WhatsappController extends Controller
                 }
             }
 
-            // return redirect()->route('whatsapp.chat.index');
+            return redirect()->route('whatsapp.chat.index');
 
-            return response()->json(['status' => 'Message sent!']);
+            // return response()->json(['status' => 'Message sent!']);
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->withErrors('An error occurred while sending the message');
