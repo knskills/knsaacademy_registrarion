@@ -44,7 +44,7 @@ class MessageController extends Controller
 
     public function store(Request $request)
     {
-        Log::info($request->all());
+        // Log::info($request->all());
 
         $shedule_dates = $request->schedule_date;
         foreach ($shedule_dates as $key => $value) {
