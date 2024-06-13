@@ -33,11 +33,17 @@ class MessageReceived implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            //new PrivateChannel('channel-name'),
-             new Channel('chat'),
+            new PrivateChannel('chat'),
+            //  new Channel('chat'),
         ];
 
         // return new Channel('chat');
+    }
 
+    public function broadcastWith()
+    {
+        return [
+            'message' => $this->message->toArray(),
+        ];
     }
 }

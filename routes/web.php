@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Broadcast;
 use App\Http\Controllers\AudienceController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\LangController;
@@ -119,3 +120,14 @@ Route::match(['get', 'post'], '/webhook', [WebhookController::class, 'setupWebho
 // Mark as a read
 // Route::get('/whatsapp/send-temp-msg', [WhatsappController::class, 'sendMetaMessage'])->name('whatsapp.send-temp-msg');
 Route::get('/whatsapp/send-temp-msg', [WhatsappController::class, 'sendTempMessage'])->name('whatsapp.send-temp-msg');
+
+Broadcast::channel('chat', function ($user) {
+    // Log::info('Broadcasting to chat');
+    // Log::info($user);
+    return Auth::check();
+
+    // if (Auth::check()) {
+    //     Log::info('Broadcasting to chat');
+    //     return ['id' => $user->id, 'name' => $user->name];
+    // }
+});

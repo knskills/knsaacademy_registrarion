@@ -11,6 +11,7 @@ use Netflie\WhatsAppCloudApi\WhatsAppCloudApi;
 
 use App\Models\WhatsappMessage;
 use App\Models\WhatsappChatContact;
+use App\Events\MessageReceived;
 
 class WebhookController extends Controller
 {
@@ -46,8 +47,6 @@ class WebhookController extends Controller
         // Log::info($data);
         $recipient_id = $this->processWebhookData($data);
 
-        // Log::info('Recipient ID: ' . $recipient_id);
-
         if ($recipient_id) {
             return redirect()->route('whatsapp.chat.index', ['recipient_id' => $recipient_id]);
         }
@@ -71,12 +70,12 @@ class WebhookController extends Controller
             $recipient_id = $status['recipient_id'];
             $profile_name = null;
 
-            $conatct_id = $this->createContact($recipient_id, $profile_name);
+            $contact_id = $this->createContact($recipient_id, $profile_name);
 
-            WhatsappMessage::updateOrCreate(
+            $whatsappMessage = WhatsappMessage::updateOrCreate(
                 ['message_id' => $status['id']],
                 [
-                    'contact_id' => $conatct_id ?? null,
+                    'contact_id' => $contact_id ?? null,
                     'template_name' => $status['conversation']['origin']['type'] ?? null,
                     'template_type' => $status['conversation']['origin']['type'] ?? null,
                     'type' => 'send',
@@ -87,6 +86,8 @@ class WebhookController extends Controller
                     'send_at' => isset($status['timestamp']) ? date('Y-m-d H:i:s', $status['timestamp']) : null,
                 ]
             );
+
+            broadcast(new MessageReceived($whatsappMessage))->toOthers();
         }
 
         return end($statuses)['recipient_id'];
@@ -98,10 +99,10 @@ class WebhookController extends Controller
             $recipient_id = $message['from'];
             $profile_name = $data['entry'][0]['changes'][0]['value']['contacts'][0]['profile']['name'] ?? null;
 
-            $conatct_id = $this->createContact($recipient_id, $profile_name);
+            $contact_id = $this->createContact($recipient_id, $profile_name);
 
             $attributes = [
-                'contact_id' => $conatct_id ?? null,
+                'contact_id' => $contact_id ?? null,
                 'message_id' => $message['id'] ?? null,
                 'profile_name' => $profile_name ?? null,
                 'type' => 'reply',
@@ -115,35 +116,27 @@ class WebhookController extends Controller
             if ($message['type'] === 'text') {
                 $attributes['whatsapp_message'] = $message['text']['body'] ?? null;
             } elseif ($message['type'] === 'image') {
-
                 $img_attributes = $this->getImage($message);
-
                 $attributes = array_merge($img_attributes, $attributes);
             }
 
-            WhatsappMessage::create($attributes);
+            $whatsappMessage = WhatsappMessage::create($attributes);
+
+            broadcast(new MessageReceived($whatsappMessage))->toOthers();
         }
 
         return end($messages)['from'];
     }
 
-    /**
-     * Get image from URL and save it to the public disk
-     */
     private function getImage($message = null)
     {
-        // Log::info('Getting image from URL');
-        // Log::info(env($message));
+        $attributes['whatsapp_message'] = $message['image']['caption'] ?? null;
 
-        $attributes['whatsapp_message'] = $message['image']['caption'] ?? null; // Clear text message field for image type
-
-        // Determine file extension based on MIME type
-        $mime = $message['image']['mime_type'] ?? 'image/jpeg'; // Default to 'image/jpeg' if MIME type is not set
+        $mime = $message['image']['mime_type'] ?? 'image/jpeg';
         $extension = $this->getExtensionFromMimeType($mime);
 
         $imageId = $message['image']['id'];
 
-        // Use netflie/whatsapp-cloud-api to download the image
         $whatsappCloudApi = new WhatsAppCloudApi([
             'from_phone_number_id' => env('FB_PHONE_NUMBER'),
             'access_token' => env('FB_METADATA_TOKEN'),
@@ -151,20 +144,16 @@ class WebhookController extends Controller
 
         try {
             $mediaResponse = $whatsappCloudApi->downloadMedia($imageId);
-            $imageContent = $mediaResponse->body(); // Access the response object correctly
+            $imageContent = $mediaResponse->body();
 
-            // Define the path to save the image
             $imagePath = 'whatsapp/images/' . $imageId . '.' . $extension;
 
-            // Store the image in the public disk
             Storage::disk('public')->put($imagePath, $imageContent);
 
-            // Get the URL to the stored image
             $storedImageUrl = Storage::disk('public')->url($imagePath);
 
             $imageName = '/storage/whatsapp/images/' . $imageId . '.' . $extension;
 
-            // Save the image URL or path to the database if needed
             $attributes['image'] = $imageName;
 
             return $attributes;
@@ -173,12 +162,6 @@ class WebhookController extends Controller
         }
     }
 
-    /**
-     * Get file extension from MIME type
-     *
-     * @param string $mime
-     * @return string
-     */
     private function getExtensionFromMimeType(string $mime): string
     {
         $mimeTypes = [
@@ -187,27 +170,18 @@ class WebhookController extends Controller
             'image/gif' => 'gif',
             'image/bmp' => 'bmp',
             'image/webp' => 'webp',
-            // Add more MIME types and their extensions as needed
         ];
 
-        return $mimeTypes[$mime] ?? 'jpg'; // Default to 'jpg' if MIME type is not found
+        return $mimeTypes[$mime] ?? 'jpg';
     }
 
-    /**
-     * Create New contact
-     */
     public function createContact($phone_number, $profile_name)
     {
-        // $phone_number = $request->input('phone_number');
-        // $profile_name = $request->input('profile_name');
-
         $contact = WhatsappChatContact::updateOrCreate(
             ['number' => $phone_number],
             ['name' => $profile_name]
         );
 
         return $contact->id;
-
-        //return response()->json(['status' => 'Contact created successfully'], 200);
     }
 }

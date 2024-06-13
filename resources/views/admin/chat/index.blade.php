@@ -10,6 +10,8 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 
+    @vite('resources/js/app.js')
+
     <style>
         .custom-button-wrapper {
             display: inline-block;
@@ -120,7 +122,7 @@
                                                     href="#"
                                                     title="Search">
                                                     <img class="img-fluid"
-                                                        src="{{asset('admin/chat/img/search.png')}}"
+                                                        src="{{ asset('admin/chat/img/search.png') }}"
                                                         alt="search"
                                                         onclick="event.preventDefault();
                                                         document.getElementById('c-serch').submit();">
@@ -441,10 +443,15 @@
                                                                             <path
                                                                                 d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708" />
                                                                         </svg>
-
                                                                     @elseif($message->status == 'failed')
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(248, 40, 40)" class="bi bi-ban" viewBox="0 0 16 16">
-                                                                            <path d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0"/>
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                            width="16"
+                                                                            height="16"
+                                                                            fill="rgb(248, 40, 40)"
+                                                                            class="bi bi-ban"
+                                                                            viewBox="0 0 16 16">
+                                                                            <path
+                                                                                d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0" />
                                                                         </svg>
                                                                     @endif
                                                                 </li>
@@ -586,9 +593,9 @@
                         <div class="modal-body">
 
                             <!--<div class="mb-3">
-                                                <label for="recipient-name" class="col-form-label">Recipient Name:</label>
-                                                <input type="text" class="form-control" id="recipient-name">
-                                                </div>-->
+                                                                <label for="recipient-name" class="col-form-label">Recipient Name:</label>
+                                                                <input type="text" class="form-control" id="recipient-name">
+                                                                </div>-->
 
                             <div class="mb-3">
                                 <label for="recipient-name"
@@ -641,6 +648,32 @@
             $('#add-image-button').on('click', function() {
                 $('#upload').click();
             });
+
+            // console.log('Echo configuration:', window.Echo);
+
+            // window.Echo.private('chat')
+            //     .listen('MessageReceived', (e) => {
+            //         console.log('its working');
+            //         console.log(e.message);
+
+            //         // let messageContent = e.message.whatsapp_message ?? '';
+
+            //         // if (e.message.image) {
+            //         //     messageContent +=
+            //         //         `<br><img src="${e.message.image}" alt="Image" />`;
+            //         // }
+            //         // $('#messages').append('<li>' + messageContent +
+            //         //     '</li>');
+            //     });
+        });
+
+        $(document).ready(function() {
+            // console.log('Echo configuration:', window.Echo);
+            window.Echo.private('chat')
+                .listen('MessageReceived', (e) => {
+                    console.log('its working');
+                    console.log(e.message);
+                });
         });
     </script>
 @endsection

@@ -8,6 +8,8 @@ use App\Models\MessageTemplate;
 use App\Models\WhtasappTemplate;
 use App\Models\WhatsappChatContact;
 
+use App\Events\MessageReceived;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -15,7 +17,6 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Netflie\WhatsAppCloudApi\WebHook;
 use GuzzleHttp\Client;
-
 use Netflie\WhatsAppCloudApi\WhatsAppCloudApi;
 use Netflie\WhatsAppCloudApi\Message\Template\Component;
 // use Netflie\WhatsAppCloudApi\Message\Component;
@@ -369,7 +370,7 @@ class WhatsappController extends Controller
     public function sendMessage(Request $request)
     {
         try {
-            // Validate the request to ensure a recipient ID is provided
+            // Validate the request
             $request->validate([
                 'recipient_id' => 'required|string',
                 'message' => 'required_without:media_image|string',
@@ -382,25 +383,20 @@ class WhatsappController extends Controller
                 'to' => $request->recipient_id,
             ];
 
-            // Check if the request contains an image
             if ($request->hasFile('media_image')) {
                 $image = $request->file('media_image');
-                $extension = $image->getClientOriginalExtension();
                 $imageName = time() . '_' . $image->getClientOriginalName();
-                $image_path = 'whatsapp/images/' . $imageName; // Use public_path
+                $imagePath = 'whatsapp/images/' . $imageName;
                 $image->move(public_path('whatsapp/images/'), $imageName);
 
-                // Generate URL after moving the file
                 $imageUrl = asset('whatsapp/images/' . $imageName);
 
-                // Prepare payload for image message
                 $payload['type'] = 'image';
                 $payload['image'] = [
                     'link' => $imageUrl,
                     'caption' => $request->message,
                 ];
             } else {
-                // Prepare payload for text message
                 $payload['type'] = 'text';
                 $payload['text'] = [
                     'preview_url' => false,
@@ -408,7 +404,7 @@ class WhatsappController extends Controller
                 ];
             }
 
-            // Make the HTTP request to send the message
+            // Send the message via HTTP request
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . env("FB_METADATA_TOKEN"),
                 'Content-Type' => 'application/json',
@@ -416,49 +412,45 @@ class WhatsappController extends Controller
 
             $data = json_decode($response->getBody(), true);
 
-            $recipient_id = $data['contacts'][0]['wa_id'];
-            $contact_id = $this->createContact($recipient_id, $profile_name = null);
+            if (isset($data['contacts'][0]['wa_id'])) {
+                $recipientId = $data['contacts'][0]['wa_id'];
+                $contactId = $this->createContact($recipientId, $profile_name = null);
 
-            if (isset($data['messages'])) {
-                $messages = $data['messages'];
+                if (isset($data['messages'])) {
+                    foreach ($data['messages'] as $messageData) {
+                        $existingMessage = WhatsappMessage::where('recipient_id', $recipientId)->whereNotNull('profile_name')->first();
 
-                foreach ($messages as $message) {
+                        $attributes = [
+                            'contact_id' => $contactId,
+                            'whatsapp_message' => $request->message ?? null,
+                            'template_name' => null,
+                            'template_type' => null,
+                            'type' => 'send',
+                            'status' => null,
+                            'image' => $request->hasFile('media_image') ? $imagePath : null,
+                            'phone_number' => $recipientId,
+                            'from' => null,
+                            'recipient_id' => $recipientId,
+                            'send_at' => null,
+                            'profile_name' => $existingMessage->profile_name ?? null,
+                        ];
 
-                    // Fetch the existing message if it exists
-                    $existingMessage = WhatsappMessage::where('recipient_id', $recipient_id)->whereNotNull('profile_name')->first();
+                        $message = WhatsappMessage::updateOrCreate(
+                            ['message_id' => $messageData['id']],
+                            $attributes
+                        );
 
-                    // Prepare the attributes for update or create
-                    $attributes = [
-                        'contact_id' => $contact_id,
-                        'whatsapp_message' => $request->message ?? null,
-                        'template_name' => null,
-                        'template_type' => null,
-                        'type' => 'send',
-                        'status' => null,
-                        'image' => $request->hasFile('media_image') ? $image_path : null,
-                        'phone_number' => $recipient_id,
-                        'from' => null,
-                        'recipient_id' => $recipient_id,
-                        'send_at' => null,
-                    ];
-
-                    // If the message exists, add the profile name
-                    if ($existingMessage) {
-                        $attributes['profile_name'] = $existingMessage->profile_name;
+                        broadcast(new MessageReceived($message))->toOthers();
                     }
-
-                    // Update or create the record
-                    $message = WhatsappMessage::updateOrCreate(
-                        ['message_id' => $message['id']],
-                        $attributes
-                    );
                 }
             }
 
-            return redirect()->route('whatsapp.chat.index');
+            // return redirect()->route('whatsapp.chat.index');
+
+            return response()->json(['status' => 'Message sent!']);
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->back()->withErrors('An error occurred while fetching chat messages');
+            return redirect()->back()->withErrors('An error occurred while sending the message');
         }
     }
 
