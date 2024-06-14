@@ -101,12 +101,6 @@
                                     <div class="modal-content">
                                         <div class="chat-header">
                                             <div class="msg-search">
-                                                {{-- <input type="text"
-                                                    class="form-control"
-                                                    id="inlineFormInputGroup"
-                                                    placeholder="Search"
-                                                    aria-label="search"> --}}
-
                                                 <form id="c-serch"
                                                     action="{{ route('whatsapp.chat.index') }}"
                                                     method="GET"
@@ -127,15 +121,6 @@
                                                         onclick="event.preventDefault();
                                                         document.getElementById('c-serch').submit();">
                                                 </a>
-
-                                                {{-- <a class="dropdown-item"
-                                                    href="{{ route('whatsapp.chat.index') }}"
-                                                    onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                                    {{ __('Logout') }}
-                                                </a> --}}
-
-
                                             </div>
                                         </div>
 
@@ -185,38 +170,6 @@
                                                             </div>
                                                             <!-- chat-list -->
                                                         </div>
-
-                                                        {{-- <div class="tab-pane fade"
-                                                            id="Closed"
-                                                            role="tabpanel"
-                                                            aria-labelledby="Closed-tab">
-
-                                                            <!-- chat-list -->
-                                                            <div
-                                                                class="chat-list">
-                                                                <a href="{{ route('whatsapp.chat.index', ['recipient_id' => $customer->recipient_id]) }}"
-                                                                    class="d-flex align-items-center">
-                                                                    <div
-                                                                        class="flex-shrink-0">
-                                                                        <img class="img-fluid"
-                                                                            src="{{asset('nice/assets/img/chatUser.png')}}"
-                                                                            alt="user img">
-                                                                        <span
-                                                                            class="active"></span>
-                                                                    </div>
-                                                                    <div
-                                                                        class="flex-grow-1 ms-3">
-                                                                        <h3>{{ $customer->profile_name ?? '' }}
-                                                                        </h3>
-                                                                        <p>+{{ $customer->recipient_id ?? '' }}
-                                                                        </p>
-                                                                    </div>
-                                                                </a>
-                                                            </div>
-                                                            <!-- chat-list -->
-                                                        </div> --}}
-
-                                                        {{-- {{count($contact->messages)}} --}}
                                                     @endforeach
 
                                                 </div>
@@ -275,12 +228,6 @@
                                                             <ul
                                                                 class="dropdown-menu">
                                                                 <li>
-                                                                    {{-- <a class="dropdown-item"
-                                                                        href="{{ route('whatsapp.chat.destroy', ['chat' => $user->recipient_id]) }}"
-                                                                        onclick="return confirm('Are you sure you want to delete this chat?');">
-                                                                        Delete
-                                                                    </a> --}}
-
                                                                     <form
                                                                         action="{{ route('whatsapp.chat.destroy', $user->id) }}"
                                                                         method="POST">
@@ -317,7 +264,7 @@
 
                                         <div class="modal-body" id="chat-body">
                                             <div class="msg-body">
-                                                <ul>
+                                                <ul id="message-list">
 
                                                     @if ($messages->isEmpty())
                                                         <p>No chat messages
@@ -382,18 +329,6 @@
                                                                 <li class="sender"
                                                                     id="{{ $last }}">
                                                                     <p>
-                                                                        {{-- @if (!empty($message->template))
-                                                                        {!!$message->template->whtsp_msg[0]['text']!!}
-
-                                                                        <textarea name="" id="" cols="30" rows="10">{{$message->template->whtsp_msg[0]['text']}}</textarea>
-                                                                        @else
-                                                                        {{ $message->whatsapp_message }}
-                                                                        @endif --}}
-
-                                                                        {{-- <textarea name="" id="" cols="30" rows="10">{{ $message->whatsapp_message }}</textarea> --}}
-
-                                                                        {{-- {{ $message->whatsapp_message }} --}}
-
                                                                         @if ($message->image)
                                                                             <a href="{{ asset($message->image) }}"
                                                                                 download>
@@ -487,14 +422,15 @@
                                             <form
                                                 action="{{ route('whatsapp.send-message') }}"
                                                 method="POST"
-                                                enctype="multipart/form-data">
+                                                enctype="multipart/form-data"
+                                                id="whatsapp-send-message-form">
                                                 @csrf
 
                                                 <input type="hidden"
                                                     name="recipient_id"
                                                     value="{{ substr($user->number, 2) }}">
 
-                                                <textarea class="form-control" name="message" aria-label="message…"
+                                                <textarea class="form-control" name="message" aria-label="message…" id="send_msg"
                                                     value="{{ old('message') }}" placeholder="Write message…"
                                                     cols="1"></textarea>
 
@@ -591,12 +527,6 @@
                         method="POST">
                         @csrf
                         <div class="modal-body">
-
-                            <!--<div class="mb-3">
-                                                                <label for="recipient-name" class="col-form-label">Recipient Name:</label>
-                                                                <input type="text" class="form-control" id="recipient-name">
-                                                                </div>-->
-
                             <div class="mb-3">
                                 <label for="recipient-name"
                                     class="col-form-label">Recipient
@@ -643,32 +573,104 @@
             var lastElement = $('#last');
             // Scroll the container to the top position of the last element
             $('#chat-body').scrollTop(lastElement.position().top);
-        });
-        $(document).ready(function() {
+
+            // change button working
             $('#add-image-button').on('click', function() {
                 $('#upload').click();
             });
-
-            // console.log('Echo configuration:', window.Echo);
-
-            // window.Echo.private('chat')
-            //     .listen('MessageReceived', (e) => {
-            //         console.log('its working');
-            //         console.log(e.message);
-
-            //         // let messageContent = e.message.whatsapp_message ?? '';
-
-            //         // if (e.message.image) {
-            //         //     messageContent +=
-            //         //         `<br><img src="${e.message.image}" alt="Image" />`;
-            //         // }
-            //         // $('#messages').append('<li>' + messageContent +
-            //         //     '</li>');
-            //     });
         });
 
         $(document).ready(function() {
-            // console.log('Echo configuration:', window.Echo);
+            $('#whatsapp-send-message-form').submit(function(e) {
+                e.preventDefault(); // Prevent default form submission
+
+                var formData = new FormData(this);
+
+                $.ajax({
+                    url: $(this).attr('action'), // Get form action URL
+                    type: 'POST',
+                    data: formData,
+                    dataType: 'JSON', // Expect JSON response from server
+                    processData: false, // Don't process data with `processData: false`
+                    contentType: false, // Set content type to `false` for FormData
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Laravel CSRF protection
+                    },
+                    success: function(response) {
+                        // Handle successful response, e.g., display success message
+                        console.log('Message sent successfully:', response);
+
+                        // Extract message data from the response
+                        var message = response.message;
+
+                        // Determine the date label (Today, Yesterday, or specific date)
+                        var messageDate = new Date(message.created_at);
+                        var today = new Date();
+                        var yesterday = new Date();
+                        yesterday.setDate(today.getDate() - 1);
+                        var dateLabel = '';
+
+                        if (messageDate.toDateString() === today.toDateString()) {
+                            dateLabel = 'Today';
+                        } else if (messageDate.toDateString() === yesterday.toDateString()) {
+                            dateLabel = 'Yesterday';
+                        } else {
+                            dateLabel = messageDate.toLocaleDateString('en-US', {
+                                month: 'short',
+                                day: 'numeric',
+                                year: 'numeric'
+                            });
+                        }
+
+                        // Check if the current date label already exists
+                        var lastDivider = $('li .divider').last();
+                        if (lastDivider.length === 0 || lastDivider.text().trim() !== dateLabel) {
+                            // Append date label if it does not exist
+                            $('#message-list').append('<li><div class="divider"><h6>' + dateLabel + '</h6></div></li>');
+                        }
+
+                        // Create the message HTML
+                        var messageHtml = '<li class="sender">';
+                        if (message.image) {
+                            messageHtml += '<a href="' + message.image + '" download><img src="' + message.image + '" alt="' + message.image + '" style="max-width: 250px;"></a><br>';
+                        }
+                        messageHtml += '<p>' + message.whatsapp_message.replace(/\n/g, '<br>') + '</p>';
+                        messageHtml += '<span class="time">' + new Date(message.created_at).toLocaleTimeString('en-US', {
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        }) + '</span>';
+
+                        if (message.status === 'sent') {
+                            messageHtml += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(61, 61, 61)" class="bi bi-check2" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"></path></svg>';
+                        } else if (message.status === 'delivered') {
+                            messageHtml += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(61, 61, 61)" class="bi bi-check2-all" viewBox="0 0 16 16"><path d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0"></path><path d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708"></path></svg>';
+                        } else if (message.status === 'read') {
+                            messageHtml += '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="rgb(52, 243, 94)" class="bi bi-check2-all" viewBox="0 0 25 25"><path d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0"></path><path d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708"></path></svg>';
+                        } else if (message.status === 'failed') {
+                            messageHtml += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(248, 40, 40)" class="bi bi-ban" viewBox="0 0 16 16"><path d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0"></path></svg>';
+                        }
+                        messageHtml += '</li>';
+
+                        // Append the message HTML to the message list
+                        $('#message-list').append(messageHtml);
+
+                        $('#send_msg').val('');
+
+                        // Scroll to the bottom of the message list
+                        $('#chat-body').scrollTop($('#message-list')[0].scrollHeight);
+                    },
+                    error: function(error) {
+                        // Handle errors, e.g., display error message to user
+                        console.error('Error sending message:', error);
+                    }
+                });
+            });
+        });
+
+
+
+        $(document).ready(function() {
+            console.log('Echo configuration:', window.Echo);
             window.Echo.private('chat')
                 .listen('MessageReceived', (e) => {
                     console.log('its working');

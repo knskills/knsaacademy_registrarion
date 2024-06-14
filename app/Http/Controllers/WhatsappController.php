@@ -369,6 +369,7 @@ class WhatsappController extends Controller
 
     public function sendMessage(Request $request)
     {
+        Log::info($request->all());
         try {
             // Validate the request
             $request->validate([
@@ -414,7 +415,7 @@ class WhatsappController extends Controller
 
             if (isset($data['contacts'][0]['wa_id'])) {
                 $recipientId = $data['contacts'][0]['wa_id'];
-                $contactId = $this->createContact($recipientId, $profile_name = null);
+                $contactId = createContact($recipientId, $profile_name = null);
 
                 if (isset($data['messages'])) {
                     foreach ($data['messages'] as $messageData) {
@@ -426,7 +427,7 @@ class WhatsappController extends Controller
                             'template_name' => null,
                             'template_type' => null,
                             'type' => 'send',
-                            'status' => null,
+                            'status' => 'sent',
                             'image' => $request->hasFile('media_image') ? $imagePath : null,
                             'phone_number' => $recipientId,
                             'from' => null,
@@ -445,24 +446,26 @@ class WhatsappController extends Controller
                 }
             }
 
-            return redirect()->route('whatsapp.chat.index');
-
-            // return response()->json(['status' => 'Message sent!']);
+            return response()->json([
+                'status' => 'Message sent!',
+                'message' => $message,
+            ]);
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->withErrors('An error occurred while sending the message');
         }
     }
 
-    public function createContact($phone_number, $profile_name)
-    {
-        $contact = WhatsappChatContact::updateOrCreate(
-            ['number' => $phone_number],
-            ['name' => $profile_name]
-        );
 
-        return $contact->id;
-    }
+    // public function createContact($phone_number, $profile_name)
+    // {
+    //     $contact = WhatsappChatContact::updateOrCreate(
+    //         ['number' => $phone_number],
+    //         ['name' => $profile_name]
+    //     );
+
+    //     return $contact->id;
+    // }
 
 
     //========================= Testings ===========================================
