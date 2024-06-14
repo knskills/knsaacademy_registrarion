@@ -44,7 +44,7 @@ class WebhookController extends Controller
     private function handlePostRequest(Request $request)
     {
         $data = $request->all();
-        // Log::info($data);
+        Log::info($data);
         $recipient_id = $this->processWebhookData($data);
 
         if ($recipient_id) {
