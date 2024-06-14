@@ -10,17 +10,16 @@ use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithStyles;
 
-
 class AudienceExport implements FromCollection, WithHeadings, WithMapping, ShouldAutoSize, WithStyles, WithTitle
 {
-    private $data;
+    private $eventName;
 
-    public function __construct($data)
+    public function __construct($eventName)
     {
-        $this->data = $data;
+        $this->eventName = $eventName;
     }
 
-    public function styles($data)
+    public function styles($sheet)
     {
         return [
             1 => ['font' => ['bold' => true]],
@@ -29,32 +28,27 @@ class AudienceExport implements FromCollection, WithHeadings, WithMapping, Shoul
 
     public function title(): string
     {
-        return 'Audiance';
+        return 'Audience';
     }
 
-    /**
-     * @return \Illuminate\Support\Collection
-     */
     public function collection()
     {
-        return audience::all();
+        return audience::where('event_name', $this->eventName)->get();
     }
 
-    public function map($customer): array
+    public function map($audience): array
     {
         return [
-            $customer->id,
-            $customer->name,
-            $customer->phone,
-            $customer->email,
-            $customer->event_name,
-            $customer->created_at->format('d-m-Y'),
-            $customer->created_at->format('h:i A'),
+            $audience->id,
+            $audience->name,
+            $audience->phone,
+            $audience->email,
+            $audience->event_name,
+            $audience->created_at->format('d-m-Y'),
+            $audience->created_at->format('h:i A'),
         ];
     }
-    /**
-     * @return \Illuminate\Support\Collection
-     */
+
     public function headings(): array
     {
         return [
