@@ -26,7 +26,7 @@ class AudienceController extends Controller
     public function index(Request $request)
     {
         try {
-            $audianceQuery = Audience::query();
+            $audianceQuery = audience::query();
             $events = Event::all();
 
             // if ($request->has('search')) {
@@ -249,23 +249,26 @@ class AudienceController extends Controller
     //=================================== Import & Export =======================================//
     /**
      * Export audience data
+     * Refrence - https://docs.laravel-excel.com/3.1/getting-started/
      */
     public function export(Request $request)
     {
         try {
             // return Excel::download(new AudienceExport, 'audience.xlsx');
 
-            return Excel::download(new AudienceExport(''), 'audiance_' . date('d-m-Y_H-i-s') . '.xlsx');
+            // return Excel::download(new AudienceExport($event), 'audience_' . date('d-m-Y_H-i-s') . '.xlsx');
 
-            // $filetype = $request->filetype;
-            // $filename = 'audience.' . $filetype;
+            $event = $request->event_name;
+            $filetype = $request->file_type;
+            $filename = 'audience_' . date('d-m-Y_H-i-s') . '.' . $filetype;
+            return Excel::download(new AudienceExport($event), $filename);
 
             // if ($filetype == 'csv') {
-            //     return Excel::download(new AudienceExport, $filename, \Maatwebsite\Excel\Excel::CSV);
+            //     return Excel::download(new AudienceExport($event), $filename);
             // } elseif ($filetype == 'xlsx') {
-            //     return Excel::download(new AudienceExport, $filename, \Maatwebsite\Excel\Excel::XLSX);
+            //     return Excel::download(new AudienceExport($event), $filename);
             // } elseif ($filetype == 'xls') {
-            //     return Excel::download(new AudienceExport, $filename, \Maatwebsite\Excel\Excel::XLS);
+            //     return Excel::download(new AudienceExport($event), $filename);
             // }
         } catch (\Exception $e) {
             Log::error($e->getMessage());

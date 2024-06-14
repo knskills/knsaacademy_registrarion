@@ -10,7 +10,8 @@
             <h1>Audiance</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('audiences.index') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a
+                            href="{{ route('audiences.index') }}">Home</a></li>
                     <li class="breadcrumb-item">Audiance List</li>
                 </ol>
             </nav>
@@ -31,17 +32,30 @@
 
                                     <!-- Import buttons -->
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        <button type="button"
+                                            class="btn btn-primary"
+                                            data-bs-toggle="modal"
                                             data-bs-target="#importexcel">
-                                            Import <i class="bi bi-file-earmark-arrow-up"></i>
+                                            Import <i
+                                                class="bi bi-file-earmark-arrow-up"></i>
                                         </button>
                                     </div>
 
                                     <!-- Export buttons -->
-                                    <div class="btn-group">
+                                    {{-- <div class="btn-group">
                                         <a href="{{ route('audiences.export') }}" class="btn btn-success">
                                             Export <i class="bi bi-file-earmark-arrow-down"></i>
                                         </a>
+                                    </div> --}}
+
+                                    <div class="btn-group">
+                                        <button type="button"
+                                            class="btn btn-success"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#exportexcel">
+                                            Export <i
+                                                class="bi bi-file-earmark-arrow-down"></i>
+                                        </button>
                                     </div>
 
                                     {{-- <div class="btn-group">
@@ -102,8 +116,10 @@
                                             <th>Email</th>
                                             <th>Phone</th>
                                             <th>Event</th>
-                                            <th class="text-center">Register Date</th>
-                                            <th class="text-center">Register Time</th>
+                                            <th class="text-center">Register
+                                                Date</th>
+                                            <th class="text-center">Register
+                                                Time</th>
                                             {{-- <th>Action</th> --}}
                                         </tr>
                                     </thead>
@@ -114,13 +130,14 @@
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->email }}</td>
                                                 <td>{{ $item->phone }}</td>
-                                                <td>{{ ucwords(str_replace('_', ' ', $item->event_name)) }}</td>
+                                                <td>{{ ucwords(str_replace('_', ' ', $item->event_name)) }}
+                                                </td>
                                                 <td class="text-center">
                                                     {{ \Carbon\Carbon::parse($item->registration_date)->format('d-m-Y') }}
                                                 </td>
                                                 <td class="text-center">
                                                     {{ \Carbon\Carbon::parse($item->registration_date)->format('h:i A') }}
-                                                {{-- <td> --}}
+                                                    {{-- <td> --}}
                                                     {{-- <a href="{{ route('admin.audiance.show', $item->id) }}"
                                                     class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
                                                     <a href="{{ route('admin.audiance.edit', $item->id) }}"
@@ -135,7 +152,7 @@
                                                             <i class="bi bi-trash "></i>
                                                         </button>
                                                     </form> --}}
-                                                {{-- </td> --}}
+                                                    {{-- </td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -159,18 +176,24 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Import Audiance Data</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
-                    <form action="{{ route('audiences.import') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('audiences.import') }}"
+                        method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label class="col-form-label">Events</label>
                                 <div class="">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option value="">select events</option>
+                                    <select class="form-select"
+                                        aria-label="Default select example">
+                                        <option value="">select events
+                                        </option>
                                         @foreach ($events as $event)
-                                            <option value="{{ $event->id }}">
+                                            <option
+                                                value="{{ $event->id }}">
                                                 {{ $event->name }}
                                             </option>
                                         @endforeach
@@ -178,19 +201,77 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="file" class="form-label">Choose file</label>
-                                <input class="form-control" type="file" id="file" name="file" required>
+                                <label for="file" class="form-label">Choose
+                                    file</label>
+                                <input class="form-control" type="file"
+                                    id="file" name="file" required>
                             </div>
                             {{-- <button type="submit" class="btn btn-primary">Import</button> --}}
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Import</button>
+                            <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit"
+                                class="btn btn-primary">Import</button>
                         </div>
                     </form>
                 </div>
             </div>
-        </div><!-- End Vertically centered Modal-->
+        </div>
+
+        <div class="modal fade" id="exportexcel" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Export Audiance Data</h5>
+                        <button type="button" class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <form action="{{ route('audiences.export') }}"
+                        method="GET">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="col-form-label">Events</label>
+                                <div class="">
+                                    <select class="form-select" name="event_name"
+                                        aria-label="Select Event" required>
+                                        <option value="">select event
+                                        </option>
+                                        @foreach ($events as $event)
+                                            <option
+                                                value="{{ $event->event_name }}">
+                                                {{ $event->event_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="file_type"
+                                    class="form-label">Event</label>
+                                <select class="form-select" id="file_type" required
+                                    aria-label="Select File Type" name="file_type">
+                                    <option selected>Select Type</option>
+                                    <option value="xlsx">Excel(xlsx)</option>
+                                    <option value="xls">Excel(xls)</option>
+                                    <option value="csv">Csv</option>
+                                    {{-- <option value="pdf">PDF</option> --}}
+                                    <option value="html">HTML</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit"
+                                class="btn btn-primary">Export</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
     </main><!-- End #main -->
 @endsection
