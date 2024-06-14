@@ -369,7 +369,6 @@ class WhatsappController extends Controller
 
     public function sendMessage(Request $request)
     {
-        Log::info($request->all());
         try {
             // Validate the request
             $request->validate([

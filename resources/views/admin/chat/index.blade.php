@@ -631,9 +631,11 @@
 
                         // Create the message HTML
                         var messageHtml = '<li class="sender">';
-                        if (message.image) {
-                            messageHtml += '<a href="' + message.image + '" download><img src="' + message.image + '" alt="' + message.image + '" style="max-width: 250px;"></a><br>';
-                        }
+                            if (message.image) {
+                                var imageUrl = '{{ asset('') }}' + message.image;
+                                messageHtml += '<a href="' + imageUrl + '" download><img src="' + imageUrl + '" alt="' + message.image + '" style="max-width: 250px;"></a><br>';
+                            }
+
                         messageHtml += '<p>' + message.whatsapp_message.replace(/\n/g, '<br>') + '</p>';
                         messageHtml += '<span class="time">' + new Date(message.created_at).toLocaleTimeString('en-US', {
                             hour: '2-digit',
