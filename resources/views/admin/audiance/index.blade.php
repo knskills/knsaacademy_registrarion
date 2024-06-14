@@ -257,7 +257,7 @@
                                     <option value="xlsx">Excel(xlsx)</option>
                                     <option value="xls">Excel(xls)</option>
                                     <option value="csv">Csv</option>
-                                    <option value="pdf">PDF</option>
+                                    {{-- <option value="pdf">PDF</option> --}}
                                     <option value="html">HTML</option>
                                 </select>
                             </div>
