@@ -249,6 +249,7 @@ class AudienceController extends Controller
     //=================================== Import & Export =======================================//
     /**
      * Export audience data
+     * Refrence - https://docs.laravel-excel.com/3.1/getting-started/
      */
     public function export(Request $request)
     {
@@ -260,14 +261,15 @@ class AudienceController extends Controller
             $event = $request->event_name;
             $filetype = $request->file_type;
             $filename = 'audience_' . date('d-m-Y_H-i-s') . '.' . $filetype;
+            return Excel::download(new AudienceExport($event), $filename);
 
-            if ($filetype == 'csv') {
-                return Excel::download(new AudienceExport($event), $filename);
-            } elseif ($filetype == 'xlsx') {
-                return Excel::download(new AudienceExport($event), $filename);
-            } elseif ($filetype == 'xls') {
-                return Excel::download(new AudienceExport($event), $filename);
-            }
+            // if ($filetype == 'csv') {
+            //     return Excel::download(new AudienceExport($event), $filename);
+            // } elseif ($filetype == 'xlsx') {
+            //     return Excel::download(new AudienceExport($event), $filename);
+            // } elseif ($filetype == 'xls') {
+            //     return Excel::download(new AudienceExport($event), $filename);
+            // }
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');

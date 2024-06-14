@@ -236,7 +236,7 @@
                                 <label class="col-form-label">Events</label>
                                 <div class="">
                                     <select class="form-select" name="event_name"
-                                        aria-label="Select Event">
+                                        aria-label="Select Event" required>
                                         <option value="">select event
                                         </option>
                                         @foreach ($events as $event)
@@ -251,12 +251,14 @@
                             <div class="mb-3">
                                 <label for="file_type"
                                     class="form-label">Event</label>
-                                <select class="form-select" id="file_type"
+                                <select class="form-select" id="file_type" required
                                     aria-label="Select File Type" name="file_type">
                                     <option selected>Select Type</option>
                                     <option value="xlsx">Excel(xlsx)</option>
                                     <option value="xls">Excel(xls)</option>
                                     <option value="csv">Csv</option>
+                                    <option value="pdf">PDF</option>
+                                    <option value="html">HTML</option>
                                 </select>
                             </div>
                         </div>
