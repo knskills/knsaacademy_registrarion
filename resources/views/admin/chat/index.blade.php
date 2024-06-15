@@ -185,6 +185,7 @@
                             <div class="chatbox">
                                 <div class="modal-dialog-scrollable">
                                     <div class="modal-content">
+                                        <!-- Message head -->
                                         <div class="msg-head">
                                             <div class="row">
                                                 <div class="col-8">
@@ -260,8 +261,9 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- End message head -->
 
-
+                                        <!-- message chat body -->
                                         <div class="modal-body" id="chat-body">
                                             <div class="msg-body">
                                                 <ul id="message-list">
@@ -416,8 +418,9 @@
                                                 </ul>
                                             </div>
                                         </div>
+                                         <!-- end message chat body -->
 
-
+                                        <!-- send message box -->
                                         <div class="send-box">
                                             <form
                                                 action="{{ route('whatsapp.send-message') }}"
@@ -500,6 +503,7 @@
                                             </div>
 
                                         </div>
+                                         <!-- end send message box -->
                                     </div>
                                 </div>
                             </div>
@@ -511,7 +515,7 @@
         </section>
         <!-- char-area -->
 
-        <!-- New Chat -->
+        <!-- New Chat Modal-->
         <div class="modal fade" id="newContact" tabindex="-1"
             aria-labelledby="newContactLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -670,14 +674,62 @@
         });
 
 
-
         $(document).ready(function() {
-            console.log('Echo configuration:', window.Echo);
+            // console.log('Echo configuration:', window.Echo);
             window.Echo.private('chat')
                 .listen('MessageReceived', (e) => {
                     console.log('its working');
                     console.log(e.message);
+
+                    // Extract message data from the response
+                    var message = e.message;
+
+                    // Determine the date label (Today, Yesterday, or specific date)
+                    var messageDate = new Date(message.created_at);
+                    var today = new Date();
+                    var yesterday = new Date();
+                    yesterday.setDate(today.getDate() - 1);
+                    var dateLabel = '';
+
+                    if (messageDate.toDateString() === today.toDateString()) {
+                        dateLabel = 'Today';
+                    } else if (messageDate.toDateString() === yesterday.toDateString()) {
+                        dateLabel = 'Yesterday';
+                    } else {
+                        dateLabel = messageDate.toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                            year: 'numeric'
+                        });
+                    }
+
+                    // Check if the current date label already exists
+                    var lastDivider = $('li .divider').last();
+                    if (lastDivider.length === 0 || lastDivider.text().trim() !== dateLabel) {
+                        // Append date label if it does not exist
+                        $('#message-list').append('<li><div class="divider"><h6>' + dateLabel + '</h6></div></li>');
+                    }
+
+                    // Create the message HTML for reply side
+                    var messageHtml = '<li class="repaly">';
+                    if (message.image) {
+                        var imageUrl = '{{ asset('') }}' + message.image;
+                        messageHtml += '<a href="' + imageUrl + '" download><img src="' + imageUrl + '" alt="' + message.image + '" style="max-width: 250px;"></a><br>';
+                    }
+                    messageHtml += '<p>' + message.whatsapp_message.replace(/\n/g, '<br>') + '</p>';
+                    messageHtml += '<span class="time">' + new Date(message.created_at).toLocaleTimeString('en-US', {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    }) + '</span>';
+                    messageHtml += '</li>';
+
+                    // Append the message HTML to the message list
+                    $('#message-list').append(messageHtml);
+
+                    // Scroll to the bottom of the message list
+                    $('#chat-body').scrollTop($('#message-list')[0].scrollHeight);
                 });
         });
+
     </script>
 @endsection

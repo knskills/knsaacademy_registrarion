@@ -411,6 +411,7 @@ class WhatsappController extends Controller
             ])->post('https://graph.facebook.com/v19.0/' . env("FB_PHONE_NUMBER") . '/messages', $payload);
 
             $data = json_decode($response->getBody(), true);
+            Log::info(json_encode($data));
 
             if (isset($data['contacts'][0]['wa_id'])) {
                 $recipientId = $data['contacts'][0]['wa_id'];
