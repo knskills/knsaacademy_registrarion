@@ -23,6 +23,6 @@ class LogMessage
     {
         //
         // \Log::info('New message received: ', $event->message);
-        // \Log::info('New message received:', ['message' => $event->message]);
+        \Log::info('New message received:', ['message' => $event->message]);
     }
 }

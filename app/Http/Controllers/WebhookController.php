@@ -88,7 +88,9 @@ class WebhookController extends Controller
                 ]
             );
 
-            broadcast(new MessageReceived($whatsappMessage))->toOthers();
+            $isStatusUpdate = $whatsappMessage->wasRecentlyCreated ? false : true;
+            Log::info($isStatusUpdate);
+            broadcast(new MessageReceived($whatsappMessage, $isStatusUpdate))->toOthers();
         }
 
         return end($statuses)['recipient_id'];
