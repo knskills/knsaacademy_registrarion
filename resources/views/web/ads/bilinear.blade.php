@@ -455,7 +455,7 @@
 
         #price-img {
             /* width: 100%;
-                                                                        height: 100%; */
+                                                                                    height: 100%; */
 
             max-width: 20%;
             max-height: 20%;
@@ -601,6 +601,32 @@
 @endsection
 
 @section('content')
+
+    <div class="container bg-light">
+        <div>
+            @if ($errors->any())
+                <ul class="alert">
+                    @foreach ($errors->all() as $error)
+                        <li class="text-danger">
+                            {{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
+
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+
+        </div>
+    </div>
     <!-- main section -->
     <section class="service_section">
         <div class="container" id="top1" style="padding: 20px 0px 70px;">
@@ -624,7 +650,7 @@
             </div>
             <div class="row mt-4">
                 <div class="col-md-6 mb-4">
-                    <img src="{{ asset('assets/img/learning/8.jpeg') }}"
+                    <img src="{{ asset('assets/img/learning/S2/1.jpeg') }}"
                         alt="Learn Marketing" class="img-fluid image-effect">
                 </div>
 
@@ -685,7 +711,7 @@
                                             class="small-text">Date</span><br>
                                         <span
                                             class="big-bold-text seminar-date"
-                                            id="next-tuesday">16 Jun
+                                            id="next-tuesday">22 Jun
                                             2024</span>
 
                                         {{-- <span class="big2-bold-text" style="font-size: 20px;">2,3 & 4 Feb 2024</span> --}}
@@ -707,8 +733,8 @@
                                     <div class="ml-3">
                                         <span
                                             class="small-text">Time</span><br>
-                                        <span class="big-bold-text">10AM to
-                                            01PM</span>
+                                        <span class="big-bold-text">7PM to
+                                            10PM</span>
                                     </div>
                                 </div>
                             </div>
@@ -750,7 +776,7 @@
                             <h2 class="text-white"
                                 style="font-family: 'Noto Sans Devanagari', sans-serif; text-align: center; padding: 20px 0;">
                                 <span style="color: #FFD700;">16 Years</span>
-                                 of Journey & Achievements
+                                of Journey & Achievements
                             </h2>
                         </div>
                     </div>
@@ -1136,7 +1162,7 @@
                                             class="small-text">Date</span><br>
                                         <span
                                             class="big-bold-text text-center seminar-date"
-                                            id="next-tuesday2">16 Jun
+                                            id="next-tuesday2">22 Jun
                                             2024</span>
                                     </div>
                                 </div>
@@ -1156,8 +1182,8 @@
                                     <div class="ml-3">
                                         <span
                                             class="small-text">Time</span><br>
-                                        <span class="big-bold-text">10AM to
-                                            01PM</span>
+                                        <span class="big-bold-text">7PM to
+                                            10PM</span>
                                     </div>
                                 </div>
                             </div>
@@ -1262,16 +1288,23 @@
                         <h3> Who Is Kamal Narayan Sahu</h3>
                     </div>
                     <ul class="text-left">
-                        <li class="mt-2">1) Youngest CMD in the network marketing industry at 32 years old.</li>
-                        <li class="mt-2">2) 16 years of practical experience.</li>
-                        <li class="mt-2">3) Successfully led a network company to a 100 crore turnover.</li>
-                        <li class="mt-2">4) Author of "Beginner to Billionaire in Network Marketing.
+                        <li class="mt-2">1) Youngest CMD in the network
+                            marketing industry at 32 years old.</li>
+                        <li class="mt-2">2) 16 years of practical
+                            experience.</li>
+                        <li class="mt-2">3) Successfully led a network
+                            company to a 100 crore turnover.</li>
+                        <li class="mt-2">4) Author of "Beginner to
+                            Billionaire in Network Marketing.
                         </li>
-                        <li class="mt-2">5) Turned 14 leaders into crorepatis in just 3 years.
+                        <li class="mt-2">5) Turned 14 leaders into
+                            crorepatis in just 3 years.
                         </li>
-                        <li class="mt-2">6) Recipient of the Visionary Leader of the Year award.
+                        <li class="mt-2">6) Recipient of the Visionary
+                            Leader of the Year award.
                         </li>
-                        <li class="mt-2">7) Featured in a chat with Surender Vats.
+                        <li class="mt-2">7) Featured in a chat with Surender
+                            Vats.
                         </li>
                     </ul>
                 </div>
@@ -1867,7 +1900,8 @@
                             @csrf
                             <div class="mb-3">
                                 <input type="hidden" name="event_name"
-                                    id="event_name" value="Learn Marketing">
+                                    id="event_name"
+                                    value="Learn Marketing S2">
                                 <input type="hidden" name="event_type"
                                     id="event_type" value="paid">
                                 <label for="name"
@@ -1888,12 +1922,14 @@
                                     class="form-label">Contact Number
                                     (WhatsApp)</label>
                                 <input type="text" class="form-control"
-                                    id="phone"
+                                    id="phone" pattern="^[789]\d{9}$"
                                     oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                                     minlength="10" name="phone"
                                     maxlength="10"
                                     placeholder="Enter your WhatsApp number"
                                     required>
+                                <span id="phone-error"
+                                    class="error-message text-danger"></span>
                             </div>
                             <button class="btn btn-primary float-right"
                                 type="submit" id="submit">
@@ -1970,6 +2006,36 @@
     <noscript><img height="1" width="1" style="display:none"
             src="https://www.facebook.com/tr?id=365953992779410&ev=PageView&noscript=1" /></noscript>
     <!-- End Meta Pixel Code -->
+
+    <script>
+        $(document).ready(function() {
+            // close alert automatically after 3 seconds
+            setTimeout(function() {
+                $(".alert").alert('close');
+            }, 3000);
+        });
+
+        $(document).ready(function() {
+            $("#phone").keyup(function() {
+                var phone = $(this).val();
+                var phoneError = $("#phone-error");
+
+                if (!phone.match(/^[789]\d{9}$/)) {
+                    phoneError.text(
+                        "Please enter a valid 10-digit Indian mobile number."
+                    );
+                    phoneError
+                        .show(); // Show the error message
+                } else {
+                    phoneError.text(
+                        ""
+                    ); // Clear the error message if valid
+                    phoneError
+                        .hide(); // Hide the error message if valid
+                }
+            });
+        });
+    </script>
 
     <script>
         // JavaScript to show/hide "Go to Top" button on scroll
@@ -2071,7 +2137,7 @@
                 monthNames[nextTuesday.getMonth()] + ' ' +
                 nextTuesday.getFullYear();
 
-            // // var formattedNextTuesday = "16 Jun 2024";
+            // // var formattedNextTuesday = "22 Jun 2024";
             // $('#next-tuesday').html(formattedNextTuesday);
             // $('#next-tuesday2').html(formattedNextTuesday);
         });

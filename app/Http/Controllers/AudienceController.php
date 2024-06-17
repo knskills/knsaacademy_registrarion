@@ -39,7 +39,7 @@ class AudienceController extends Controller
             //     $audianceQuery->orderBy('id', 'desc');
             // }
 
-            $audianceQuery->where('event_name', 'Learn Marketing');
+            $audianceQuery->where('event_name', 'Learn Marketing S2');
             // ->orWhere('event_name', 'Learn Marketing')
 
             $audiences = $audianceQuery->paginate(10);
@@ -89,7 +89,7 @@ class AudienceController extends Controller
             // check if email and phone already exists in database
             // $audience = Audience::where('email', $request->email)->orWhere('phone', $request->phone)->first();
 
-            $audience = Audience::where('email', $request->email)->where('phone', $request->phone)->first();
+            $audience = Audience::where('email', $request->email)->where('phone', $request->phone)->where('event_name', $request->event_name)->first();
             $result = null;
             $modifiedMessage = null;
 
@@ -130,6 +130,8 @@ class AudienceController extends Controller
                 // //     sendSms($audience->phone, $message);
                 // // }
             } else {
+                return back()->with('error', 'You are already registered for this event');
+
                 // Log::info('Audience already exists');
                 // update event name and registration date
                 $audience->name = $request->name;
@@ -146,6 +148,8 @@ class AudienceController extends Controller
                 if ($template) {
                     $result = sendTempMessage($template, $request->phone, $para = null);
                 }
+
+                // return error if audience already exists
             }
 
             if (isset($result['messages'])) {
