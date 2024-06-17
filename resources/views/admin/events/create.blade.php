@@ -10,7 +10,8 @@
             <h1>Event</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a
+                            href="{{ route('dashboard') }}">Home</a></li>
                     <li class="breadcrumb-item">New Event</li>
                 </ol>
             </nav>
@@ -25,7 +26,8 @@
                         @if ($errors->any())
                             <ul class="alert">
                                 @foreach ($errors->all() as $error)
-                                    <li class="text-danger">{{ $error }}</li>
+                                    <li class="text-danger">{{ $error }}
+                                    </li>
                                 @endforeach
                             </ul>
                         @endif
@@ -48,29 +50,40 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row mb-2">
-                                    <label class="col-md-4 col-form-label">Event Name</label>
+                                    <label
+                                        class="col-md-4 col-form-label">Event
+                                        Name</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="event_name" value="Event 1">
+                                        <input type="text"
+                                            class="form-control"
+                                            name="event_name" value="Event 1">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row mb-2">
-                                    <label class="col-md-4 col-form-label">Event Type</label>
+                                    <label
+                                        class="col-md-4 col-form-label">Event
+                                        Type</label>
                                     <div class="col-md-8">
-                                        <select name="event_type" id="event_type" class="form-select">
-                                            <option value="free">Free</option>
-                                            <option value="paid">Paid</option>
+                                        <select name="event_type"
+                                            id="event_type"
+                                            class="form-select">
+                                            <option value="free">Free
+                                            </option>
+                                            <option value="paid">Paid
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                            <!--is_active-->
                             <div class="col-md-6">
                                 <div class="row mb-2">
-                                    <label class="col-md-4 col-form-label">Is Active</label>
+                                    <label class="col-md-4 col-form-label">Is
+                                        Active</label>
                                     <div class="col-md-8">
-                                        <select name="is_active" id="is_active" class="form-select">
+                                        <select name="is_active" id="is_active"
+                                            class="form-select">
                                             <option value="1">Yes</option>
                                             <option value="0">No</option>
                                         </select>
@@ -79,17 +92,25 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="row mb-2">
-                                    <label class="col-md-4 col-form-label">Event Date</label>
+                                    <label
+                                        class="col-md-4 col-form-label">Event
+                                        Date</label>
                                     <div class="col-md-8">
-                                        <input type="date" name="event_date" id="event_date" class="form-control">
+                                        <input type="date" name="event_date"
+                                            id="event_date"
+                                            class="form-control">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row mb-2">
-                                    <label class="col-md-4 col-form-label">Event Start Time</label>
+                                    <label
+                                        class="col-md-4 col-form-label">Event
+                                        Start Time</label>
                                     <div class="col-md-8">
-                                        <input type="time" name="event_start_time" id="event_start_time"
+                                        <input type="time"
+                                            name="event_start_time"
+                                            id="event_start_time"
                                             class="form-control">
                                     </div>
                                 </div>
@@ -97,9 +118,13 @@
 
                             <div class="col-md-6">
                                 <div class="row mb-2">
-                                    <label class="col-md-4 col-form-label">Event End Time</label>
+                                    <label
+                                        class="col-md-4 col-form-label">Event
+                                        End Time</label>
                                     <div class="col-md-8">
-                                        <input type="time" name="event_end_time" id="event_end_time"
+                                        <input type="time"
+                                            name="event_end_time"
+                                            id="event_end_time"
                                             class="form-control">
                                     </div>
                                 </div>
@@ -108,9 +133,12 @@
                             <!--price-->
                             <div class="col-md-6">
                                 <div class="row mb-2">
-                                    <label class="col-md-4 col-form-label">Price</label>
+                                    <label
+                                        class="col-md-4 col-form-label">Price</label>
                                     <div class="col-md-8">
-                                        <input type="number" name="price" id="price" class="form-control">
+                                        <input type="number" name="price"
+                                            id="price"
+                                            class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -118,9 +146,13 @@
                             <!-- original_price -->
                             <div class="col-md-6">
                                 <div class="row mb-2">
-                                    <label class="col-md-4 col-form-label">Original Price</label>
+                                    <label
+                                        class="col-md-4 col-form-label">Original
+                                        Price</label>
                                     <div class="col-md-8">
-                                        <input type="number" name="original_price" id="original_price"
+                                        <input type="number"
+                                            name="original_price"
+                                            id="original_price"
                                             class="form-control">
                                     </div>
                                 </div>
@@ -129,9 +161,14 @@
                             <!-- payment_link -->
                             <div class="col-md-6">
                                 <div class="row mb-2">
-                                    <label class="col-md-4 col-form-label">Payment Link</label>
+                                    <label
+                                        class="col-md-4 col-form-label">Payment
+                                        Link</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="payment_link" id="payment_link" class="form-control">
+                                        <input type="text"
+                                            name="payment_link"
+                                            id="payment_link"
+                                            class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -139,9 +176,14 @@
                             <!-- youtube_link -->
                             <div class="col-md-6">
                                 <div class="row mb-2">
-                                    <label class="col-md-4 col-form-label">Youtube Link</label>
+                                    <label
+                                        class="col-md-4 col-form-label">Youtube
+                                        Link</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="youtube_link" id="youtube_link" class="form-control">
+                                        <input type="text"
+                                            name="youtube_link"
+                                            id="youtube_link"
+                                            class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -149,10 +191,35 @@
                             <!-- whatsapp_link -->
                             <div class="col-md-6">
                                 <div class="row mb-2">
-                                    <label class="col-md-4 col-form-label">Whatsapp Group Link</label>
+                                    <label
+                                        class="col-md-4 col-form-label">Whatsapp
+                                        Group Link</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="whatsapp_link" id="whatsapp_link"
+                                        <input type="text"
+                                            name="whatsapp_link"
+                                            id="whatsapp_link"
                                             class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- whatsapp template -->
+                            <div class="col-md-6">
+                                <div class="row mb-2">
+                                    <label
+                                        class="col-md-4 col-form-label">Whatsapp
+                                        Template</label>
+                                    <div class="col-md-8">
+                                        <select name="whstp_temp_name"
+                                            id="whstp_temp_name"
+                                            class="form-select">
+                                            @foreach ($events as $event)
+                                                <option
+                                                    value="{{ $event->event_name }}">
+                                                    {{ ucwords(str_replace('_', ' ', $event->event_name)) }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -160,9 +227,13 @@
                             <!-- event_duration -->
                             <div class="col-md-6">
                                 <div class="row mb-2">
-                                    <label class="col-md-4 col-form-label">Event Duration</label>
+                                    <label
+                                        class="col-md-4 col-form-label">Event
+                                        Duration</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="event_duration" id="event_duration"
+                                        <input type="text"
+                                            name="event_duration"
+                                            id="event_duration"
                                             class="form-control">
                                     </div>
                                 </div>
@@ -171,15 +242,20 @@
                             <!-- timer_time in minutes -->
                             <div class="col-md-6">
                                 <div class="row mb-2">
-                                    <label class="col-md-4 col-form-label">Timer Time(minutes)</label>
+                                    <label
+                                        class="col-md-4 col-form-label">Timer
+                                        Time(minutes)</label>
                                     <div class="col-md-8">
-                                        <input type="number" name="timer_time" id="timer_time" class="form-control">
+                                        <input type="number"
+                                            name="timer_time" id="timer_time"
+                                            class="form-control">
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary float-end mt-3">
+                        <button type="submit"
+                            class="btn btn-primary float-end mt-3">
                             Save
                         </button>
                     </form>

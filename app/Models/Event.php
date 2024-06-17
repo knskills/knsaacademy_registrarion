@@ -29,6 +29,7 @@ class Event extends Model
         'payment_link',
         'is_active',
         'whatsapp_link',
+        'whstp_temp_name',
         'event_type',
         'event_language',
         'event_duration',

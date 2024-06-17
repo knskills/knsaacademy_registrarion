@@ -201,7 +201,7 @@ class AudienceController extends Controller
                 });
             }
 
-            return redirect()->away('https://rzp.io/l/ZlWoFuR');
+            return redirect()->away('https://rzp.io/l/networkmarketingkyakyukaise');
 
 
             // return redirect()->route('join-whatsapp');
