@@ -130,8 +130,7 @@
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->email }}</td>
                                                 <td>{{ $item->phone }}</td>
-                                                <td>
-                                                    {{ ucwords(str_replace('_', ' ', $item->event_name)) }}
+                                                <td>{{ ucwords(str_replace('_', ' ', $item->event_name)) }}
                                                 </td>
                                                 <td class="text-center">
                                                     {{ \Carbon\Carbon::parse($item->registration_date)->format('d-m-Y') }}
