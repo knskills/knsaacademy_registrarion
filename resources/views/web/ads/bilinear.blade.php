@@ -455,7 +455,7 @@
 
         #price-img {
             /* width: 100%;
-                                                                                                height: 100%; */
+                                                                                                    height: 100%; */
 
             max-width: 20%;
             max-height: 20%;
@@ -695,7 +695,6 @@
                             title="22 june" class="responsive-iframe"></iframe>
                     </div>
                 </div>
-
 
                 <div class="col-md-6 m-auto">
                     <div class="row">
