@@ -223,9 +223,10 @@
                                                                 href="#"
                                                                 role="button"
                                                                 data-bs-toggle="dropdown"
-                                                                aria-expanded="false"><i
-                                                                    class="fa fa-ellipsis-v"
-                                                                    aria-hidden="true"></i></a>
+                                                                aria-expanded="false">
+                                                                <i class="fa fa-ellipsis-v"
+                                                                    aria-hidden="true"></i>
+                                                            </a>
                                                             <ul
                                                                 class="dropdown-menu">
                                                                 <li>
@@ -585,6 +586,8 @@
         });
 
         $(document).ready(function() {
+
+            // Send message
             $('#whatsapp-send-message-form').submit(function(e) {
                 e.preventDefault(); // Prevent default form submission
 
@@ -676,6 +679,11 @@
 
         $(document).ready(function() {
             // console.log('Echo configuration:', window.Echo);
+
+            var user = @json($user);
+            console.log(user.number); // This will log the user object to the console
+
+            // Recive Message
             window.Echo.private('chat')
                 .listen('MessageReceived', (e) => {
                     console.log('its working');
