@@ -1503,8 +1503,7 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true"
                                 class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">ग्राहकों को पहचानना है और
-                                उनसे जुड़ने के महत्‍वपूर्ण तरीके सीखे</span>
+                            <span class="f18">The true picture of network marketing</span>
                         </div>
                     </div>
                 </div>
@@ -1513,8 +1512,7 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true"
                                 class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">strong relationship and
-                                supportive network बनाना सीखे.</span>
+                            <span class="f18">Importance of understanding the reasons behind actions in network marketing</span>
                         </div>
                     </div>
                 </div>
@@ -1523,8 +1521,7 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true"
                                 class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">सोशल मीडिया और डिजिटल
-                                मार्केटिंग से नेटवर्क कैसे बनाएं सीखें.</span>
+                            <span class="f18">Professionalism in network marketing</span>
                         </div>
                     </div>
                 </div>
@@ -1533,9 +1530,7 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true"
                                 class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">आप नेटवर्क मार्केटिंग की
-                                सफलता में trust and communication के महत्व को
-                                सीखेंगे.</span>
+                            <span class="f18">Why network marketing is a revolutionary business opportunity and much more!</span>
                         </div>
                     </div>
                 </div>
