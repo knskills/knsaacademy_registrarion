@@ -2013,9 +2013,7 @@
             setTimeout(function() {
                 $(".alert").alert('close');
             }, 3000);
-        });
 
-        $(document).ready(function() {
             $("#phone").keyup(function() {
                 var phone = $(this).val();
                 var phoneError = $("#phone-error");
