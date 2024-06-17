@@ -455,7 +455,7 @@
 
         #price-img {
             /* width: 100%;
-                                                                                            height: 100%; */
+                                                                                                height: 100%; */
 
             max-width: 20%;
             max-height: 20%;
@@ -689,12 +689,13 @@
                 <div class="col-md-6 mb-4">
                     <div class="video-wrapper">
                         <iframe
-                            src="https://player.vimeo.com/video/960358679?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                            src="https://player.vimeo.com/video/960358679?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0"
                             frameborder="0"
                             allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
                             title="22 june" class="responsive-iframe"></iframe>
                     </div>
                 </div>
+
 
                 <div class="col-md-6 m-auto">
                     <div class="row">
