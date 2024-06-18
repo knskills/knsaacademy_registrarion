@@ -13,7 +13,8 @@
 @endsection
 
 @section('title')
-    <title>Beginner to Billionaire</title>
+    <title>From Beginner to Billionaire: Kamal Narayan Sahu's Network Marketing
+        Journey</title>
 @endsection
 
 @section('style')
@@ -455,7 +456,7 @@
 
         #price-img {
             /* width: 100%;
-                                                                                                    height: 100%; */
+                                                                                                                height: 100%; */
 
             max-width: 20%;
             max-height: 20%;
@@ -630,6 +631,60 @@
             border: 0;
         }
     </style>
+
+<style>
+    .webinar-card {
+        background-color: #333232;
+        color: rgb(255, 200, 0);
+        font-family: 'Arial', sans-serif; /* Changed font family */
+        text-align: center;
+        padding: 2rem;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+        transition: transform 0.3s, box-shadow 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .webinar-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 12px 40px rgba(0, 0, 0, 0.19);
+        background-color: #2a2a2a; /* Updated to a darker gray */
+    }
+
+    .heading-container h2 span {
+        color: #FFD700;
+    }
+
+    @media (max-width: 576px) {
+        .webinar-card {
+            margin-bottom: 20px;
+        }
+    }
+
+    .flex-fill {
+        flex: 1;
+    }
+
+    .d-flex {
+        display: flex;
+    }
+
+    .text-gold {
+        color: #FFD700;
+    }
+
+    .ordered-list {
+        color: white;
+        text-align: left;
+        list-style-type: decimal;
+        text-transform: capitalize; /* Ensure the text is capitalized */
+    }
+</style>
+
 @endsection
 
 @section('content')
@@ -666,15 +721,19 @@
             <div class="text-center">
                 <h2 class="text-white"
                     style="font-family: 'Noto Sans Devanagari', sans-serif;">
-                    <span class="text-warning font-weight-bold">100% Money Back
-                        Guarantee</span>
+                    {{-- <span class="text-warning font-weight-bold">100% Money Back
+                        Guarantee</span> --}}
+
+                    <span
+                        class="text-warning font-weight-bold text-uppercase">beginner
+                        to billionaire</span>
                 </h2>
 
             </div>
             <div class="heading_container heading_center">
                 <h2 class="mt-3" id="m1">
-                    सीखिए नेटवर्क मार्केटिंग <br>
-                    क्या, क्यों और कैसे?
+                    How to Grow Exponentially and get Guaranteed success on
+                    Network Marketing Business
                 </h2>
 
                 {{-- <h3 id="m11" class="hindi">
@@ -810,6 +869,136 @@
         </div>
     </section>
 
+     <!-- sedule sessions-->
+     <section style="background-color: #030303;">
+        <div class="container py-5 text-white">
+            <div class="detail-box">
+                <div class="row">
+                    <div class="col-12 text-center m-auto">
+                        <div class="heading-container">
+                            <h2 class="text-white"
+                                style="font-family: 'Noto Sans Devanagari', sans-serif; text-align: center; padding: 20px 0;">
+                                Journey from <span class="text-gold">Beginner
+                                    To Billionaire</span>: Session Schedule
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row text-uppercase">
+                    <div class="col-md-4 col-sm-6 mb-4 d-flex">
+                        <div class="card webinar-card flex-fill">
+                            <h2 class="font-weight-bold text-gold">WEEK 1</h2>
+                            <ol class="ordered-list">
+                                <li>Success: Mindset & Motivation</li>
+                                <li>Dreams: Vision & Aspiration</li>
+                                <li>Goals: Setting & Achieving (incl. 5T
+                                    Method)</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 mb-4 d-flex">
+                        <div class="card webinar-card flex-fill">
+                            <h2 class="font-weight-bold text-gold">WEEK 2</h2>
+                            <ol class="ordered-list">
+                                <li>Traditional vs. Direct Selling</li>
+                                <li>Direct Selling Framework</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 mb-4 d-flex">
+                        <div class="card webinar-card flex-fill">
+                            <h2 class="font-weight-bold text-gold">WEEK 3</h2>
+                            <ol class="ordered-list">
+                                <li>Financial Freedom (Active vs. Passive
+                                    Income)</li>
+                                <li>5 USPs to Choose Best Direct Selling
+                                    Company</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 mb-4 d-flex">
+                        <div class="card webinar-card flex-fill">
+                            <h2 class="font-weight-bold text-gold">WEEK 4</h2>
+                            <ol class="ordered-list">
+                                <li>Essential Skills for Beginner Direct Sellers</li>
+                                <li>(List specific skills: Product Knowledge, Prospecting, Presentations, Relationship Building)</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 mb-4 d-flex">
+                        <div class="card webinar-card flex-fill">
+                            <h2 class="font-weight-bold text-gold">Week 5</h2>
+                            <ol class="ordered-list">
+                                <li>Team Leadership Essentials (Empower, Communicate, Build Culture)</li>
+                                <li>Building Willpower (Overcome Challenges, Stay Motivated, Cultivate Resilience)</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 mb-4 d-flex">
+                        <div class="card webinar-card flex-fill">
+                            <h2 class="font-weight-bold text-gold">Week 6</h2>
+                            <ol class="ordered-list">
+                                <li>Advanced Direct Selling Skills</li>
+                                <li> (List specific skills: Prospecting, Presentations, Relationships, Social Media)</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 mb-4 d-flex">
+                        <div class="card webinar-card flex-fill">
+                            <h2 class="font-weight-bold text-gold">Week 7</h2>
+                            <ol class="ordered-list">
+                                <li>Cultivate a Champion Mindset (Self-Belief, Growth Mindset, Positivity)</li>
+                                <li>Develop Your Action Plan (SMART Goals, Daily Tasks, Track Progress)</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 mb-4 d-flex">
+                        <div class="card webinar-card flex-fill">
+                            <h2 class="font-weight-bold text-gold">Week 8</h2>
+                            <ol class="ordered-list">
+                                <li>Habits of Top 1% Direct Sellers (e.g., Work Ethic, Massive Action, Learning, Relationships)</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- sedule sessions-->
+
+    <!-- feedback video section -->
+    <section class="service_section m-layout">
+        <div class="container py-5 text-white">
+            <div class="heading_container heading_center mb-3">
+                <h2>Proud Moments</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6 m-auto">
+                    <img src="{{ asset('assets/img/learning/awards/1.png') }}"
+                        alt="" class="img-fluid award-img">
+                </div>
+                <div class="col-md-6 m-auto">
+                    <img src="{{ asset('assets/img/learning/awards/2.png') }}"
+                        alt="" class="img-fluid award-img">
+                </div>
+                <div class="col-md-6 m-auto">
+                    <img src="{{ asset('assets/img/learning/awards/3.png') }}"
+                        alt="" class="img-fluid award-img mt-5">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end feedback video section -->
+
+    <!-- achivements -->
     <section style="background-color: #030303;">
         <div class="container py-5 text-white">
             <div class="detail-box">
@@ -860,30 +1049,7 @@
             </div>
         </div>
     </section>
-
-    <!-- feedback video section -->
-    <section class="service_section m-layout">
-        <div class="container py-5 text-white">
-            <div class="heading_container heading_center mb-3">
-                <h2>Proud Moments</h2>
-            </div>
-            <div class="row">
-                <div class="col-md-6 m-auto">
-                    <img src="{{ asset('assets/img/learning/awards/1.png') }}"
-                        alt="" class="img-fluid award-img">
-                </div>
-                <div class="col-md-6 m-auto">
-                    <img src="{{ asset('assets/img/learning/awards/2.png') }}"
-                        alt="" class="img-fluid award-img">
-                </div>
-                <div class="col-md-6 m-auto">
-                    <img src="{{ asset('assets/img/learning/awards/3.png') }}"
-                        alt="" class="img-fluid award-img mt-5">
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- end feedback video section -->
+    <!-- achivements -->
 
     <!-- Have Delivered Training -->
     <section class="about_section">
@@ -985,51 +1151,37 @@
                         <div class="row mt-3">
                             <div class="col-md-10 m-auto">
                                 <p class="hindi">
-                                    <b>नेटवर्क मार्केटिंग</b> में सफल होने के
-                                    लिए सबसे ज्यादा काम अपने ऊपर करना होता है,
-                                    जबकि लोग दूसरों में कमियां निकाल रहे होते
-                                    हैं, "यह सुनता नहीं है" "वह सुनता नहीं है"
-                                    अरे
-                                    वह सुनेगा, उसका खानदान भी सुनेगा, पहले अपने
-                                    आप को <b>"सुनाने"</b> लायक तो बनाइए।
-                                <ul class="mb-4 hindi">
-                                    <li class="hindi">
-                                        👉 21वी सदी की क्रांतिकारी बिजनेस को
-                                        जाने, क्यों आपके लिए ये बिजनेस गोल्डन
-                                        ऑपर्च्युनिटी हैं ये समझे और कैसे बड़ी
-                                        आसानी से आप जीत सकते है...
-                                        नेटवर्क मार्केटिंग क्या, क्यों और कैसे
-                                        ट्रेनिंग से आपको स्पष्ट हों जाएगा
+                                    <b>नेटवर्क मार्केटिंग</b> में सफल होने के लिए सबसे ज्यादा काम अपने ऊपर करना होता है,
+                                    जबकि लोग दूसरों में कमियां निकाल रहे होते हैं, "यह सुनता नहीं है" "वह सुनता नहीं है" अरे
+                                    वह सुनेगा, उसका खानदान भी सुनेगा, पहले अपने आप को <b>"सुनाने"</b> लायक तो बनाइए।
+
+                                <ul class="mb-4">
+                                    <li>
+                                        👉 BEGINNER TO BILLIONAIRE कोर्स नेटवर्क मार्केटर्स के लिए ब्रह्मास्त्र है।
                                     </li>
-                                    <li class="hindi">
-                                        👉आप अपनी करियर नेटवर्क मार्केटिंग में
-                                        कई वर्षो से तराश रहे है तो नेटवर्क
-                                        मार्केटिंग क्या, की और कैसे आपके लिए
-                                        पहले आई ओपनिंग ट्रेनिंग हो सकता हैं।
+                                    <li>
+                                        👉 दुनिया के हर एक नेटवर्क मार्केटर्स को एक बार Beginner to billionaire कोर्स अवश्य
+                                        करना चाहिए।
                                     </li>
-                                    <li class="hindi">
-                                        👉 नेटवर्क मार्केटिंग क्या, क्यों और
-                                        कैसे
-                                        एक प्रोफेशनल नेटवर्कर के लिए पहली टीका
-                                        का काम करता हैं।
+                                    <li>
+                                        👉 BEGINNER TO BILLIONAIRE कोर्स श्री कमल नारायण साहू सर के 16 साल के टीम वर्क और
+                                        लीडरशिप के अनुभव का निचोड़ हैं जो कोच ने बतौर नेटवर्क मार्केटिंग बिजनेस में
+                                        प्रैक्टिकल रहते हुवे सीखा हैं और लोगो को करोड़पति बनाया हैं वही सारी सफलता का
+                                        महामंत्र हैं।
                                     </li>
-                                    <li class="hindi">
-                                        👉 पार्ट टाइम काम करके फुल टाइम जॉब से
-                                        दोगुना, तीनगुना और दस गुना कमाने का
-                                        एकमात्र बिजनेस – डायरेक्ट सेलिंग
-                                        इंडस्ट्री हैं।
+                                    <li>
+                                        👉 21ST CENTURY की सबसे बड़ी Free Lancing बिजनेस नेटवर्क मार्केटिंग में नई ऊंचाइयों
+                                        तक पहुंचने के लिए अभी ज्वाइन करे।
                                     </li>
                                 </ul>
 
                                 <span class="hindi">
-                                    To Make yourself Network Marketing PRO get
-                                    Trained By The Master Trainer <b>Kamal
+                                    To Make yourself Network Marketing PRO get Trained By The Master Trainer <b>Kamal
                                         Narayan Sahu</b>.
                                 </span>
                                 </p>
 
-                                <p class="text-left">BEGINNER TO BILLIONAIRE
-                                    Network marketing success blueprint</p>
+                                <p class="text-left">BEGINNER TO BILLIONAIRE Network marketing success blueprint</p>
 
                                 by<b> Kamal Narayan Sahu</b> <br>
                                 Passionate Networker, <br>
@@ -1054,57 +1206,76 @@
         <div class="container">
             <div class="heading_container heading_center">
                 <h2>
-                    मुख्य 3 बाते क्यों यह ट्रेनिंग आपके लिए जरूरी हैं –
+                    मुख्य 6 कारण जिससे आपको यह training में शामिल होना चाहिए
                 </h2>
             </div>
             <div class="row">
-                <div class="col-md-10 m-auto p-2">
+                <div class="col-md-6 p-2">
                     <div class="card s_bg">
                         <div class="card-body text-white">
-                            <i aria-hidden="true"
-                                class="fas fa-check-circle text-success larger-icon"></i>
+                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
                             <span class="f18">
-                                आज बाजार में चैन मार्केटिंग, लोगो को जोड़ने का
-                                काम, प्रोडक्ट बेचने का काम तरह तरह का तस्वीर
-                                नेटवर्क मार्केटिंग का बना हुवा हैं, अगर आपको
-                                नेटवर्क मार्केटिंग की वास्तविक तस्वीर क्या हैं,
-                                ये जानना है तो ये ट्रेनिंग आपकी मदद कर सकती है।
+                                <b>Expert Guidance</b>: Gain insights from seasoned professionals who have navigated the
+                                challenges of Network Marketing successfully.
                             </span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-10 m-auto p-2">
+                <div class="col-md-6 p-2">
                     <div class="card s_bg">
                         <div class="card-body text-white">
-                            <i aria-hidden="true"
-                                class="fas fa-check-circle text-success larger-icon"></i>
+                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
                             <span class="f18">
-                                आज बाजार की सबसे बड़ी समस्या हैं अनुरूपता,
-                                यानिकि बिना सोचे समझे भीड़ के अनुरूप चलने की
-                                मनःस्थिति। अधिकांश लोग वैसा ही कर रहे है जैसा
-                                दूसरे कर रहे हैं, ये जाने समझे बगैर की क्यों?
-                                नेटवर्क मार्केटिंग क्या, क्यों और कैसे से आपको
-                                नेटवर्क मार्केटिंग क्यों करे ये स्पष्ट हो
-                                जाएगा।
+                                <b>Strategic Approach</b>: Acquire a systematic roadmap and strategies tailored to help you
+                                grow exponentially in the Network Marketing industry.
                             </span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-10 m-auto p-2">
+                <div class="col-md-6 p-2">
                     <div class="card s_bg">
                         <div class="card-body text-white">
-                            <i aria-hidden="true"
-                                class="fas fa-check-circle text-success larger-icon"></i>
+                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
                             <span class="f18">
-                                आधुनिक दुनिया में किसी भी फील्ड में प्रोफेशनल
-                                लोग ही ज्यादा पैसा बनाते हैं, प्रोफेशनल का मतलब
-                                केवल बेहतर Walking, Talking, dressing, Freshing
-                                नहीं होता, बल्कि अपने प्रोफेशन की प्रोपर पढ़ाई
-                                लिखाई होती हैं! क्योंकि जब आप पढ़ लिखकर ये
-                                बिजनेस करते हैं तो आपको ये बिजनेस कैसे करना है
-                                ये स्पष्ट हो जाता हैं। किसी भी बिजनेस के
-                                सिद्धांत स्पष्ट हों जाते है तो काम हमारे लिए
-                                खेल हो जाता है और आप जीतते ही जीतते हैं।
+                                <b>Proven Success Stories</b>: Access real-life success stories that demonstrate how
+                                individuals, much like yourself, achieved remarkable success in Network Marketing, providing
+                                you with inspiration and motivation.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 p-2">
+                    <div class="card s_bg">
+                        <div class="card-body text-white">
+                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
+                            <span class="f18">
+                                <b>Effective Networking Techniques</b>: Discover the art of networking effectively. Learn
+                                how to build and expand your network, nurture relationships, and leverage connections to
+                                accelerate your business growth.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 p-2">
+                    <div class="card s_bg">
+                        <div class="card-body text-white">
+                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
+                            <span class="f18">
+                                <b>Guaranteed Results</b>: This training promises a results-driven approach. Understand the
+                                proven methodologies and techniques that guarantee success when applied diligently and
+                                consistently.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 p-2">
+                    <div class="card s_bg">
+                        <div class="card-body text-white">
+                            <i aria-hidden="true" class="fas fa-check-circle text-success larger-icon"></i>
+                            <span class="f18">
+                                <b>Ongoing Support and Resources</b>: Beyond the training, access ongoing support,
+                                resources, and tools essential for your continuous growth and development in Network
+                                Marketing. Stay updated with the latest trends and strategies.
                             </span>
                         </div>
                     </div>
@@ -1504,7 +1675,8 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true"
                                 class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">The true picture of network marketing</span>
+                            <span class="f18">The true picture of network
+                                marketing</span>
                         </div>
                     </div>
                 </div>
@@ -1513,7 +1685,9 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true"
                                 class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">Importance of understanding the reasons behind actions in network marketing</span>
+                            <span class="f18">Importance of understanding
+                                the reasons behind actions in network
+                                marketing</span>
                         </div>
                     </div>
                 </div>
@@ -1522,7 +1696,8 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true"
                                 class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">Professionalism in network marketing</span>
+                            <span class="f18">Professionalism in network
+                                marketing</span>
                         </div>
                     </div>
                 </div>
@@ -1531,7 +1706,9 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true"
                                 class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">Why network marketing is a revolutionary business opportunity and much more!</span>
+                            <span class="f18">Why network marketing is a
+                                revolutionary business opportunity and much
+                                more!</span>
                         </div>
                     </div>
                 </div>
