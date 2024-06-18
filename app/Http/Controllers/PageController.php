@@ -18,7 +18,7 @@ class PageController extends Controller
 
     public function beginnertobillionaire()
     {
-        return view('web.ads.beginortobillinior');
+        return view('web.ads.beginor-bilinear');
     }
 
     public function sales()
