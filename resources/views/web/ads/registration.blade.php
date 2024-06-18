@@ -105,6 +105,31 @@
                 <div class="row skills-content">
                     <div class="col-md-6 m-auto">
 
+                        <div>
+                            @if ($errors->any())
+                                <ul class="alert">
+                                    @foreach ($errors->all() as $error)
+                                        <li class="text-danger">
+                                            {{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
+                            @if (session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
+                        </div>
+
+
                         <div class="card">
                             <div class="card-header">
                                 Register Here
@@ -117,7 +142,7 @@
                                         <input type="hidden"
                                             name="event_name"
                                             id="event_name"
-                                            value="Learn Marketing">
+                                            value="Learn Marketing S2">
                                         <input type="hidden"
                                             name="event_type"
                                             id="event_type" value="paid">
@@ -146,11 +171,15 @@
                                         <input type="text"
                                             class="form-control"
                                             id="phone"
+                                            pattern="^[789]\d{9}$"
                                             oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                                             minlength="10" name="phone"
                                             maxlength="10"
                                             placeholder="Enter your WhatsApp number"
                                             required>
+
+                                        <span id="phone-error"
+                                            class="error-message text-danger"></span>
                                     </div>
                                     <button
                                         class="btn btn-primary float-right"
@@ -216,6 +245,36 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            // close alert automatically after 3 seconds
+            setTimeout(function() {
+                $(".alert").alert('close');
+            }, 3000);
+        });
+
+        $(document).ready(function() {
+            $("#phone").keyup(function() {
+                var phone = $(this).val();
+                var phoneError = $("#phone-error");
+
+                if (!phone.match(/^[789]\d{9}$/)) {
+                    phoneError.text(
+                        "Please enter a valid 10-digit Indian mobile number."
+                    );
+                    phoneError
+                        .show(); // Show the error message
+                } else {
+                    phoneError.text(
+                        ""
+                        ); // Clear the error message if valid
+                    phoneError
+                        .hide(); // Hide the error message if valid
+                }
+            });
+        });
+    </script>
 
 </body>
 

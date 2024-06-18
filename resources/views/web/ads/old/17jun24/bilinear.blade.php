@@ -455,7 +455,7 @@
 
         #price-img {
             /* width: 100%;
-                                                                                                    height: 100%; */
+                                                                                    height: 100%; */
 
             max-width: 20%;
             max-height: 20%;
@@ -598,38 +598,6 @@
             }
         }
     </style>
-
-    <style>
-        .video-wrapper {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            /* Add shadow effect */
-            border-radius: 10px;
-            /* Rounded corners */
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .video-wrapper:hover {
-            transform: scale(1.02);
-            /* Slight zoom effect on hover */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-            /* Enhanced shadow on hover */
-        }
-
-        .responsive-iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-    </style>
 @endsection
 
 @section('content')
@@ -681,19 +649,9 @@
                 </h3> --}}
             </div>
             <div class="row mt-4">
-                {{-- <div class="col-md-6 mb-4">
+                <div class="col-md-6 mb-4">
                     <img src="{{ asset('assets/img/learning/S2/1.jpeg') }}"
                         alt="Learn Marketing" class="img-fluid image-effect">
-                </div> --}}
-
-                <div class="col-md-6 mb-4">
-                    <div class="video-wrapper">
-                        <iframe
-                            src="https://player.vimeo.com/video/960358679?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0"
-                            frameborder="0"
-                            allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
-                            title="22 june" class="responsive-iframe"></iframe>
-                    </div>
                 </div>
 
                 <div class="col-md-6 m-auto">
@@ -1382,7 +1340,7 @@
     <section class="black-bg-section">
     </section>
 
-    {{-- <!-- Why Register Now section -->
+    <!-- Why Register Now section -->
     <section class="service_section m-layout">
         <div class="container">
             <div class="heading_container heading_center mb-3">
@@ -1428,7 +1386,7 @@
             </div>
         </div>
     </section>
-    <!-- end contact section --> --}}
+    <!-- end contact section -->
 
     <!-- Bonus section -->
     <section class="service_section m-layout" style="">
@@ -1503,7 +1461,8 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true"
                                 class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">The true picture of network marketing</span>
+                            <span class="f18">ग्राहकों को पहचानना है और
+                                उनसे जुड़ने के महत्‍वपूर्ण तरीके सीखे</span>
                         </div>
                     </div>
                 </div>
@@ -1512,7 +1471,8 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true"
                                 class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">Importance of understanding the reasons behind actions in network marketing</span>
+                            <span class="f18">strong relationship and
+                                supportive network बनाना सीखे.</span>
                         </div>
                     </div>
                 </div>
@@ -1521,7 +1481,8 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true"
                                 class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">Professionalism in network marketing</span>
+                            <span class="f18">सोशल मीडिया और डिजिटल
+                                मार्केटिंग से नेटवर्क कैसे बनाएं सीखें.</span>
                         </div>
                     </div>
                 </div>
@@ -1530,7 +1491,9 @@
                         <div class="card-body text-white">
                             <i aria-hidden="true"
                                 class="fas fa-check-circle text-success larger-icon"></i>
-                            <span class="f18">Why network marketing is a revolutionary business opportunity and much more!</span>
+                            <span class="f18">आप नेटवर्क मार्केटिंग की
+                                सफलता में trust and communication के महत्व को
+                                सीखेंगे.</span>
                         </div>
                     </div>
                 </div>

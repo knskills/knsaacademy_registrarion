@@ -7,11 +7,13 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Audiance</h1>
+            <h1>Event</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Home</a></li>
-                    <li class="breadcrumb-item">Audiance List</li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('events.index') }}">Home</a>
+                    </li>
+                    <li class="breadcrumb-item">Event List</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -22,7 +24,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Audiance</h5>
+                            <h5 class="card-title">Event</h5>
 
                             @if (session('success'))
                                 <div class="alert alert-success">
@@ -48,9 +50,15 @@
                                         @foreach ($events as $key => $item)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
-                                                <td>{{ $item->event_name }}</td>
-                                                <td>{{ $item->event_type }}</td>
-                                                <td>{{ $item->event_date }}</td>
+                                                <td>
+                                                    {{ ucwords(str_replace('_', ' ', $item->event_name)) }}
+                                                </td>
+                                                <td>
+                                                    {{ ucwords(str_replace('_', ' ', $item->event_type)) }}
+                                                </td>
+                                                <td>
+                                                    {{ $item->event_date }}
+                                                </td>
                                                 <td>
                                                     {{ \Carbon\Carbon::parse($item->event_start_time)->format('h:i A') }}
                                                 </td>
@@ -63,15 +71,20 @@
                                                     class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a> --}}
                                                     <a href="{{ route('events.edit', $item->id) }}"
                                                         class="btn btn-warning btn-xs">
-                                                        <i class="bi bi-pencil"></i>
+                                                        <i
+                                                            class="bi bi-pencil"></i>
                                                     </a>
-                                                    <form action="{{ route('events.destroy', $item->id) }}" method="POST"
+                                                    <form
+                                                        action="{{ route('events.destroy', $item->id) }}"
+                                                        method="POST"
                                                         style="display: inline">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-xs"
+                                                        <button type="submit"
+                                                            class="btn btn-danger btn-xs"
                                                             onclick="return confirm('Are you sure delete this item? ')">
-                                                            <i class="bi bi-trash "></i>
+                                                            <i
+                                                                class="bi bi-trash "></i>
                                                         </button>
                                                     </form>
                                                 </td>

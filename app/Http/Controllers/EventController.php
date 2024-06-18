@@ -45,7 +45,8 @@ class EventController extends Controller
     public function create()
     {
         try {
-            return view('admin.events.create');
+            $events = Event::all();
+            return view('admin.events.create', compact('events'));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');
