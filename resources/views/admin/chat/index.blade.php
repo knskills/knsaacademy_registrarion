@@ -330,7 +330,8 @@
 
                                                             @if ($message->type == 'send')
                                                                 <li class="sender"
-                                                                    id="{{ $last }}">
+                                                                    id="{{ $last }}"
+                                                                    data-message-id="{{ $message->message_id }}">
                                                                     <p>
                                                                         @if ($message->image)
                                                                             <a href="{{ asset($message->image) }}"
@@ -347,6 +348,7 @@
                                                                     <span
                                                                         class="time">{{ Carbon\Carbon::parse($message->created_at)->format('h:i a') }}</span>
 
+                                                                    <span class="status-icon">
                                                                     @if ($message->status == 'sent')
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                             width="16"
@@ -392,6 +394,7 @@
                                                                                 d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0" />
                                                                         </svg>
                                                                     @endif
+                                                                </span>
                                                                 </li>
                                                             @else
                                                                 <li class="repaly"
@@ -419,7 +422,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                         <!-- end message chat body -->
+                                        <!-- end message chat body -->
 
                                         <!-- send message box -->
                                         <div class="send-box">
@@ -434,9 +437,9 @@
                                                     name="recipient_id"
                                                     value="{{ substr($user->number, 2) }}">
 
-                                                <textarea class="form-control" name="message" aria-label="message…" id="send_msg"
-                                                    value="{{ old('message') }}" placeholder="Write message…"
-                                                    cols="1"></textarea>
+                                                <textarea class="form-control" name="message" aria-label="message…"
+                                                    id="send_msg" value="{{ old('message') }}"
+                                                    placeholder="Write message…" cols="1"></textarea>
 
 
                                                 <input type="file"
@@ -504,7 +507,7 @@
                                             </div>
 
                                         </div>
-                                         <!-- end send message box -->
+                                        <!-- end send message box -->
                                     </div>
                                 </div>
                             </div>
@@ -589,88 +592,152 @@
 
             // Send message
             $('#whatsapp-send-message-form').submit(function(e) {
-                e.preventDefault(); // Prevent default form submission
+                e
+                    .preventDefault(); // Prevent default form submission
 
                 var formData = new FormData(this);
 
                 $.ajax({
-                    url: $(this).attr('action'), // Get form action URL
+                    url: $(this).attr(
+                        'action'
+                    ), // Get form action URL
                     type: 'POST',
                     data: formData,
                     dataType: 'JSON', // Expect JSON response from server
                     processData: false, // Don't process data with `processData: false`
                     contentType: false, // Set content type to `false` for FormData
                     headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Laravel CSRF protection
+                        'X-CSRF-TOKEN': $(
+                            'meta[name="csrf-token"]'
+                        ).attr(
+                            'content'
+                        ) // Laravel CSRF protection
                     },
                     success: function(response) {
                         // Handle successful response, e.g., display success message
-                        console.log('Message sent successfully:', response);
+                        console.log(
+                            'Message sent successfully:',
+                            response);
 
                         // Extract message data from the response
-                        var message = response.message;
+                        var message = response
+                            .message;
 
                         // Determine the date label (Today, Yesterday, or specific date)
-                        var messageDate = new Date(message.created_at);
+                        var messageDate = new Date(
+                            message.created_at);
                         var today = new Date();
                         var yesterday = new Date();
-                        yesterday.setDate(today.getDate() - 1);
+                        yesterday.setDate(today
+                            .getDate() - 1);
                         var dateLabel = '';
 
-                        if (messageDate.toDateString() === today.toDateString()) {
+                        if (messageDate
+                            .toDateString() ===
+                            today.toDateString()) {
                             dateLabel = 'Today';
-                        } else if (messageDate.toDateString() === yesterday.toDateString()) {
-                            dateLabel = 'Yesterday';
+                        } else if (messageDate
+                            .toDateString() ===
+                            yesterday
+                            .toDateString()) {
+                            dateLabel =
+                                'Yesterday';
                         } else {
-                            dateLabel = messageDate.toLocaleDateString('en-US', {
-                                month: 'short',
-                                day: 'numeric',
-                                year: 'numeric'
-                            });
+                            dateLabel = messageDate
+                                .toLocaleDateString(
+                                    'en-US', {
+                                        month: 'short',
+                                        day: 'numeric',
+                                        year: 'numeric'
+                                    });
                         }
 
                         // Check if the current date label already exists
-                        var lastDivider = $('li .divider').last();
-                        if (lastDivider.length === 0 || lastDivider.text().trim() !== dateLabel) {
+                        var lastDivider = $(
+                                'li .divider')
+                            .last();
+                        if (lastDivider.length ===
+                            0 || lastDivider.text()
+                            .trim() !== dateLabel
+                        ) {
                             // Append date label if it does not exist
-                            $('#message-list').append('<li><div class="divider"><h6>' + dateLabel + '</h6></div></li>');
+                            $('#message-list')
+                                .append(
+                                    '<li><div class="divider"><h6>' +
+                                    dateLabel +
+                                    '</h6></div></li>'
+                                );
                         }
 
                         // Create the message HTML
-                        var messageHtml = '<li class="sender">';
-                            if (message.image) {
-                                var imageUrl = '{{ asset('') }}' + message.image;
-                                messageHtml += '<a href="' + imageUrl + '" download><img src="' + imageUrl + '" alt="' + message.image + '" style="max-width: 250px;"></a><br>';
-                            }
+                        var messageHtml =
+                            '<li class="sender">';
+                        if (message.image) {
+                            var imageUrl =
+                                '{{ asset('') }}' +
+                                message.image;
+                            messageHtml +=
+                                '<a href="' +
+                                imageUrl +
+                                '" download><img src="' +
+                                imageUrl +
+                                '" alt="' + message
+                                .image +
+                                '" style="max-width: 250px;"></a><br>';
+                        }
 
-                        messageHtml += '<p>' + message.whatsapp_message.replace(/\n/g, '<br>') + '</p>';
-                        messageHtml += '<span class="time">' + new Date(message.created_at).toLocaleTimeString('en-US', {
-                            hour: '2-digit',
-                            minute: '2-digit'
-                        }) + '</span>';
+                        messageHtml += '<p>' +
+                            message
+                            .whatsapp_message
+                            .replace(/\n/g,
+                                '<br>') + '</p>';
+                        messageHtml +=
+                            '<span class="time">' +
+                            new Date(message
+                                .created_at)
+                            .toLocaleTimeString(
+                                'en-US', {
+                                    hour: '2-digit',
+                                    minute: '2-digit'
+                                }) + '</span>';
 
-                        if (message.status === 'sent') {
-                            messageHtml += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(61, 61, 61)" class="bi bi-check2" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"></path></svg>';
-                        } else if (message.status === 'delivered') {
-                            messageHtml += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(61, 61, 61)" class="bi bi-check2-all" viewBox="0 0 16 16"><path d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0"></path><path d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708"></path></svg>';
-                        } else if (message.status === 'read') {
-                            messageHtml += '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="rgb(52, 243, 94)" class="bi bi-check2-all" viewBox="0 0 25 25"><path d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0"></path><path d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708"></path></svg>';
-                        } else if (message.status === 'failed') {
-                            messageHtml += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(248, 40, 40)" class="bi bi-ban" viewBox="0 0 16 16"><path d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0"></path></svg>';
+                        if (message.status ===
+                            'sent') {
+                            messageHtml +=
+                                '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(61, 61, 61)" class="bi bi-check2" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"></path></svg>';
+                        } else if (message
+                            .status === 'delivered'
+                        ) {
+                            messageHtml +=
+                                '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(61, 61, 61)" class="bi bi-check2-all" viewBox="0 0 16 16"><path d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0"></path><path d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708"></path></svg>';
+                        } else if (message
+                            .status === 'read') {
+                            messageHtml +=
+                                '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="rgb(52, 243, 94)" class="bi bi-check2-all" viewBox="0 0 25 25"><path d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0"></path><path d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708"></path></svg>';
+                        } else if (message
+                            .status === 'failed') {
+                            messageHtml +=
+                                '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(248, 40, 40)" class="bi bi-ban" viewBox="0 0 16 16"><path d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0"></path></svg>';
                         }
                         messageHtml += '</li>';
 
                         // Append the message HTML to the message list
-                        $('#message-list').append(messageHtml);
+                        $('#message-list').append(
+                            messageHtml);
 
                         $('#send_msg').val('');
 
                         // Scroll to the bottom of the message list
-                        $('#chat-body').scrollTop($('#message-list')[0].scrollHeight);
+                        $('#chat-body').scrollTop(
+                            $('#message-list')[
+                                0].scrollHeight
+                        );
                     },
                     error: function(error) {
                         // Handle errors, e.g., display error message to user
-                        console.error('Error sending message:', error);
+                        console.error(
+                            'Error sending message:',
+                            error);
                     }
                 });
             });
@@ -678,16 +745,21 @@
 
 
         $(document).ready(function() {
-            // console.log('Echo configuration:', window.Echo);
-
             var user = @json($user);
-            console.log(user.number); // This will log the user object to the console
+            console.log(user
+                .number
+            ); // This will log the user object to the console
 
-            // Recive Message
+            // Receive Message
             window.Echo.private('chat')
                 .listen('MessageReceived', (e) => {
-                    console.log('its working');
-                    console.log(e.message);
+                    console.log('Received event:', e);
+
+                    if (e.status) {
+                        updateMessageStatus(e.message_id, e
+                            .status);
+                        return;
+                    }
 
                     // Extract message data from the response
                     var message = e.message;
@@ -699,45 +771,94 @@
                     yesterday.setDate(today.getDate() - 1);
                     var dateLabel = '';
 
-                    if (messageDate.toDateString() === today.toDateString()) {
+                    if (messageDate.toDateString() === today
+                        .toDateString()) {
                         dateLabel = 'Today';
-                    } else if (messageDate.toDateString() === yesterday.toDateString()) {
+                    } else if (messageDate.toDateString() ===
+                        yesterday.toDateString()) {
                         dateLabel = 'Yesterday';
                     } else {
-                        dateLabel = messageDate.toLocaleDateString('en-US', {
-                            month: 'short',
-                            day: 'numeric',
-                            year: 'numeric'
-                        });
+                        dateLabel = messageDate.toLocaleDateString(
+                            'en-US', {
+                                month: 'short',
+                                day: 'numeric',
+                                year: 'numeric'
+                            });
                     }
 
                     // Check if the current date label already exists
                     var lastDivider = $('li .divider').last();
-                    if (lastDivider.length === 0 || lastDivider.text().trim() !== dateLabel) {
+                    if (lastDivider.length === 0 || lastDivider
+                        .text().trim() !== dateLabel) {
                         // Append date label if it does not exist
-                        $('#message-list').append('<li><div class="divider"><h6>' + dateLabel + '</h6></div></li>');
+                        $('#message-list').append(
+                            '<li><div class="divider"><h6>' +
+                            dateLabel + '</h6></div></li>');
                     }
 
                     // Create the message HTML for reply side
                     var messageHtml = '<li class="repaly">';
                     if (message.image) {
-                        var imageUrl = '{{ asset('') }}' + message.image;
-                        messageHtml += '<a href="' + imageUrl + '" download><img src="' + imageUrl + '" alt="' + message.image + '" style="max-width: 250px;"></a><br>';
+                        var imageUrl = '{{ asset('') }}' +
+                            message.image;
+                        messageHtml += '<a href="' + imageUrl +
+                            '" download><img src="' + imageUrl +
+                            '" alt="' + message.image +
+                            '" style="max-width: 250px;"></a><br>';
                     }
-                    messageHtml += '<p>' + message.whatsapp_message.replace(/\n/g, '<br>') + '</p>';
-                    messageHtml += '<span class="time">' + new Date(message.created_at).toLocaleTimeString('en-US', {
-                        hour: '2-digit',
-                        minute: '2-digit'
-                    }) + '</span>';
+                    messageHtml += '<p>' + message.whatsapp_message
+                        .replace(/\n/g, '<br>') + '</p>';
+                    messageHtml += '<span class="time">' +
+                        new Date(message.created_at)
+                        .toLocaleTimeString('en-US', {
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        }) + '</span>';
                     messageHtml += '</li>';
 
                     // Append the message HTML to the message list
                     $('#message-list').append(messageHtml);
 
                     // Scroll to the bottom of the message list
-                    $('#chat-body').scrollTop($('#message-list')[0].scrollHeight);
+                    $('#chat-body').scrollTop($('#message-list')[0]
+                        .scrollHeight);
                 });
-        });
 
+            function updateMessageStatus(messageId, status) {
+                console.log(status);
+
+                var messageElement = $('li[data-message-id="' +
+                    messageId + '"]');
+
+                if (messageElement.length) {
+                    console.log('catch');
+                    var statusIcon = '';
+
+                    if (status === 'sent') {
+                        statusIcon =
+                            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(61, 61, 61)" class="bi bi-check2" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"></path></svg>';
+                    } else if (status === 'delivered') {
+                        statusIcon =
+                            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(61, 61, 61)" class="bi bi-check2-all" viewBox="0 0 16 16"><path d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0"></path><path d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708"></path></svg>';
+                    } else if (status === 'read') {
+                        statusIcon =
+                            '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="rgb(52, 243, 94)" class="bi bi-check2-all" viewBox="0 0 25 25"><path d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0"></path><path d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708"></path></svg>';
+                    } else if (status === 'failed') {
+                        statusIcon =
+                            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(248, 40, 40)" class="bi bi-ban" viewBox="0 0 16 16"><path d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0"></path></svg>';
+                    }
+
+                    var statusIconElement = messageElement.find(
+                        '.status-icon');
+
+                    // Hide existing icon if any
+                    statusIconElement.empty();
+
+                    // Add new icon
+                    statusIconElement.html(statusIcon);
+                }
+            }
+
+        });
     </script>
 @endsection
