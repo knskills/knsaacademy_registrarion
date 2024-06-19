@@ -206,6 +206,7 @@ class AudienceController extends Controller
 
             // Get the current route name
             $routeName = Route::currentRouteName();
+
             // Apply conditions based on the route name
             switch ($routeName) {
                 // case 'lntm1':
