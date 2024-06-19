@@ -110,7 +110,7 @@ Route::get('/beginnertobillionaire', [PageController::class, 'beginnertobilliona
 Route::get('/beginnerobillionaire', [PageController::class, 'billionaire'])->name('billionaire');
 
 Route::get('/', function () {
-    return redirect('/beginnerobillionaire');
+    return redirect('/networkmarketingkyakyukaise-2');
 });
 
 // webhook routes
@@ -131,3 +131,13 @@ Broadcast::channel('chat', function ($user) {
     //     return ['id' => $user->id, 'name' => $user->name];
     // }
 });
+
+
+// Ads pages
+// Route::get('/networkmarketingkyakyukaise-1', [PageController::class, 'lntm1'])->name('lntm1');
+Route::get('/networkmarketingkyakyukaise-2', [PageController::class, 'lntm2'])->name('lntm2');
+Route::get('/networkmarketingkyakyukaise-3', [PageController::class, 'lntm3'])->name('lntm3');
+
+Route::post('/audience-2', [AudienceController::class, 'store'])->name('audience.store-2');
+Route::post('/audience-3', [AudienceController::class, 'store'])->name('audience.store-3');
+
