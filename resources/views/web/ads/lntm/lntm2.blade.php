@@ -689,10 +689,11 @@
                 <div class="col-md-6 mb-4">
                     <div class="video-wrapper">
                         <iframe
-                            src="https://player.vimeo.com/video/960358679?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0"
+                            src="https://player.vimeo.com/video/960358679?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0&autoplay=1&muted=1"
                             frameborder="0"
                             allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
-                            title="22 june" class="responsive-iframe"></iframe>
+                            title="22 june" class="responsive-iframe">
+                        </iframe>
                     </div>
                 </div>
 
