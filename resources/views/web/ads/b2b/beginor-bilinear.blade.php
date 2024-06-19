@@ -2326,7 +2326,7 @@
 
 
             // // open reg_model_t modal
-            $('#reg_model_t').modal('show');
+            // $('#reg_model_t').modal('show');
         });
     </script>
 
