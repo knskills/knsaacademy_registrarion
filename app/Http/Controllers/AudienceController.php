@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Route;
 
 class AudienceController extends Controller
 {
@@ -201,7 +202,24 @@ class AudienceController extends Controller
                 });
             }
 
-            return redirect()->away('https://rzp.io/l/networkmarketingkyakyukaise');
+            // return redirect()->away('https://rzp.io/l/networkmarketingkyakyukaise');
+
+            // Get the current route name
+            $routeName = Route::currentRouteName();
+            // Apply conditions based on the route name
+            switch ($routeName) {
+                // case 'lntm1':
+                //     return redirect()->away('https://rzp.io/l/networkmarketingkyakyukaise');
+                case 'audience.store-2':
+                    return redirect()->away('https://rzp.io/l/networkmarketingkyakyukaise2');
+                case 'audience.store-3':
+                    return redirect()->away('https://rzp.io/l/networkmarketingkyakyukaise3');
+                default:
+                    // Handle the case where the route name doesn't match any of the expected ones
+                    // For example, you could redirect to a default URL or return an error response
+                    return redirect()->away('https://rzp.io/l/networkmarketingkyakyukaise2');
+            }
+
 
 
             // return redirect()->route('join-whatsapp');

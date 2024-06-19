@@ -11,10 +11,21 @@ use Illuminate\Support\Facades\Http;
 
 class PageController extends Controller
 {
-    public function index()
+    public function lntm1()
     {
-        return view('web.home');
+        return view('web.ads.lntm.lntm1');
     }
+
+    public function lntm2()
+    {
+        return view('web.ads.lntm.lntm2');
+    }
+
+    public function lntm3()
+    {
+        return view('web.ads.lntm.lntm3');
+    }
+
 
     public function beginnertobillionaire()
     {
@@ -73,5 +84,4 @@ class PageController extends Controller
             'messages' => $messages,
         ]);
     }
-
 }
