@@ -46,6 +46,7 @@ class MessageReceived implements ShouldBroadcast
             return [
                 'message_id' => $this->message->message_id,
                 'status' => $this->message->status,
+                'recipient_id' => $this->message->recipient_id,
             ];
         }
 

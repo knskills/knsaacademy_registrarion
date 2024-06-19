@@ -89,7 +89,7 @@
 
         </div>
 
-        <!-- char-area -->
+        <!-- chat-area -->
         <section class="message-area">
             <div class="container">
                 <div class="row">
@@ -348,53 +348,54 @@
                                                                     <span
                                                                         class="time">{{ Carbon\Carbon::parse($message->created_at)->format('h:i a') }}</span>
 
-                                                                    <span class="status-icon">
-                                                                    @if ($message->status == 'sent')
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="16"
-                                                                            height="16"
-                                                                            fill="rgb(61, 61, 61)"
-                                                                            class="bi bi-check2"
-                                                                            viewBox="0 0 16 16">
-                                                                            <path
-                                                                                d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
-                                                                        </svg>
-                                                                    @elseif($message->status == 'delivered')
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="16"
-                                                                            height="16"
-                                                                            fill="rgb(61, 61, 61)"
-                                                                            class="bi bi-check2-all"
-                                                                            viewBox="0 0 16 16">
-                                                                            <path
-                                                                                d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0" />
-                                                                            <path
-                                                                                d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708" />
-                                                                        </svg>
-                                                                    @elseif($message->status == 'read')
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="25"
-                                                                            height="25"
-                                                                            fill="rgb(52, 243, 94)"
-                                                                            class="bi bi-check2-all"
-                                                                            viewBox="0 0 25 25">
-                                                                            <path
-                                                                                d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0" />
-                                                                            <path
-                                                                                d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708" />
-                                                                        </svg>
-                                                                    @elseif($message->status == 'failed')
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="16"
-                                                                            height="16"
-                                                                            fill="rgb(248, 40, 40)"
-                                                                            class="bi bi-ban"
-                                                                            viewBox="0 0 16 16">
-                                                                            <path
-                                                                                d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0" />
-                                                                        </svg>
-                                                                    @endif
-                                                                </span>
+                                                                    <span
+                                                                        class="status-icon">
+                                                                        @if ($message->status == 'sent')
+                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                width="16"
+                                                                                height="16"
+                                                                                fill="rgb(61, 61, 61)"
+                                                                                class="bi bi-check2"
+                                                                                viewBox="0 0 16 16">
+                                                                                <path
+                                                                                    d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                                                                            </svg>
+                                                                        @elseif($message->status == 'delivered')
+                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                width="16"
+                                                                                height="16"
+                                                                                fill="rgb(61, 61, 61)"
+                                                                                class="bi bi-check2-all"
+                                                                                viewBox="0 0 16 16">
+                                                                                <path
+                                                                                    d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0" />
+                                                                                <path
+                                                                                    d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708" />
+                                                                            </svg>
+                                                                        @elseif($message->status == 'read')
+                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                width="25"
+                                                                                height="25"
+                                                                                fill="rgb(52, 243, 94)"
+                                                                                class="bi bi-check2-all"
+                                                                                viewBox="0 0 25 25">
+                                                                                <path
+                                                                                    d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0" />
+                                                                                <path
+                                                                                    d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708" />
+                                                                            </svg>
+                                                                        @elseif($message->status == 'failed')
+                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                width="16"
+                                                                                height="16"
+                                                                                fill="rgb(248, 40, 40)"
+                                                                                class="bi bi-ban"
+                                                                                viewBox="0 0 16 16">
+                                                                                <path
+                                                                                    d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0" />
+                                                                            </svg>
+                                                                        @endif
+                                                                    </span>
                                                                 </li>
                                                             @else
                                                                 <li class="repaly"
@@ -743,7 +744,6 @@
             });
         });
 
-
         $(document).ready(function() {
             var user = @json($user);
             console.log(user
@@ -751,6 +751,24 @@
             ); // This will log the user object to the console
 
             // Receive Message
+            const today = new Date();
+            const yesterday = new Date(today);
+            yesterday.setDate(today.getDate() - 1);
+
+            function getDateLabel(date) {
+                if (date.toDateString() === today.toDateString()) {
+                    return 'Today';
+                }
+                if (date.toDateString() === yesterday.toDateString()) {
+                    return 'Yesterday';
+                }
+                return date.toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                });
+            }
+
             window.Echo.private('chat')
                 .listen('MessageReceived', (e) => {
                     console.log('Received event:', e);
@@ -761,69 +779,44 @@
                         return;
                     }
 
-                    // Extract message data from the response
-                    var message = e.message;
+                    const message = e.message;
+                    if (message.recipient_id !== user.number)
+                        return;
 
-                    // Determine the date label (Today, Yesterday, or specific date)
-                    var messageDate = new Date(message.created_at);
-                    var today = new Date();
-                    var yesterday = new Date();
-                    yesterday.setDate(today.getDate() - 1);
-                    var dateLabel = '';
+                    const messageDate = new Date(message
+                        .created_at);
+                    const dateLabel = getDateLabel(messageDate);
 
-                    if (messageDate.toDateString() === today
-                        .toDateString()) {
-                        dateLabel = 'Today';
-                    } else if (messageDate.toDateString() ===
-                        yesterday.toDateString()) {
-                        dateLabel = 'Yesterday';
-                    } else {
-                        dateLabel = messageDate.toLocaleDateString(
-                            'en-US', {
-                                month: 'short',
-                                day: 'numeric',
-                                year: 'numeric'
-                            });
-                    }
-
-                    // Check if the current date label already exists
-                    var lastDivider = $('li .divider').last();
+                    const lastDivider = $('li .divider').last();
                     if (lastDivider.length === 0 || lastDivider
                         .text().trim() !== dateLabel) {
-                        // Append date label if it does not exist
                         $('#message-list').append(
-                            '<li><div class="divider"><h6>' +
-                            dateLabel + '</h6></div></li>');
+                            `<li><div class="divider"><h6>${dateLabel}</h6></div></li>`
+                        );
                     }
 
-                    // Create the message HTML for reply side
-                    var messageHtml = '<li class="repaly">';
-                    if (message.image) {
-                        var imageUrl = '{{ asset('') }}' +
-                            message.image;
-                        messageHtml += '<a href="' + imageUrl +
-                            '" download><img src="' + imageUrl +
-                            '" alt="' + message.image +
-                            '" style="max-width: 250px;"></a><br>';
-                    }
-                    messageHtml += '<p>' + message.whatsapp_message
-                        .replace(/\n/g, '<br>') + '</p>';
-                    messageHtml += '<span class="time">' +
-                        new Date(message.created_at)
-                        .toLocaleTimeString('en-US', {
-                            hour: '2-digit',
-                            minute: '2-digit'
-                        }) + '</span>';
-                    messageHtml += '</li>';
+                    const imageHtml = message.image ?
+                        `<a href="{{ asset('') }}${message.image}" download>
+                            <img src="{{ asset('') }}${message.image}" alt="${message.image}" style="max-width: 250px;">
+                        </a><br>` : '';
 
-                    // Append the message HTML to the message list
+                                const messageHtml = `
+                        <li class="repaly">
+                            ${imageHtml}
+                            <p>${message.whatsapp_message.replace(/\n/g, '<br>')}</p>
+                            <span class="time">${messageDate.toLocaleTimeString('en-US', {
+                                hour: '2-digit',
+                                minute: '2-digit'
+                            })}</span>
+                        </li>`;
+
                     $('#message-list').append(messageHtml);
-
-                    // Scroll to the bottom of the message list
                     $('#chat-body').scrollTop($('#message-list')[0]
                         .scrollHeight);
                 });
 
+
+            // send message status update
             function updateMessageStatus(messageId, status) {
                 console.log(status);
 
