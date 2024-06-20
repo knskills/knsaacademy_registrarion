@@ -512,15 +512,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- chatbox -->
                         </div>
-                        <!-- chatbox -->
                     </div>
                 </div>
             </div>
         </section>
-        <!-- char-area -->
+        <!--end chat-area -->
 
-        <!-- New Chat Modal-->
+        <!-- New Chat -->
         <div class="modal fade" id="newContact" tabindex="-1"
             aria-labelledby="newContactLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -569,8 +569,9 @@
 @endsection
 
 @section('scripts')
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> --}}
     <script src="{{ asset('admin/chat/chat.js') }}"></script>
+    <script src="{{asset('assets/js/jquery.js')}}"></script>
     <script>
         $(document).ready(function() {
             // close alert automatically after 3 seconds
@@ -589,30 +590,22 @@
             });
         });
 
+        //Send message
         $(document).ready(function() {
-
-            // Send message
             $('#whatsapp-send-message-form').submit(function(e) {
-                e
-                    .preventDefault(); // Prevent default form submission
+                e.preventDefault(); // Prevent default form submission
 
                 var formData = new FormData(this);
 
                 $.ajax({
-                    url: $(this).attr(
-                        'action'
-                    ), // Get form action URL
+                    url: $(this).attr('action'), // Get form action URL
                     type: 'POST',
                     data: formData,
                     dataType: 'JSON', // Expect JSON response from server
                     processData: false, // Don't process data with `processData: false`
                     contentType: false, // Set content type to `false` for FormData
                     headers: {
-                        'X-CSRF-TOKEN': $(
-                            'meta[name="csrf-token"]'
-                        ).attr(
-                            'content'
-                        ) // Laravel CSRF protection
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Laravel CSRF protection
                     },
                     success: function(response) {
                         // Handle successful response, e.g., display success message
@@ -744,11 +737,14 @@
             });
         });
 
+        // Recive Message & update status
         $(document).ready(function() {
             var user = @json($user);
             console.log(user
                 .number
             ); // This will log the user object to the console
+
+            console.log('laravel echo config:' + window.Echo);
 
             // Receive Message
             const today = new Date();
@@ -811,8 +807,8 @@
                         </li>`;
 
                     $('#message-list').append(messageHtml);
-                    $('#chat-body').scrollTop($('#message-list')[0]
-                        .scrollHeight);
+                    // $('#chat-body').scrollTop($('#message-list')[0]
+                    //     .scrollHeight);
                 });
 
 
@@ -853,5 +849,33 @@
             }
 
         });
+
+        //    // Get Person Message
+        //    $(document).on('click', '.cst-msg', function() {
+        //         var id = $(this).attr('id');
+
+        //         alert(id);
+        //         // var url =
+        //         //     '{{ route('whatsapp.chat.index', ':id') }}';
+        //         // var newUrl = url.replace(':id', id);
+        //         // var token = '{{ csrf_token() }}';
+
+        //         // $.ajax({
+        //         //     url: newUrl,
+        //         //     method: 'DELETE',
+        //         //     data: {
+        //         //         id: id,
+        //         //         _token: token
+        //         //     },
+        //         //     success: function(data) {
+        //         //         alert(data.message);
+        //         //         $('.datatable').DataTable().ajax
+        //         //             .reload();
+        //         //     },
+        //         //     error: function(error) {
+        //         //         console.log(error);
+        //         //     }
+        //         // });
+        //     });
     </script>
 @endsection
