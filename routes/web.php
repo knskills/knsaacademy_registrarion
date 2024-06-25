@@ -141,3 +141,6 @@ Route::get('/networkmarketingkyakyukaise-3', [PageController::class, 'lntm3'])->
 Route::post('/audience-2', [AudienceController::class, 'store'])->name('audience.store-2');
 Route::post('/audience-3', [AudienceController::class, 'store'])->name('audience.store-3');
 
+Route::get('chat/whatsapp', [TestingController::class, 'index'])->name('whatsapp-chat');
+Route::get('chat/whatsapp/contacts', [TestingController::class, 'getContacts'])->name('whatsapp-chat-contacts');
+Route::get('chat/whatsapp/messages/{id}', [TestingController::class, 'getContactMessages'])->name('whatsapp-contact-messages');

@@ -91,7 +91,23 @@ class ChatController extends Controller
      */
     public function show(string $id)
     {
-        //
+        try {
+            Log::info($id);
+            // get all messages where contact_id is id from WhatsappMessage
+            $messages = WhatsappMessage::where('contact_id', $id)->get();
+
+            return response()->json([
+                'code' => 200,
+                'messages' => $messages,
+            ]);
+        } catch (\Exception $e) {
+            // Log the error and return an error response
+            Log::error($e->getMessage());
+            return response()->json([
+                'code' => 500,
+                'message' => 'An error occurred while fetching chat messages'
+            ]);
+        }
     }
 
     /**
