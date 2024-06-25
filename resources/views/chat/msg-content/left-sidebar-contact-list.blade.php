@@ -524,7 +524,7 @@
                 <div class="chat-room-list"
                     data-simplebar>
                     <!-- Start chat-message-list -->
-                    <h5
+                    {{-- <h5
                         class="mb-3 px-4 mt-4 fs-11 text-muted text-uppercase">
                         Favourites</h5>
 
@@ -532,7 +532,7 @@
                         <ul class="list-unstyled chat-list chat-user-list"
                             id="favourite-users">
                         </ul>
-                    </div>
+                    </div> --}}
 
                     <div
                         class="d-flex align-items-center px-4 mb-2">
@@ -566,7 +566,7 @@
                         </ul>
                     </div>
 
-                    <div
+                    {{-- <div
                         class="d-flex align-items-center px-4 mt-5 mb-2">
                         <div class="flex-grow-1">
                             <h4
@@ -596,7 +596,7 @@
                         <ul class="list-unstyled chat-list chat-user-list mb-3"
                             id="channelList">
                         </ul>
-                    </div>
+                    </div> --}}
                     <!-- End chat-message-list -->
                 </div>
 

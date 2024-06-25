@@ -17,9 +17,7 @@ File: Index init js
     var userChatId = 1;
     document.getElementById("copyClipBoard").style.display = "none";
     document.getElementById("copyClipBoardChannel").style.display = "none";
-    var token = document
-        .querySelector('meta[name="csrf-token"]')
-        .getAttribute("content");
+    var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     var ChatUsers = null;
 
     // chat user responsive hide show
@@ -70,8 +68,8 @@ File: Index init js
                     item.addEventListener("click", function (event) {
                         currentSelectedChat = "users";
                         // updateSelectedChat();
-                        var contactId = this.id.replace("contact-id-", "");
-                        console.log("Clicked contact ID:", contactId);
+                        var contactId = this.id.replace('contact-id-', '');
+                        console.log('Clicked contact ID:', contactId);
 
                         // Call the updateSelectedChat function or any other function as needed
                         updateSelectedChat(contactId);
@@ -178,8 +176,8 @@ File: Index init js
                 currentChatId = "channel-chat";
                 currentSelectedChat = "channel";
                 // updateSelectedChat();
-                var contactId = this.id.replace("contact-id-", "");
-                console.log("Clicked contact ID:", contactId);
+                var contactId = this.id.replace('contact-id-', '');
+                console.log('Clicked contact ID:', contactId);
                 var channelId = item.getAttribute("id");
 
                 var channelName =
@@ -244,18 +242,18 @@ File: Index init js
 
     //   //user list by json
     //   var getJSON = function (jsonurl, callback) {
-    //     var xhr = new XMLHttpRequest();
-    //     xhr.open("GET", url + jsonurl, true);
-    //     xhr.responseType = "json";
-    //     xhr.onload = function () {
-    //       var status = xhr.status;
-    //       if (status === 200) {
-    //         callback(null, xhr.response);
-    //       } else {
-    //         callback(status, xhr.response);
-    //       }
-    //     };
-    //     xhr.send();
+        //     var xhr = new XMLHttpRequest();
+        //     xhr.open("GET", url + jsonurl, true);
+        //     xhr.responseType = "json";
+        //     xhr.onload = function () {
+        //       var status = xhr.status;
+        //       if (status === 200) {
+        //         callback(null, xhr.response);
+        //       } else {
+        //         callback(status, xhr.response);
+        //       }
+        //     };
+        //     xhr.send();
     //   };
 
     var contactListUrl = window.location.origin + "/chat/whatsapp/contacts";
@@ -285,6 +283,7 @@ File: Index init js
         } else {
             // console.log("Received data: ", data);
             var users = data.contacts;
+            ChatUsers = users;
 
             users.forEach(function (contact, index) {
                 if (!contact.name) {
@@ -315,7 +314,9 @@ File: Index init js
                       "</span>";
 
                 msgHTML =
-                    '<li>\
+                    '<li id="chat-contact-id-' +
+                    user.id +
+                    '">\
                         <div class="d-flex align-items-center">\
                             <div class="flex-shrink-0 me-2">\
                                 <div class="avatar-xs">\
@@ -385,83 +386,83 @@ File: Index init js
         if (err !== null) {
             console.log("Something went wrong: " + err);
         } else {
-            //         // set favourite users list
-            //         var fav = data[0].favorites;
-            //         fav.forEach(function (user, index) {
-            //             var profile = user.profile
-            //                 ? '<img src="' +
-            //                   user.profile +
-            //                   '" class="rounded-circle avatar-xs" alt=""><span class="user-status"></span>'
-            //                 : '<div class="avatar-xs"><span class="avatar-title rounded-circle bg-primary text-white"><span class="username">' +
-            //                   user.nickname +
-            //                   '</span><span class="user-status"></span></span></div>';
+    //         // set favourite users list
+    //         var fav = data[0].favorites;
+    //         fav.forEach(function (user, index) {
+    //             var profile = user.profile
+    //                 ? '<img src="' +
+    //                   user.profile +
+    //                   '" class="rounded-circle avatar-xs" alt=""><span class="user-status"></span>'
+    //                 : '<div class="avatar-xs"><span class="avatar-title rounded-circle bg-primary text-white"><span class="username">' +
+    //                   user.nickname +
+    //                   '</span><span class="user-status"></span></span></div>';
 
-            //             var isMessageCount = user.messagecount
-            //                 ? '<div class="ms-auto"><span class="badge badge-soft-danger rounded p-1 fs-10">' +
-            //                   user.messagecount +
-            //                   "</span></div>"
-            //                 : "";
-            //             var messageCount = user.messagecount
-            //                 ? '<a href="javascript: void(0);" class="unread-msg-user">'
-            //                 : '<a href="javascript: void(0);">';
+    //             var isMessageCount = user.messagecount
+    //                 ? '<div class="ms-auto"><span class="badge badge-soft-danger rounded p-1 fs-10">' +
+    //                   user.messagecount +
+    //                   "</span></div>"
+    //                 : "";
+    //             var messageCount = user.messagecount
+    //                 ? '<a href="javascript: void(0);" class="unread-msg-user">'
+    //                 : '<a href="javascript: void(0);">';
 
-            //             var activeClass = user.id === 1 ? "active" : "";
-            //             document.getElementById("favourite-users").innerHTML +=
-            //                 '<li id="contact-id-' +
-            //                 user.id +
-            //                 '" data-name="favorite" class="' +
-            //                 activeClass +
-            //                 '">\
-            //               ' +
-            //                 messageCount +
-            //                 ' \
-            //                   <div class="d-flex align-items-center">\
-            //                       <div class="chat-user-img online align-self-center me-2 ms-0">\
-            //                           ' +
-            //                 profile +
-            //                 '\
-            //                       </div>\
-            //                       <div class="overflow-hidden me-2">\
-            //                           <p class="text-truncate chat-username mb-0">' +
-            //                 user.name +
-            //                 '</p>\
-            //                           <p class="text-truncate text-muted fs-13 mb-0">' +
-            //                 user.lastmessage +
-            //                 "</p>\
-            //                       </div>\
-            //                       " +
-            //                 isMessageCount +
-            //                 "\
-            //                   </div>\
-            //               </a>\
-            //           </li>";
-            //         });
+    //             var activeClass = user.id === 1 ? "active" : "";
+    //             document.getElementById("favourite-users").innerHTML +=
+    //                 '<li id="contact-id-' +
+    //                 user.id +
+    //                 '" data-name="favorite" class="' +
+    //                 activeClass +
+    //                 '">\
+    //               ' +
+    //                 messageCount +
+    //                 ' \
+    //                   <div class="d-flex align-items-center">\
+    //                       <div class="chat-user-img online align-self-center me-2 ms-0">\
+    //                           ' +
+    //                 profile +
+    //                 '\
+    //                       </div>\
+    //                       <div class="overflow-hidden me-2">\
+    //                           <p class="text-truncate chat-username mb-0">' +
+    //                 user.name +
+    //                 '</p>\
+    //                           <p class="text-truncate text-muted fs-13 mb-0">' +
+    //                 user.lastmessage +
+    //                 "</p>\
+    //                       </div>\
+    //                       " +
+    //                 isMessageCount +
+    //                 "\
+    //                   </div>\
+    //               </a>\
+    //           </li>";
+    //         });
 
             // set users message list
             var users = data.contacts;
 
             // data modification
-            users.forEach(function (contact, index) {
+            users.forEach(function(contact, index) {
                 if (!contact.name) {
                     if (contact.number) {
                         contact.name = contact.number.slice(2);
                     } else {
-                        contact.name = "User " + (index + 1);
+                        contact.name = 'User ' + (index + 1);
                     }
                 }
 
                 if (contact.messages && contact.messages.length > 0) {
-                    if (contact.messages == null) {
+
+                    if(contact.messages == null){
                         contact.lastMessage = "";
                     }
 
                     // Sort messages by created_at in descending order (newest first)
-                    contact.messages.sort(
-                        (a, b) =>
-                            new Date(b.created_at) - new Date(a.created_at)
-                    );
+                    contact.messages.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
                     // Set the lastMessage property on the contact object
                     contact.lastMessage = contact.messages[0].whatsapp_message; // Assuming 'content' holds the message text
+
                 } else {
                     // Handle cases where a contact has no messages
                     contact.lastMessage = ""; // Or set a default message like "No messages yet"
@@ -470,116 +471,100 @@ File: Index init js
 
             users.forEach(function (userData, index) {
                 var messages = userData.messages;
-                var profilePic = userData.profile
-                    ? userData.profile_pic
-                    : dummyImage;
 
-                var isUserProfile = profilePic
-                    ? '<img src="' +
-                      profilePic +
-                      '" class="rounded-circle avatar-xs" alt=""><span class="user-status"></span>'
-                    : '<div class="avatar-xs"><span class="avatar-title rounded-circle bg-primary text-white"><span class="username">JL</span><span class="user-status"></span></span></div>';
+                // Only proceed if messages is not null and has at least one message
+                if (messages && messages.length > 0) {
+                    var profilePic = userData.profile ? userData.profile_pic : dummyImage;
 
-                var isMessageCount = messages.length
-                    ? '<div class="ms-auto"><span class="badge badge-soft-danger rounded p-1 fs-10">' +
-                      messages.length +
-                      "</span></div>"
-                    : "";
-                var messageCount = messages.length
-                    ? '<a href="javascript: void(0);" class="unread-msg-user">'
-                    : '<a href="javascript: void(0);">';
-                var activeClass = userData.id === 1 ? "active" : "";
-                var profile = profilePic
-                    ? '<img src="' +
-                      profilePic +
-                      '" class="rounded-circle avatar-xs" alt=""><span class="user-status"></span>'
-                    : '<div class="avatar-xs"><span class="avatar-title rounded-circle bg-primary text-white"><span class="username">' +
-                      userData.name.charAt(0).toUpperCase() +
-                      '</span><span class="user-status"></span></span></div>';
-                document.getElementById("usersList").innerHTML +=
-                    '<li id="contact-id-' +
-                    userData.id +
-                    '" data-name="favorite" class="' +
-                    activeClass +
-                    '">\
-                    ' +
-                    messageCount +
-                    ' \
-                <div class="d-flex align-items-center">\
-                <div class="chat-user-img online align-self-center me-2 ms-0">\
-                    ' +
-                    profile +
-                    '\
-                </div>\
-                <div class="overflow-hidden me-2">\
-                    <p class="text-truncate chat-username mb-0">' +
-                    userData.name +
-                    '</p>\
-                    <p class="text-truncate text-muted fs-13 mb-0">' +
-                    userData.lastMessage +
-                    "</p>\
-                </div>\
-                " +
-                    isMessageCount +
-                    "\
-            </div>\
-        </a>\
-    </li>";
+                    var isUserProfile = profilePic
+                        ? '<img src="' + profilePic + '" class="rounded-circle avatar-xs" alt=""><span class="user-status"></span>'
+                        : '<div class="avatar-xs"><span class="avatar-title rounded-circle bg-primary text-white"><span class="username">JL</span><span class="user-status"></span></span></div>';
+
+                    var isMessageCount = messages.length
+                        ? '<div class="ms-auto"><span class="badge badge-soft-danger rounded p-1 fs-10">' + messages.length + "</span></div>"
+                        : "";
+                    var messageCount = messages.length
+                        ? '<a href="javascript: void(0);" class="unread-msg-user">'
+                        : '<a href="javascript: void(0);">';
+                    var activeClass = userData.id === 1 ? "active" : "";
+                    var profile = profilePic
+                        ? '<img src="' + profilePic + '" class="rounded-circle avatar-xs" alt=""><span class="user-status"></span>'
+                        : '<div class="avatar-xs"><span class="avatar-title rounded-circle bg-primary text-white"><span class="username">' +
+                          (userData.name.charAt(0).toUpperCase()) +
+                          '</span><span class="user-status"></span></span></div>';
+
+                    document.getElementById("usersList").innerHTML +=
+                        '<li id="contact-id-' + userData.id + '" data-name="favorite" class="' + activeClass + '">\
+                            ' + messageCount + ' \
+                            <div class="d-flex align-items-center">\
+                                <div class="chat-user-img online align-self-center me-2 ms-0">\
+                                    ' + profile + '\
+                                </div>\
+                                <div class="overflow-hidden me-2">\
+                                    <p class="text-truncate chat-username mb-0">' + userData.name + '</p>\
+                                    <p class="text-truncate text-muted fs-13 mb-0">' + userData.lastMessage + "</p>\
+                                </div>\
+                                " + isMessageCount + "\
+                            </div>\
+                        </a>\
+                    </li>";
+                }
             });
 
-            //         // set channels list
-            //         var channelsData = data[0].channels;
-            //         channelsData.forEach(function (isChannel, index) {
-            //             var profile = isChannel.profile
-            //                 ? '<img src="' +
-            //                   isChannel.profile +
-            //                   '" class="rounded-circle avatar-xs" alt="">'
-            //                 : '<div class="avatar-xs"><span class="avatar-title rounded-circle bg-primary text-white"><span class="username">JL</span><span class="user-status"></span></span></div>';
 
-            //             var isMessage = isChannel.messagecount
-            //                 ? '<div class="flex-shrink-0 ms-2"><span class="badge badge-soft-danger rounded p-1 fs-10">' +
-            //                   isChannel.messagecount +
-            //                   "</span></div>"
-            //                 : "";
-            //             var messageCount = isChannel.messagecount
-            //                 ? '<a href="javascript: void(0);" class="unread-msg-user">'
-            //                 : '<a href="javascript: void(0);">';
-            //             var profile = isChannel.profile
-            //                 ? '<img src="' +
-            //                   isChannel.profile +
-            //                   '" class="rounded-circle avatar-xs" alt="">'
-            //                 : '<div class="avatar-xs"><span class="avatar-title rounded-circle bg-primary text-white"><span class="username">' +
-            //                   isChannel.nickname +
-            //                   "</span></span></div>";
-            //             document.getElementById("channelList").innerHTML +=
-            //                 '<li id="contact-id-' +
-            //                 isChannel.id +
-            //                 '" data-name="channel">\
-            //             ' +
-            //                 messageCount +
-            //                 ' \
-            //                 <div class="d-flex align-items-center">\
-            //                     <div class="flex-shrink-0 me-2">\
-            //                         <div class="chat-user-img online align-self-center">\
-            //                         ' +
-            //                 profile +
-            //                 '\
-            //                         </div>\
-            //                     </div>\
-            //                     <div class="flex-grow-1 overflow-hidden">\
-            //                         <h6 class="text-truncate mb-0">' +
-            //                 isChannel.name +
-            //                 '</h6>\
-            //                         <p class="text-truncate text-muted fs-13 mb-0">' +
-            //                 isChannel.lastmessage +
-            //                 "</p>\
-            //                     </div>\
-            //                     <div>" +
-            //                 isMessage +
-            //                 "</div>\
-            //                 </div>\
-            //             </a>\
-            //         </li>";
+        //         // set channels list
+        //         var channelsData = data[0].channels;
+        //         channelsData.forEach(function (isChannel, index) {
+    //             var profile = isChannel.profile
+    //                 ? '<img src="' +
+    //                   isChannel.profile +
+    //                   '" class="rounded-circle avatar-xs" alt="">'
+    //                 : '<div class="avatar-xs"><span class="avatar-title rounded-circle bg-primary text-white"><span class="username">JL</span><span class="user-status"></span></span></div>';
+
+    //             var isMessage = isChannel.messagecount
+    //                 ? '<div class="flex-shrink-0 ms-2"><span class="badge badge-soft-danger rounded p-1 fs-10">' +
+    //                   isChannel.messagecount +
+    //                   "</span></div>"
+    //                 : "";
+    //             var messageCount = isChannel.messagecount
+    //                 ? '<a href="javascript: void(0);" class="unread-msg-user">'
+    //                 : '<a href="javascript: void(0);">';
+    //             var profile = isChannel.profile
+    //                 ? '<img src="' +
+    //                   isChannel.profile +
+    //                   '" class="rounded-circle avatar-xs" alt="">'
+    //                 : '<div class="avatar-xs"><span class="avatar-title rounded-circle bg-primary text-white"><span class="username">' +
+    //                   isChannel.nickname +
+    //                   "</span></span></div>";
+    //             document.getElementById("channelList").innerHTML +=
+    //                 '<li id="contact-id-' +
+    //                 isChannel.id +
+    //                 '" data-name="channel">\
+    //             ' +
+    //                 messageCount +
+    //                 ' \
+    //                 <div class="d-flex align-items-center">\
+    //                     <div class="flex-shrink-0 me-2">\
+    //                         <div class="chat-user-img online align-self-center">\
+    //                         ' +
+    //                 profile +
+    //                 '\
+    //                         </div>\
+    //                     </div>\
+    //                     <div class="flex-grow-1 overflow-hidden">\
+    //                         <h6 class="text-truncate mb-0">' +
+    //                 isChannel.name +
+    //                 '</h6>\
+    //                         <p class="text-truncate text-muted fs-13 mb-0">' +
+    //                 isChannel.lastmessage +
+    //                 "</p>\
+    //                     </div>\
+    //                     <div>" +
+    //                 isMessage +
+    //                 "</div>\
+    //                 </div>\
+    //             </a>\
+    //         </li>";
             //         });
 
             // var contacts = data.contacts;
@@ -679,67 +664,67 @@ File: Index init js
         });
     }
 
-    //Call list
-    getJSON("callList.json", function (err, data) {
-        if (err !== null) {
-            console.log("Something went wrong: " + err);
-        } else {
-            callList = data;
-            callList.forEach(function (calls, index) {
-                var callIcon =
-                    calls.callVideo === true
-                        ? '<button type="button" class="btn btn-link p-0 fs-20 stretched-link" data-bs-toggle="modal" data-bs-target=".videocallModal"><i class="' +
-                          calls.callTypeIcon +
-                          '"></i></button>'
-                        : '<button type="button" class="btn btn-link p-0 fs-20 stretched-link" data-bs-toggle="modal" data-bs-target=".audiocallModal"><i class="' +
-                          calls.callTypeIcon +
-                          '"></i></button>';
+    // //Call list
+    // getJSON("callList.json", function (err, data) {
+    //     if (err !== null) {
+    //         console.log("Something went wrong: " + err);
+    //     } else {
+    //         callList = data;
+    //         callList.forEach(function (calls, index) {
+    //             var callIcon =
+    //                 calls.callVideo === true
+    //                     ? '<button type="button" class="btn btn-link p-0 fs-20 stretched-link" data-bs-toggle="modal" data-bs-target=".videocallModal"><i class="' +
+    //                       calls.callTypeIcon +
+    //                       '"></i></button>'
+    //                     : '<button type="button" class="btn btn-link p-0 fs-20 stretched-link" data-bs-toggle="modal" data-bs-target=".audiocallModal"><i class="' +
+    //                       calls.callTypeIcon +
+    //                       '"></i></button>';
 
-                var profile = calls.profile
-                    ? '<img src="' +
-                      calls.profile +
-                      '" class="rounded-circle avatar-xs" alt="">'
-                    : '<div class="avatar-xs"><span class="avatar-title rounded-circle bg-danger text-white">RL</span></div>';
-                document.getElementById("callList").innerHTML +=
-                    '<li id="calls-id-' +
-                    calls.id +
-                    '" >\
-        <div class="d-flex align-items-center">\
-        <div class="chat-user-img flex-shrink-0 me-2">\
-            ' +
-                    profile +
-                    '\
-        </div>\
-            <div class="flex-grow-1 overflow-hidden">\
-                <p class="text-truncate mb-0">' +
-                    calls.name +
-                    '</p>\
-                <div class="text-muted fs-12 text-truncate"><i class="' +
-                    calls.callArrowType +
-                    '"></i> ' +
-                    calls.dateTime +
-                    '</div>\
-            </div>\
-            <div class="flex-shrink-0 ms-3">\
-                <div class="d-flex align-items-center gap-3">\
-                    <div>\
-                        <h5 class="mb-0 fs-12 text-muted">' +
-                    calls.callTime +
-                    "</h5>\
-                    </div>\
-                    <div>\
-                       " +
-                    callIcon +
-                    "\
-                    </div>\
-                </div>\
-            </div>\
-        </div>\
-      </li>";
-            });
-        }
-        callsList();
-    });
+    //             var profile = calls.profile
+    //                 ? '<img src="' +
+    //                   calls.profile +
+    //                   '" class="rounded-circle avatar-xs" alt="">'
+    //                 : '<div class="avatar-xs"><span class="avatar-title rounded-circle bg-danger text-white">RL</span></div>';
+    //             document.getElementById("callList").innerHTML +=
+    //                 '<li id="calls-id-' +
+    //                 calls.id +
+    //                 '" >\
+    //     <div class="d-flex align-items-center">\
+    //     <div class="chat-user-img flex-shrink-0 me-2">\
+    //         ' +
+    //                 profile +
+    //                 '\
+    //     </div>\
+    //         <div class="flex-grow-1 overflow-hidden">\
+    //             <p class="text-truncate mb-0">' +
+    //                 calls.name +
+    //                 '</p>\
+    //             <div class="text-muted fs-12 text-truncate"><i class="' +
+    //                 calls.callArrowType +
+    //                 '"></i> ' +
+    //                 calls.dateTime +
+    //                 '</div>\
+    //         </div>\
+    //         <div class="flex-shrink-0 ms-3">\
+    //             <div class="d-flex align-items-center gap-3">\
+    //                 <div>\
+    //                     <h5 class="mb-0 fs-12 text-muted">' +
+    //                 calls.callTime +
+    //                 "</h5>\
+    //                 </div>\
+    //                 <div>\
+    //                    " +
+    //                 callIcon +
+    //                 "\
+    //                 </div>\
+    //             </div>\
+    //         </div>\
+    //     </div>\
+    //   </li>";
+    //         });
+    //     }
+    //     callsList();
+    // });
 
     //Contact List dynamic Details
     function contactList() {
@@ -749,8 +734,11 @@ File: Index init js
                 item.addEventListener("click", function (event) {
                     currentSelectedChat = "users";
                     // updateSelectedChat();
-                    var contactId = this.id.replace("contact-id-", "");
-                    console.log("Clicked contact ID:", contactId);
+
+                    var contactId = this.id.replace('chat-contact-id-', '');
+                    console.log('Clicked contact ID :', contactId);
+
+                    updateSelectedChat(contactId);
 
                     var contactName = item.querySelector("li .fs-14").innerHTML;
                     document.querySelector(
@@ -831,60 +819,23 @@ File: Index init js
     }
 
     function updateSelectedChat(id) {
-        if (id) {
-            var token = document
-                .querySelector('meta[name="csrf-token"]')
-                .getAttribute("content");
-            var getMessageUrl =
-                window.location.origin + "/chat/whatsapp/messages/" + id;
-            console.log("Fetching messages from:", getMessageUrl);
-
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", getMessageUrl, true);
-            xhr.setRequestHeader("X-CSRF-TOKEN", token);
-            xhr.responseType = "json";
-            xhr.timeout = 10000;
-            console.log(xhr.status);
-
-            xhr.onload = function () {
-                var status = xhr.status;
-                if (status === 200) {
-                    console.log("Received messages:", xhr.response);
-                } else {
-                    console.error("Request failed with status:", status);
-                    console.error("Response:", xhr.response);
-                }
-            };
-
-            xhr.onerror = function () {
-                console.error("Request failed");
-            };
-
-            xhr.ontimeout = function () {
-                console.error("Request timed out");
-            };
-
-            xhr.send();
-        }
-
         // Update chat display based on currentSelectedChat
         if (currentSelectedChat === "users") {
             document.getElementById("channel-chat").style.display = "none";
             document.getElementById("users-chat").style.display = "block";
             // Call getChatMessages with appropriate URL for users chat
-            getChatMessages(url + "chats.json");
+            getChatMessages(id);
         } else {
             document.getElementById("channel-chat").style.display = "block";
             document.getElementById("users-chat").style.display = "none";
             // Call getChatMessages with appropriate URL for channel chat
-            getChatMessages(url + "chats.json");
+            getChatMessages(id);
         }
     }
 
-    // Example usage:
-    updateSelectedChat(123); // Replace 123 with the actual ID you want to fetch messages for
+    // Direct usage:
+    updateSelectedChat(2); // Replace 2 with the actual ID you want to fetch messages for
 
-    updateSelectedChat();
 
     // Profile hide/show
     var userProfileSidebar = document.querySelector(".user-profile-sidebar");
@@ -947,7 +898,6 @@ File: Index init js
     // Change conversation bg
 
     //Auto Focus curser to Text Box Area
-
     document.getElementById("favourite-users").onclick = function () {
         document.getElementById("chat-input").focus();
     };
@@ -2225,10 +2175,10 @@ File: Index init js
     }
 
     // getNextMsgCounts
-    function getNextMsgCounts(chatsData, i, from_id) {
+    function getNextMsgCounts(chatsData, i, type) {
         var counts = 0;
         while (chatsData[i]) {
-            if (chatsData[i + 1] && chatsData[i + 1]["from_id"] == from_id) {
+            if (chatsData[i + 1] && chatsData[i + 1]["type"] == type) {
                 counts++;
                 i++;
             } else {
@@ -2273,111 +2223,107 @@ File: Index init js
         var msgHTML = '<div class="ctext-wrap">';
         if (msg != null) {
             msgHTML +=
-                '<div class="ctext-wrap-content" id=' +
-                id +
-                '>\
-        <p class="mb-0 ctext-content">' +
-                msg +
+                '<div class="ctext-wrap-content" id=' + id + '>\
+                    <p class="mb-0 ctext-content">' + msg +
                 "</p></div>";
-        } else if (has_images && has_images.length > 0) {
+        } else if (has_images) {
             msgHTML += '<div class="message-img mb-0">';
-            for (i = 0; i < has_images.length; i++) {
-                msgHTML +=
+
+            msgHTML +=
                     '<div class="message-img-list">\
-            <div>\
-              <a class="popup-img d-inline-block" href="' +
-                    has_images[i] +
+                    <div>\
+                    <a class="popup-img d-inline-block" href="' +
+                    has_images +
                     '">\
-                <img src="' +
-                    has_images[i] +
+                    <img src="' + has_images +
                     '" alt="" class="rounded border img-thumbnail">\
-              </a>\
-            </div>\
-            <div class="message-img-link">\
-              <ul class="list-inline mb-0">\
-                <li class="list-inline-item dropdown">\
-                  <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\
-                      <i class="bx bx-dots-horizontal-rounded"></i>\
-                  </a>\
-                <div class="dropdown-menu">\
-                  <a class="dropdown-item d-flex align-items-center justify-content-between" href="' +
-                    has_images[i] +
-                    '" download>Download <i class="bx bx-download ms-2 text-muted"></i></a>\
-                  <a class="dropdown-item d-flex align-items-center justify-content-between"  href="#" data-bs-toggle="collapse" data-bs-target=".replyCollapse">Reply <i class="bx bx-share ms-2 text-muted"></i></a>\
-                  <a class="dropdown-item d-flex align-items-center justify-content-between" href="#" data-bs-toggle="modal" data-bs-target=".forwardModal">Forward <i class="bx bx-share-alt ms-2 text-muted"></i></a>\
-                  <a class="dropdown-item d-flex align-items-center justify-content-between" href="#">Bookmark <i class="bx bx-bookmarks text-muted ms-2"></i></a>\
-                  <a class="dropdown-item d-flex align-items-center justify-content-between delete-image" href="#">Delete <i class="bx bx-trash ms-2 text-muted"></i></a>\
+                    </a>\
+                    </div>\
+                    <div class="message-img-link">\
+                    <ul class="list-inline mb-0">\
+                        <li class="list-inline-item dropdown">\
+                        <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\
+                            <i class="bx bx-dots-horizontal-rounded"></i>\
+                        </a>\
+                        <div class="dropdown-menu">\
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="' +
+                            has_images +
+                            '" download>Download <i class="bx bx-download ms-2 text-muted"></i></a>\
+                        <a class="dropdown-item d-flex align-items-center justify-content-between"  href="#" data-bs-toggle="collapse" data-bs-target=".replyCollapse">Reply <i class="bx bx-share ms-2 text-muted"></i></a>\
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="#" data-bs-toggle="modal" data-bs-target=".forwardModal">Forward <i class="bx bx-share-alt ms-2 text-muted"></i></a>\
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="#">Bookmark <i class="bx bx-bookmarks text-muted ms-2"></i></a>\
+                        <a class="dropdown-item d-flex align-items-center justify-content-between delete-image" href="#">Delete <i class="bx bx-trash ms-2 text-muted"></i></a>\
+                        </div>\
+                    </li>\
+                </ul>\
                 </div>\
-              </li>\
-          </ul>\
-        </div>\
-      </div>';
-            }
+            </div>';
+
             msgHTML += "</div>";
         } else if (has_files.length > 0) {
             msgHTML +=
-                '<div class="ctext-wrap-content">\
-            <div class="p-3 border rounded-3">\
-            <div class="d-flex align-items-center attached-file">\
-                <div class="flex-shrink-0 avatar-sm me-3 ms-0 attached-file-avatar">\
-                    <div class="avatar-title bg-soft-light rounded-circle fs-20">\
-                        <i class="ri-attachment-2"></i>\
-                    </div>\
-                </div>\
-                <div class="flex-grow-1 overflow-hidden">\
-                    <div class="text-start">\
-                        <h5 class="fs-14 text-white mb-1">design-phase-1-approved.pdf</h5>\
-                        <p class="text-white-50 text-truncate fs-13 mb-0">12.5 MB</p>\
-                    </div>\
-                </div>\
-                <div class="flex-shrink-0 ms-4">\
-                    <div class="d-flex gap-2 fs-20 d-flex align-items-start">\
-                        <div>\
-                            <a href="#" class="text-white-50">\
-                                <i class="bx bxs-download"></i>\
-                            </a>\
+                        '<div class="ctext-wrap-content">\
+                    <div class="p-3 border rounded-3">\
+                    <div class="d-flex align-items-center attached-file">\
+                        <div class="flex-shrink-0 avatar-sm me-3 ms-0 attached-file-avatar">\
+                            <div class="avatar-title bg-soft-light rounded-circle fs-20">\
+                                <i class="ri-attachment-2"></i>\
+                            </div>\
+                        </div>\
+                        <div class="flex-grow-1 overflow-hidden">\
+                            <div class="text-start">\
+                                <h5 class="fs-14 text-white mb-1">design-phase-1-approved.pdf</h5>\
+                                <p class="text-white-50 text-truncate fs-13 mb-0">12.5 MB</p>\
+                            </div>\
+                        </div>\
+                        <div class="flex-shrink-0 ms-4">\
+                            <div class="d-flex gap-2 fs-20 d-flex align-items-start">\
+                                <div>\
+                                    <a href="#" class="text-white-50">\
+                                        <i class="bx bxs-download"></i>\
+                                    </a>\
+                                </div>\
+                            </div>\
                         </div>\
                     </div>\
-                </div>\
-             </div>\
-            </div>\
-            </div>\
-            <div class="emoji-icon">\
-                <a class="dropdown-toggle" href="#">👍</a>\
-            </div>\
-            <div class="align-self-start message-box-drop d-flex">\
-              <div class="dropdown">\
-                <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\
-                  <i class="ri-emotion-happy-line"></i>\
-                </a>\
-                <div class="dropdown-menu emoji-dropdown-menu">\
-                  <div class="hstack align-items-center gap-2 px-2 fs-25">\
-                    <a href="javascript:void(0);">💛</a>\
-                    <a href="javascript:void(0);">🤣</a>\
-                    <a href="javascript:void(0);">😜</a>\
-                    <a href="javascript:void(0);">😘</a>\
-                    <a href="javascript:void(0);">😍</a>\
-                    <div class="avatar-xs">\
-                    <a href="javascript:void(0);" class="avatar-title bg-soft-primary rounded-circle fs-19 text-primary">+</a>\
                     </div>\
-                  </div>\
-                </div>\
-              </div>\
-              <div class="dropdown">\
-                <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\
-                    <i class="ri-more-2-fill"></i>\
-                </a>\
-                <div class="dropdown-menu">\
-                  <a class="dropdown-item d-flex align-items-center justify-content-between"  href="' +
-                has_files +
-                '" download>Download <i class="bx bx-download ms-2 text-muted"></i></a>\
-                  <a class="dropdown-item d-flex align-items-center justify-content-between" href="#" data-bs-toggle="collapse" data-bs-target=".replyCollapse">Reply <i class="bx bx-share ms-2 text-muted"></i></a>\
-                  <a class="dropdown-item d-flex align-items-center justify-content-between" href="#" data-bs-toggle="modal" data-bs-target=".forwardModal">Forward <i class="bx bx-share-alt ms-2 text-muted"></i></a>\
-                  <a class="dropdown-item d-flex align-items-center justify-content-between" href="#">Bookmark <i class="bx bx-bookmarks text-muted ms-2"></i></a>\
-                  <a class="dropdown-item d-flex align-items-center justify-content-between delete-item" href="#">Delete <i class="bx bx-trash text-muted ms-2"></i></a>\
-                </div>\
-              </div>\
-          </div>';
+                    </div>\
+                    <div class="emoji-icon">\
+                        <a class="dropdown-toggle" href="#">👍</a>\
+                    </div>\
+                    <div class="align-self-start message-box-drop d-flex">\
+                    <div class="dropdown">\
+                        <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\
+                        <i class="ri-emotion-happy-line"></i>\
+                        </a>\
+                        <div class="dropdown-menu emoji-dropdown-menu">\
+                        <div class="hstack align-items-center gap-2 px-2 fs-25">\
+                            <a href="javascript:void(0);">💛</a>\
+                            <a href="javascript:void(0);">🤣</a>\
+                            <a href="javascript:void(0);">😜</a>\
+                            <a href="javascript:void(0);">😘</a>\
+                            <a href="javascript:void(0);">😍</a>\
+                            <div class="avatar-xs">\
+                            <a href="javascript:void(0);" class="avatar-title bg-soft-primary rounded-circle fs-19 text-primary">+</a>\
+                            </div>\
+                        </div>\
+                        </div>\
+                    </div>\
+                    <div class="dropdown">\
+                        <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\
+                            <i class="ri-more-2-fill"></i>\
+                        </a>\
+                        <div class="dropdown-menu">\
+                        <a class="dropdown-item d-flex align-items-center justify-content-between"  href="' +
+                        has_files +
+                        '" download>Download <i class="bx bx-download ms-2 text-muted"></i></a>\
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="#" data-bs-toggle="collapse" data-bs-target=".replyCollapse">Reply <i class="bx bx-share ms-2 text-muted"></i></a>\
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="#" data-bs-toggle="modal" data-bs-target=".forwardModal">Forward <i class="bx bx-share-alt ms-2 text-muted"></i></a>\
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="#">Bookmark <i class="bx bx-bookmarks text-muted ms-2"></i></a>\
+                        <a class="dropdown-item d-flex align-items-center justify-content-between delete-item" href="#">Delete <i class="bx bx-trash text-muted ms-2"></i></a>\
+                        </div>\
+                    </div>\
+                </div>';
         } else if (has_audios && has_audios.length > 0) {
             msgHTML +=
                 '<div class="audio-file-elem">\
@@ -2504,95 +2450,211 @@ File: Index init js
         return msgHTML;
     }
 
-    //Chat Message
-    function getChatMessages(jsonFileUrl) {
-        getJSONFile(jsonFileUrl, function (err, data) {
-            if (err !== null) {
-                console.log("Something went wrong: " + err);
-            } else {
-                var chatsData =
-                    currentSelectedChat == "users"
-                        ? data[0].chats
-                        : data[0].channel_chat;
-                document.getElementById(
-                    currentSelectedChat + "-conversation"
-                ).innerHTML = "";
-                var isContinue = 0;
-                chatsData.forEach(function (isChat, index) {
-                    if (isContinue > 0) {
-                        isContinue = isContinue - 1;
-                        return;
-                    }
-                    var isAlighn =
-                        isChat.from_id == userChatId ? " right" : " left";
-                    var user = usersList.find(function (list) {
-                        return list.id == isChat.from_id;
-                    });
-                    var msgHTML =
-                        '<li class="chat-list' +
-                        isAlighn +
-                        '" id=' +
-                        isChat.id +
-                        '>\
-                        <div class="conversation-list">';
-                    if (userChatId != isChat.from_id)
-                        msgHTML +=
-                            '<div class="chat-avatar"><img src="' +
-                            user.profile +
-                            '" alt=""></div>';
+    // //Chat Message
+    // function getChatMessages(jsonFileUrl) {
+    //     getJSONFile(jsonFileUrl, function (err, data) {
+    //         if (err !== null) {
+    //             console.log("Something went wrong: " + err);
+    //         } else {
+    //             var chatsData =
+    //                 currentSelectedChat == "users"
+    //                     ? data[0].chats
+    //                     : data[0].channel_chat;
+    //             document.getElementById(
+    //                 currentSelectedChat + "-conversation"
+    //             ).innerHTML = "";
+    //             var isContinue = 0;
+    //             chatsData.forEach(function (isChat, index) {
+    //                 if (isContinue > 0) {
+    //                     isContinue = isContinue - 1;
+    //                     return;
+    //                 }
+    //                 var isAlighn =
+    //                     isChat.from_id == userChatId ? " right" : " left";
+    //                 var user = usersList.find(function (list) {
+    //                     return list.id == isChat.from_id;
+    //                 });
+    //                 var msgHTML =
+    //                     '<li class="chat-list' +
+    //                     isAlighn +
+    //                     '" id=' +
+    //                     isChat.id +
+    //                     '>\
+    //                     <div class="conversation-list">';
+    //                 if (userChatId != isChat.from_id)
+    //                     msgHTML +=
+    //                         '<div class="chat-avatar"><img src="' +
+    //                         user.profile +
+    //                         '" alt=""></div>';
 
-                    msgHTML += '<div class="user-chat-content">';
-                    msgHTML += getMsg(
-                        isChat.id,
-                        isChat.msg,
-                        isChat.has_images,
-                        isChat.has_files,
-                        isChat.has_audios,
-                        isChat.has_videos,
-                        isChat.has_dropDown
-                    );
-                    if (
-                        chatsData[index + 1] &&
-                        isChat.from_id == chatsData[index + 1]["from_id"]
-                    ) {
-                        isContinue = getNextMsgCounts(
-                            chatsData,
-                            index,
-                            isChat.from_id
-                        );
-                        msgHTML += getNextMsgs(
-                            chatsData,
-                            index,
-                            isChat.from_id,
-                            isContinue
-                        );
-                    }
-                    msgHTML +=
-                        '<div class="conversation-name"><small class="text-muted time">' +
-                        isChat.datetime +
-                        '</small> <span class="text-success check-message-icon"><i class="bx bx-check-double"></i></span></div>';
-                    msgHTML +=
-                        "</div>\
+    //                 msgHTML += '<div class="user-chat-content">';
+    //                 msgHTML += getMsg(
+    //                     isChat.id,
+    //                     isChat.msg,
+    //                     isChat.has_images,
+    //                     isChat.has_files,
+    //                     isChat.has_audios,
+    //                     isChat.has_videos,
+    //                     isChat.has_dropDown
+    //                 );
+    //                 if (
+    //                     chatsData[index + 1] &&
+    //                     isChat.from_id == chatsData[index + 1]["from_id"]
+    //                 ) {
+    //                     isContinue = getNextMsgCounts(
+    //                         chatsData,
+    //                         index,
+    //                         isChat.from_id
+    //                     );
+    //                     msgHTML += getNextMsgs(
+    //                         chatsData,
+    //                         index,
+    //                         isChat.from_id,
+    //                         isContinue
+    //                     );
+    //                 }
+    //                 msgHTML +=
+    //                     '<div class="conversation-name"><small class="text-muted time">' +
+    //                     isChat.datetime +
+    //                     '</small> <span class="text-success check-message-icon"><i class="bx bx-check-double"></i></span></div>';
+    //                 msgHTML +=
+    //                     "</div>\
+    //             </div>\
+    //         </li>";
+
+    //                 document.getElementById(
+    //                     currentSelectedChat + "-conversation"
+    //                 ).innerHTML += msgHTML;
+    //             });
+    //         }
+    //         deleteMessage();
+    //         deleteChannelMessage();
+    //         deleteImage();
+    //         copyMessage();
+    //         copyChannelMessage();
+    //         scrollToBottom("users-chat");
+    //         updateLightbox();
+    //         copyClipboard();
+    //         replyMessage();
+    //         replyChannelMessage();
+    //     });
+    // }
+
+    // function getChatMessages(id) {
+    //     console.log(ChatUsers);
+    //     if (id) {
+    //         var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    //         var getMessageUrl = window.location.origin + "/chat/whatsapp/messages/" + id;
+    //         console.log("Fetching messages from:", getMessageUrl);
+
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open("GET", getMessageUrl, true);
+    //         xhr.setRequestHeader('X-CSRF-TOKEN', token);
+    //         xhr.responseType = "json";
+    //         xhr.timeout = 10000;
+    //         console.log(xhr);
+
+    //         xhr.onload = function () {
+    //             var status = xhr.status;
+    //             if (status === 200) {
+    //                 console.log("Received messages:", xhr.response);
+    //             } else {
+    //                 console.error("Request failed with status:", status);
+    //                 console.error("Response:", xhr.response);
+    //             }
+    //         };
+
+    //         xhr.onerror = function () {
+    //             console.error("Request failed");
+    //         };
+
+    //         xhr.ontimeout = function () {
+    //             console.error("Request timed out");
+    //         };
+
+    //         xhr.onabort = function () {
+    //             console.error("Request aborted");
+    //         };
+
+    //         xhr.onprogress = function (event) {
+    //             if (event.lengthComputable) {
+    //                 console.log(`Received ${event.loaded} of ${event.total} bytes`);
+    //             } else {
+    //                 console.log(`Received ${event.loaded} bytes`); // no Content-Length
+    //             }
+    //         };
+
+    //         try {
+    //             xhr.send();
+    //         } catch (error) {
+    //             console.error("Send failed:", error);
+    //         }
+    //     }
+    // }
+
+    function getChatMessages(id) {
+        // console.log(id);
+        console.log(ChatUsers);
+
+        // Find the selected user by ID
+        var selectedUser = ChatUsers.find(user => user.id == id);
+        console.log(selectedUser.messages);
+        if (!selectedUser) {
+            console.error("User not found");
+            return;
+        }
+
+        var chatsData = selectedUser.messages;
+        document.getElementById(currentSelectedChat + "-conversation").innerHTML = "";
+        var isContinue = 0;
+
+        // Filter messages for the selected user
+        var userMessages = chatsData.filter(chat => chat.id === id || chat.id === id);
+
+        chatsData.forEach(function (isChat, index) {
+            if (isContinue > 0) {
+                isContinue = isContinue - 1;
+                return;
+            }
+            var isAlighn = isChat.type == 'reply' ? " right" : " left";
+            var user = ChatUsers.find(function (list) {
+                return list.id == isChat.type;
+            });
+            console.log(user);
+            var msgHTML =
+                '<li class="chat-list' + isAlighn + '" id=' + isChat.id + '>\
+                <div class="conversation-list">';
+            if ('send' != isChat.type)
+                msgHTML += '<div class="chat-avatar"><img src="' +dummyImage+ '" alt=""></div>';
+
+            isChat.has_dropDown = true;
+
+            msgHTML += '<div class="user-chat-content">';
+            msgHTML += getMsg(
+                isChat.id,
+                isChat.whatsapp_message,
+                isChat.image,
+                isChat.has_files,
+                isChat.has_audios,
+                isChat.has_videos,
+                isChat.has_dropDown
+            );
+            if (userMessages[index + 1] && isChat.type == userMessages[index + 1]["type"]) {
+                isContinue = getNextMsgCounts(userMessages, index, isChat.type);
+                msgHTML += getNextMsgs(userMessages, index, isChat.type, isContinue);
+            }
+            msgHTML +=
+                '<div class="conversation-name"><small class="text-muted time">' +
+                formatTime(isChat.created_at) +
+                '</small> <span class="text-success check-message-icon"><i class="bx bx-check-double"></i></span></div>';
+            msgHTML += "</div>\
                 </div>\
             </li>";
 
-                    document.getElementById(
-                        currentSelectedChat + "-conversation"
-                    ).innerHTML += msgHTML;
-                });
-            }
-            deleteMessage();
-            deleteChannelMessage();
-            deleteImage();
-            copyMessage();
-            copyChannelMessage();
-            scrollToBottom("users-chat");
-            updateLightbox();
-            copyClipboard();
-            replyMessage();
-            replyChannelMessage();
+            document.getElementById(currentSelectedChat + "-conversation").innerHTML += msgHTML;
         });
     }
+
     // GLightbox Popup
     function updateLightbox() {
         var lightbox = GLightbox({
@@ -2601,6 +2663,18 @@ File: Index init js
         });
     }
 })();
+
+function formatTime(datetimeString) {
+    var date = new Date(datetimeString);
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    var strTime = hours + ':' + minutes + ' ' + ampm;
+    return strTime;
+}
 
 var input, filter, ul, li, a, i, j, div;
 // Search User

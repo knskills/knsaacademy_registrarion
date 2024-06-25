@@ -2,7 +2,6 @@
   {
     "chats": [
       {
-
         "id": 1,
         "from_id": 2,
         "to_id": 1,
