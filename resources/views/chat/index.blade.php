@@ -43,8 +43,8 @@
                                                     <img src="/chat/images/users/avatar-2.jpg"
                                                         class="rounded-circle avatar-sm"
                                                         alt="">
-                                                    <span
-                                                        class="user-status"></span>
+                                                    {{-- <span
+                                                        class="user-status"></span> --}}
                                                 </div>
                                                 <div
                                                     class="flex-grow-1 overflow-hidden">

@@ -64,12 +64,12 @@ File: Index init js
         document.querySelectorAll("#favourite-users li, #usersList li") &&
             document
                 .querySelectorAll("#favourite-users li, #usersList li")
-                .forEach(function (item) {
+            .forEach(function (item) {
                     item.addEventListener("click", function (event) {
                         currentSelectedChat = "users";
                         // updateSelectedChat();
                         var contactId = this.id.replace('contact-id-', '');
-                        console.log('Clicked contact ID:', contactId);
+                        // console.log('Clicked contact ID:', contactId);
 
                         // Call the updateSelectedChat function or any other function as needed
                         updateSelectedChat(contactId);
@@ -177,7 +177,7 @@ File: Index init js
                 currentSelectedChat = "channel";
                 // updateSelectedChat();
                 var contactId = this.id.replace('contact-id-', '');
-                console.log('Clicked contact ID:', contactId);
+                // console.log('Clicked contact ID:', contactId);
                 var channelId = item.getAttribute("id");
 
                 var channelName =
@@ -386,58 +386,6 @@ File: Index init js
         if (err !== null) {
             console.log("Something went wrong: " + err);
         } else {
-    //         // set favourite users list
-    //         var fav = data[0].favorites;
-    //         fav.forEach(function (user, index) {
-    //             var profile = user.profile
-    //                 ? '<img src="' +
-    //                   user.profile +
-    //                   '" class="rounded-circle avatar-xs" alt=""><span class="user-status"></span>'
-    //                 : '<div class="avatar-xs"><span class="avatar-title rounded-circle bg-primary text-white"><span class="username">' +
-    //                   user.nickname +
-    //                   '</span><span class="user-status"></span></span></div>';
-
-    //             var isMessageCount = user.messagecount
-    //                 ? '<div class="ms-auto"><span class="badge badge-soft-danger rounded p-1 fs-10">' +
-    //                   user.messagecount +
-    //                   "</span></div>"
-    //                 : "";
-    //             var messageCount = user.messagecount
-    //                 ? '<a href="javascript: void(0);" class="unread-msg-user">'
-    //                 : '<a href="javascript: void(0);">';
-
-    //             var activeClass = user.id === 1 ? "active" : "";
-    //             document.getElementById("favourite-users").innerHTML +=
-    //                 '<li id="contact-id-' +
-    //                 user.id +
-    //                 '" data-name="favorite" class="' +
-    //                 activeClass +
-    //                 '">\
-    //               ' +
-    //                 messageCount +
-    //                 ' \
-    //                   <div class="d-flex align-items-center">\
-    //                       <div class="chat-user-img online align-self-center me-2 ms-0">\
-    //                           ' +
-    //                 profile +
-    //                 '\
-    //                       </div>\
-    //                       <div class="overflow-hidden me-2">\
-    //                           <p class="text-truncate chat-username mb-0">' +
-    //                 user.name +
-    //                 '</p>\
-    //                           <p class="text-truncate text-muted fs-13 mb-0">' +
-    //                 user.lastmessage +
-    //                 "</p>\
-    //                       </div>\
-    //                       " +
-    //                 isMessageCount +
-    //                 "\
-    //                   </div>\
-    //               </a>\
-    //           </li>";
-    //         });
-
             // set users message list
             var users = data.contacts;
 
@@ -452,7 +400,6 @@ File: Index init js
                 }
 
                 if (contact.messages && contact.messages.length > 0) {
-
                     if(contact.messages == null){
                         contact.lastMessage = "";
                     }
@@ -511,118 +458,11 @@ File: Index init js
                 }
             });
 
-
-        //         // set channels list
-        //         var channelsData = data[0].channels;
-        //         channelsData.forEach(function (isChannel, index) {
-    //             var profile = isChannel.profile
-    //                 ? '<img src="' +
-    //                   isChannel.profile +
-    //                   '" class="rounded-circle avatar-xs" alt="">'
-    //                 : '<div class="avatar-xs"><span class="avatar-title rounded-circle bg-primary text-white"><span class="username">JL</span><span class="user-status"></span></span></div>';
-
-    //             var isMessage = isChannel.messagecount
-    //                 ? '<div class="flex-shrink-0 ms-2"><span class="badge badge-soft-danger rounded p-1 fs-10">' +
-    //                   isChannel.messagecount +
-    //                   "</span></div>"
-    //                 : "";
-    //             var messageCount = isChannel.messagecount
-    //                 ? '<a href="javascript: void(0);" class="unread-msg-user">'
-    //                 : '<a href="javascript: void(0);">';
-    //             var profile = isChannel.profile
-    //                 ? '<img src="' +
-    //                   isChannel.profile +
-    //                   '" class="rounded-circle avatar-xs" alt="">'
-    //                 : '<div class="avatar-xs"><span class="avatar-title rounded-circle bg-primary text-white"><span class="username">' +
-    //                   isChannel.nickname +
-    //                   "</span></span></div>";
-    //             document.getElementById("channelList").innerHTML +=
-    //                 '<li id="contact-id-' +
-    //                 isChannel.id +
-    //                 '" data-name="channel">\
-    //             ' +
-    //                 messageCount +
-    //                 ' \
-    //                 <div class="d-flex align-items-center">\
-    //                     <div class="flex-shrink-0 me-2">\
-    //                         <div class="chat-user-img online align-self-center">\
-    //                         ' +
-    //                 profile +
-    //                 '\
-    //                         </div>\
-    //                     </div>\
-    //                     <div class="flex-grow-1 overflow-hidden">\
-    //                         <h6 class="text-truncate mb-0">' +
-    //                 isChannel.name +
-    //                 '</h6>\
-    //                         <p class="text-truncate text-muted fs-13 mb-0">' +
-    //                 isChannel.lastmessage +
-    //                 "</p>\
-    //                     </div>\
-    //                     <div>" +
-    //                 isMessage +
-    //                 "</div>\
-    //                 </div>\
-    //             </a>\
-    //         </li>";
-            //         });
-
-            // var contacts = data.contacts;
-            // console.log(contacts);
-
-            // // Assign default names if 'name' is not present and handle contact.number
-            // contacts.forEach(function(contact, index) {
-            //     if (!contact.name) {
-            //         if (contact.number) {
-            //             contact.name = contact.number.slice(2);
-            //         } else {
-            //             contact.name = 'User ' + (index + 1);
-            //         }
-            //     }
-            // });
-
-            // contacts.forEach(function (user, index) {
-            //     var messages = user.messages;
-            //     // console.log(messages.length);
-            //     var profilePic = user.profile ? baseUrl + user.profile_pic : baseUrl + 'chat/'+dumImg;
-            //     var profile = profilePic
-            //     ? '<img src="' +
-            //     profilePic +
-            //         '" class="rounded-circle avatar-xs us-img" alt=""><span class="user-status"></span>'
-            //     : '<div class="avatar-xs"><span class="avatar-title rounded-circle bg-primary text-white"><span class="username">' +
-            //         user.nickname +
-            //         '</span><span class="user-status"></span></span></div>';
-
-            //     var isMessageCount = messages.length
-            //     ? '<div class="ms-auto"><span class="badge badge-soft-danger rounded p-1 fs-10">' +
-            //         messages.length +
-            //         "</span></div>"
-            //     : "";
-            //     var messageCount = messages.length
-            //     ? '<a href="javascript: void(0);" class="unread-msg-user">'
-            //     : '<a href="javascript: void(0);">';
-
-            //     var activeClass = user.id === 1 ? "active" : "";
-            //     document.getElementById("usersList").innerHTML +=
-            //     '<li id="contact-id-' + user.id +'" data-name="favorite" class="' + activeClass +'">\
-            //     ' +messageCount +' \
-            //             <div class="d-flex align-items-center">\
-            //                 <div class="chat-user-img online align-self-center me-2 ms-0">\
-            //                     ' +profile +'\
-            //                 </div>\
-            //                 <div class="overflow-hidden me-2">\
-            //                     <p class="text-truncate chat-username mb-0">'
-            //                         + user.name +
-            //                     '</p>\
-            //                     <p class="text-truncate text-muted fs-13 mb-0">'
-            //                         +user.lastMessage +
-            //                     "</p>\
-            //                 </div>\
-            //                 " + isMessageCount +"\
-            //             </div>\
-            //         </a>\
-            //     </li>";
-            // });
+            // Call getChatMessages for the last user in the list
+            if (users.length > 0) {
+                var lastUserId = users[users.length - 1].id;
+                getChatMessages(lastUserId);
+            }
         }
         toggleSelected();
         chatSwap();
@@ -2159,20 +1999,20 @@ File: Index init js
         }, 0);
     });
 
-    function getJSONFile(jsonurl, callback) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", jsonurl, true);
-        xhr.responseType = "json";
-        xhr.onload = function () {
-            var status = xhr.status;
-            if (status === 200) {
-                callback(null, xhr.response);
-            } else {
-                callback(status, xhr.response);
-            }
-        };
-        xhr.send();
-    }
+    // function getJSONFile(jsonurl, callback) {
+    //     var xhr = new XMLHttpRequest();
+    //     xhr.open("GET", jsonurl, true);
+    //     xhr.responseType = "json";
+    //     xhr.onload = function () {
+    //         var status = xhr.status;
+    //         if (status === 200) {
+    //             callback(null, xhr.response);
+    //         } else {
+    //             callback(status, xhr.response);
+    //         }
+    //     };
+    //     xhr.send();
+    // }
 
     // getNextMsgCounts
     function getNextMsgCounts(chatsData, i, type) {
@@ -2598,7 +2438,8 @@ File: Index init js
 
         // Find the selected user by ID
         var selectedUser = ChatUsers.find(user => user.id == id);
-        console.log(selectedUser.messages);
+
+        // console.log(selectedUser.messages);
         if (!selectedUser) {
             console.error("User not found");
             return;
@@ -2653,6 +2494,17 @@ File: Index init js
 
             document.getElementById(currentSelectedChat + "-conversation").innerHTML += msgHTML;
         });
+
+        // deleteMessage();
+        // deleteChannelMessage();
+        // deleteImage();
+        // copyMessage();
+        // copyChannelMessage();
+        // scrollToBottom("users-chat");
+        // updateLightbox();
+        // copyClipboard();
+        // replyMessage();
+        // replyChannelMessage();
     }
 
     // GLightbox Popup
