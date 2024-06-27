@@ -145,7 +145,7 @@
                                 <div class="row mb-3" style="display:none"
                                     id="md_file">
                                     <label
-                                        class="col-sm-3 col-form-label">Media
+                                        class="col-sm-3 col-form-label" id="head_file">Media
                                         File</label>
                                     <div class="col-sm-9">
                                         <input type="file"
@@ -307,6 +307,9 @@
                             $('#temp_id').hide();
                             $('#md_file').show();
                             $('#if_mail').hide();
+
+                            // change label text
+                            $('#head_file').html('Header File');
 
                             // Add required attribute to media_file if header is available
                             $('#media_file').attr('required', 'required');
