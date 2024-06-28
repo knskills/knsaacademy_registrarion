@@ -144,8 +144,8 @@
 
                                 <div class="row mb-3" style="display:none"
                                     id="md_file">
-                                    <label
-                                        class="col-sm-3 col-form-label" id="head_file">Media
+                                    <label class="col-sm-3 col-form-label"
+                                        id="header_file_lable">Media
                                         File</label>
                                     <div class="col-sm-9">
                                         <input type="file"
@@ -153,6 +153,17 @@
                                             name="media_file" id="media_file">
                                     </div>
                                 </div>
+
+                                {{-- <div class="row mb-3" style="display:none" id="header_text">
+                                    <label
+                                        class="col-sm-3 col-form-label">Header Text</label>
+                                    <div class="col-sm-9">
+                                        <input type="text"
+                                            class="form-control" name="header_text"
+                                            value=""
+                                            placeholder="Please enter header text">
+                                    </div>
+                                </div> --}}
 
                                 <div class="row">
                                     <label for="inputText"
@@ -254,30 +265,23 @@
                 var temp_name = $('#temp_name').val();
                 var temp_type = $('#temp_type').val();
 
-                if (temp_type === 'whatsapp' && !temp_name) {
-                    alert('Please fill in the template name first.');
-                } else if (temp_type === 'whatsapp' && temp_name) {
-                    getTemp(temp_name, temp_type);
-                } else if (temp_type === 'email') {
-                    $('#if_mail').show();
-                    $('#md_file').show();
-                    $('#temp_id').hide();
-                } else if (temp_type === 'sms') {
-                    $('#temp_id').show();
-                    $('#md_file').hide();
-                    $('#if_mail').hide();
+                if (temp_type === 'whatsapp') {
+                    if (!temp_name) {
+                        alert('Please fill in the template name first.');
+                    } else {
+                        getTemp(temp_name, temp_type);
+                    }
                 } else {
-                    $('#if_mail').hide();
-                    $('#md_file').hide();
-                    $('#temp_id').hide();
+                    $('#if_mail, #md_file, #temp_id, #header_text').hide();
+                    if (temp_type === 'email') {
+                        $('#if_mail, #md_file').show();
+                    } else if (temp_type === 'sms') {
+                        $('#temp_id').show();
+                    }
                 }
             }
 
-            $('#temp_type').change(handleTemplateTypeChange);
-
-            $('#temp_name').change(function() {
-                handleTemplateTypeChange();
-            });
+            $('#temp_type, #temp_name').change(handleTemplateTypeChange);
 
             $('#templateForm').submit(function(e) {
                 var temp_name = $('#temp_name').val();
@@ -290,12 +294,11 @@
             });
 
             function getTemp(name, type) {
-                var url = '{{ route('fetch-template', ':name') }}';
-                var newUrl = url.replace(':name', name);
+                var url = '{{ route('fetch-template', ':name') }}'.replace(':name', name);
                 var token = '{{ csrf_token() }}';
 
                 $.ajax({
-                    url: newUrl,
+                    url: url,
                     method: 'GET',
                     data: {
                         name: name,
@@ -303,22 +306,18 @@
                     },
                     success: function(data) {
                         console.log(data);
-                        if (data.header) {
-                            $('#temp_id').hide();
+                        var showHeaderText = data.header && data.header_format == "TEXT";
+                        var showMdFile = data.header && data.header_format == "IMAGE";
+
+                        $('#temp_id, #md_file, #if_mail, #header_text').hide();
+                        // if (showHeaderText) {
+                        //     $('#header_text').show();
+                        // } else
+                        if (showMdFile) {
                             $('#md_file').show();
-                            $('#if_mail').hide();
-
-                            // change label text
-                            $('#head_file').html('Header File');
-
-                            // Add required attribute to media_file if header is available
+                            $('#header_file_label').html('Header File');
                             $('#media_file').attr('required', 'required');
                         } else {
-                            $('#temp_id').hide();
-                            $('#md_file').hide();
-                            $('#if_mail').hide();
-
-                            // Remove required attribute from media_file if header is not available
                             $('#media_file').removeAttr('required');
                         }
                     },
@@ -329,4 +328,5 @@
             }
         });
     </script>
+
 @endsection
