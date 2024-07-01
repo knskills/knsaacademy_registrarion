@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Twilio\Rest\Client;
 
+use App\Models\WhatsappChatContact;
+
 function sendSms($phone, $message)
 {
     try {
@@ -426,4 +428,31 @@ function sendTempMessage($template, $phone, $replacements = null)
         // return response()->json(['error' => 'Failed to send message', 'details' => $response->json()], $response->status());
         return 'failed';
     }
+}
+
+function createContact($phone_number, $profile_name)
+{
+    $contact = WhatsappChatContact::where('number', $phone_number)->first();
+
+    if ($contact) {
+        // If profile name is null or empty
+        if (is_null($profile_name) || $profile_name === '') {
+            // If existing profile name is null or empty, update with null, otherwise keep the existing name
+            $profile_name = $contact->name ?? null;
+        } else {
+            // If a new profile name is provided, check if it's different from the existing name
+            if ($profile_name === $contact->name) {
+                // If the new profile name is the same as the existing one, do not update
+                $profile_name = $contact->name;
+            }
+            // Otherwise, update with the new profile name
+        }
+    }
+
+    $contact = WhatsappChatContact::updateOrCreate(
+        ['number' => $phone_number],
+        ['name' => $profile_name]
+    );
+
+    return $contact->id;
 }

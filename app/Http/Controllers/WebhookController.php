@@ -71,7 +71,7 @@ class WebhookController extends Controller
             $recipient_id = $status['recipient_id'];
             $profile_name = null;
 
-            $contact_id = $this->createContact($recipient_id, $profile_name);
+            $contact_id = createContact($recipient_id, $profile_name);
 
             $whatsappMessage = WhatsappMessage::updateOrCreate(
                 ['message_id' => $status['id']],
@@ -100,7 +100,7 @@ class WebhookController extends Controller
             $recipient_id = $message['from'];
             $profile_name = $data['entry'][0]['changes'][0]['value']['contacts'][0]['profile']['name'] ?? null;
 
-            $contact_id = $this->createContact($recipient_id, $profile_name);
+            $contact_id = createContact($recipient_id, $profile_name);
 
             $attributes = [
                 'contact_id' => $contact_id ?? null,
@@ -176,13 +176,13 @@ class WebhookController extends Controller
         return $mimeTypes[$mime] ?? 'jpg';
     }
 
-    public function createContact($phone_number, $profile_name)
-    {
-        $contact = WhatsappChatContact::updateOrCreate(
-            ['number' => $phone_number],
-            ['name' => $profile_name]
-        );
+    // public function createContact($phone_number, $profile_name)
+    // {
+    //     $contact = WhatsappChatContact::updateOrCreate(
+    //         ['number' => $phone_number],
+    //         ['name' => $profile_name]
+    //     );
 
-        return $contact->id;
-    }
+    //     return $contact->id;
+    // }
 }
