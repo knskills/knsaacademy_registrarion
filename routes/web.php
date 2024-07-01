@@ -73,12 +73,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/whatsapp/setting', [WhatsappController::class, 'create'])->name('whatsapp.setting');
     Route::get('/whatsapp/get-profile', [WhatsappController::class, 'getProfile'])->name('whatsapp.get-profile');
     Route::get('/whatsapp/getSubscribedApps', [WhatsappController::class, 'getSubscribedApps'])->name('whatsapp.getSubscribedApps');
-
-    // Message Template
     Route::get('/whatsapp/getMessageTemplate/{templateName}', [WhatsappController::class, 'getMessageTemplate'])->name('whatsapp.getMessageTemplates');
 
     // Message
     Route::post('/whatsapp/text-message', [WhatsappController::class, 'sendTextMessage'])->name('whatsapp.text-message');
+
     Route::post('/whatsapp/send-message', [WhatsappController::class, 'sendMessage'])->name('whatsapp.send-message');
 
     // Mark as a read
@@ -142,3 +141,7 @@ Route::get('/networkmarketingkyakyukaise-3', [PageController::class, 'lntm3'])->
 Route::post('/audience-2', [AudienceController::class, 'store'])->name('audience.store-2');
 Route::post('/audience-3', [AudienceController::class, 'store'])->name('audience.store-3');
 
+
+// Whatsapp Cloud Api Testing
+Route::get('/send-temp-message', [TestingController::class, 'sendTempMessage'])->name('sendMessage');
+Route::get('/get-msg-template', [TestingController::class, 'getMessageTemplate'])->name('getTemplate');

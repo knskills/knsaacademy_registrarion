@@ -692,7 +692,7 @@
                             src="https://player.vimeo.com/video/960358679?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0&autoplay=1&muted=1"
                             frameborder="0"
                             allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
-                            title="22 june" class="responsive-iframe">
+                            title="6 Julye" class="responsive-iframe">
                         </iframe>
                     </div>
                 </div>
@@ -754,7 +754,7 @@
                                             class="small-text">Date</span><br>
                                         <span
                                             class="big-bold-text seminar-date"
-                                            id="next-tuesday">22 Jun
+                                            id="next-tuesday">6 July
                                             2024</span>
 
                                         {{-- <span class="big2-bold-text" style="font-size: 20px;">2,3 & 4 Feb 2024</span> --}}
@@ -1205,7 +1205,7 @@
                                             class="small-text">Date</span><br>
                                         <span
                                             class="big-bold-text text-center seminar-date"
-                                            id="next-tuesday2">22 Jun
+                                            id="next-tuesday2">6 July
                                             2024</span>
                                     </div>
                                 </div>
@@ -2173,7 +2173,7 @@
                 monthNames[nextTuesday.getMonth()] + ' ' +
                 nextTuesday.getFullYear();
 
-            // // var formattedNextTuesday = "22 Jun 2024";
+            // // var formattedNextTuesday = "6 July 2024";
             // $('#next-tuesday').html(formattedNextTuesday);
             // $('#next-tuesday2').html(formattedNextTuesday);
         });
