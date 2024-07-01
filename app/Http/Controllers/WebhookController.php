@@ -88,7 +88,7 @@ class WebhookController extends Controller
                 ]
             );
 
-            broadcast(new MessageReceived($whatsappMessage))->toOthers();
+            // broadcast(new MessageReceived($whatsappMessage))->toOthers();
         }
 
         return end($statuses)['recipient_id'];
@@ -123,7 +123,7 @@ class WebhookController extends Controller
 
             $whatsappMessage = WhatsappMessage::create($attributes);
 
-            broadcast(new MessageReceived($whatsappMessage))->toOthers();
+            // broadcast(new MessageReceived($whatsappMessage))->toOthers();
         }
 
         return end($messages)['from'];

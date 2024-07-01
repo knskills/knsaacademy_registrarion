@@ -414,7 +414,7 @@ class WhatsappController extends Controller
 
             if (isset($data['contacts'][0]['wa_id'])) {
                 $recipientId = $data['contacts'][0]['wa_id'];
-                $contactId = $this->createContact($recipientId, $profile_name = null);
+                $contactId = createContact($recipientId, $profile_name = null);
 
                 if (isset($data['messages'])) {
                     foreach ($data['messages'] as $messageData) {
@@ -440,7 +440,7 @@ class WhatsappController extends Controller
                             $attributes
                         );
 
-                        broadcast(new MessageReceived($message))->toOthers();
+                        // broadcast(new MessageReceived($message))->toOthers();
                     }
                 }
             }
@@ -454,15 +454,15 @@ class WhatsappController extends Controller
         }
     }
 
-    public function createContact($phone_number, $profile_name)
-    {
-        $contact = WhatsappChatContact::updateOrCreate(
-            ['number' => $phone_number],
-            ['name' => $profile_name]
-        );
+    // public function createContact($phone_number, $profile_name)
+    // {
+    //     $contact = WhatsappChatContact::updateOrCreate(
+    //         ['number' => $phone_number],
+    //         ['name' => $profile_name]
+    //     );
 
-        return $contact->id;
-    }
+    //     return $contact->id;
+    // }
 
 
     //========================= Testings ===========================================
