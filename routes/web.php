@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Broadcast;
 use App\Http\Controllers\AudienceController;
+use App\Http\Controllers\AutoReplyOptionController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\LangController;
 use App\Http\Controllers\PageController;
@@ -53,6 +54,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/get-events', [EventController::class, 'getEvents'])->name('get-events');
 
     Route::resource('messages', MessageController::class);
+    Route::resource('auto-reply-options', AutoReplyOptionController::class);
     Route::resource('templates', TemplateController::class);
     Route::get('/get-templates', [TemplateController::class, 'getTemplates'])->name('get-templates');
     Route::get('/get-message', [TemplateController::class, 'getTemplateMessage'])->name('get-message');
