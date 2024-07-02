@@ -18,7 +18,7 @@ class TemplateController extends Controller
     public function index(Request $request)
     {
         try {
-            $templates = MessageTemplate::paginate(10);
+            $templates = MessageTemplate::orderBy('id', 'desc')->paginate(10);
             $templates->appends($request->except('page'));
 
             return view('admin.templates.index', compact('templates'));
