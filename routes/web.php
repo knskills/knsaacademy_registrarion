@@ -147,3 +147,6 @@ Route::post('/audience-3', [AudienceController::class, 'store'])->name('audience
 // Whatsapp Cloud Api Testing
 Route::get('/send-temp-message', [TestingController::class, 'sendTempMessage'])->name('sendMessage');
 Route::get('/get-msg-template', [TestingController::class, 'getMessageTemplate'])->name('getTemplate');
+
+// Open AI
+Route::get('/opnai-chat', [TestingController::class, 'askToChatGpt'])->name('opnai-chat');

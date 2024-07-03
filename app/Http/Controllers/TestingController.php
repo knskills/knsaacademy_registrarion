@@ -11,9 +11,46 @@ use App\Models\WhatsappChatContact;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use GuzzleHttp\Client;
 
 class TestingController extends Controller
 {
+    /**
+     * Handle the incoming request.
+     * refresnce - https://platform.openai.com/docs/api-reference/introduction
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    protected $httpClient;
+
+    public function __construct()
+    {
+        $this->httpClient = new Client([
+            'base_uri' => 'https://api.openai.com/v1/',
+            'headers' => [
+                'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
+                'Content-Type' => 'application/json',
+            ],
+        ]);
+    }
+
+    public function askToChatGpt()
+    {
+        $message = "what is laravel";
+        $response = $this->httpClient->post('chat/completions', [
+            'json' => [
+                'model' => 'gpt-3.5-turbo',
+                'messages' => [
+                    ['role' => 'system', 'content' => 'You are'],
+                    ['role' => 'user', 'content' => $message],
+                ],
+            ],
+        ]);
+
+        return json_decode($response->getBody(), true)['choices'][0]['message']['content'];
+    }
+
     public function getContacts()
     {
         try {
