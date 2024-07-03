@@ -246,62 +246,6 @@ function sendEmailWithTwilio($to, $subject, $message, $cc = null, $bcc = null)
 }
 
 //======================================== Facebook =================================================//
-function sendFBMessage($phone = null)
-{
-    // Log::info($phone);
-
-    // $response = Http::withHeaders([
-    //     'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
-    //     'Content-Type' => 'application/json',
-    // ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
-    //     'messaging_product' => 'whatsapp',
-    //     'recipient_type' => 'individual',
-    //     'to' => '+919770019148',
-    //     'type' => 'text',
-    //     'text' => [
-    //         'body' => 'Welcome and congratulations!! This message demonstrates your ability to send a WhatsApp message notification from the Cloud API, hosted by Meta. Thank you for taking the time to test with us.'
-    //     ]
-    // ]);
-
-    // return $response->body();
-
-    // Log::info(getenv("FB_METADATA_TOKEN"));
-
-    $response = Http::withHeaders([
-        'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
-        'Content-Type' => 'application/json',
-    ])->post('https://graph.facebook.com/v19.0/' . getenv("FB_PHONE_NUMBER") . '/messages', [
-        'messaging_product' => 'whatsapp',
-        "recipient_type" => "individual",
-        'to' => '+91' . $phone,
-        'type' => 'template',
-        // 'template' => [
-        //     'name' => 'hello_world',
-        //     'language' => [
-        //         'code' => 'en_US'
-        //     ]
-        // ]
-
-        // 'template' => [
-        //     'name' => 'testing',
-        //     'language' => [
-        //         'code' => 'hi'
-        //     ]
-        // ]
-
-        'template' => [
-            'name' => 'welcome',
-            'language' => [
-                'code' => 'en'
-            ]
-        ]
-    ]);
-
-    Log::info($response->body());
-
-    // return $response->body();
-}
-
 /**
  * Get whatsapp cloud api template
  * Reference: https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates
@@ -315,6 +259,9 @@ function getMessageTemplate($templateName = null, $header_img_loc = null)
     $url = "https://graph.facebook.com/$version/$wabaId/message_templates?name=$templateName";
 
     $response = Http::withToken($token)->get($url);
+
+    //Log::info($response->json());
+    // Log::info(json_encode($response, JSON_PRETTY_PRINT));
 
     $data = $response->json()['data'] ?? [];
 
@@ -336,19 +283,29 @@ function getMessageTemplate($templateName = null, $header_img_loc = null)
 
         foreach ($item['components'] as $component) {
             $type = strtolower($component['type']);
-
-            if ($type === "header" && isset($component['example']['header_handle'][0])) {
-                $header_file_url = asset($header_img_loc);
-
-                $components[] = [
-                    'type' => $type,
-                    'parameters' => [
-                        [
-                            'type' => strtolower($component['format']),
-                            strtolower($component['format']) => ['link' => $header_file_url]
+            if ($type === "header") {
+                if($component['format'] == "IMAGE" && isset($component['example']['header_handle'][0])){
+                    $header_file_url = asset($header_img_loc);
+                    $components[] = [
+                        'type' => $type,
+                        'parameters' => [
+                            [
+                                'type' => strtolower($component['format']),
+                                strtolower($component['format']) => ['link' => $header_file_url]
+                            ]
                         ]
-                    ]
-                ];
+                    ];
+                }elseif($component['format'] == "TEXT"){
+                    $components[] = [
+                        'type' => $type,
+                        'parameters' => [
+                            [
+                                'type' => strtolower($component['format']),
+                                strtolower($component['format']) => ['text' => $component['text']]
+                            ]
+                        ]
+                    ];
+                }
             } elseif ($type === "body" && isset($component['text'])) {
                 $component['text'] = html_entity_decode($component['text'], ENT_QUOTES, 'UTF-8');
                 $body_params = $component['example']['body_text'][0] ?? [];

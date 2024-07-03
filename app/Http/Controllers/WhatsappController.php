@@ -441,7 +441,7 @@ class WhatsappController extends Controller
                             $attributes
                         );
 
-                        broadcast(new MessageReceived($message))->toOthers();
+                        // broadcast(new MessageReceived($message))->toOthers();
                     }
                 }
             }
@@ -455,7 +455,6 @@ class WhatsappController extends Controller
             return redirect()->back()->withErrors('An error occurred while sending the message');
         }
     }
-
 
     // public function createContact($phone_number, $profile_name)
     // {

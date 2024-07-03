@@ -12,6 +12,7 @@ use Netflie\WhatsAppCloudApi\WhatsAppCloudApi;
 use App\Models\WhatsappMessage;
 use App\Models\WhatsappChatContact;
 use App\Events\MessageReceived;
+use App\Models\AutoReplyOption;
 
 class WebhookController extends Controller
 {
@@ -91,6 +92,7 @@ class WebhookController extends Controller
             $isStatusUpdate = $whatsappMessage->wasRecentlyCreated ? false : true;
             // Log::info($isStatusUpdate);
             broadcast(new MessageReceived($whatsappMessage, $isStatusUpdate))->toOthers();
+            // broadcast(new MessageReceived($whatsappMessage))->toOthers();
         }
 
         return end($statuses)['recipient_id'];
@@ -124,8 +126,8 @@ class WebhookController extends Controller
             }
 
             $whatsappMessage = WhatsappMessage::create($attributes);
-
-            broadcast(new MessageReceived($whatsappMessage))->toOthers();
+            $this->handleAutoReply($whatsappMessage);
+            // broadcast(new MessageReceived($whatsappMessage))->toOthers();
         }
 
         return end($messages)['from'];
@@ -186,4 +188,77 @@ class WebhookController extends Controller
     //     );
     //     return $contact->id;
     // }
+
+    // public function createContact($phone_number, $profile_name)
+    // {
+    //     $contact = WhatsappChatContact::where('number', $phone_number)->first();
+    //     if (!$contact) {
+    //         $contact = WhatsappChatContact::create([
+    //             'name' => $profile_name,
+    //             'number' => $phone_number,
+    //         ]);
+    //     }
+    //     return $contact->id;
+    // }
+
+    private function handleAutoReply($whatsappMessage)
+    {
+        $autoReplyOption = AutoReplyOption::where('keyword', $whatsappMessage->whatsapp_message)->first();
+
+        if (!$autoReplyOption || !$autoReplyOption->reply) {
+            // throw new \Exception('No auto-reply found for the given keyword.');
+            return;
+        }
+
+        $reply = $autoReplyOption->reply;
+
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
+            'Content-Type' => 'application/json',
+        ])->post('https://graph.facebook.com/' . getenv("FB_API_VERSION") . '/' . getenv("FB_PHONE_NUMBER") . '/messages', [
+            'messaging_product' => 'whatsapp',
+            "recipient_type" => "individual",
+            'to' => $whatsappMessage->recipient_id,
+            'type' => 'text',
+            'text' => [
+                'preview_url' => false,
+                'body' => $reply,
+            ]
+        ]);
+
+        $data = json_decode($response->getBody(), true);
+
+        if (isset($data['contacts'][0]['wa_id'])) {
+            $recipientId = $data['contacts'][0]['wa_id'];
+            $contactId = createContact($recipientId, $profile_name = null);
+
+            if (isset($data['messages'])) {
+                foreach ($data['messages'] as $messageData) {
+                    $existingMessage = WhatsappMessage::where('recipient_id', $recipientId)->whereNotNull('profile_name')->first();
+
+                    $attributes = [
+                        'contact_id' => $contactId,
+                        'whatsapp_message' => $reply ?? null,
+                        'template_name' => null,
+                        'template_type' => null,
+                        'type' => 'send',
+                        'status' => null,
+                        // 'image' => $request->hasFile('media_image') ? $imagePath : null,
+                        'phone_number' => $recipientId,
+                        'from' => null,
+                        'recipient_id' => $recipientId,
+                        'send_at' => null,
+                        'profile_name' => $existingMessage->profile_name ?? null,
+                    ];
+
+                    $message = WhatsappMessage::updateOrCreate(
+                        ['message_id' => $messageData['id']],
+                        $attributes
+                    );
+
+                    // broadcast(new MessageReceived($message))->toOthers();
+                }
+            }
+        }
+    }
 }

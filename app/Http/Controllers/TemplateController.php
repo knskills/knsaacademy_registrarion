@@ -18,7 +18,7 @@ class TemplateController extends Controller
     public function index(Request $request)
     {
         try {
-            $templates = MessageTemplate::paginate(10);
+            $templates = MessageTemplate::orderBy('id', 'desc')->paginate(10);
             $templates->appends($request->except('page'));
 
             return view('admin.templates.index', compact('templates'));
@@ -57,69 +57,16 @@ class TemplateController extends Controller
                 return redirect()->back()->withErrors($validator)->withInput();
             }
 
-            $path = null;
-            if ($request->hasFile('media_file')) {
-                $image = $request->file('media_file');
-                $imageName = time() . '_' . $image->getClientOriginalName();
-                $path = 'template/files/' . $imageName;
-                $image->move(public_path('template/files/'), $imageName);
-            }
+            $path = $this->handleMediaFile($request);
 
-            $msg = $request->message;
-            $lang = '';
-            $whts_temp_id = null;
-            $whtsp_msg = [];
-
-            if ($request->type == 'whatsapp') {
-                $res = getMessageTemplate($request->name, $path);
-                if (!$res) {
+            if ($request->type === 'whatsapp') {
+                $whatsappData = $this->handleWhatsAppTemplate($request, $path);
+                if (!$whatsappData) {
                     return redirect()->back()->with('error', 'Template not found!');
                 }
-
-                $lang = $res['language'];
-                $msg = $res['body_text'];
-                $whtsp_msg = $res['body_text'];
-
-                $whts_temp = WhtasappTemplate::updateOrCreate(
-                    ['name' => $res['template']['name']],
-                    [
-                        'response' => $res['response'],
-                        'get_response' => $res['components'],
-                        'header' => $res['response'][0]['components'][0] ?? null,
-                        'body' => $res['response'][0]['components'][1] ?? null,
-                        'buttons' => $res['response'][0]['components'][3] ?? null,
-                        'language' => $lang,
-                        'status' => $res['response'][0]['status'] ?? null,
-                        'category' => $res['response'][0]['category'] ?? null,
-                        'temp_id' => $res['response'][0]['id'] ?? null,
-                        'body_params' => $res['body_params'],
-                        'template_content' => $res['template'],
-                    ]
-                );
-
-                $whts_temp_id = $whts_temp->id;
             }
 
-            MessageTemplate::updateOrCreate(
-                [
-                    'name' => $request->input('name'),
-                    'type' => $request->input('type')
-                ],
-                [
-                    'template_id' => $request->input('template_id', '') ?? $whts_temp_id,
-                    'name' => $request->input('name', ''),
-                    'subject' => $request->input('subject', ''),
-                    'message' => $msg,
-                    'whtsp_msg' => $whtsp_msg,
-                    'lang_code' => $lang,
-                    'media_file' => $path,
-                    'type' => $request->input('type', ''),
-                    'status' => $request->input('status', ''),
-                    'event_name' => $request->input('event_name', ''),
-                    'cc' => $request->input('cc', ''),
-                    'bcc' => $request->input('bcc', ''),
-                ]
-            );
+            $this->saveMessageTemplate($request, $path, $whatsappData ?? []);
 
             return redirect()->route('templates.index')->with('success', 'Template created successfully!');
         } catch (\Throwable $th) {
@@ -127,6 +74,78 @@ class TemplateController extends Controller
             return redirect()->back()->with('error', 'Something went wrong!');
         }
     }
+
+    private function handleMediaFile($request)
+    {
+        if ($request->hasFile('media_file')) {
+            $image = $request->file('media_file');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $path = 'template/files/' . $imageName;
+            $image->move(public_path('template/files/'), $imageName);
+            return $path;
+        }
+        return null;
+    }
+
+    private function handleWhatsAppTemplate($request, $path)
+    {
+        $res = getMessageTemplate($request->name, $path);
+        if (!$res) {
+            return false;
+        }
+
+        $lang = $res['language'];
+        $msg = $res['body_text'];
+
+        $whts_temp = WhtasappTemplate::updateOrCreate(
+            ['name' => $res['template']['name']],
+            [
+                'response' => $res['response'],
+                'get_response' => $res['components'],
+                'header' => $res['response'][0]['components'][0] ?? null,
+                'body' => $res['response'][0]['components'][1] ?? null,
+                'buttons' => $res['response'][0]['components'][3] ?? null,
+                'language' => $lang,
+                'status' => $res['response'][0]['status'] ?? null,
+                'category' => $res['response'][0]['category'] ?? null,
+                'temp_id' => $res['response'][0]['id'] ?? null,
+                'body_params' => $res['body_params'],
+                'template_content' => $res['template'],
+            ]
+        );
+
+        return [
+            'msg' => $msg,
+            'lang' => $lang,
+            'whtsp_msg' => $res['body_text'],
+            'whts_temp_id' => $whts_temp->id
+        ];
+    }
+
+    private function saveMessageTemplate($request, $path, $whatsappData)
+    {
+        MessageTemplate::updateOrCreate(
+            [
+                'name' => $request->input('name'),
+                'type' => $request->input('type')
+            ],
+            [
+                'template_id' => $request->input('template_id', '') ?? $whatsappData['whts_temp_id'] ?? null,
+                'name' => $request->input('name', ''),
+                'subject' => $request->input('subject', ''),
+                'message' => $whatsappData['msg'] ?? $request->message,
+                'whtsp_msg' => $whatsappData['whtsp_msg'] ?? [],
+                'lang_code' => $whatsappData['lang'] ?? '',
+                'media_file' => $path,
+                'type' => $request->input('type', ''),
+                'status' => $request->input('status', ''),
+                'event_name' => $request->input('event_name', ''),
+                'cc' => $request->input('cc', ''),
+                'bcc' => $request->input('bcc', ''),
+            ]
+        );
+    }
+
 
 
     /**
@@ -301,14 +320,18 @@ class TemplateController extends Controller
     {
         try {
             $res = getMessageTemplate($name);
+            Log::info(json_encode($res, JSON_PRETTY_PRINT));
             if (!empty($res['response'][0]['components'])) {
                 $header = $res['response'][0]['components'][0]['type'] == 'HEADER' ? true : false;
+                $header_format = $res['response'][0]['components'][0]['format'];
             } else {
                 $header = false;
             }
             return response()->json([
                 'success' => true,
                 'header' => $header,
+                'header_format' => $header_format ?? null,
+                'response' => $res,
             ]);
         } catch (\Throwable $th) {
             Log::error($th);

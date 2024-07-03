@@ -40,7 +40,7 @@ class AudienceController extends Controller
             //     $audianceQuery->orderBy('id', 'desc');
             // }
 
-            $audianceQuery->where('event_name', 'Learn Marketing S2');
+            $audianceQuery->where('event_name', 'Learn Marketing S2')->orderBy('id', 'desc');
             // ->orWhere('event_name', 'Learn Marketing')
 
             $audiences = $audianceQuery->paginate(10);
