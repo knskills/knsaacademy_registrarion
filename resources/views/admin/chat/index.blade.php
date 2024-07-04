@@ -134,7 +134,6 @@
                                                     {{ __('Logout') }}
                                                 </a> --}}
 
-
                                             </div>
                                         </div>
 
@@ -261,7 +260,7 @@
                                                 </div>
 
                                                 <div class="col-4">
-                                                    <ul class="moreoption">
+                                                    {{-- <ul class="moreoption">
                                                         <li
                                                             class="navbar nav-item dropdown">
                                                             <a class="nav-link dropdown-toggle"
@@ -274,12 +273,6 @@
                                                             <ul
                                                                 class="dropdown-menu">
                                                                 <li>
-                                                                    {{-- <a class="dropdown-item"
-                                                                        href="{{ route('whatsapp.chat.destroy', ['chat' => $user->recipient_id]) }}"
-                                                                        onclick="return confirm('Are you sure you want to delete this chat?');">
-                                                                        Delete
-                                                                    </a> --}}
-
                                                                     <form
                                                                         action="{{ route('whatsapp.chat.destroy', $user->id) }}"
                                                                         method="POST">
@@ -308,7 +301,19 @@
                                                                 </li>
                                                             </ul>
                                                         </li>
-                                                    </ul>
+                                                    </ul> --}}
+
+                                                    <form
+                                                        action="{{ route('whatsapp.chat.destroy', $user->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" onclick="return confirm('Are you sure you want to delete this chat?');"
+                                                            class="btn btn-danger float-end">
+                                                            <i
+                                                                class="bi bi-trash"></i>
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -592,9 +597,9 @@
                         <div class="modal-body">
 
                             <!--<div class="mb-3">
-                                                                <label for="recipient-name" class="col-form-label">Recipient Name:</label>
-                                                                <input type="text" class="form-control" id="recipient-name">
-                                                                </div>-->
+                                                                    <label for="recipient-name" class="col-form-label">Recipient Name:</label>
+                                                                    <input type="text" class="form-control" id="recipient-name">
+                                                                    </div>-->
 
                             <div class="mb-3">
                                 <label for="recipient-name"
