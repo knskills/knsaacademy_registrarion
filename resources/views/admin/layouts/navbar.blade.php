@@ -201,7 +201,7 @@
                 data-bs-target="#option-reply-nav" data-bs-toggle="collapse" href="#">
                 {{-- <i class="bx bx-message-rounded-add"></i> --}}
                 <i class="bi bi-chat-left"></i>
-                <span>Options</span>
+                <span>Keywords</span>
                 <i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="option-reply-nav"
