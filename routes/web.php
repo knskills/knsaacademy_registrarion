@@ -78,16 +78,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/whatsapp/getMessageTemplate/{templateName}', [WhatsappController::class, 'getMessageTemplate'])->name('whatsapp.getMessageTemplates');
 
     // Message
-    Route::post('/whatsapp/text-message', [WhatsappController::class, 'sendTextMessage'])->name('whatsapp.text-message');
-
     Route::post('/whatsapp/send-message', [WhatsappController::class, 'sendMessage'])->name('whatsapp.send-message');
 
     // Mark as a read
     Route::get('/whatsapp/mark-as-read/{messageid}', [WhatsappController::class, 'markAsRead'])->name('whatsapp.mark-as-read');
-
-    //testing msg
-    Route::get('/send-message', [PageController::class, 'sendFBMessage'])->name('sendMessage');
-    Route::get('/add-conact', [TestingController::class, 'getContacts'])->name('add-conact');
 });
 
 
@@ -103,7 +97,6 @@ Route::get('/terms', [PageController::class, 'terms'])->name('terms');
 Route::get('/privacy', [PageController::class, 'privacy'])->name('privacy');
 Route::get('/join-whatsapp', [PageController::class, 'whatsapp'])->name('join-whatsapp');
 Route::get('/registration', [PageController::class, 'registration'])->name('registration');
-// Route::get('/send-message', [PageController::class, 'sendMessage'])->name('sendMessage');
 
 // send mail
 Route::view('admin.mails.temp', 'admin.mails.temp');
@@ -117,21 +110,9 @@ Route::get('/', function () {
 
 // webhook routes
 Route::match(['get', 'post'], '/webhook', [WebhookController::class, 'setupWebhook']);
-// Route::match(['get', 'post'], '/webhook', [WhatsappController::class, 'setupWebhook']);
-
-// Mark as a read
-// Route::get('/whatsapp/send-temp-msg', [WhatsappController::class, 'sendMetaMessage'])->name('whatsapp.send-temp-msg');
-Route::get('/whatsapp/send-temp-msg', [WhatsappController::class, 'sendTempMessage'])->name('whatsapp.send-temp-msg');
 
 Broadcast::channel('chat', function ($user) {
-    // Log::info('Broadcasting to chat');
-    // Log::info($user);
     return Auth::check();
-
-    // if (Auth::check()) {
-    //     Log::info('Broadcasting to chat');
-    //     return ['id' => $user->id, 'name' => $user->name];
-    // }
 });
 
 
