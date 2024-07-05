@@ -67,9 +67,9 @@ Route::middleware(['auth'])->group(function () {
     });
 
 
-    // Whatsapp Cloud Api
-
-    //================================== Whatsapp Api ====================
+    /**
+     *  Whatsapp Cloud Api
+     */
     // profile
     Route::post('/whatsapp/update-profile', [WhatsappController::class, 'updateProfile'])->name('whatsapp.update-profile');
     Route::get('/whatsapp/setting', [WhatsappController::class, 'create'])->name('whatsapp.setting');
@@ -125,7 +125,7 @@ Route::post('/audience-2', [AudienceController::class, 'store'])->name('audience
 Route::post('/audience-3', [AudienceController::class, 'store'])->name('audience.store-3');
 
 
-// Whatsapp Cloud Api Testing
+// ===================== Testing =======================
 Route::get('/send-temp-message', [TestingController::class, 'sendTempMessage'])->name('sendMessage');
 Route::get('/get-msg-template', [TestingController::class, 'getMessageTemplate'])->name('getTemplate');
 

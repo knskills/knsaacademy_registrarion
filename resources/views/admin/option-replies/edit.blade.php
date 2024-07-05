@@ -12,7 +12,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a
                             href="{{ route('dashboard') }}">Home</a></li>
-                    <li class="breadcrumb-item">Edit reply</li>
+                    <li class="breadcrumb-item">Edit auto reply</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -22,7 +22,7 @@
                 <div class="col-lg-9 m-auto">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Reply</h5>
+                            <h5 class="card-title">Edit Auto Reply</h5>
 
                             @include('admin.layouts.messages')
 
