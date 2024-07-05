@@ -22,7 +22,7 @@
                 <div class="col-lg-9 m-auto">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Edit Auto Reply</h5>
+                            <h5 class="card-title">Auto Reply</h5>
 
                             @include('admin.layouts.messages')
 
