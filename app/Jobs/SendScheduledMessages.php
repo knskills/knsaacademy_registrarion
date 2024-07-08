@@ -140,7 +140,7 @@ class SendScheduledMessages implements ShouldQueue
                     'template_name' => null,
                     'template_type' => null,
                     'type' => 'send',
-                    'status' => null,
+                    'status' => 'sent',
                     'image' => $temp_img ?? null,
                     'phone_number' => $result['contacts'][0]['wa_id'],
                     'from' => null,

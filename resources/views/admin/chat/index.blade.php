@@ -48,6 +48,20 @@
             cursor: pointer;
         }
     </style>
+
+    <style>
+         #d_i_f {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        #demo_f {
+            max-width: 150px;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -322,174 +336,85 @@
                                         <div class="modal-body" id="chat-body">
                                             <div class="msg-body">
                                                 <ul>
-
                                                     @if ($messages->isEmpty())
-                                                        <p>No chat messages
-                                                            found.</p>
+                                                        <p>No chat messages found.</p>
                                                     @else
                                                         @php
                                                             $currentDate = null;
+                                                            $today = Carbon\Carbon::now()->format('Y-m-d');
+                                                            $yesterday = Carbon\Carbon::now()->subDay()->format('Y-m-d');
                                                         @endphp
 
                                                         @foreach ($messages as $key => $message)
                                                             @php
-                                                                $messageDate = Carbon\Carbon::parse(
-                                                                    $message->created_at,
-                                                                )->format(
-                                                                    'Y-m-d',
-                                                                );
-                                                                $today = Carbon\Carbon::now()->format(
-                                                                    'Y-m-d',
-                                                                );
-                                                                $yesterday = Carbon\Carbon::now()
-                                                                    ->subDay()
-                                                                    ->format(
-                                                                        'Y-m-d',
-                                                                    );
-
-                                                                $last = '';
-
-                                                                // if $key eqal to the count of messages the $last is returned last
-                                                                if (
-                                                                    $key +
-                                                                        1 ==
-                                                                    count(
-                                                                        $messages,
-                                                                    )
-                                                                ) {
-                                                                    $last =
-                                                                        'last';
-                                                                }
-
+                                                                $messageDate = Carbon\Carbon::parse($message->created_at)->format('Y-m-d');
+                                                                $isLast = ($key + 1 == count($messages)) ? 'last' : '';
                                                             @endphp
 
                                                             @if ($currentDate !== $messageDate)
                                                                 @php $currentDate = $messageDate; @endphp
                                                                 <li>
-                                                                    <div
-                                                                        class="divider">
-                                                                        @if ($currentDate === $today)
-                                                                            <h6>Today
-                                                                            </h6>
-                                                                        @elseif($currentDate === $yesterday)
-                                                                            <h6>Yesterday
-                                                                            </h6>
-                                                                        @else
-                                                                            <h6>{{ Carbon\Carbon::parse($currentDate)->format('M d, Y') }}
-                                                                            </h6>
-                                                                        @endif
+                                                                    <div class="divider">
+                                                                        <h6>
+                                                                            @if ($currentDate === $today)
+                                                                                Today
+                                                                            @elseif ($currentDate === $yesterday)
+                                                                                Yesterday
+                                                                            @else
+                                                                                {{ Carbon\Carbon::parse($currentDate)->format('M d, Y') }}
+                                                                            @endif
+                                                                        </h6>
                                                                     </div>
                                                                 </li>
                                                             @endif
 
-                                                            @if ($message->type == 'send')
-                                                                <li class="sender"
-                                                                    id="{{ $last }}">
-                                                                    <p>
-                                                                        {{-- @if (!empty($message->template))
-                                                                        {!!$message->template->whtsp_msg[0]['text']!!}
+                                                            <li class="{{ $message->type == 'send' ? 'sender' : 'repaly' }}" id="{{ $isLast }}">
+                                                                <p>
+                                                                    @if ($message->image)
+                                                                        <a href="{{ asset($message->image) }}" download>
+                                                                            <img src="{{ asset($message->image) }}" alt="{{ $message->image }}" style="max-width: 250px;">
+                                                                        </a>
+                                                                    @elseif($message->document)
+                                                                        <a href="{{ asset($message->document) }}" download>
+                                                                            <img src="{{ asset('admin/chat/img/doc_type.png') }}" alt="file" style="max-width: 150px;">
+                                                                        </a>
+                                                                    @endif
+                                                                    {!! nl2br(e($message->whatsapp_message)) !!}
+                                                                </p>
+                                                                <span class="time">{{ Carbon\Carbon::parse($message->created_at)->format('h:i a') }}</span>
 
-                                                                        <textarea name="" id="" cols="30" rows="10">{{$message->template->whtsp_msg[0]['text']}}</textarea>
-                                                                        @else
-                                                                        {{ $message->whatsapp_message }}
-                                                                        @endif --}}
-
-                                                                        {{-- <textarea name="" id="" cols="30" rows="10">{{ $message->whatsapp_message }}</textarea> --}}
-
-                                                                        {{-- {{ $message->whatsapp_message }} --}}
-
-                                                                        @if ($message->image)
-                                                                            <a href="{{ asset($message->image) }}"
-                                                                                download>
-                                                                                <img src="{{ asset($message->image) }}"
-                                                                                    alt="{{ $message->image }}"
-                                                                                    style="max-width: 250px;">
-                                                                            </a>
-                                                                        @elseif($message->document)
-                                                                            <a href="{{ asset($message->document) }}"
-                                                                                download>
-                                                                                <img src="{{ asset('admin/chat/img/doc_type.png') }}"
-                                                                                    alt="file"
-                                                                                    style="max-width: 150px;">
-                                                                            </a>
-
-                                                                            <br>
-                                                                        @endif
-
-                                                                        {!! nl2br(e($message->whatsapp_message)) !!}
-                                                                    </p>
-                                                                    <span
-                                                                        class="time">{{ Carbon\Carbon::parse($message->created_at)->format('h:i a') }}</span>
-
+                                                                @if ($message->type == 'send')
                                                                     @if ($message->status == 'sent')
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="16"
-                                                                            height="16"
-                                                                            fill="rgb(61, 61, 61)"
-                                                                            class="bi bi-check2"
-                                                                            viewBox="0 0 16 16">
-                                                                            <path
-                                                                                d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(61, 61, 61)" class="bi bi-check2" viewBox="0 0 16 16">
+                                                                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
                                                                         </svg>
                                                                     @elseif($message->status == 'delivered')
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="16"
-                                                                            height="16"
-                                                                            fill="rgb(61, 61, 61)"
-                                                                            class="bi bi-check2-all"
-                                                                            viewBox="0 0 16 16">
-                                                                            <path
-                                                                                d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0" />
-                                                                            <path
-                                                                                d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708" />
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(61, 61, 61)" class="bi bi-check2-all" viewBox="0 0 16 16">
+                                                                            <path d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0"/>
+                                                                            <path d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708"/>
                                                                         </svg>
                                                                     @elseif($message->status == 'read')
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="25"
-                                                                            height="25"
-                                                                            fill="rgb(52, 243, 94)"
-                                                                            class="bi bi-check2-all"
-                                                                            viewBox="0 0 25 25">
-                                                                            <path
-                                                                                d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0" />
-                                                                            <path
-                                                                                d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708" />
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="rgb(52, 243, 94)" class="bi bi-check2-all" viewBox="0 0 25 25">
+                                                                            <path d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0"/>
+                                                                            <path d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708"/>
                                                                         </svg>
                                                                     @elseif($message->status == 'failed')
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="16"
-                                                                            height="16"
-                                                                            fill="rgb(248, 40, 40)"
-                                                                            class="bi bi-ban"
-                                                                            viewBox="0 0 16 16">
-                                                                            <path
-                                                                                d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0" />
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(248, 40, 40)" class="bi bi-ban" viewBox="0 0 16 16">
+                                                                            <path d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0"/>
                                                                         </svg>
                                                                     @endif
-                                                                </li>
-                                                            @else
-                                                                <li class="repaly"
-                                                                    id="{{ $last }}">
-                                                                    <p>
-                                                                        @if ($message->image)
-                                                                            <a href="{{ asset($message->image) }}"
-                                                                                download>
-                                                                                <img src="{{ asset($message->image) }}"
-                                                                                    alt="{{ $message->image }}"
-                                                                                    style="max-width: 250px;">
-                                                                            </a>
-                                                                            <br>
-                                                                        @endif
-
-                                                                        {{ $message->whatsapp_message }}
-                                                                    </p>
-                                                                    <span
-                                                                        class="time">{{ Carbon\Carbon::parse($message->created_at)->format('h:i a') }}</span>
-                                                                </li>
-                                                            @endif
+                                                                @endif
+                                                            </li>
                                                         @endforeach
                                                     @endif
 
+                                                    <li class="sender" id="d_i_f">
+                                                        <img src="" alt="file" id="demo_f" class="img-fluid">
+                                                        <br>
+                                                        <p class="small text-muted">
+                                                            <small id="file-name">Selected doc</small>
+                                                        </p>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -514,9 +439,6 @@
                                                 <input type="file"
                                                     name="media_image"
                                                     id="upload"
-                                                    class="upload-box"
-                                                    placeholder="Upload File"
-                                                    aria-label="Upload File"
                                                     accept="image/png, image/jpeg, image/jpg, image/gif"
                                                     style="display: none;">
 
@@ -621,9 +543,9 @@
                         <div class="modal-body">
 
                             <!--<div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Recipient Name:</label>
-                                    <input type="text" class="form-control" id="recipient-name">
-                                </div>-->
+                                        <label for="recipient-name" class="col-form-label">Recipient Name:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                    </div>-->
 
                             <div class="mb-3">
                                 <label for="recipient-name"
@@ -672,7 +594,10 @@
             var lastElement = $('#last');
             // Scroll the container to the top position of the last element
             $('#chat-body').scrollTop(lastElement.position().top);
+
+            $('#d_i_f').hide();
         });
+
         $(document).ready(function() {
             $('#add-image-button').on('click', function() {
                 $('#upload').click();
@@ -708,5 +633,39 @@
         //             console.log(e.message);
         //         });
         // });
+
+        $(document).ready(function() {
+            // Image and document upload handling
+            $('#upload, #upload_file').change(function(e) {
+                var reader = new FileReader();
+                var fileName = e.target.files[0].name;
+
+                reader.onload = function(event) {
+                    $('#demo_f').attr('src', event.target.result); // Set image source for image upload
+                };
+
+                if (e.target.id === 'upload') {
+                    reader.readAsDataURL(e.target.files[0]); // Read image data
+                } else {
+                    $('#demo_f').attr('src', "{{ asset('admin/chat/img/doc_type.png') }}"); // Set document icon
+                }
+
+                // Ensure element is visible before scrolling
+                $('#d_i_f').show();
+
+                // Update file name
+                $('#file-name').text(fileName);
+
+                // Ensure the image is loaded before scrolling
+                $('#demo_f').on('load', function() {
+                    // Improved scrolling behavior with callback
+                    $('#chat-body').animate({
+                        scrollTop: $('#chat-body')[0].scrollHeight
+                    }, 500, function() {
+                        // Optional callback after scrolling is complete (e.g., focus the element)
+                    });
+                });
+            });
+        });
     </script>
 @endsection

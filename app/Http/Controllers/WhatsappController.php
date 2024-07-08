@@ -261,6 +261,7 @@ class WhatsappController extends Controller
 
     public function sendMessage(Request $request)
     {
+        Log::info($request->all());
         try {
             // Validate the request
             $request->validate([
@@ -304,14 +305,13 @@ class WhatsappController extends Controller
                     'caption' => $request->message,
                     'filename' => $file_name,
                 ];
+            }else {
+                $payload['type'] = 'text';
+                $payload['text'] = [
+                    'preview_url' => false,
+                    'body' => $request->message,
+                ];
             }
-            // else {
-            //     $payload['type'] = 'text';
-            //     $payload['text'] = [
-            //         'preview_url' => false,
-            //         'body' => $request->message,
-            //     ];
-            // }
 
             // Send the message via HTTP request
             $response = Http::withHeaders([
@@ -321,6 +321,7 @@ class WhatsappController extends Controller
 
             $data = json_decode($response->getBody(), true);
 
+            Log::info($data);
             if (isset($data['contacts'][0]['wa_id'])) {
                 $recipientId = $data['contacts'][0]['wa_id'];
                 $contactId = createContact($recipientId, $profile_name = null);
@@ -335,7 +336,7 @@ class WhatsappController extends Controller
                             'template_name' => null,
                             'template_type' => null,
                             'type' => 'send',
-                            'status' => null,
+                            'status' => 'sent',
                             'image' => $request->hasFile('media_image') ? $imagePath : null,
                             'document' => $request->hasFile('doc_file') ? $docPath : null,
                             'phone_number' => $recipientId,
