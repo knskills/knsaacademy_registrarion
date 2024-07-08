@@ -108,7 +108,7 @@ class TestingController extends Controller
         Log::info($response->json());
         if ($response->successful()) {
             return response()->json([
-                'response' => $response
+                'response' => $response->json()
             ]);
         } else {
             return response()->json([

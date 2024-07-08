@@ -299,17 +299,18 @@ function getMessageTemplate($templateName = null, $header_img_loc = null)
                             ]
                         ]
                     ];
-                }elseif($component['format'] == "TEXT"){
-                    $components[] = [
-                        'type' => $type,
-                        'parameters' => [
-                            [
-                                'type' => strtolower($component['format']),
-                                strtolower($component['format']) => ['text' => $component['text']]
-                            ]
-                        ]
-                    ];
                 }
+                // elseif($component['format'] == "TEXT"){
+                //     $components[] = [
+                //         'type' => $type,
+                //         'parameters' => [
+                //             [
+                //                 'type' => strtolower($component['format']),
+                //                 strtolower($component['format']) => ['text' => $component['text']]
+                //             ]
+                //         ]
+                //     ];
+                // }
             } elseif ($type === "body" && isset($component['text'])) {
                 $component['text'] = html_entity_decode($component['text'], ENT_QUOTES, 'UTF-8');
                 $body_params = $component['example']['body_text'][0] ?? [];
