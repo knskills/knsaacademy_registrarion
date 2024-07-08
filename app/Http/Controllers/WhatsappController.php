@@ -261,7 +261,6 @@ class WhatsappController extends Controller
 
     public function sendMessage(Request $request)
     {
-        Log::info($request->all());
         try {
             // Validate the request
             $request->validate([
@@ -293,13 +292,9 @@ class WhatsappController extends Controller
                 $doc = $request->file('doc_file');
                 $docName = time() . '_' . $doc->getClientOriginalName();
                 $file_name = $doc->getClientOriginalName();
-                $docPath = 'whatsapp/documents/' . $docName;
                 $doc->move(public_path('whatsapp/documents/'), $docName);
 
                 $docUrl = asset('whatsapp/documents/' . $docName);
-                // Log::info($docUrl);
-
-                // $docUrl = 'https://registration.knsacademy.in/assets/img/learning/5.jpeg';
 
                 $payload['type'] = 'document';
                 $payload['document'] = [
