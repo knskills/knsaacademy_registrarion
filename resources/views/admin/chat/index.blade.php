@@ -374,10 +374,12 @@
                                                                         <a href="{{ asset($message->image) }}" download>
                                                                             <img src="{{ asset($message->image) }}" alt="{{ $message->image }}" style="max-width: 250px;">
                                                                         </a>
+                                                                        <br>
                                                                     @elseif($message->document)
                                                                         <a href="{{ asset($message->document) }}" download>
                                                                             <img src="{{ asset('admin/chat/img/doc_type.png') }}" alt="file" style="max-width: 150px;">
                                                                         </a>
+                                                                        <br>
                                                                     @endif
                                                                     {!! nl2br(e($message->whatsapp_message)) !!}
                                                                 </p>
