@@ -85,7 +85,6 @@
                     {{ session('error') }}
                 </div>
             @endif
-
         </div>
 
         <!-- char-area -->
@@ -308,7 +307,8 @@
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" onclick="return confirm('Are you sure you want to delete this chat?');"
+                                                        <button type="submit"
+                                                            onclick="return confirm('Are you sure you want to delete this chat?');"
                                                             class="btn btn-danger float-end">
                                                             <i
                                                                 class="bi bi-trash"></i>
@@ -405,6 +405,14 @@
                                                                                     alt="{{ $message->image }}"
                                                                                     style="max-width: 250px;">
                                                                             </a>
+                                                                        @elseif($message->document)
+                                                                            <a href="{{ asset($message->document) }}"
+                                                                                download>
+                                                                                <img src="{{ asset('admin/chat/img/doc_type.png') }}"
+                                                                                    alt="file"
+                                                                                    style="max-width: 150px;">
+                                                                            </a>
+
                                                                             <br>
                                                                         @endif
 
@@ -513,9 +521,9 @@
                                                     style="display: none;">
 
                                                 <input type="file"
-                                                name="doc_file"
-                                                id="upload_file"
-                                                style="display: none;">
+                                                    name="doc_file"
+                                                    id="upload_file"
+                                                    style="display: none;">
 
                                                 <button type="submit">
                                                     <i class="fa fa-paper-plane"
@@ -613,9 +621,9 @@
                         <div class="modal-body">
 
                             <!--<div class="mb-3">
-                                                                    <label for="recipient-name" class="col-form-label">Recipient Name:</label>
-                                                                    <input type="text" class="form-control" id="recipient-name">
-                                                                    </div>-->
+                                    <label for="recipient-name" class="col-form-label">Recipient Name:</label>
+                                    <input type="text" class="form-control" id="recipient-name">
+                                </div>-->
 
                             <div class="mb-3">
                                 <label for="recipient-name"
@@ -646,7 +654,8 @@
         </div>
         <!--End New Chat -->
 
-    </main><!-- End #main -->
+    </main>
+    <!-- End #main -->
 @endsection
 
 @section('scripts')

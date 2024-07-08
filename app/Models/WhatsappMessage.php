@@ -18,6 +18,7 @@ class WhatsappMessage extends Model
         'template_id',
         'whatsapp_message',
         'image',
+        'document',
         'template_name',
         'template_type',
         'type',

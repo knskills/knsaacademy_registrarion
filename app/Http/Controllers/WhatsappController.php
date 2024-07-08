@@ -292,9 +292,11 @@ class WhatsappController extends Controller
                 $doc = $request->file('doc_file');
                 $docName = time() . '_' . $doc->getClientOriginalName();
                 $file_name = $doc->getClientOriginalName();
+                $docPath = 'whatsapp/documents/' . $docName;
                 $doc->move(public_path('whatsapp/documents/'), $docName);
 
                 $docUrl = asset('whatsapp/documents/' . $docName);
+                // $docUrl = 'https://registration.knsacademy.in/assets/img/learning/5.jpeg';
 
                 $payload['type'] = 'document';
                 $payload['document'] = [
@@ -335,6 +337,7 @@ class WhatsappController extends Controller
                             'type' => 'send',
                             'status' => null,
                             'image' => $request->hasFile('media_image') ? $imagePath : null,
+                            'document' => $request->hasFile('doc_file') ? $docPath : null,
                             'phone_number' => $recipientId,
                             'from' => null,
                             'recipient_id' => $recipientId,
