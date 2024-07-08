@@ -296,7 +296,8 @@ class WhatsappController extends Controller
                 $docPath = 'whatsapp/documents/' . $docName;
                 $doc->move(public_path('whatsapp/documents/'), $docName);
 
-                $docUrl = asset('whatsapp/docs/' . $docName);
+                $docUrl = asset('whatsapp/documents/' . $docName);
+                // Log::info($docUrl);
 
                 // $docUrl = 'https://registration.knsacademy.in/assets/img/learning/5.jpeg';
 
