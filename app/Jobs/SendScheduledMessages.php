@@ -125,18 +125,17 @@ class SendScheduledMessages implements ShouldQueue
             $messages = $result['messages'];
 
             foreach ($messages as $message) {
+                $recipient_id = $result['contacts'][0]['wa_id'];
+                $profile_name = $result['contacts'][0]['profile']['name'] ?? null;
 
-                $contact = WhatsappChatContact::updateOrCreate(
-                    ['number' => $result['contacts'][0]['wa_id']],
-                    ['name' => null]
-                );
+                $contact_id = createContact($recipient_id, $profile_name);
 
                 // Fetch the existing message if it exists
                 $existingMessage = WhatsappMessage::where('recipient_id', $result['contacts'][0]['wa_id'])->whereNotNull('profile_name')->first();
 
                 // Prepare the attributes for update or create
                 $attributes = [
-                    'contact_id' => $contact->id,
+                    'contact_id' => $contact_id,
                     'whatsapp_message' => $modifiedMessage ?? 'Image Message',
                     'template_name' => null,
                     'template_type' => null,
