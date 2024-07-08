@@ -210,7 +210,7 @@
                 <li>
                     <a href="{{ route('auto-reply-options.index') }}"
                         class="{{ Route::currentRouteNamed('auto-reply-options.index') ? 'active' : '' }}">
-                        <i class="bi bi-circle"></i><span>Messages</span>
+                        <i class="bi bi-circle"></i><span>Keywords</span>
                     </a>
                 </li>
                 <li>
