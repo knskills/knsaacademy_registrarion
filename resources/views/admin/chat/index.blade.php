@@ -509,8 +509,13 @@
                                                     class="upload-box"
                                                     placeholder="Upload File"
                                                     aria-label="Upload File"
-                                                    {{-- accept="image/png, image/jpeg, image/jpg, image/gif" --}}
+                                                    accept="image/png, image/jpeg, image/jpg, image/gif"
                                                     style="display: none;">
+
+                                                <input type="file"
+                                                name="doc_file"
+                                                id="upload_file"
+                                                style="display: none;">
 
                                                 <button type="submit">
                                                     <i class="fa fa-paper-plane"
@@ -527,11 +532,22 @@
                                                             <img class="img-fluid"
                                                                 src="https://mehedihtml.com/chatbox/assets/img/upload.svg"
                                                                 alt="image title">
-                                                            add image
+                                                            Add image
                                                         </span>
                                                     </div>
 
-                                                    <select
+                                                    <div
+                                                        class="button-wrapper">
+                                                        <span class="label"
+                                                            id="add-doc-button">
+                                                            <img class="img-fluid"
+                                                                src="https://mehedihtml.com/chatbox/assets/img/upload.svg"
+                                                                alt="doc">
+                                                            Add doc
+                                                        </span>
+                                                    </div>
+
+                                                    {{-- <select
                                                         class="form-control"
                                                         id="exampleFormControlSelect1">
                                                         <option>Select
@@ -541,7 +557,7 @@
                                                             1</option>
                                                         <option>Template
                                                             2</option>
-                                                    </select>
+                                                    </select> --}}
 
                                                     <div class="add-apoint">
                                                         <a href="#"
@@ -651,6 +667,10 @@
         $(document).ready(function() {
             $('#add-image-button').on('click', function() {
                 $('#upload').click();
+            });
+
+            $('#add-doc-button').on('click', function() {
+                $('#upload_file').click();
             });
 
             // console.log('Echo configuration:', window.Echo);

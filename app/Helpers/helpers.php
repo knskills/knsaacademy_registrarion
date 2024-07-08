@@ -381,11 +381,12 @@ function replacePlaceholders($text, $parameters)
  */
 function sendTempMessage($template, $phone, $replacements = null)
 {
-    // Remove extra characters from the phone number
-    $phone = preg_replace('/\D/', '', $phone); // Remove any non-digit characters
-    if (strlen($phone) > 10) {
-        $phone = substr($phone, -10); // Keep only the last 10 digits
-    }
+    // Log::info('send template');
+    // // Remove extra characters from the phone number
+    // $phone = preg_replace('/\D/', '', $phone); // Remove any non-digit characters
+    // if (strlen($phone) > 10) {
+    //     $phone = substr($phone, -10); // Keep only the last 10 digits
+    // }
 
     // Get the template content
     $template_content = $template->template_content;
