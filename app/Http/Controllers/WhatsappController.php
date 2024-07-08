@@ -261,6 +261,7 @@ class WhatsappController extends Controller
 
     public function sendMessage(Request $request)
     {
+        Log::info($request->all());
         try {
             // Validate the request
             $request->validate([
@@ -288,13 +289,31 @@ class WhatsappController extends Controller
                     'link' => $imageUrl,
                     'caption' => $request->message,
                 ];
-            } else {
-                $payload['type'] = 'text';
-                $payload['text'] = [
-                    'preview_url' => false,
-                    'body' => $request->message,
+            }if ($request->hasFile('doc_file')) {
+                $doc = $request->file('doc_file');
+                $docName = time() . '_' . $doc->getClientOriginalName();
+                $file_name = $doc->getClientOriginalName();
+                $docPath = 'whatsapp/documents/' . $docName;
+                $doc->move(public_path('whatsapp/documents/'), $docName);
+
+                $docUrl = asset('whatsapp/docs/' . $docName);
+
+                // $docUrl = 'https://registration.knsacademy.in/assets/img/learning/5.jpeg';
+
+                $payload['type'] = 'document';
+                $payload['document'] = [
+                    'link' => $docUrl,
+                    'caption' => $request->message,
+                    'filename' => $file_name,
                 ];
             }
+            // else {
+            //     $payload['type'] = 'text';
+            //     $payload['text'] = [
+            //         'preview_url' => false,
+            //         'body' => $request->message,
+            //     ];
+            // }
 
             // Send the message via HTTP request
             $response = Http::withHeaders([
