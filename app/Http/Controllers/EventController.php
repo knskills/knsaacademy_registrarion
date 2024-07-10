@@ -58,11 +58,12 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+        Log::info($request->all());
         try {
             $validator = Validator::make($request->all(), [
                 'event_name' => 'required',
                 'youtube_link' => 'nullable',
-                'price' => 'nullable',
+                'price' => 'required',
                 'payment_link' => 'nullable',
                 'is_active' => 'nullable',
                 'whatsapp_link' => 'nullable',
@@ -73,44 +74,29 @@ class EventController extends Controller
                 Log::error($validator->errors());
             }
 
-            // $event = new Event();
-            // $event->event_name = $request->event_name;
-            // $event->youtube_link = $request->youtube_link;
-            // $event->button_text = $request->button_text;
-            // $event->price = $request->price;
-            // $event->payment_link = $request->payment_link;
-            // $event->whatsapp_link = $request->whatsapp_link;
-            // $event->event_date = $request->event_date;
-            // $event->event_time = $request->event_time;
-            // $event->event_link = $request->event_link;
-            // $event->event_description = $request->event_description;
-            // $event->is_active = $request->is_active == 'on' ? 1 : 0;
-            // $event->event_image = $request->event_image;
-            // $event->save();
-
-            // create slug using name of event convert small leter and space replace with _
-            $slug = Str::slug($request->event_name, '_');
-            $event = Event::create([
-                'event_name' => $request->event_name,
-                'youtube_link' => $request->youtube_link,
-                'button_text' => $request->button_text,
-                'price' => $request->price,
-                'payment_link' => $request->payment_link,
-                'whatsapp_link' => $request->whatsapp_link,
-                'event_date' => $request->event_date,
-                'event_start_time' => $request->event_start_time,
-                'event_end_time' => $request->event_end_time,
-                'event_link' => $request->event_link,
-                'event_description' => $request->event_description,
-                'is_active' => $request->is_active == 'on' ? 1 : 0,
-                'event_image' => $request->event_image,
-                'event_type' => $request->event_type,
-                'event_language' => $request->event_language,
-                'event_duration' => $request->event_duration,
-                'timer_time' => $request->timer_time,
-                'original_price' => $request->original_price,
-                'slug' => $slug,
-            ]);
+            // // create slug using name of event convert small leter and space replace with _
+            // $slug = Str::slug($request->event_name, '_');
+            // $event = Event::create([
+            //     'event_name' => $request->event_name,
+            //     'youtube_link' => $request->youtube_link,
+            //     'button_text' => $request->button_text,
+            //     'price' => $request->price,
+            //     'payment_link' => $request->payment_link,
+            //     'whatsapp_link' => $request->whatsapp_link,
+            //     'event_date' => $request->event_date,
+            //     'event_start_time' => $request->event_start_time,
+            //     'event_end_time' => $request->event_end_time,
+            //     'event_link' => $request->event_link,
+            //     'event_description' => $request->event_description,
+            //     'is_active' => $request->is_active == 'on' ? 1 : 0,
+            //     'event_image' => $request->event_image,
+            //     'event_type' => $request->event_type,
+            //     'event_language' => $request->event_language,
+            //     'event_duration' => $request->event_duration,
+            //     'timer_time' => $request->timer_time,
+            //     'original_price' => $request->original_price,
+            //     'slug' => $slug,
+            // ]);
 
             return redirect()->route('events.index')->with('success', 'Event created successfully');
 
