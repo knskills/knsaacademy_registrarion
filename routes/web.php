@@ -15,6 +15,7 @@ use App\Http\Controllers\WhatsappController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\WebhookController;
 use App\Http\Controllers\TestingController;
+use App\Http\Controllers\RazorPayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -131,3 +132,6 @@ Route::get('/get-msg-template', [TestingController::class, 'getMessageTemplate']
 
 // Open AI
 Route::get('/opnai-chat', [TestingController::class, 'askToChatGpt'])->name('opnai-chat');
+
+// payment
+Route::resource('razorpay', RazorPayController::class);

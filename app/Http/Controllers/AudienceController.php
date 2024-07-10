@@ -68,7 +68,7 @@ class AudienceController extends Controller
      */
     public function store(Request $request)
     {
-        // Log::info($request->all());
+        Log::info($request->all());
 
         try {
             $valitor = Validator::make($request->all(), [
@@ -91,6 +91,8 @@ class AudienceController extends Controller
             // $audience = Audience::where('email', $request->email)->orWhere('phone', $request->phone)->first();
 
             $audience = Audience::where('email', $request->email)->where('phone', $request->phone)->where('event_name', $request->event_name)->first();
+            $event = Event::where('event_name', $request->event_name)->first();
+
             $result = null;
             $modifiedMessage = null;
 
@@ -204,26 +206,29 @@ class AudienceController extends Controller
 
             // return redirect()->away('https://rzp.io/l/networkmarketingkyakyukaise');
 
-            // Get the current route name
-            $routeName = Route::currentRouteName();
+            // // Get the current route name
+            // $routeName = Route::currentRouteName();
 
-            // Apply conditions based on the route name
-            switch ($routeName) {
-                // case 'lntm1':
-                //     return redirect()->away('https://rzp.io/l/networkmarketingkyakyukaise');
-                case 'audience.store-2':
-                    return redirect()->away('https://rzp.io/l/networkmarketingkyakyukaise2');
-                case 'audience.store-3':
-                    return redirect()->away('https://rzp.io/l/networkmarketingkyakyukaise3');
-                default:
-                    // Handle the case where the route name doesn't match any of the expected ones
-                    // For example, you could redirect to a default URL or return an error response
-                    return redirect()->away('https://rzp.io/l/networkmarketingkyakyukaise2');
-            }
+            // // Apply conditions based on the route name
+            // switch ($routeName) {
+            //     // case 'lntm1':
+            //     //     return redirect()->away('https://rzp.io/l/networkmarketingkyakyukaise');
+            //     case 'audience.store-2':
+            //         return redirect()->away('https://rzp.io/l/networkmarketingkyakyukaise2');
+            //     case 'audience.store-3':
+            //         return redirect()->away('https://rzp.io/l/networkmarketingkyakyukaise3');
+            //     default:
+            //         // Handle the case where the route name doesn't match any of the expected ones
+            //         // For example, you could redirect to a default URL or return an error response
+            //         return redirect()->away('https://rzp.io/l/networkmarketingkyakyukaise2');
+            // }
 
 
 
-            // return redirect()->route('join-whatsapp');
+            return redirect()->route('razorpay.index', [
+                'audience_id' => $audience->id,
+                'event_id' => $event->id,
+            ]);
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');
