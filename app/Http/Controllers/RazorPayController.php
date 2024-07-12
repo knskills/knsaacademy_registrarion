@@ -23,7 +23,8 @@ class RazorPayController extends Controller
         $audience_id = $request->audience_id;
         $event_id = $request->event_id;
         $event = Event::find($event_id);
-        $amount = $request->price ?? 10;
+        Log::info($event);
+        $amount = $event->price ?? 10;
         $currency = 'INR';
         return view('web.payments.razorpay', compact('audience_id', 'event_id', 'amount', 'currency'));
     }

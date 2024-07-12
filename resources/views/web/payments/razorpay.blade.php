@@ -139,14 +139,17 @@
                             <form action="{{ route('razorpay.store') }}"
                                 method="POST">
                                 @csrf
-                                <input type="hidden" name="audiance_id"
-                                    id="audiance_id" value="491">
+                                <input type="hidden" name="audience_id"
+                                    id="audience_id"
+                                    value="{{ $audience_id }}">
                                 <input type="hidden" name="event_id"
-                                    id="event_id" value="5">
+                                    id="event_id"
+                                    value="{{ $event_id }}">
                                 <script src="https://checkout.razorpay.com/v1/checkout.js"
-                                    data-key="{{ env('RAZORPAY_KEY') }}" data-amount="1000"
-                                    data-buttontext="Pay 10 INR" data-name="https://knsacademy.in/"
-                                    data-description="Rozerpay"
+                                    data-key="{{ env('RAZORPAY_KEY') }}"
+                                    data-amount="{{ $amount * 100 }}"
+                                    data-buttontext="Pay {{ (int)$amount }} INR"
+                                    data-name="https://knsacademy.in/" data-description="Rozerpay"
                                     data-image="https://knsacademy.in/store/1/log%20knsa%20we.png"
                                     data-prefill.name="name" data-prefill.email="email"
                                     data-theme.color="#1d812f"></script>

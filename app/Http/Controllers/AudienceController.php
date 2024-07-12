@@ -68,7 +68,7 @@ class AudienceController extends Controller
      */
     public function store(Request $request)
     {
-        Log::info($request->all());
+        // Log::info($request->all());
 
         try {
             $valitor = Validator::make($request->all(), [
@@ -112,26 +112,6 @@ class AudienceController extends Controller
                 if ($template) {
                     $result = sendTempMessage($template, $request->phone, $para = null);
                 }
-
-                // $audience = Audience::where('id', $audience->id)->first();
-                // $messageTemp = MessageTemplate::where('name', 'Welcome whatsapp')->first();
-                // $message = $messageTemp->message;
-                // $message_type = $messageTemp->type;
-
-                // // replace variables in message
-                // $message = str_replace("{name}", $audience->name, $message);
-                // $message = str_replace("{email}", $audience->email, $message);
-                // $message = str_replace("{phone}", $audience->phone, $message);
-                // // $message = str_replace("{event}", $audience->event->name, $message);
-                // // $message = str_replace("{date}", $audience->event->date, $message);
-                // // $message = str_replace("{time}", $audience->event->time, $message);
-
-                // // // send message
-                // // if ($message_type == 'whatsapp') {
-                // //     sendWhatsAppMessage($audience->phone, $message);
-                // // } else {
-                // //     sendSms($audience->phone, $message);
-                // // }
             } else {
                 return back()->with('error', 'You are already registered for this event');
 
@@ -203,27 +183,6 @@ class AudienceController extends Controller
                         ->subject('Audience Registration');
                 });
             }
-
-            // return redirect()->away('https://rzp.io/l/networkmarketingkyakyukaise');
-
-            // // Get the current route name
-            // $routeName = Route::currentRouteName();
-
-            // // Apply conditions based on the route name
-            // switch ($routeName) {
-            //     // case 'lntm1':
-            //     //     return redirect()->away('https://rzp.io/l/networkmarketingkyakyukaise');
-            //     case 'audience.store-2':
-            //         return redirect()->away('https://rzp.io/l/networkmarketingkyakyukaise2');
-            //     case 'audience.store-3':
-            //         return redirect()->away('https://rzp.io/l/networkmarketingkyakyukaise3');
-            //     default:
-            //         // Handle the case where the route name doesn't match any of the expected ones
-            //         // For example, you could redirect to a default URL or return an error response
-            //         return redirect()->away('https://rzp.io/l/networkmarketingkyakyukaise2');
-            // }
-
-
 
             return redirect()->route('razorpay.index', [
                 'audience_id' => $audience->id,
