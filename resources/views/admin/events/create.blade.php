@@ -74,11 +74,10 @@
                                     <div class="col-md-8">
                                         <select name="event_type"
                                             id="event_type"
-                                            value="{{ old('event_type') }}"
                                             class="form-select">
-                                            <option value="free">Free
-                                            </option>
                                             <option value="paid">Paid
+                                            </option>
+                                            <option value="free">Free
                                             </option>
                                         </select>
                                     </div>
@@ -125,7 +124,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-md-6">
                                 <div class="row mb-2">
                                     <label
@@ -142,8 +140,8 @@
                                 </div>
                             </div>
 
-                            <!--price-->
-                            <div class="col-md-6">
+                            <!-- Price -->
+                            <div class="col-md-6" id="priceContainer">
                                 <div class="row mb-2">
                                     <label
                                         class="col-md-4 col-form-label">Price</label>
@@ -157,8 +155,8 @@
                                 </div>
                             </div>
 
-                            <!-- original_price -->
-                            <div class="col-md-6">
+                            <!-- Original Price -->
+                            <div class="col-md-6" id="originalPriceContainer">
                                 <div class="row mb-2">
                                     <label
                                         class="col-md-4 col-form-label">Original
@@ -704,6 +702,24 @@
                 }
             });
         });
+        $(document).ready(function() {
+            // Initially hide price and original price containers if event type is 'free'
+            if ($('#event_type').val() === 'free') {
+                $('#priceContainer').hide();
+                $('#originalPriceContainer').hide();
+            }
+
+            // Handle change event of event type select
+            $('#event_type').change(function() {
+                if ($(this).val() === 'free') {
+                    $('#priceContainer').hide();
+                    $('#originalPriceContainer').hide();
+                } else {
+                    $('#priceContainer').show();
+                    $('#originalPriceContainer').show();
+                }
+            });
+        });
     </script>
 
     <script>
@@ -1076,18 +1092,19 @@
             </div>`;
                 $('.learn_will-container').append(newItem);
                 updatewillLearnRemoveButtons
-            (); // Update remove button status
+                    (); // Update remove button status
             });
 
             // Remove item
             $(document).on('click', '.remove-learn_will', function() {
                 $(this).closest('.learn_will-row')
-            .remove(); // Remove the closest row
+                    .remove(); // Remove the closest row
                 updatewillLearnRemoveButtons
-            (); // Update remove button status
+                    (); // Update remove button status
             });
 
-            updatewillLearnRemoveButtons(); // Initial check on page load
+            updatewillLearnRemoveButtons
+                (); // Initial check on page load
         });
     </script>
 @endsection

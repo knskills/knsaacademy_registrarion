@@ -22,7 +22,16 @@ class Payment extends Model
         'receipt_number',
         'notes',
         'amount',
-        'payment_id'
+        'payment_id',
+        'payment_gatway',
+        'payment_data'
+    ];
+
+    /**
+     * Cast
+     */
+    protected $casts = [
+        'payment_data' => 'array'
     ];
 
     /**
@@ -41,5 +50,13 @@ class Payment extends Model
     public function audience()
     {
         return $this->belongsTo(Audience::class);
+    }
+
+    /**
+     * Get Payment detail using payment_id from RazorPay
+     */
+    public function razarpay()
+    {
+        return $this->belongsTo(RazorPay::class, 'payment_id');
     }
 }

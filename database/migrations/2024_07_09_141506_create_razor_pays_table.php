@@ -16,12 +16,14 @@ return new class extends Migration
             $table->string('razorpay_order_id')->nullable();
             $table->string('razorpay_payment_id')->nullable();
             $table->string('razorpay_signature')->nullable();
+            $table->string('payment_method')->nullable();
             $table->string('user_id')->nullable();
             $table->double('amount', 8, 2)->nullable();
             $table->string('currency')->nullable();
             $table->string('receipt')->nullable();
             $table->string('status')->nullable();
             $table->json('notes')->nullable();
+            $table->json('payment_detail')->nullable();
             $table->timestamps();
         });
     }

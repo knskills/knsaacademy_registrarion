@@ -49,7 +49,8 @@ class RazorPayController extends Controller
         $payment = $api->payment->fetch($request->razorpay_payment_id);
         $paymentArray = $payment->toArray();
         $receipt_number = 'KNSA' . rand(1000, 9999);
-
+        $payment_method = $paymentArray['method'];
+        $payment_detail = $paymentArray[$payment_method];
         Log::info($paymentArray);
 
         try {
@@ -71,28 +72,30 @@ class RazorPayController extends Controller
 
             $amount = $responseArray['amount'] / 100;
 
-            // save payment info
+            // save rozarpay info
             $razorpay = new RazorPay();
             $razorpay->razorpay_order_id = $responseArray['id'];
-            // $razorpay->payment_id = $payment->id;
+            $razorpay->razorpay_payment_id = $request->razorpay_payment_id;
             $razorpay->amount = $amount;
             $razorpay->currency = $payment->currency;
             $razorpay->status = $responseArray['status'];
+            $payment->payment_method = $payment_method;
+            $payment->payment_detail = $payment_detail;
             $razorpay->save();
 
             // save payment details
             $payment = new Payment();
             $payment->audience_id = $request->audiance_id;
             $payment->event_id = $request->event_id;
-            $payment->payment_method = 'online';
+            $payment->payment_method = $payment_method;
             $payment->payment_date = now();
             $payment->receipt_number = $receipt_number;
             $payment->status = $razorpay->status;
-            $payment->amount =  $razorpay->amount;
+            $payment->amount = $razorpay->amount;
             $payment->payment_id = $razorpay->id;
+            $payment->payment_gatway = 'razorpay';
+            $payment->payment_data = $payment_detail;
             $payment->save();
-
-
 
             return response()->json([
                 'success' => true,

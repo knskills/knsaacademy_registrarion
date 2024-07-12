@@ -16,12 +16,31 @@ class RazorPay extends Model
     protected $fillable = [
         'razorpay_order_id',
         'razorpay_payment_id',
+        'payment_method',
         'razorpay_signature',
         'user_id',
         'amount',
         'currency',
         'status',
         'receipt',
-        'notes'
+        'notes',
+        'payment_detail',
     ];
+
+    /**
+     * Cast
+     */
+    protected $casts = [
+        'payment_detail' => 'array',
+        'notes' => 'array',
+    ];
+
+    /**
+     * Get whatsapp payment
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function getPaymentDetail()
+    {
+        return $this->hasOne(Payment::class, 'id', 'payment_id');
+    }
 }

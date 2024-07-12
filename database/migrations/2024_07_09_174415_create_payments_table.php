@@ -15,12 +15,15 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('audience_id')->nullable();
             $table->unsignedBigInteger('event_id')->nullable();
+            $table->unsignedBigInteger('payment_id')->nullable();
+            $table->string('payment_gatway')->nullable();
             $table->string('payment_method');
             $table->decimal('amount', 8, 2);
             $table->date('payment_date');
             $table->string('receipt_number')->nullable();
-            $table->string('payment_id')->nullable();
             $table->text('notes')->nullable();
+            $table->string('status')->nullable();
+            $table->json('payment_data')->nullable();
             $table->foreign('audience_id')->references('id')->on('audiences')->onDelete('set null');
             $table->foreign('event_id')->references('id')->on('events')->onDelete('set null');
             $table->timestamps();
