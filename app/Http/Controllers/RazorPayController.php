@@ -19,11 +19,9 @@ class RazorPayController extends Controller
      */
     public function index(Request $request)
     {
-        Log::info($request->all());
         $audience_id = $request->audience_id;
         $event_id = $request->event_id;
         $event = Event::find($event_id);
-        Log::info($event);
         $amount = $event->price ?? 10;
         $currency = 'INR';
         return view('web.payments.razorpay', compact('audience_id', 'event_id', 'amount', 'currency'));
@@ -44,7 +42,7 @@ class RazorPayController extends Controller
      */
     public function store(Request $request)
     {
-        Log::info($request->all());
+        // Log::info($request->all());
         $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
 
         $payment = $api->payment->fetch($request->razorpay_payment_id);
@@ -52,7 +50,7 @@ class RazorPayController extends Controller
         $receipt_number = 'KNSA' . rand(1000, 9999);
         $payment_method = $paymentArray['method'];
         $payment_detail = $paymentArray[$payment_method];
-        Log::info($paymentArray);
+        // Log::info($paymentArray);
 
         try {
             $response = $api->order->create(
@@ -69,7 +67,7 @@ class RazorPayController extends Controller
 
             // Convert the response to an array
             $responseArray = $response->toArray();
-            Log::info($responseArray);
+            // Log::info($responseArray);
 
             $amount = $responseArray['amount'] / 100;
 
