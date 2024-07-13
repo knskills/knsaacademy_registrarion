@@ -11,7 +11,7 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="{{ route('events.index') }}">Home</a>
+                        <a href="{{ route('ad-events.index') }}">Home</a>
                     </li>
                     <li class="breadcrumb-item">Event List</li>
                 </ol>
@@ -38,7 +38,7 @@
                                         <tr>
                                             <th>Sr No.</th>
                                             <th>Event</th>
-                                            <td>Type</td>
+                                            <th>Type</th>
                                             <th>Event Date</th>
                                             <th>Start Time</th>
                                             <th>End Time</th>
@@ -69,13 +69,13 @@
                                                 <td>
                                                     {{-- <a href="{{ route('admin.audiance.show', $item->id) }}"
                                                     class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a> --}}
-                                                    <a href="{{ route('events.edit', $item->id) }}"
+                                                    <a href="{{ route('ad-events.edit', $item->id) }}"
                                                         class="btn btn-warning btn-xs">
                                                         <i
                                                             class="bi bi-pencil"></i>
                                                     </a>
                                                     <form
-                                                        action="{{ route('events.destroy', $item->id) }}"
+                                                        action="{{ route('ad-events.destroy', $item->id) }}"
                                                         method="POST"
                                                         style="display: inline">
                                                         @csrf

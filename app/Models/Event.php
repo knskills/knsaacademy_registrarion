@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
     use HasFactory;
-
     /**
-     * Mass assignable attributes.
+     * Mass assignable
+     * @var array
      */
     protected $fillable = [
         'event_name',
@@ -30,7 +30,6 @@ class Event extends Model
         'is_active',
         'whatsapp_link',
         'whstp_temp_name',
-        'event_type',
         'event_language',
         'event_duration',
         'timer_time',
@@ -43,9 +42,16 @@ class Event extends Model
         return 'slug';
     }
 
-    // convert string to date format event_date
     public function setEventDateAttribute($value)
     {
         $this->attributes['event_date'] = date('Y-m-d', strtotime($value));
+    }
+
+    /**
+     * Get Event content
+     */
+    public function eventContent()
+    {
+        return $this->hasOne(EventContent::class, 'event_id', 'id');
     }
 }

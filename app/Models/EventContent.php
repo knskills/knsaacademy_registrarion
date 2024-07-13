@@ -9,10 +9,6 @@ class EventContent extends Model
 {
     use HasFactory;
 
-    /**
-     * Mass assignable
-     * @var array
-     */
     protected $fillable = [
         'event_id',
         'title',
@@ -55,12 +51,17 @@ class EventContent extends Model
         'review_data',
     ];
 
-    /**
-     * Casts
-     * @var array
-     */
     protected $casts = [
         'contanor2_data' => 'array',
+        'contanor3_data' => 'array',
+        'contanor4_data' => 'array',
+        'contanor5_data' => 'array',
+        'contanor6_data' => 'array',
+        'trainer_data' => 'array',
+        'bonus_data' => 'array',
+        'learn_data' => 'array',
+        'achivers_data' => 'array',
+        'review_data' => 'array',
     ];
 
     /**
@@ -68,6 +69,6 @@ class EventContent extends Model
      */
     public function event()
     {
-        return $this->belongsTo(Event::class);
+        return $this->belongsTo(Event::class, 'event_id', 'id');
     }
 }

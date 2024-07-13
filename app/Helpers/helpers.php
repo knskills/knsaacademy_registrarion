@@ -288,7 +288,7 @@ function getMessageTemplate($templateName = null, $header_img_loc = null)
         foreach ($item['components'] as $component) {
             $type = strtolower($component['type']);
             if ($type === "header") {
-                if($component['format'] == "IMAGE" && isset($component['example']['header_handle'][0])){
+                if ($component['format'] == "IMAGE" && isset($component['example']['header_handle'][0])) {
                     $header_file_url = asset($header_img_loc);
                     $components[] = [
                         'type' => $type,
@@ -457,4 +457,17 @@ function createContact($phone_number, $profile_name)
     );
 
     return $contact->id;
+}
+
+
+/**
+ * Upload file
+ */
+function uploadFile($file, $path)
+{
+    $fileName = time() . '_' . $file->getClientOriginalName();
+    $newPath = $path . $fileName;
+    $file->move(public_path($path), $fileName);
+
+    return $newPath;
 }

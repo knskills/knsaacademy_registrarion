@@ -49,7 +49,8 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('events.store') }}" method="post">
+                    <form action="{{ route('ad-events.store') }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -344,13 +345,13 @@
                                             Section</b>
                                     </h6>
                                     <div class="col-12 mt-2">
-                                        <label for="contanor1_heading"
+                                        <label for="contanor2_heading"
                                             class="form-label">Heading</label>
                                         <input type="text"
                                             class="form-control"
-                                            name="contanor1_heading"
+                                            name="contanor2_heading"
                                             placeholder="Enter heading text"
-                                            value="{{ old('contanor1_heading') }}">
+                                            value="{{ old('contanor2_heading') }}">
                                     </div>
 
                                     <div class="col-12 mt-2"

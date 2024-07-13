@@ -51,7 +51,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/audience/import', [AudienceController::class, 'import'])->name('audiences.import');
     Route::get('/get-audience', [AudienceController::class, 'getAudiance'])->name('get-audience');
 
-    Route::resource('events', EventController::class);
+    Route::resource('ad-events', EventController::class);
     Route::get('/get-events', [EventController::class, 'getEvents'])->name('get-events');
 
     Route::resource('messages', MessageController::class);
@@ -125,6 +125,7 @@ Route::get('/networkmarketingkyakyukaise-3', [PageController::class, 'lntm3'])->
 Route::post('/audience-2', [AudienceController::class, 'store'])->name('audience.store-2');
 Route::post('/audience-3', [AudienceController::class, 'store'])->name('audience.store-3');
 
+Route::get('/event/{event}', [EventController::class, 'show'])->name('event');
 
 // ===================== Testing =======================
 Route::get('/send-temp-message', [TestingController::class, 'sendTempMessage'])->name('sendMessage');

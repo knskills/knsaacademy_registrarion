@@ -122,24 +122,24 @@
             </ul>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ Route::currentRouteNamed('events.*') ? '' : 'collapsed' }}"
+            <a class="nav-link {{ Route::currentRouteNamed('ad-events.*') ? '' : 'collapsed' }}"
                 data-bs-target="#Event-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-calendar-event"></i>
                 <span>Event</span>
                 <i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="Event-nav"
-                class="nav-content collapse {{ Route::currentRouteNamed('events.*') ? 'show' : '' }} "
+                class="nav-content collapse {{ Route::currentRouteNamed('ad-events.*') ? 'show' : '' }} "
                 data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="{{ route('events.index') }}"
-                        class="{{ Route::currentRouteNamed('events.index') ? 'active' : '' }}">
+                    <a href="{{ route('ad-events.index') }}"
+                        class="{{ Route::currentRouteNamed('ad-events.index') ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Events</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('events.create') }}"
-                        class="{{ Route::currentRouteNamed('events.create') ? 'active' : '' }}">
+                    <a href="{{ route('ad-events.create') }}"
+                        class="{{ Route::currentRouteNamed('ad-events.create') ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>New</span>
                     </a>
                 </li>
