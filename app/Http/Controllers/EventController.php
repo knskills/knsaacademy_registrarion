@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\EventContent;
+use App\Models\MessageTemplate;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -48,7 +49,8 @@ class EventController extends Controller
     {
         try {
             $events = Event::all();
-            return view('admin.events.create', compact('events'));
+            $templates = MessageTemplate::where('type', 'whatsapp')->get();
+            return view('admin.events.create', compact('templates'));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');
@@ -146,7 +148,11 @@ class EventController extends Controller
     private function handleContent($content, $type)
     {
         if ($type === 'image') {
-            return uploadFile($content, 'events/files/');
+            if ($content instanceof \Illuminate\Http\UploadedFile) {
+                return uploadFile($content, 'events/files/');
+            } else {
+                return $content;
+            }
         }
         return $content;
     }
@@ -159,11 +165,19 @@ class EventController extends Controller
 
         $processedContent = [];
         foreach ($content as $data) {
-            $image = uploadFile($data, 'events/files/');
-            array_push($processedContent, $image);
+            // Log::info($data);
+            if ($data instanceof \Illuminate\Http\UploadedFile) {
+                // If the content is a file, process it
+                $image = uploadFile($data, 'events/files/');
+                array_push($processedContent, $image);
+            } else {
+                // If the content is not a file, return the content itself
+                array_push($processedContent, $data);
+            }
         }
         return $processedContent;
     }
+
 
 
     /**
@@ -183,8 +197,10 @@ class EventController extends Controller
     public function edit($id)
     {
         try {
-            $event = Event::find($id);
-            return view('admin.events.edit', compact('event'));
+            $event = Event::with('eventContent')->find($id);
+            $templates = MessageTemplate::where('type', 'whatsapp')->get();
+            // Log::info($event);
+            return view('admin.events.edit', compact('event', 'templates'));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');
@@ -196,6 +212,7 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Log::info($request->all());
         try {
             $validator = Validator::make($request->all(), [
                 'event_name' => 'required',
@@ -211,27 +228,65 @@ class EventController extends Controller
                 Log::error($validator->errors());
             }
 
+            // $slug = Str::slug($request->event_name, '_');
+            $eventData = $request->only([
+                'event_name', 'youtube_link', 'button_text', 'price', 'payment_link',
+                'whatsapp_link', 'event_date', 'event_start_time', 'event_end_time',
+                'event_link', 'event_description', 'is_active', 'event_image',
+                'event_type', 'event_language', 'event_duration', 'timer_time',
+                'original_price'
+            ]);
+            // $eventData['slug'] = $slug;
+
             $event = Event::find($id);
-            $event->event_name = $request->event_name;
-            $event->youtube_link = $request->youtube_link;
-            $event->button_text = $request->button_text;
-            $event->price = $request->price;
-            $event->payment_link = $request->payment_link;
-            $event->whatsapp_link = $request->whatsapp_link;
-            $event->event_date = $request->event_date;
-            $event->event_start_time = $request->event_start_time;
-            $event->event_end_time = $request->event_end_time;
-            $event->event_link = $request->event_link;
-            $event->event_description = $request->event_description;
-            $event->is_active = $request->is_active == 'on' ? 1 : 0;
-            $event->event_image = $request->event_image;
-            $event->event_type = $request->event_type;
-            $event->event_language = $request->event_language;
-            $event->event_duration = $request->event_duration;
-            $event->timer_time = $request->timer_time;
-            $event->original_price = $request->original_price;
-            $event->slug = $request->event_name;
-            $event->save();
+            $event->update($eventData);
+
+            $contanor1_col1_contant = $this->handleContent($request->contanor1_col1_contant, $request->contanor1_col1_contant_type);
+
+            $eventContentData = [
+                'event_id' => $event->id,
+                'title' => $request->title,
+                'contanor1_heading' => $request->contanor1_heading,
+                'contanor1_sub_heading' => $request->contanor1_sub_heading,
+                'contanor1_col1_contant_type' => $request->contanor1_col1_contant_type,
+                'contanor1_col1_contant' => $contanor1_col1_contant,
+                'contanor2_heading' => $request->contanor2_heading,
+                'contanor2_sub_heading' => $request->contanor2_sub_heading,
+                'contanor2_data' => $request->contanor2_data,
+                'contanor3_heading' => $request->contanor3_heading,
+                'contanor3_sub_heading' => $request->contanor3_sub_heading,
+                'contanor3_data' => $this->handleMultipleContent($request->contanor3_data),
+                'contanor4_heading' => $request->contanor4_heading,
+                'contanor4_sub_heading' => $request->contanor4_sub_heading,
+                'contanor4_data' => $request->contanor4_data,
+                'contanor5_heading' => $request->contanor5_heading,
+                'contanor5_sub_heading' => $request->contanor5_sub_heading,
+                'contanor5_data' => $request->contanor5_data,
+                'contanor6_heading' => $request->contanor6_heading,
+                'contanor6_sub_heading' => $request->contanor6_sub_heading,
+                'contanor6_data' => $this->handleMultipleContent($request->contanor6_data),
+                'trainer_heading' => $request->trainer_heading,
+                'trainer_sub_heading' => $request->trainer_sub_heading,
+                'trainer_data' => $request->trainer_data,
+                'bonus_heading' => $request->bonus_heading,
+                'bonus_sub_heading' => $request->bonus_sub_heading,
+                'bonus_price' => $request->bonus_price,
+                'bonus_data' => $this->handleMultipleContent($request->bonus_data),
+                'learn_heading' => $request->learn_heading,
+                'learn_sub_heading' => $request->learn_sub_heading,
+                'learn_data' => $request->learn_data,
+                'achivers_heading' => $request->achivers_heading,
+                'achivers_sub_heading' => $request->achivers_sub_heading,
+                'achivers_paragraph' => $request->achivers_paragraph,
+                'achivers_data' => $request->achivers_data,
+                'review_heading' => $request->review_heading,
+                'review_sub_heading' => $request->review_sub_heading,
+                'review_paragraph' => $request->review_paragraph,
+                'review_data' => $request->review_data,
+            ];
+
+            $eventContent = EventContent::where('event_id', $id)->firstOrFail();
+            $eventContent->update($eventContentData);
 
             return redirect()->route('ad-events.index')->with('success', 'Event updated successfully');
         } catch (\Exception $e) {

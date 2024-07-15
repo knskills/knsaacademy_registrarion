@@ -746,7 +746,7 @@
                                             class="small-text">Duration</span><br>
                                         <span
                                             class="big-bold-text">{{ $event->event_duration }}
-                                            Hour</span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -1306,7 +1306,7 @@
                                             class="small-text">Duration</span><br>
                                         <span
                                             class="big-bold-text">{{ $event->event_duration }}
-                                            Hour</span>
+                                            </span>
                                     </div>
                                 </div>
                             </div>

@@ -231,10 +231,10 @@
                                             id="whstp_temp_name"
                                             class="form-select"
                                             value="{{ old('whstp_temp_name') }}">
-                                            @foreach ($events as $event)
+                                            @foreach ($templates as $template)
                                                 <option
-                                                    value="{{ $event->event_name }}">
-                                                    {{ ucwords(str_replace('_', ' ', $event->event_name)) }}
+                                                    value="{{ $template->name }}">
+                                                    {{ ucwords(str_replace('_', ' ', $template->name)) }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -249,7 +249,7 @@
                                         class="col-md-4 col-form-label">Event
                                         Duration(Hr)</label>
                                     <div class="col-md-8">
-                                        <input type="text"
+                                        <input type="text" readonly
                                             name="event_duration"
                                             id="event_duration"
                                             value="{{ old('event_duration') }}"
@@ -752,17 +752,26 @@
 
             function setDefaultTimes() {
                 let now = new Date();
-                let hours = String(now.getHours()).padStart(2, '0');
-                let minutes = String(now.getMinutes()).padStart(2,
-                    '0');
-                let currentTime = hours + ':' + minutes;
 
-                $('#event_start_time').val(currentTime);
-                $('#event_end_time').val(currentTime);
+                // Format current time for start time
+                let hours = String(now.getHours()).padStart(2, '0');
+                let minutes = String(now.getMinutes()).padStart(2, '0');
+                let startTime = hours + ':' + minutes;
+
+                // Add 30 minutes to the current time for end time
+                let endTime = new Date(now.getTime() + 300 * 6000); // 30 minutes in milliseconds
+                let endHours = String(endTime.getHours()).padStart(2, '0');
+                let endMinutes = String(endTime.getMinutes()).padStart(2, '0');
+                let formattedEndTime = endHours + ':' + endMinutes;
+
+                // Set the values
+                $('#event_start_time').val(startTime);
+                $('#event_end_time').val(formattedEndTime);
             }
 
             $(document).ready(function() {
                 setDefaultTimes();
+                calculateEventDuration();
             });
         });
 
@@ -781,18 +790,24 @@
                 }
 
                 let durationInMilliseconds = endDateTime - startDateTime;
-                let durationInHours = durationInMilliseconds / (1000 * 60 *
-                    60);
+                let durationInMinutes = durationInMilliseconds / (1000 * 60);
+                let durationInHours = durationInMinutes / 60;
 
-                $('#event_duration').val(durationInHours);
+                if (durationInHours === 1) {
+                    $('#event_duration').val('1 Hour');
+                } else if (durationInHours < 1) {
+                    $('#event_duration').val(durationInMinutes + ' Minutes');
+                } else {
+                    $('#event_duration').val(durationInHours + ' Hours');
+                }
 
-                // $('#durationResult').text('Event Duration: ' + durationInHours
-                //     .toFixed(2) + ' hours');
+                // // Optionally, update any display elements with the duration
+                // $('#durationResult').text('Event Duration: ' + (durationInHours >= 1 ? durationInHours.toFixed(2) + ' hours' : durationInMinutes.toFixed(2) + ' minutes'));
             } else {
-                alert('End time must be later than start time.');
-
+                alert('Please ensure all fields are filled out.');
             }
         }
+
 
         // function calculateEventDuration() {
         //     let event_date = $('#event_date').val();

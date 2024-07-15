@@ -471,3 +471,15 @@ function uploadFile($file, $path)
 
     return $newPath;
 }
+
+/**
+ * Delete file
+ */
+function deleteFile($path)
+{
+    if (File::exists(public_path($path))) {
+        File::delete(public_path($path));
+    }
+
+    // unlink(public_path($template->media_file));
+}
