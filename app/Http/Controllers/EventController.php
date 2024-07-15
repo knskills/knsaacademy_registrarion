@@ -145,41 +145,6 @@ class EventController extends Controller
         }
     }
 
-    private function handleContent($content, $type)
-    {
-        if ($type === 'image') {
-            if ($content instanceof \Illuminate\Http\UploadedFile) {
-                return uploadFile($content, 'events/files/');
-            } else {
-                return $content;
-            }
-        }
-        return $content;
-    }
-
-    private function handleMultipleContent($content)
-    {
-        if (empty($content) || count($content) <= 0) {
-            return null;
-        }
-
-        $processedContent = [];
-        foreach ($content as $data) {
-            // Log::info($data);
-            if ($data instanceof \Illuminate\Http\UploadedFile) {
-                // If the content is a file, process it
-                $image = uploadFile($data, 'events/files/');
-                array_push($processedContent, $image);
-            } else {
-                // If the content is not a file, return the content itself
-                array_push($processedContent, $data);
-            }
-        }
-        return $processedContent;
-    }
-
-
-
     /**
      * Display the specified resource.
      */
@@ -212,7 +177,7 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Log::info($request->all());
+        // Log::info($request->all());
         try {
             $validator = Validator::make($request->all(), [
                 'event_name' => 'required',
@@ -313,6 +278,38 @@ class EventController extends Controller
     //============================================================================================//
     //=====================================Custom methods=========================================//
     //============================================================================================//
+    private function handleContent($content, $type)
+    {
+        if ($type === 'image') {
+            if ($content instanceof \Illuminate\Http\UploadedFile) {
+                return uploadFile($content, 'events/files/');
+            } else {
+                return $content;
+            }
+        }
+        return $content;
+    }
+
+    private function handleMultipleContent($content)
+    {
+        if (empty($content) || count($content) <= 0) {
+            return null;
+        }
+
+        $processedContent = [];
+        foreach ($content as $data) {
+            // Log::info($data);
+            if ($data instanceof \Illuminate\Http\UploadedFile) {
+                // If the content is a file, process it
+                $image = uploadFile($data, 'events/files/');
+                array_push($processedContent, $image);
+            } else {
+                // If the content is not a file, return the content itself
+                array_push($processedContent, $data);
+            }
+        }
+        return $processedContent;
+    }
 
     /**
      * get events acording to event type
