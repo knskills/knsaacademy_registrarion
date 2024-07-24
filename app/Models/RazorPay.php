@@ -36,7 +36,7 @@ class RazorPay extends Model
     ];
 
     /**
-     * Get whatsapp payment
+     * Get payment
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function getPaymentDetail()

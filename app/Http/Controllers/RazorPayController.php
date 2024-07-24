@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\RazorPay;
 use App\Models\Event;
 use App\Models\Payment;
+use App\Models\audience as Audience;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
@@ -20,11 +21,12 @@ class RazorPayController extends Controller
     public function index(Request $request)
     {
         $audience_id = $request->audience_id;
+        $audience = Audience::find($audience_id);
         $event_id = $request->event_id;
         $event = Event::find($event_id);
         $amount = $event->price ?? 10;
         $currency = 'INR';
-        return view('web.payments.razorpay', compact('audience_id', 'event_id', 'amount', 'currency'));
+        return view('web.payments.razorpay', compact('audience_id', 'event_id', 'amount', 'currency', 'audience'));
     }
 
     /**
@@ -50,26 +52,40 @@ class RazorPayController extends Controller
         $receipt_number = 'KNSA' . rand(1000, 9999);
         $payment_method = $paymentArray['method'];
         $payment_detail = $paymentArray[$payment_method];
-        // Log::info($paymentArray);
+        $amount = $paymentArray['fee'] * 100;
+        $pement_status = 'pending';
 
         try {
-            $response = $api->order->create(
-                [
-                    'receipt' => $receipt_number,
-                    'amount' => $payment->amount,
-                    'currency' => $payment->currency,
-                    // 'notes' => [
-                    //     'key1' => 'value3',
-                    //     'key2' => 'value2'
-                    // ]
-                ]
-            );
+            if ($payment['status'] == 'authorized') {
+                // Log the capture request details
+                Log::info('Attempting to capture payment with amount: ' . $amount);
 
-            // Convert the response to an array
-            $responseArray = $response->toArray();
-            // Log::info($responseArray);
+                $response = $payment->capture(['amount' => $amount]);
+                // Log::info('Capture Response: ' . json_encode($response));
 
-            $amount = $responseArray['amount'] / 100;
+                if (!empty($response)) {
+                    $responseArray = $response->toArray();
+                    Log::info($response->toArray());
+
+                    $order = $api->order->create(
+                        [
+                            'receipt' => $receipt_number,
+                            'amount' => $payment->amount,
+                            'currency' => $payment->currency,
+                            // 'notes' => [
+                            //     'key1' => 'value3',
+                            //     'key2' => 'value2'
+                            // ]
+                        ]
+                    );
+                } else {
+                    // Handle capture failure (e.g., log error, notify user)
+                    Log::error('Payment capture failed: No response from Razorpay');
+                }
+            }
+
+
+            $amount = $responseArray['fee'];
 
             // save rozarpay info
             $razorpay = new RazorPay();
@@ -96,11 +112,13 @@ class RazorPayController extends Controller
             $payment->payment_data = $payment_detail;
             $payment->save();
 
-            return response()->json([
-                'success' => true,
-                'data' => $responseArray
-            ], 200);
+            // return response()->json([
+            //     'success' => true,
+            //     'data' => $responseArray
+            // ], 200);
+            return redirect()->back();
         } catch (\Exception $e) {
+            Log::info($e->getMessage());
             return  $e->getMessage();
             \Session::put('error', $e->getMessage());
             return redirect()->back();

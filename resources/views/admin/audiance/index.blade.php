@@ -116,10 +116,15 @@
                                             <th>Email</th>
                                             <th>Phone</th>
                                             <th>Event</th>
-                                            <th class="text-center">Register
-                                                Date</th>
-                                            <th class="text-center">Register
-                                                Time</th>
+                                            <th class="text-center">
+                                                Register Date
+                                            </th>
+                                            <th class="text-center">
+                                                Register Time
+                                            </th>
+                                            <th class="text-center">
+                                                Payment Status
+                                            </th>
                                             {{-- <th>Action</th> --}}
                                         </tr>
                                     </thead>
@@ -137,13 +142,16 @@
                                                 </td>
                                                 <td class="text-center">
                                                     {{ \Carbon\Carbon::parse($item->registration_date)->format('h:i A') }}
-                                                    {{-- <td> --}}
-                                                    {{-- <a href="{{ route('admin.audiance.show', $item->id) }}"
+                                                <td>
+                                                    {{ Ucfirst($item->payment_status ?? "pending")  }}
+                                                </td>
+                                                {{-- <td> --}}
+                                                {{-- <a href="{{ route('admin.audiance.show', $item->id) }}"
                                                     class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
                                                     <a href="{{ route('admin.audiance.edit', $item->id) }}"
                                                         class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i>
                                                     </a> --}}
-                                                    {{-- <form action="{{ route('audiences.destroy', $item->id) }}" method="POST"
+                                                {{-- <form action="{{ route('audiences.destroy', $item->id) }}" method="POST"
                                                         style="display: inline">
                                                         @csrf
                                                         @method('DELETE')
@@ -152,7 +160,7 @@
                                                             <i class="bi bi-trash "></i>
                                                         </button>
                                                     </form> --}}
-                                                    {{-- </td> --}}
+                                                {{-- </td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -235,7 +243,8 @@
                             <div class="mb-3">
                                 <label class="col-form-label">Events</label>
                                 <div class="">
-                                    <select class="form-select" name="event_name"
+                                    <select class="form-select"
+                                        name="event_name"
                                         aria-label="Select Event" required>
                                         <option value="">select event
                                         </option>
@@ -251,10 +260,12 @@
                             <div class="mb-3">
                                 <label for="file_type"
                                     class="form-label">Event</label>
-                                <select class="form-select" id="file_type" required
-                                    aria-label="Select File Type" name="file_type">
+                                <select class="form-select" id="file_type"
+                                    required aria-label="Select File Type"
+                                    name="file_type">
                                     <option selected>Select Type</option>
-                                    <option value="xlsx">Excel(xlsx)</option>
+                                    <option value="xlsx">Excel(xlsx)
+                                    </option>
                                     <option value="xls">Excel(xls)</option>
                                     <option value="csv">Csv</option>
                                     {{-- <option value="pdf">PDF</option> --}}

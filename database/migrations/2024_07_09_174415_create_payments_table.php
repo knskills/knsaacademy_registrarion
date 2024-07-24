@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('payment_method');
             $table->decimal('amount', 8, 2);
             $table->date('payment_date');
+            // $table->string('reference_number')->nullable();
             $table->string('receipt_number')->nullable();
             $table->text('notes')->nullable();
             $table->string('status')->nullable();

@@ -40,8 +40,11 @@ class AudienceController extends Controller
             //     $audianceQuery->orderBy('id', 'desc');
             // }
 
-            $audianceQuery->where('event_name', 'Learn Marketing S2')->orderBy('id', 'desc');
+            $audianceQuery->with('payment')
+            // ->where('event_name', 'Learn Marketing S2')
+            ->orderBy('id', 'desc');
             // ->orWhere('event_name', 'Learn Marketing')
+            Log::info($audianceQuery->get());
 
             $audiences = $audianceQuery->paginate(10);
 
@@ -68,7 +71,7 @@ class AudienceController extends Controller
      */
     public function store(Request $request)
     {
-        // Log::info($request->all());
+        Log::info($request->all());
 
         try {
             $valitor = Validator::make($request->all(), [
@@ -101,32 +104,36 @@ class AudienceController extends Controller
                 $audience->name = $request->name;
                 $audience->email = $request->email;
                 $audience->phone = $request->phone;
-                $audience->event_type = $request->event_type;
-                $audience->event_name = $request->event_name;
+                $audience->event_type = $event->event_type;
+                $audience->event_name = $event->event_name;
                 $audience->registration_date = Carbon::now();
+                $audience->payment_status = 'pending';
                 $audience->save();
 
-                $template = WhtasappTemplate::where('name', 'welcome_first_message')->first();
-                $modifiedMessage = MessageTemplate::where('name', 'welcome_first_message')->first()->message;
+                // $template = WhtasappTemplate::where('name', 'welcome_first_message')->first();
+                $template = WhtasappTemplate::where('name', $event->whstp_temp_name)->first();
+                $modifiedMessage = MessageTemplate::where('name', $event->whstp_temp_name)->first()->message;
+
                 // Log::info($template);
                 if ($template) {
                     $result = sendTempMessage($template, $request->phone, $para = null);
                 }
             } else {
-                return back()->with('error', 'You are already registered for this event');
+                // return back()->with('error', 'You are already registered for this event');
 
                 // Log::info('Audience already exists');
                 // update event name and registration date
                 $audience->name = $request->name;
                 $audience->email = $request->email;
                 $audience->phone = $request->phone;
-                $audience->event_type = $request->event_type;
-                $audience->event_name = $request->event_name;
+                $audience->event_type = $event->event_type;
+                $audience->event_name = $event->event_name;
                 $audience->registration_date = Carbon::now();
                 $audience->save();
 
-                $template = WhtasappTemplate::where('name', 'welcome_first_message')->first();
-                $modifiedMessage = MessageTemplate::where('name', 'welcome_first_message')->first()->message;
+                $template = WhtasappTemplate::where('name', $event->whstp_temp_name)->first();
+                $modifiedMessage = MessageTemplate::where('name', $event->whstp_temp_name)->first()->message;
+
                 // Log::info($template);
                 if ($template) {
                     $result = sendTempMessage($template, $request->phone, $para = null);

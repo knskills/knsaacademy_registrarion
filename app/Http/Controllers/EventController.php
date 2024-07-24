@@ -86,7 +86,7 @@ class EventController extends Controller
                 'whatsapp_link', 'event_date', 'event_start_time', 'event_end_time',
                 'event_link', 'event_description', 'is_active', 'event_image',
                 'event_type', 'event_language', 'event_duration', 'timer_time',
-                'original_price'
+                'original_price', 'whstp_temp_name'
             ]);
             $eventData['slug'] = $slug;
 
@@ -199,7 +199,7 @@ class EventController extends Controller
                 'whatsapp_link', 'event_date', 'event_start_time', 'event_end_time',
                 'event_link', 'event_description', 'is_active', 'event_image',
                 'event_type', 'event_language', 'event_duration', 'timer_time',
-                'original_price'
+                'original_price', 'whstp_temp_name'
             ]);
             // $eventData['slug'] = $slug;
 

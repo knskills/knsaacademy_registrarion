@@ -18,6 +18,9 @@ class audience extends Model
         'email',
         'phone',
         'event_name',
+        'payment_status',
+        'event_type',
+        'status',
         'registration_date',
     ];
 
@@ -27,5 +30,15 @@ class audience extends Model
     public function event()
     {
         return $this->belongsTo(Event::class);
+    }
+
+    /**
+     * Get payment detail for the audience.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function payment()
+    {
+        return $this->hasOne(Payment::class, 'audience_id');
     }
 }

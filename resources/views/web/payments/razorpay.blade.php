@@ -148,10 +148,11 @@
                                 <script src="https://checkout.razorpay.com/v1/checkout.js"
                                     data-key="{{ env('RAZORPAY_KEY') }}"
                                     data-amount="{{ $amount * 100 }}"
-                                    data-buttontext="Pay {{ (int)$amount }} INR"
-                                    data-name="https://knsacademy.in/" data-description="Rozerpay"
+                                    data-buttontext="Pay {{ (int) $amount }} INR"
+                                    data-name="https://knsacademy.in/" data-description="Razorpay"
                                     data-image="https://knsacademy.in/store/1/log%20knsa%20we.png"
-                                    data-prefill.name="name" data-prefill.email="email"
+                                    data-prefill.name="{{ $audience->name }}"
+                                    data-prefill.email="{{ $audience->email }}"
                                     data-theme.color="#1d812f"></script>
                             </form>
                         </div>
