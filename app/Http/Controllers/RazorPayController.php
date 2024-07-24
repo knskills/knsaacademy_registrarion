@@ -58,14 +58,16 @@ class RazorPayController extends Controller
         try {
             if ($payment['status'] == 'authorized') {
                 // Log the capture request details
-                Log::info('Attempting to capture payment with amount: ' . $amount);
+                // Log::info('Attempting to capture payment with amount: ' . $amount);
 
                 $response = $payment->capture(['amount' => $amount]);
                 // Log::info('Capture Response: ' . json_encode($response));
 
                 if (!empty($response)) {
                     $responseArray = $response->toArray();
-                    Log::info($response->toArray());
+                    if($responseArray['fee'] == 'captured'){
+                        $pement_status = 'paying';
+                    }
 
                     $order = $api->order->create(
                         [
@@ -112,6 +114,11 @@ class RazorPayController extends Controller
             $payment->payment_data = $payment_detail;
             $payment->save();
 
+            // Update payment status
+            $audience = Audience::find($request->audiance_id);
+            $audience->payment_status = $pement_status;
+            $audience->save();
+
             // return response()->json([
             //     'success' => true,
             //     'data' => $responseArray
@@ -119,9 +126,8 @@ class RazorPayController extends Controller
             return redirect()->back();
         } catch (\Exception $e) {
             Log::info($e->getMessage());
-            return  $e->getMessage();
             \Session::put('error', $e->getMessage());
-            return redirect()->back();
+            return  $e->getMessage();
         }
     }
 
