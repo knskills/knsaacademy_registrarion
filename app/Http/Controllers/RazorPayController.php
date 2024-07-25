@@ -65,9 +65,9 @@ class RazorPayController extends Controller
 
                 if (!empty($response)) {
                     $responseArray = $response->toArray();
-                    if($responseArray['status'] == 'captured'){
+                    if ($responseArray['status'] == 'captured') {
                         $payment_status = 'paying';
-                    }else{
+                    } else {
                         $payment_status = 'pending';
                     }
 
@@ -209,5 +209,47 @@ class RazorPayController extends Controller
                 'message' => $e->getMessage()
             ], 500);
         }
+    }
+
+    /**
+     * Webhook
+     */
+    public function handleRazorpayWebhook(Request $request)
+    {
+        Log::info($request->all());
+        $secret = env('RAZORPAY_WEBHOOK_SECRET');
+        $webhookSignature = $request->header('X-Razorpay-Signature');
+        $payload = $request->getContent();
+        $expectedSignature = hash_hmac('sha256', $payload, $secret);
+
+        if ($webhookSignature !== $expectedSignature) {
+            //return response()->json(['status' => 'signature mismatch'], 400);
+            Log::info('signature mismatch');
+        }
+
+        // Process the webhook payload
+        $event = $request->event;
+        switch ($event) {
+            case 'payment.authorized':
+                // Handle payment authorized event
+                Log::info('payment authorized');
+
+                break;
+            case 'payment.captured':
+                // Handle payment captured event
+                Log::info('payment captured');
+
+                break;
+            case 'payment.failed':
+                // Handle payment failed event
+                Log::info('payment failed');
+
+                break;
+                // Add other cases as needed
+        }
+
+        Log::info('Webhook received');
+
+        // return response()->json(['status' => 'success'], 200);
     }
 }
