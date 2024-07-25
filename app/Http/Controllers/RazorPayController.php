@@ -118,7 +118,7 @@ class RazorPayController extends Controller
 
             // Update payment status
             $audience = Audience::find($request->audiance_id);
-            $audience->payment_status = $payment_status;
+            $audience->payment_status = $payment_status ?? 'pending';
             $audience->save();
 
             // return response()->json([
