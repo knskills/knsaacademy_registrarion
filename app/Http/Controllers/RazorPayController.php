@@ -53,20 +53,20 @@ class RazorPayController extends Controller
         $payment_method = $paymentArray['method'];
         $payment_detail = $paymentArray[$payment_method];
         $amount = $paymentArray['fee'] * 100;
-        $pement_status = 'pending';
+        $payment_status = 'pending';
 
         try {
             if ($payment['status'] == 'authorized') {
                 // Log the capture request details
-                // Log::info('Attempting to capture payment with amount: ' . $amount);
+                Log::info('Attempting to capture payment with amount: ' . $amount);
 
                 $response = $payment->capture(['amount' => $amount]);
-                // Log::info('Capture Response: ' . json_encode($response));
+                Log::info('Capture Response: ' . json_encode($response));
 
                 if (!empty($response)) {
                     $responseArray = $response->toArray();
                     if($responseArray['fee'] == 'captured'){
-                        $pement_status = 'paying';
+                        $payment_status = 'paying';
                     }
 
                     $order = $api->order->create(
@@ -116,7 +116,7 @@ class RazorPayController extends Controller
 
             // Update payment status
             $audience = Audience::find($request->audiance_id);
-            $audience->payment_status = $pement_status;
+            $audience->payment_status = $payment_status;
             $audience->save();
 
             // return response()->json([
