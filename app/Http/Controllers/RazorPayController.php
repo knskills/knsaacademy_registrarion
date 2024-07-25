@@ -67,6 +67,8 @@ class RazorPayController extends Controller
                     $responseArray = $response->toArray();
                     if($responseArray['fee'] == 'captured'){
                         $payment_status = 'paying';
+                    }else{
+                        $payment_status = 'pending';
                     }
 
                     $order = $api->order->create(
