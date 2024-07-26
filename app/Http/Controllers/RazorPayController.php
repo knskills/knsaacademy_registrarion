@@ -44,88 +44,75 @@ class RazorPayController extends Controller
      */
     public function store(Request $request)
     {
-        // Log::info($request->all());
+        // Initialize the Razorpay API
         $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
 
-        $payment = $api->payment->fetch($request->razorpay_payment_id);
-        $paymentArray = $payment->toArray();
-        $receipt_number = 'KNSA' . rand(1000, 9999);
-        $payment_method = $paymentArray['method'];
-        $payment_detail = $paymentArray[$payment_method];
-        $amount = $paymentArray['fee'] * 100;
-        $payment_status = 'pending';
-
         try {
-            if ($payment['status'] == 'authorized') {
-                // Log the capture request details
-                Log::info('Attempting to capture payment with amount: ' . $amount / 100);
+            // Fetch payment details from Razorpay
+            $payment = $api->payment->fetch($request->razorpay_payment_id);
+            $paymentArray = $payment->toArray();
+            $receipt_number = 'KNSA' . rand(1000, 9999);
+            $payment_method = $paymentArray['method'];
+            $payment_detail = $paymentArray[$payment_method];
+            $payment_status = 'pending';
+            $amount = $paymentArray['method'] == 'upi' ? $paymentArray['amount'] : $paymentArray['fee'] * 100;
 
+            Log::info('Payment Response: ' . json_encode($paymentArray));
+
+            // Capture payment if authorized
+            if ($payment['status'] == 'authorized') {
+                Log::info('Attempting to capture payment with amount: ' . $amount / 100);
                 $response = $payment->capture(['amount' => $amount]);
+                Log::info('Capture Response: ' . json_encode($response->toArray()));
+                $responseArray = $response->toArray();
 
                 if (!empty($response)) {
-                    $responseArray = $response->toArray();
+                    $payment_status = $responseArray['status'] == 'captured' ? 'paid' : 'pending';
 
-                    if ($responseArray['status'] == 'captured') {
-                        $payment_status = 'paid';
-                    } else {
-                        $payment_status = 'pending';
-                    }
-
-                    $order = $api->order->create(
-                        [
-                            'receipt' => $receipt_number,
-                            'amount' => $payment->amount,
-                            'currency' => $payment->currency,
-                            // 'notes' => [
-                            //     'key1' => 'value3',
-                            //     'key2' => 'value2'
-                            // ]
-                        ]
-                    );
+                    // Create Razorpay order
+                    $order = $api->order->create([
+                        'receipt' => $receipt_number,
+                        'amount' => $payment->amount,
+                        'currency' => $payment->currency,
+                    ]);
                 } else {
-                    // Handle capture failure (e.g., log error, notify user)
                     Log::error('Payment capture failed: No response from Razorpay');
                 }
             }
 
-
-            // save rozarpay info
+            // Save Razorpay payment info
             $razorpay = new RazorPay();
-            $razorpay->razorpay_order_id = $responseArray['id'];
+            $razorpay->razorpay_order_id = $responseArray['id'] ?? null;
             $razorpay->razorpay_payment_id = $request->razorpay_payment_id;
-            $razorpay->amount = $responseArray['fee'];
+            $razorpay->amount = $amount / 100;
             $razorpay->currency = $payment->currency;
-            $razorpay->status = $responseArray['status'];
-            $payment->payment_method = $payment_method;
-            $payment->payment_detail = $payment_detail;
+            $razorpay->status = $responseArray['status'] ?? $payment_status;
+            $razorpay->payment_method = $payment_method;
+            $razorpay->payment_detail = $payment_detail;
             $razorpay->save();
 
-            // save payment details
-            $payment = new Payment();
-            $payment->audience_id = $request->audience_id;
-            $payment->event_id = $request->event_id;
-            $payment->payment_method = $payment_method;
-            $payment->payment_date = now();
-            $payment->receipt_number = $receipt_number;
-            $payment->status = $razorpay->status;
-            $payment->amount = $razorpay->amount;
-            $payment->payment_id = $razorpay->id;
-            $payment->payment_gatway = 'razorpay';
-            $payment->payment_data = $payment_detail;
-            $payment->save();
+            // Save payment details
+            $paymentRecord = new Payment();
+            $paymentRecord->audience_id = $request->audience_id;
+            $paymentRecord->event_id = $request->event_id;
+            $paymentRecord->payment_method = $payment_method;
+            $paymentRecord->payment_date = now();
+            $paymentRecord->receipt_number = $receipt_number;
+            $paymentRecord->status = $razorpay->status;
+            $paymentRecord->amount = $razorpay->amount;
+            $paymentRecord->payment_id = $razorpay->id;
+            $paymentRecord->payment_gatway = 'razorpay';
+            $paymentRecord->payment_data = $payment_detail;
+            $paymentRecord->save();
 
-            // Update payment status
+            // Update audience payment status
             $audience = Audience::find($request->audience_id);
             $audience->payment_status = $payment_status;
             $audience->save();
 
-            // return response()->json([
-            //     'success' => true,
-            //     'data' => $responseArray
-            // ], 200);
             return redirect()->back();
         } catch (\Exception $e) {
-            Log::info($e->getMessage());
+            Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');
         }
     }
