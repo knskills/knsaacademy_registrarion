@@ -136,4 +136,5 @@ Route::get('/opnai-chat', [TestingController::class, 'askToChatGpt'])->name('opn
 
 // payment
 Route::resource('razorpay', RazorPayController::class);
-Route::match(['get', 'post'], '/razorpay/webhook', [RazorPayController::class, 'handleRazorpayWebhook']);
+// Route::match(['get', 'post'], '/razorpay/webhook', [RazorPayController::class, 'handleRazorpayWebhook']);
+Route::any('/razorpay/webhook', [RazorPayController::class, 'handleRazorpayWebhook']);
