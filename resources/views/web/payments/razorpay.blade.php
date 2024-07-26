@@ -136,7 +136,7 @@
                                     id="razorpay_signature">
                                 <button type="button" id="rzp-button1"
                                     class="btn-pay-now">Pay
-                                    {{ $amount }}</button>
+                                    {{ intval($amount) }} ₹</button>
                             </form>
                         </div>
                     </div>
