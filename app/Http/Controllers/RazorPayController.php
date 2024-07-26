@@ -211,43 +211,65 @@ class RazorPayController extends Controller
     /**
      * Webhook
      */
+    // public function handleRazorpayWebhook(Request $request)
+    // {
+    //     Log::info('Webhook entry');
+    //     Log::info($request->all());
+    //     $secret = env('RAZORPAY_WEBHOOK_SECRET');
+    //     $webhookSignature = $request->header('X-Razorpay-Signature');
+    //     $payload = $request->getContent();
+    //     $expectedSignature = hash_hmac('sha256', $payload, $secret);
+
+    //     if ($webhookSignature !== $expectedSignature) {
+    //         //return response()->json(['status' => 'signature mismatch'], 400);
+    //         Log::info('signature mismatch');
+    //     }
+
+    //     // Process the webhook payload
+    //     $event = $request->event;
+    //     switch ($event) {
+    //         case 'payment.authorized':
+    //             // Handle payment authorized event
+    //             Log::info('payment authorized');
+
+    //             break;
+    //         case 'payment.captured':
+    //             // Handle payment captured event
+    //             Log::info('payment captured');
+
+    //             break;
+    //         case 'payment.failed':
+    //             // Handle payment failed event
+    //             Log::info('payment failed');
+
+    //             break;
+    //             // Add other cases as needed
+    //     }
+
+    //     Log::info('Webhook received');
+
+    //     // return response()->json(['status' => 'success'], 200);
+    // }
+
     public function handleRazorpayWebhook(Request $request)
     {
-        Log::info('Webhook entry');
-        Log::info($request->all());
-        $secret = env('RAZORPAY_WEBHOOK_SECRET');
-        $webhookSignature = $request->header('X-Razorpay-Signature');
+        Log::info('Razorpay webhook is working');
+        $webhookSecret = env('RAZORPAY_WEBHOOK_SECRET');
         $payload = $request->getContent();
-        $expectedSignature = hash_hmac('sha256', $payload, $secret);
+        $signature = $request->header('X-Razorpay-Signature');
 
-        if ($webhookSignature !== $expectedSignature) {
-            //return response()->json(['status' => 'signature mismatch'], 400);
-            Log::info('signature mismatch');
+        try {
+            $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
+            $response = $api->utility->verifyWebhookSignature($payload, $signature, $webhookSecret);
+
+            // Process the webhook payload here
+            Log::info('Webhook verified and payload:', $request->all());
+
+            // return response()->json(['status' => 'success']);
+        } catch (\Exception $e) {
+            Log::error('Webhook verification failed:', ['error' => $e->getMessage()]);
+
+            // return response()->json(['status' => 'failed'], 400);
         }
-
-        // Process the webhook payload
-        $event = $request->event;
-        switch ($event) {
-            case 'payment.authorized':
-                // Handle payment authorized event
-                Log::info('payment authorized');
-
-                break;
-            case 'payment.captured':
-                // Handle payment captured event
-                Log::info('payment captured');
-
-                break;
-            case 'payment.failed':
-                // Handle payment failed event
-                Log::info('payment failed');
-
-                break;
-                // Add other cases as needed
-        }
-
-        Log::info('Webhook received');
-
-        // return response()->json(['status' => 'success'], 200);
     }
 }
