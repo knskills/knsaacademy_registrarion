@@ -246,28 +246,9 @@ class AudienceController extends Controller
         }
     }
 
-
-    // public function handlePaymentResponse(Request $request)
-    // {
-    //     Log::info($request->all());
-
-    //     // Extract payment details from the request
-    //     $payment_id = $request->input('razorpay_payment_id');
-    //     $order_id = $request->input('razorpay_order_id');
-    //     $signature = $request->input('razorpay_signature');
-
-    //     // You can verify the signature here if needed
-    //     // Perform actions such as saving payment details to the database
-
-    //     // Example: Logging payment details
-    //     \Log::info('Payment ID: ' . $payment_id);
-    //     \Log::info('Order ID: ' . $order_id);
-    //     \Log::info('Signature: ' . $signature);
-
-    //     // Return a response to the user
-    //     return view('payment.success', compact('payment_id', 'order_id', 'signature'));
-    // }
-
+    /**
+     * Handle Whatsapp Messages
+     */
     private function handleWhatsappMessages($result, $modifiedMessage)
     {
         if (isset($result['messages'])) {

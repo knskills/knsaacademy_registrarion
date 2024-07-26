@@ -109,7 +109,7 @@
 
                     <div class="card">
                         <div class="card-header text-center">
-                            KNSA - kya kyo aur kaise?
+                            {{ $event->event_name }}
                         </div>
 
                         <img src="{{ asset('ads/img/b2b/thumbnail.jpeg') }}"

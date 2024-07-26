@@ -26,7 +26,12 @@ class RazorPayController extends Controller
         $event = Event::find($event_id);
         $amount = $event->price ?? 10;
         $currency = 'INR';
-        return view('web.payments.razorpay', compact('audience_id', 'event_id', 'amount', 'currency', 'audience'));
+
+        if ($audience->payment_status == 'paid') {
+            return view('web.thankyou', compact('event'));
+        } else {
+            return view('web.payments.razorpay', compact('audience_id', 'event_id', 'amount', 'currency', 'audience', 'event'));
+        }
     }
 
     /**
@@ -57,13 +62,13 @@ class RazorPayController extends Controller
             $payment_status = 'pending';
             $amount = $paymentArray['method'] == 'upi' ? $paymentArray['amount'] : $paymentArray['fee'] * 100;
 
-            Log::info('Payment Response: ' . json_encode($paymentArray));
+            // Log::info('Payment Response: ' . json_encode($paymentArray));
 
             // Capture payment if authorized
             if ($payment['status'] == 'authorized') {
-                Log::info('Attempting to capture payment with amount: ' . $amount / 100);
+                // Log::info('Attempting to capture payment with amount: ' . $amount / 100);
                 $response = $payment->capture(['amount' => $amount]);
-                Log::info('Capture Response: ' . json_encode($response->toArray()));
+                // Log::info('Capture Response: ' . json_encode($response->toArray()));
                 $responseArray = $response->toArray();
 
                 if (!empty($response)) {
@@ -77,6 +82,7 @@ class RazorPayController extends Controller
                     ]);
                 } else {
                     Log::error('Payment capture failed: No response from Razorpay');
+                    return redirect()->back()->with('error', 'Something went wrong');
                 }
             }
 
@@ -110,7 +116,11 @@ class RazorPayController extends Controller
             $audience->payment_status = $payment_status;
             $audience->save();
 
-            return redirect()->back();
+            // Get event
+            $event = Event::find($request->event_id);
+
+            // return redirect()->back();
+            return view('web.thankyou', compact('event'));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');
