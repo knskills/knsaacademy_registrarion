@@ -41,8 +41,8 @@ class AudienceController extends Controller
             // }
 
             $audianceQuery->with('payment')
-            // ->where('event_name', 'Learn Marketing S2')
-            ->orderBy('id', 'desc');
+                // ->where('event_name', 'Learn Marketing S2')
+                ->orderBy('id', 'desc');
             // ->orWhere('event_name', 'Learn Marketing')
             // Log::info($audianceQuery->get());
 
@@ -71,117 +71,55 @@ class AudienceController extends Controller
      */
     public function store(Request $request)
     {
+        // Log::info($request->all());
         try {
-            $valitor = Validator::make($request->all(), [
+            $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'email' => 'required|email|max:255',
                 'phone' => 'required',
-                // 'email' => 'required|email|unique:audiences|max:255',
-                // 'phone' => 'required|unique:audiences',
             ]);
 
-            if ($valitor->fails()) {
-                // return redirect()->back()->withErrors($valitor)->withInput();
+            if ($validator->fails()) {
                 return response()->json([
                     'status' => 'error',
-                    'errors' => $valitor->errors()->all()
+                    'errors' => $validator->errors()->all()
                 ]);
             }
 
-            // check if email and phone already exists in database
-            // $audience = Audience::where('email', $request->email)->orWhere('phone', $request->phone)->first();
-
-            $audience = Audience::where('email', $request->email)->where('phone', $request->phone)->where('event_name', $request->event_name)->first();
+            $audience = Audience::where('email', $request->email)
+                ->where('phone', $request->phone)
+                ->where('event_name', $request->event_name)
+                ->first();
             $event = Event::where('event_name', $request->event_name)->first();
 
-            $result = null;
-            $modifiedMessage = null;
-
             if (!$audience) {
-                $audience = new audience();
-                $audience->name = $request->name;
-                $audience->email = $request->email;
-                $audience->phone = $request->phone;
-                $audience->event_type = $event->event_type;
-                $audience->event_name = $event->event_name;
-                $audience->registration_date = Carbon::now();
-                $audience->payment_status = 'pending';
+                $audience = new Audience([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                    'event_type' => $event->event_type,
+                    'event_name' => $event->event_name,
+                    'registration_date' => now(),
+                    'payment_status' => 'pending',
+                ]);
                 $audience->save();
 
-                // $template = WhtasappTemplate::where('name', 'welcome_first_message')->first();
                 $template = WhtasappTemplate::where('name', $event->whstp_temp_name)->first();
                 $modifiedMessage = MessageTemplate::where('name', $event->whstp_temp_name)->first()->message;
 
-                // Log::info($template);
                 if ($template) {
-                    $result = sendTempMessage($template, $request->phone, $para = null);
+                    $result = sendTempMessage($template, $request->phone);
+                    $this->handleWhatsappMessages($result, $modifiedMessage);
                 }
+            } elseif ($audience->payment_status == 'paid') {
+                return back()->with('error', 'You are already registered for this event');
             } else {
-                // return back()->with('error', 'You are already registered for this event');
-
-                // Log::info('Audience already exists');
-                // update event name and registration date
-                $audience->name = $request->name;
-                $audience->email = $request->email;
-                $audience->phone = $request->phone;
-                $audience->event_type = $event->event_type;
-                $audience->event_name = $event->event_name;
-                $audience->registration_date = Carbon::now();
-                $audience->save();
-
-                $template = WhtasappTemplate::where('name', $event->whstp_temp_name)->first();
-                $modifiedMessage = MessageTemplate::where('name', $event->whstp_temp_name)->first()->message;
-
-                // Log::info($template);
-                if ($template) {
-                    $result = sendTempMessage($template, $request->phone, $para = null);
-                }
-
-                // return error if audience already exists
+                return redirect()->route('razorpay.index', [
+                    'audience_id' => $audience->id,
+                    'event_id' => $event->id,
+                ]);
             }
 
-            if (isset($result['messages'])) {
-                $messages = $result['messages'];
-
-                foreach ($messages as $message) {
-
-                    $contact = WhatsappChatContact::updateOrCreate(
-                        ['number' => $result['contacts'][0]['wa_id']],
-                        ['name' => null]
-                    );
-
-                    // Fetch the existing message if it exists
-                    $existingMessage = WhatsappMessage::where('recipient_id', $result['contacts'][0]['wa_id'])->whereNotNull('profile_name')->first();
-
-                    // Prepare the attributes for update or create
-                    $attributes = [
-                        'contact_id' => $contact->id,
-                        'whatsapp_message' => $modifiedMessage ?? 'Image Message',
-                        'template_name' => null,
-                        'template_type' => null,
-                        'type' => 'send',
-                        'status' => null,
-                        'image' => $temp_img ?? null,
-                        'phone_number' => $result['contacts'][0]['wa_id'],
-                        'from' => null,
-                        'recipient_id' => $result['contacts'][0]['wa_id'],
-                        'send_at' => null,
-                    ];
-
-                    // If the message exists, add the profile name
-                    if ($existingMessage) {
-                        $attributes['profile_name'] = $existingMessage->profile_name;
-                    }
-
-                    // Update or create the record
-                    $message = WhatsappMessage::updateOrCreate(
-                        ['message_id' => $message['id']],
-                        $attributes
-                    );
-                }
-            }
-
-            // Mail using template file
             if ($request->email) {
                 Mail::send('web.resMail', ['name' => $request->name], function ($message) use ($request) {
                     $message->to($request->email)
@@ -329,4 +267,45 @@ class AudienceController extends Controller
     //     // Return a response to the user
     //     return view('payment.success', compact('payment_id', 'order_id', 'signature'));
     // }
+
+    private function handleWhatsappMessages($result, $modifiedMessage)
+    {
+        if (isset($result['messages'])) {
+            $messages = $result['messages'];
+
+            foreach ($messages as $message) {
+                $contact = WhatsappChatContact::updateOrCreate(
+                    ['number' => $result['contacts'][0]['wa_id']],
+                    ['name' => null]
+                );
+
+                $existingMessage = WhatsappMessage::where('recipient_id', $result['contacts'][0]['wa_id'])
+                    ->whereNotNull('profile_name')
+                    ->first();
+
+                $attributes = [
+                    'contact_id' => $contact->id,
+                    'whatsapp_message' => $modifiedMessage ?? 'Image Message',
+                    'template_name' => null,
+                    'template_type' => null,
+                    'type' => 'send',
+                    'status' => null,
+                    'image' => null,
+                    'phone_number' => $result['contacts'][0]['wa_id'],
+                    'from' => null,
+                    'recipient_id' => $result['contacts'][0]['wa_id'],
+                    'send_at' => null,
+                ];
+
+                if ($existingMessage) {
+                    $attributes['profile_name'] = $existingMessage->profile_name;
+                }
+
+                WhatsappMessage::updateOrCreate(
+                    ['message_id' => $message['id']],
+                    $attributes
+                );
+            }
+        }
+    }
 }
