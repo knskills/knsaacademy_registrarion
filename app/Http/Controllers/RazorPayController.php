@@ -253,6 +253,7 @@ class RazorPayController extends Controller
 
     public function handleRazorpayWebhook(Request $request)
     {
+        Log::info($request->all());
         Log::info('Razorpay webhook is working');
         $webhookSecret = env('RAZORPAY_WEBHOOK_SECRET');
         $payload = $request->getContent();
@@ -262,14 +263,16 @@ class RazorPayController extends Controller
             $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
             $response = $api->utility->verifyWebhookSignature($payload, $signature, $webhookSecret);
 
-            // Process the webhook payload here
-            Log::info('Webhook verified and payload:', $request->all());
+            // // Process the webhook payload here
+            // Log::info('Webhook verified and payload:', $request->all());
 
-            // return response()->json(['status' => 'success']);
+            Log::info($response->toArray());
+
+            return response()->json(['status' => 'success']);
         } catch (\Exception $e) {
             Log::error('Webhook verification failed:', ['error' => $e->getMessage()]);
 
-            // return response()->json(['status' => 'failed'], 400);
+            return response()->json(['status' => 'failed'], 400);
         }
     }
 }
