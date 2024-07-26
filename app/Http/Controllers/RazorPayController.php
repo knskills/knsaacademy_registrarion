@@ -44,7 +44,6 @@ class RazorPayController extends Controller
      */
     public function store(Request $request)
     {
-        // Log::info($request->all());
         $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
 
         $payment = $api->payment->fetch($request->razorpay_payment_id);
@@ -58,15 +57,15 @@ class RazorPayController extends Controller
         try {
             if ($payment['status'] == 'authorized') {
                 // Log the capture request details
-                Log::info('Attempting to capture payment with amount: ' . $amount);
+                Log::info('Attempting to capture payment with amount: ' . $amount / 100);
 
                 $response = $payment->capture(['amount' => $amount]);
-                Log::info('Capture Response: ' . json_encode($response));
 
                 if (!empty($response)) {
                     $responseArray = $response->toArray();
+
                     if ($responseArray['status'] == 'captured') {
-                        $payment_status = 'paying';
+                        $payment_status = 'paid';
                     } else {
                         $payment_status = 'pending';
                     }
@@ -89,13 +88,11 @@ class RazorPayController extends Controller
             }
 
 
-            $amount = $responseArray['fee'];
-
             // save rozarpay info
             $razorpay = new RazorPay();
             $razorpay->razorpay_order_id = $responseArray['id'];
             $razorpay->razorpay_payment_id = $request->razorpay_payment_id;
-            $razorpay->amount = $amount;
+            $razorpay->amount = $responseArray['fee'];
             $razorpay->currency = $payment->currency;
             $razorpay->status = $responseArray['status'];
             $payment->payment_method = $payment_method;
@@ -104,7 +101,7 @@ class RazorPayController extends Controller
 
             // save payment details
             $payment = new Payment();
-            $payment->audience_id = $request->audiance_id;
+            $payment->audience_id = $request->audience_id;
             $payment->event_id = $request->event_id;
             $payment->payment_method = $payment_method;
             $payment->payment_date = now();
@@ -117,8 +114,8 @@ class RazorPayController extends Controller
             $payment->save();
 
             // Update payment status
-            $audience = Audience::find($request->audiance_id);
-            $audience->payment_status = $payment_status ?? 'pending';
+            $audience = Audience::find($request->audience_id);
+            $audience->payment_status = $payment_status;
             $audience->save();
 
             // return response()->json([
@@ -128,8 +125,7 @@ class RazorPayController extends Controller
             return redirect()->back();
         } catch (\Exception $e) {
             Log::info($e->getMessage());
-            \Session::put('error', $e->getMessage());
-            return  $e->getMessage();
+            return redirect()->back()->with('error', 'Something went wrong');
         }
     }
 
