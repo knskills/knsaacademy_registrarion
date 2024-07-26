@@ -135,7 +135,8 @@
                                     name="razorpay_signature"
                                     id="razorpay_signature">
                                 <button type="button" id="rzp-button1"
-                                    class="btn-pay-now">Pay Now</button>
+                                    class="btn-pay-now">Pay
+                                    {{ $amount }}</button>
                             </form>
                         </div>
                     </div>
