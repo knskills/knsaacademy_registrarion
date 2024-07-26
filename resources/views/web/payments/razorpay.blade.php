@@ -107,7 +107,7 @@
                         </div>
                     @endif
 
-                    {{-- <div class="card">
+                    <div class="card">
                         <div class="card-header text-center">
                             KNSA - kya kyo aur kaise?
                         </div>
@@ -117,17 +117,30 @@
 
                         <div class="card-body text-center">
                             <form action="{{ route('razorpay.store') }}"
-                                method="POST">
+                                method="POST" id="paymentForm">
                                 @csrf
-                                <input type="hidden" name="audiance_id"
-                                    id="audiance_id" value="5">
+                                <input type="hidden" name="audience_id"
+                                    id="audience_id"
+                                    value="{{ $audience_id }}">
+                                <input type="hidden" name="event_id"
+                                    id="event_id"
+                                    value="{{ $event_id }}">
+                                <input type="hidden"
+                                    name="razorpay_payment_id"
+                                    id="razorpay_payment_id">
+                                <input type="hidden"
+                                    name="razorpay_order_id"
+                                    id="razorpay_order_id">
+                                <input type="hidden"
+                                    name="razorpay_signature"
+                                    id="razorpay_signature">
                                 <button type="button" id="rzp-button1"
                                     class="btn-pay-now">Pay Now</button>
                             </form>
                         </div>
-                    </div> --}}
+                    </div>
 
-                    <div class="card">
+                    {{-- <div class="card">
                         <div class="card-header text-center">
                             KNSA - kya kyo aur kaise?
                         </div>
@@ -156,18 +169,18 @@
                                     data-theme.color="#1d812f"></script>
                             </form>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
     </main>
 </div>
 
-{{-- <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
     var options = {
         "key": "{{ env('RAZORPAY_KEY') }}",
-        "amount": "1000", // Amount is in currency subunits. Default currency is INR. Hence, 1000 refers to 1000 paise or ₹10.
+        "amount": "{{ $amount * 100 }}", // Amount in paise
         "currency": "INR",
         "name": "KNSA",
         "description": "Rozerpay",
@@ -182,8 +195,8 @@
             document.getElementById('paymentForm').submit();
         },
         "prefill": {
-            "name": "name",
-            "email": "email"
+            "name": "{{ $audience->name }}",
+            "email": "{{ $audience->email }}"
         },
         "theme": {
             "color": "#1d812f"
@@ -195,6 +208,6 @@
         rzp1.open();
         e.preventDefault();
     }
-</script> --}}
+</script>
 
 </html>
