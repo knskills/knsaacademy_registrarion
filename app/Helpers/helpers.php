@@ -17,7 +17,6 @@ function sendSms($phone, $message)
         $authKey = getenv("MSGCLUB_AUTH_KEY");
         $routeId = getenv("MSGCLUB_SMS_ROUTE");
         $result = sendsmsGET($mobileNumber, $senderId, $routeId, $message, $serverUrl, $authKey);
-        // Log::info('sendSms result: ' . $result);
         $result = result($result);
         return $result;
     } catch (\Exception $e) {
@@ -92,7 +91,6 @@ function sendWhatsAppMessage($phone, $message)
     return $response->body();
 }
 
-
 function result($result)
 {
     $decodedResult = json_decode($result, true); // Assuming $result is a JSON response
@@ -109,7 +107,7 @@ function result($result)
 }
 
 
-// not used
+// Unused
 function sendBulkWhatsAppMessages(array $phones, $message)
 {
     $authKey = getenv("MSGCLUB_AUTH_KEY");
@@ -382,12 +380,15 @@ function replacePlaceholders($text, $parameters)
  */
 function sendTempMessage($template, $phone, $replacements = null)
 {
-    // Log::info('send template');
-    // // Remove extra characters from the phone number
-    // $phone = preg_replace('/\D/', '', $phone); // Remove any non-digit characters
-    // if (strlen($phone) > 10) {
-    //     $phone = substr($phone, -10); // Keep only the last 10 digits
-    // }
+    // Remove extra characters from the phone number
+    $phone = preg_replace('/\D/', '', $phone); // Remove any non-digit characters
+
+    if (strlen($phone) > 10) {
+        $phone = substr($phone, -10); // Keep only the last 10 digits
+    } elseif (strlen($phone) < 10) {
+        Log::error('Phone number is less than 10 digits.');
+        return 'failed';
+    }
 
     // Get the template content
     $template_content = $template->template_content;
@@ -395,13 +396,9 @@ function sendTempMessage($template, $phone, $replacements = null)
     if (!empty($template->template_content['components'])) {
         $components = $template->template_content['components'];
         if (isset($components[1]) && $components[1]['type'] === 'body' && !empty($components[1]['parameters'])) {
-            // Replace placeholders with actual values
-            // $replacements = ["rohit", "05/06/2024", "my Link"];
             $template_content = templateReplaceParameters($template_content, $replacements);
         }
     }
-
-    // Log::info('Template Content: ' . json_encode($template_content, JSON_PRETTY_PRINT));
 
     $response = Http::withHeaders([
         'Authorization' => 'Bearer ' . getenv("FB_METADATA_TOKEN"),
@@ -417,21 +414,18 @@ function sendTempMessage($template, $phone, $replacements = null)
         ]
     );
 
-    // Log::info('API Response: ' . $response->body());
-
     if ($response->successful()) {
-        // Log::info('Message Status: ' . json_encode($response->json()));
-        // return response()->json(['message' => 'Message sent successfully'], 200);
         return $data = json_decode($response->getBody(), true);
-
-        // return 'send';
     } else {
         Log::error('Failed to send message: ' . json_encode($response->json()));
-        // return response()->json(['error' => 'Failed to send message', 'details' => $response->json()], $response->status());
         return 'failed';
     }
 }
 
+
+/**
+ * Create Contact
+ */
 function createContact($phone_number, $profile_name)
 {
     $contact = WhatsappChatContact::where('number', $phone_number)->first();
